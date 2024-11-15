@@ -33,6 +33,6 @@
 
     programs.zoxide.enable = true; # Smarter 'cd' command   
     programs.starship.enable = true; # Command prompt
-    programs.starship.settings = pkgs.lib.importTOML ./zsh/starship.toml;
+    #programs.starship.settings = pkgs.lib.importTOML ./zsh/starship.toml;
   };
 }
