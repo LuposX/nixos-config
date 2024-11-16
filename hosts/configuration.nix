@@ -143,8 +143,7 @@ in
     polkit
     polkit_gnome
     xorg.xhost
-    kdePackages.partitionmanager
-    gnome.gnome-disk-utility
+    gnome-disk-utility
   ];
 
   # Thunar
