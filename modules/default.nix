@@ -11,6 +11,6 @@
     ./rofi.nix
     ./foot.nix
     #./hyprpanel.nix
-    ./wllogout.nix
+    ./wlogout.nix
   ];
 }
