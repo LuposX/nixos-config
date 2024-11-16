@@ -1,0 +1,4 @@
+# Aliases for ZSH
+# It is important to not have spaces here
+alias v="vim"
+alias py-shell="nix-shell ~/.nixos-config/shell/python-shell.nix"
