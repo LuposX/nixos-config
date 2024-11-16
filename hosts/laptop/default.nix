@@ -19,6 +19,11 @@
   environment.systemPackages = with pkgs; [
      jellyfin-media-player # Media Player
   ];
+  
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = false;
+  services.blueman.enable = true;
 
   # Thunderbolt
   services.hardware.bolt.enable = true;

@@ -7,7 +7,7 @@
     ./zsh.nix
     ./doom-emacs.nix
     ./login.nix
-    #./waybar.nix
+    ./waybar.nix
     ./rofi.nix
     ./foot.nix
     #./hyprpanel.nix

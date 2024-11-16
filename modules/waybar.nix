@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     playerctl
     pavucontrol
+    networkmanagerapplet
   ];
 
   programs.waybar = {
