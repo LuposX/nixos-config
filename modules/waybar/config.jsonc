@@ -2,7 +2,7 @@
 
 // ### DEFAULT - Top ### //
 {
-"include": "./modules",
+"include": "modules",
 "layer": "top",
 //"mode": "dock",
 "exclusive": true,
