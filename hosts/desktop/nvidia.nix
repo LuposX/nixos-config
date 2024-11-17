@@ -1,55 +1,48 @@
-# From: https://github.com/Sly-Harvey/NixOS/blob/master/modules/hardware/video/nvidia.nix
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}: let
-  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.latest; # stable, beta, etc.
-in {
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"]; # or "nvidiaLegacy470 etc.
-  boot.kernelParams = lib.optionals (lib.elem "nvidia" config.services.xserver.videoDrivers) [
-    "nvidia-drm.modeset=1"
-    "nvidia_drm.fbdev=1"
-  ];
-  environment.variables = {
-    #VK_DRIVER_FILES = /run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json;
-    GBM_BACKEND = "nvidia-drm";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME = "nvidia"; # hardware acceleration
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-  };
-  nixpkgs.config = {
-    nvidia.acceptLicense = true;
-    allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-      "cudatoolkit"
-      "nvidia-persistenced"
-      "nvidia-settings"
-      "nvidia-x11"
-    ];
-  };
-  hardware = {
-    nvidia = {
-      open = false;
-      nvidiaSettings = false;
-      powerManagement.enable = false; # This can cause sleep/suspend to fail and saves entire VRAM to /tmp/
-      modesetting.enable = true;
-      package = nvidiaDriverChannel;
-    };
-    graphics = {
-      enable = true;
-      # package = nvidiaDriverChannel;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-        nvidia-vaapi-driver
-        vaapiVdpau
-        libvdpau-va-gl
+# Taken from: https://github.com/XNM1/linux-nixos-hyprland-config-dotfiles/blob/8dcff38a630f624dd8268738d44530677e596be2/nixos/nvidia.nix#L7
 
-        # vulkan-loader
-        # vulkan-extension-layer
-        # vulkan-validation-layers
-      ];
-    };
+{ config, lib, ... }:
+
+{
+  # Load nvidia driver for Xorg and Wayland
+  services.xserver.videoDrivers = ["nvidia"];
+
+
+  hardware.nvidia = {
+
+    opengl.enable = true;
+
+    # Modesetting is required.
+    modesetting.enable = true;
+
+    # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
+    # Enable this if you have graphical corruption issues or application crashes after waking
+    # up from sleep. This fixes it by saving the entire VRAM memory to /tmp/ instead
+    # of just the bare essentials.
+    powerManagement.enable = false;
+
+    # Fine-grained power management. Turns off GPU when not in use.
+    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
+    powerManagement.finegrained = false;
+
+    # Dynamic Boost. It is a technology found in NVIDIA Max-Q design laptops with RTX GPUs.
+    # It intelligently and automatically shifts power between
+    # the CPU and GPU in real-time based on the workload of your game or application.
+    dynamicBoost.enable = lib.mkForce false;
+
+    # Use the NVidia open source kernel module (not to be confused with the
+    # independent third-party "nouveau" open source driver).
+    # Support is limited to the Turing and later architectures. Full list of
+    # supported GPUs is at:
+    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
+    # Only available from driver 515.43.04+
+    open = false;
+
+    # Enable the Nvidia settings menu,
+  	# accessible via `nvidia-settings`.
+    nvidiaSettings = true;
+
+    # Optionally, you may need to select the appropriate driver version for your specific GPU.
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+
   };
 }
