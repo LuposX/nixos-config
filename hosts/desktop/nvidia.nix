@@ -6,10 +6,14 @@
   # Load nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["nvidia"];
 
+  # No idea
+  hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+  };
 
   hardware.nvidia = {
-
-    opengl.enable = true;
 
     # Modesetting is required.
     modesetting.enable = true;
