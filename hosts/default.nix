@@ -32,7 +32,7 @@ in {
       }
       home-manager.nixosModules.home-manager
       {
-        home.stateVersion = "24.05";
+        home-manager.stateVersion = "24.05";
         # Optional settings for home-manager
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
