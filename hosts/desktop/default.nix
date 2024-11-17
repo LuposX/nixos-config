@@ -2,6 +2,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./nvidia.nix
   ];
 
   # Boot
@@ -16,17 +17,6 @@
   boot.initrd.verbose = false;
   boot.plymouth.enable = true;
   boot.plymouth.theme = "bgrt";
-
-  # nvidia
-  services.xserver.videoDrivers = ["nvidia"];
-  hardware.nvidia = {
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    open = false;
-    nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
 
   environment.systemPackages = with pkgs; [
      jellyfin-media-player # Media Player
