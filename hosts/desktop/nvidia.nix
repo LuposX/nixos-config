@@ -7,7 +7,7 @@
   services.xserver.videoDrivers = ["nvidia"];
 
   # No idea
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   boot.blacklistedKernelModules = [ "nouveau" ];
 
