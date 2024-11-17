@@ -17,8 +17,8 @@ in
   };
   
   # When run in a VM
-  virtualisation.virtualbox.guest.enable = true;
-  hardware.graphics.enable = true;  
+  # virtualisation.virtualbox.guest.enable = true;
+  # hardware.graphics.enable = true;
   
   xdg.portal = {
     enable = true;  

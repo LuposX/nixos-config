@@ -1,6 +1,7 @@
 //* ---- 💫 https://github.com/JaKooLit 💫 ---- *//
 
 {
+// HYPRLAND WORKSPACES. CHOOSE as desired and place on waybar configs
 // CIRCLES Style
 "hyprland/workspaces": {
 	"active-only": false,
@@ -23,7 +24,113 @@
 	},  
 },
 
+// ROMAN Numerals style
+"hyprland/workspaces#roman": {
+    "active-only":false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "persistent-workspaces":{
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+    },
+    "format-icons": {
+      "1": "I",
+      "2": "II",
+      "3": "III",
+      "4": "IV",
+      "5": "V",
+      "6": "VI",
+      "7": "VII",
+      "8": "VIII",
+      "9": "IX",
+      "10": "X",
+      
+    },
+},
 
+// PACMAN Style
+  "hyprland/workspaces#pacman": {
+    "active-only":false,
+    "all-outputs": true,
+    "format": "{icon}",
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "show-special": false,
+    "persistent-workspaces":{
+        "1": [],
+        "2": [],
+        "3": [],
+        "4": [],
+        "5": [],
+    },
+    "format": "{icon}",
+    "format-icons": {
+      "active": " 󰮯 ",
+      "default": "󰊠",
+      "persistent":"󰊠",
+    },
+},
+  
+"hyprland/workspaces#kanji": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      },
+    "format-icons": {
+      "1": "一",
+      "2": "二",
+      "3": "三",
+      "4": "四",
+      "5": "五",
+      "6": "六",
+      "7": "七",
+      "8": "八",
+      "9": "九",
+      "10": "十",
+    }
+},
+  
+//  NUMBERS and ICONS style
+"hyprland/workspaces#4": {
+    "format": "{name}",
+    "format": " {name} {icon} ",
+    //"format": " {icon} ",
+    "show-special": false,
+    "on-click": "activate",
+    "on-scroll-up": "hyprctl dispatch workspace e+1",
+    "on-scroll-down": "hyprctl dispatch workspace e-1",
+    "all-outputs": true,
+    "sort-by-number": true,
+    "format-icons": {
+      "1": " ",
+      "2": " ",
+      "3": " ",
+      "4": " ",
+      "5": " ",
+      "6": " ",
+      "7": "",
+      "8": " ",
+      "9": "",
+      "10": "10",
+      "focused": "",
+      "default": "",
+    },
+},
+ 
 // GROUP
   
 "group/motherboard": {
@@ -158,6 +265,7 @@
 "hyprland/language": {
     "format": "Lang: {}",
     "format-en": "US",
+    "format-tr": "Korea",
     "keyboard-name": "at-translated-set-2-keyboard",
     "on-click": "hyprctl switchxkblayout $SET_KB next"
 },
@@ -413,6 +521,15 @@
     "escape": true,
 },
     
+// NOTE:! This is only for Arch and Arch Based Distros  
+"custom/updater":{
+    "format": " {}",
+    "exec": "checkupdates | wc -l",
+    "exec-if": "[[ $(checkupdates | wc -l) ]]",
+    "interval": 15,
+    "on-click": "kitty -T update paru -Syu || yay -Syu && notify-send 'The system has been updated'",
+},
+    
 "custom/weather": {
     "format": "{}",
     "format-alt": "{alt}: {}",
@@ -462,5 +579,111 @@
     "interval": "once",
     "tooltip": false
 },
-}
+  
+// Modules below are for vertical layout
+  
+"backlight#vertical": {
+	"interval": 2,
+    "align": 0.35,
+    "rotate": 1,
+    "format": "{icon}",
+    //"format-icons": ["󰃞", "󰃟", "󰃠"],
+	"format-icons": ["","","","","","","","","","","","","","",""],
+    "on-click": "",
+    "on-click-middle": "",
+    "on-click-right": "",
+    "on-update": "",
+    "on-scroll-up": "~/.config/hypr/scripts/Brightness.sh --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/Brightness.sh --dec",
+    "smooth-scrolling-threshold": 1,
+	"tooltip-format": "{percent}%",
+},
+  
+"clock#vertical": {
+	"format": "{:\n%H\n%M\n%S\n\n \n%d\n%m\n%y}",
+	"interval": 1,
+     //"format": "{:\n%I\n%M\n%p\n\n \n%d\n%m\n%y}",
+     "tooltip": true,
+     "tooltip-format": "{calendar}",
+     "calendar": {
+       "mode": "year",
+       "mode-mon-col": 3,
+       "format": {
+       "today": "<span color='#0dbc79'>{}</span>",
+       }
+     }
+},
 
+"cpu#vertical": {
+    "format": "󰍛\n{usage}%",  
+    "interval": 1,
+    "on-click": "gnome-system-monitor",
+},
+  
+"memory#vertical": {
+    "interval": 10,
+    "format": "󰾆\n{percentage}%",
+    "format-alt": "󰾆\n{used:0.1f}G",
+    "format-alt-click": "click",
+    "tooltip": true,
+    "tooltip-format": "{used:0.1f}GB/{total:0.1f}G",
+    "on-click": "kitty --title btop sh -c 'btop'",
+},
+  
+"pulseaudio#vertical": {
+    "format": "{icon}",
+    "format-bluetooth": "󰂰",
+    "format-muted": "󰖁",
+    "format-icons": {
+        "headphone": "",
+        "hands-free": "",
+        "headset": "",
+        "phone": "",
+        "portable": "",
+        "car": "",
+    "default": ["", "", "󰕾", ""],
+	"tooltip-format": "{icon} {desc} | {volume}%", 
+    "ignored-sinks": ["Easy Effects Sink"],
+	},
+    "scroll-step": 5.0,
+    "on-click-right": "~/.config/hypr/scripts/volume_control.sh --toggle",
+    "on-click": "pavucontrol -t 3",
+    "on-scroll-up": "~/.config/hypr/scripts/volume_control.sh --inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume_control.sh --dec",
+	"tooltip-format": "{icon} {desc} | {volume}%",
+    "smooth-scrolling-threshold": 1,
+},
+  
+"pulseaudio#microphone_vertical": {
+    "format": "{format_source}",
+    "format-source": "󰍬",
+    "format-source-muted": "󰍭",
+    "on-click": "pavucontrol",
+    "on-click-right": "~/.config/hypr/scripts/volume_control.sh --toggle-mic",
+    "on-scroll-up": "~/.config/hypr/scripts/volume_control.sh --mic-inc",
+    "on-scroll-down": "~/.config/hypr/scripts/volume_control.sh --mic-dec",
+    "max-volume": 100,
+    "tooltip": true,
+	"tooltip-format": "{source_desc} | {source_volume}%",
+},
+  
+"temperature#vertical": {
+    "interval": 10,
+    "tooltip": true,
+    "hwmon-path": ["/sys/class/hwmon/hwmon1/temp1_input", "/sys/class/thermal/thermal_zone0/temp"],
+    //"thermal-zone": 0,
+    "critical-threshold": 80,
+    "format-critical": "{icon}\n{temperatureC}°C",
+    "format": " {icon}",
+    "format-icons": ["󰈸"],
+    "on-click": "kitty --title nvtop sh -c 'nvtop'"
+},
+  
+"custom/power_vertical": {
+    "format": "⏻",
+    "exec": "echo ; echo 󰟡 power // blur",
+	"on-click": "~/.config/hypr/scripts/wlogout.sh",
+    "interval" : 86400, // once every day
+    "tooltip": true,
+},
+}

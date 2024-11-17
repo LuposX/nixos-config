@@ -3,14 +3,10 @@
 {
   imports = [
     ./firefox.nix
-    ./hyprland.nix
+    ./desktop.nix
     ./zsh.nix
     ./doom-emacs.nix
     ./login.nix
-    ./waybar.nix
-    ./rofi.nix
     ./foot.nix
-    #./hyprpanel.nix
-    ./wlogout.nix
   ];
 }

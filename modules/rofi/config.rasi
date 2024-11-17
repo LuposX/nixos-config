@@ -1,14 +1,1 @@
-/* Rofi config file */
-/* Source: https://raw.githubusercontent.com/dikiaap/dotfiles/refs/heads/master/.rofi/config.rasi*/
-configuration {
-    font: "JetBrains Mono Nerd Font Bold 11";
-    show-icons: true;
-    display-window: "Window";
-    display-drun: "Search";
-}
-
-@theme "rounded-nord-dark"
-
-listview {
-    lines: 6;
-}
+@theme "~/.config/rofi/themes/nova-dark.rasi"
