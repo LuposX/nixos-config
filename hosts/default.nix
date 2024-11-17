@@ -4,7 +4,7 @@
 # If difference host wnat to have different stuff
 # use ./desktop, ./laptop
 
-{ inputs, nixpkgs, nixos-hardware, home-manager, nixvim, doom-emacs, hyprland, hyprspace, hyprpanel, nixcord, vars, ... }:
+{ inputs, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, nixvim, doom-emacs, hyprland, hyprspace, hyprpanel, nixcord, vars, ... }:
 
 let 
   pkgs = import nixpkgs {
@@ -12,13 +12,19 @@ let
     config.allowUnfree = true;
   };
 
+   pkgs-stable = import nixpkgs-stable {
+    system = vars.system;
+    config.allowUnfree = true;
+  };
+
+
   lib = nixpkgs.lib;
 in
 {
   laptop = lib.nixosSystem {
     system = vars.system;
     specialArgs = {
-      inherit inputs home-manager hyprland hyprpanel hyprspace vars;
+      inherit inputs pkgs-stable home-manager hyprland hyprpanel hyprspace vars;
     };
     modules = [
       nixvim.nixosModules.nixvim

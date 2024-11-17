@@ -16,6 +16,8 @@
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware/master";
 
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+
     # Official Hyprland Flake
     hyprland = {
       url = "github:hyprwm/Hyprland";
@@ -72,7 +74,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nixos-hardware, home-manager, nixvim, doom-emacs, hyprland, hyprspace, hyprpanel, nixcord, ... }: 
+  outputs = inputs @ { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, nixvim, doom-emacs, hyprland, hyprspace, hyprpanel, nixcord, ... }:
     let 
       # Variables Used in Flake
       vars = {
@@ -86,7 +88,7 @@
         nixosConfigurations = (
         import ./hosts {
           inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixos-hardware home-manager nixvim doom-emacs hyprland hyprspace hyprpanel nixcord vars; # Inherit inputs
+          inherit inputs nixpkgs nixpkgs-stable nixos-hardware home-manager nixvim doom-emacs hyprland hyprspace hyprpanel nixcord vars; # Inherit inputs
         }
       );
     };

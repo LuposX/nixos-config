@@ -1,4 +1,4 @@
-{ inputs, config, lib, hyprland, hyprpanel, hyprspace, pkgs, vars, ... }:
+{ inputs, pkgs-stable, config, lib, hyprland, hyprpanel, hyprspace, pkgs, vars, ... }:
 
 { 
   # Based on: https://github.com/zDyanTB/HyprNova
@@ -17,12 +17,15 @@
     hyprlock
     hypridle
     python311
-    cava # Visualize sound
     kitty
     gnomeExtensions.system-monitor # Used in waybar
     wireplumber # Used in waybar
     playerctl # Used in waybar
     networkmanagerapplet
+  ];
+
+  environment.systemPackages = with pkgs-stable; [
+     cava # Visualize sound
   ];
 
   services.hypridle.enable = true;
