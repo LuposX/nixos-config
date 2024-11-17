@@ -9,7 +9,7 @@
     NIXOS_OZONE_WL = "1";
   };
   
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     rofi-wayland
     swaynotificationcenter # SwayNC
     wlogout
@@ -22,11 +22,9 @@
     wireplumber # Used in waybar
     playerctl # Used in waybar
     networkmanagerapplet
-  ];
-
-  environment.systemPackages = with pkgs-stable; [
-     cava # Visualize sound
-  ];
+  ]) ++ (with pkgs-stable; [
+    cava # Visualize sound
+  ]);
 
   services.hypridle.enable = true;
   programs.hyprlock.enable = true;
