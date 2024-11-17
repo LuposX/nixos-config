@@ -9,7 +9,7 @@
   # No idea
   hardware.opengl.enable = true;
 
-  boot.blacklistedKernelModules = [ "nouveau" ]
+  boot.blacklistedKernelModules = [ "nouveau" ];
 
   hardware.nvidia = {
 
