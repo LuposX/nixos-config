@@ -18,7 +18,6 @@
     hypridle
     python311
     cava # Visualize sound
-    thunar
     kitty
     gnomeExtensions.system-monitor # Used in waybar
     wireplumber # Used in waybar
