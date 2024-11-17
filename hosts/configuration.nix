@@ -209,12 +209,8 @@ in
     allowReboot = true;
     dates="weekly";
   };
-  
-  # DO NOT CHANGE, If you want to upgrade use CLI.
-  system.stateVersion = "24.05";    
 
   home-manager.users.${vars.user} = {
-    home.stateVersion = "24.05";
     programs.home-manager.enable = true;
     
     # Default applications

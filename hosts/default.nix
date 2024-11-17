@@ -1,26 +1,23 @@
-# Inspirtation: https://github.com/MatthiasBenaets/nix-config/blob/master/hosts/default.nix
+# Inspiration: https://github.com/MatthiasBenaets/nix-config/blob/master/hosts/default.nix
 
-# The #configuration.nix is the same for all host
-# If difference host wnat to have different stuff
-# use ./desktop, ./laptop
+# Shared configuration file for all hosts
+# Use `./desktop` or `./laptop` for host-specific settings.
 
 { inputs, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, nixvim, doom-emacs, hyprland, hyprspace, hyprpanel, nixcord, vars, ... }:
 
-let 
+let
   pkgs = import nixpkgs {
     system = vars.system;
     config.allowUnfree = true;
   };
 
-   pkgs-stable = import nixpkgs-stable {
+  pkgs-stable = import nixpkgs-stable {
     system = vars.system;
     config.allowUnfree = true;
   };
 
-
   lib = nixpkgs.lib;
-in
-{
+in {
   laptop = lib.nixosSystem {
     system = vars.system;
     specialArgs = {
@@ -30,9 +27,12 @@ in
       nixvim.nixosModules.nixvim
       ./laptop/default.nix
       ./configuration.nix
-
-      home-manager.nixosModules.home-manager      
       {
+        system.stateVersion = "24.05";
+      }
+      home-manager.nixosModules.home-manager
+      {
+        home.stateVersion = "24.05";
         # Optional settings for home-manager
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
