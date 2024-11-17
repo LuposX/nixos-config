@@ -25,10 +25,6 @@
     networkmanagerapplet
   ];
 
-  fonts.packages = with pkgs; [
-    JetBrainsMono Nerd Font
-  ];
-
   services.hypridle.enable = true;
   programs.hyprlock.enable = true;
   programs.hyprland.portalPackage = pkgs.xdg-desktop-portal-hyprland;
