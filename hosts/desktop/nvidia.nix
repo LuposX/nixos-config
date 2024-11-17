@@ -9,6 +9,8 @@
   # No idea
   hardware.opengl.enable = true;
 
+  boot.blacklistedKernelModules = [ "nouveau" ]
+
   hardware.nvidia = {
 
     # Modesetting is required.
