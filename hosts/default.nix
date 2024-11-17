@@ -38,4 +38,25 @@ in {
       }
     ];
   };
+
+  desktop = lib.nixosSystem {
+    system = vars.system;
+    specialArgs = {
+      inherit inputs pkgs-stable home-manager hyprland hyprpanel hyprspace vars;
+    };
+    modules = [
+      nixvim.nixosModules.nixvim
+      ./desktop/default.nix
+      ./configuration.nix
+      {
+        system.stateVersion = "24.05";
+      }
+      home-manager.nixosModules.home-manager
+      {
+        # Optional settings for home-manager
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+      }
+    ];
+  };
 }
