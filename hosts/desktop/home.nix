@@ -6,6 +6,7 @@
     
      # Programs
     ../../home/programs/kitty
+    ../../home/programs/shell
   ];
   
   home = {
