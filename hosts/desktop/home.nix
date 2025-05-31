@@ -1,7 +1,11 @@
 { pkgs, config, ... }: {
 
   imports = [
+    # User-specific Configurations
     ./variables.nix
+    
+     # Programs
+    ../../home/programs/kitty
   ];
   
   home = {
