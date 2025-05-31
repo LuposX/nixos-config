@@ -6,9 +6,17 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ 
+    # System Related Stuff
+    ../../nixos/home-manager.nix
+
+     # Don't change this.
      ./hardware-configuration.nix
+     ./variables.nix
     ];
+
+  home-manager.users."${config.var.username}" = import ./home.nix;
+
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
