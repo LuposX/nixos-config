@@ -9,6 +9,7 @@
     [ 
     # System Related Stuff
     ../../nixos/home-manager.nix
+    ../../nixos/fonts.nix
 
      # Don't change this.
      ./hardware-configuration.nix

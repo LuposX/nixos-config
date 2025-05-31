@@ -1,6 +1,6 @@
 { pkgs, lib, config, ... }: {
   imports =
-    [ ./eza.nix ./zoxide.nix ./fish.nix ./starship.nix ];
+    [ ./eza.nix ./zoxide.nix ./fish.nix ./starship.nix ./fzf.nix ];
 
    home.packages = with pkgs; [ 
      bat
