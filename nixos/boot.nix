@@ -17,7 +17,8 @@
     tmp.cleanOnBoot = true;
     # Uses the most recent mainline Linux kernel.
     # Alternatives: _zen, _hardened, _rt, _rt_latest, etc.
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_14;
 
     # Silent boot
     kernelParams = [

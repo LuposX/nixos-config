@@ -15,6 +15,7 @@
     ../../nixos/audio.nix
     ../../nixos/boot.nix
     ../../nixos/nix.nix
+    ../../nixos/nvidia.nix
 
      # Don't change this.
      ./hardware-configuration.nix
