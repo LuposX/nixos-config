@@ -9,6 +9,7 @@
     ../../home/programs/shell
     ../../home/programs/firefox
     ../../home/programs/nvf
+    ../../home/programs/git
   ];
   
   home = {
