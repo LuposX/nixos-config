@@ -14,6 +14,7 @@
     ../../nixos/utils.nix
     ../../nixos/audio.nix
     ../../nixos/boot.nix
+    ../../nixos/nix.nix
 
      # Don't change this.
      ./hardware-configuration.nix
@@ -28,13 +29,6 @@
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Do Not Change!
   system.stateVersion = "25.05";
