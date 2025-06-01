@@ -10,6 +10,7 @@
     # System Related Stuff
     ../../nixos/home-manager.nix
     ../../nixos/fonts.nix
+    ../../nixos/users.nix
 
      # Don't change this.
      ./hardware-configuration.nix
@@ -88,16 +89,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.monkeman = {
-    isNormalUser = true;
-    description = "MonkeMan";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
