@@ -16,6 +16,7 @@
     ../../nixos/boot.nix
     ../../nixos/nix.nix
     ../../nixos/nvidia.nix
+    ../../nixos/bluetooth.nix
 
      # Don't change this.
      ./hardware-configuration.nix
