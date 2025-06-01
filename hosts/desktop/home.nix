@@ -11,6 +11,7 @@
     ../../home/programs/nvf
     ../../home/programs/git
     ../../home/programs/lazygit
+    ../../home/programs/anyrun
   ];
   
   home = {
