@@ -23,6 +23,30 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
+      # Apps
+      vlc # Video player
+      gnome-calendar # Calendar
+      textpieces # Manipulate texts
+      resources # Monitor for your system resources 
+      gnome-clocks
+      gnome-text-editor
+      mpv # Video player
+
+      # Dev
+      python3
+
+      # Utils
+      zip
+      unzip
+      btop
+      pfetch
+      fastfetch
+
+      # Fun
+      peaclock
+      cbonsai
+      pipes
+      cmatrix
     ];
 
     # Don't touch this
