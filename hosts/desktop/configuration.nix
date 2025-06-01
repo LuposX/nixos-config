@@ -12,6 +12,7 @@
     ../../nixos/fonts.nix
     ../../nixos/users.nix
     ../../nixos/utils.nix
+    ../../nixos/audio.nix
 
      # Don't change this.
      ./hardware-configuration.nix
@@ -33,16 +34,6 @@
   # Enable the Cinnamon Desktop Environment.
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.cinnamon.enable = true;
-
-  # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
