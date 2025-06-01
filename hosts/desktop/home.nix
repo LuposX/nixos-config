@@ -11,7 +11,8 @@
     ../../home/programs/nvf
     ../../home/programs/git
     ../../home/programs/lazygit
-    ../../home/programs/anyrun
+    # ../../home/programs/anyrun
+    ../../home/programs/thunar
 
     # System
     ../../home/system/wofi
