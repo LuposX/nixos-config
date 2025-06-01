@@ -13,6 +13,7 @@
     ../../nixos/users.nix
     ../../nixos/utils.nix
     ../../nixos/audio.nix
+    ../../nixos/boot.nix
 
      # Don't change this.
      ./hardware-configuration.nix
@@ -20,13 +21,6 @@
     ];
 
   home-manager.users."${config.var.username}" = import ./home.nix;
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
