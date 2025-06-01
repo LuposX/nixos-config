@@ -15,6 +15,7 @@
 
     # System
     ../../home/system/wofi
+    # ../../home/system/hyprpanel
   ];
   
   home = {

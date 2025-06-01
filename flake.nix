@@ -2,16 +2,17 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    # NixOS official package source, using the nixos-25.05 branch here
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    anyrun.url = "github:fufexan/anyrun/launch-prefix";
+    nvf.url = "github:notashelf/nvf";     # This is for Neovim
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+
     # Used for managing a user environment 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun.url = "github:fufexan/anyrun/launch-prefix";
-    # This is for Neovim
-    nvf.url = "github:notashelf/nvf";
+    
     # This fixes the bug, when a command is not found.
     flake-programs-sqlite = {
       url = "github:wamserma/flake-programs-sqlite";
@@ -25,7 +26,8 @@
       system = "x86_64-linux";
       modules = [
         {
-        # With this other Modules will have acess to the inputs
+            nixpkgs.overlays = [ inputs.hyprpanel.overlay ];
+            # With this other Modules will have acess to the inputs
             _module.args = { inherit inputs; };
         }
         inputs.flake-programs-sqlite.nixosModules.programs-sqlite
