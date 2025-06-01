@@ -10,6 +10,7 @@
     ../../home/programs/firefox
     ../../home/programs/nvf
     ../../home/programs/git
+    ../../home/programs/lazygit
   ];
   
   home = {

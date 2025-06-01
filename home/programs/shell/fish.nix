@@ -18,6 +18,7 @@
       gc = "git commit -m";
       ga = "git add";
       gl = "git log";
+      lg = "lazygit";
  
       # General
       c = "clear";
