@@ -12,6 +12,11 @@
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
     # This is for Neovim
     nvf.url = "github:notashelf/nvf";
+    # This fixes the bug, when a command is not found.
+    flake-programs-sqlite = {
+      url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -23,6 +28,7 @@
         # With this other Modules will have acess to the inputs
             _module.args = { inherit inputs; };
         }
+        inputs.flake-programs-sqlite.nixosModules.programs-sqlite
         inputs.home-manager.nixosModules.home-manager
         ./hosts/desktop/configuration.nix
       ];
