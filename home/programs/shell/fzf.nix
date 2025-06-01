@@ -2,6 +2,6 @@
 { config, lib, ... }: {
   programs.fzf = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false; # We instead use the fish plugin
   };
 }
