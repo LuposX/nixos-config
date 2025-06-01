@@ -12,6 +12,9 @@
     ../../home/programs/git
     ../../home/programs/lazygit
     ../../home/programs/anyrun
+
+    # System
+    ../../home/system/wofi
   ];
   
   home = {
