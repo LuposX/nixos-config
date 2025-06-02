@@ -10,6 +10,11 @@
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
     stylix.url = "github:nix-community/stylix/release-25.05";
 
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Used for managing a user environment
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";

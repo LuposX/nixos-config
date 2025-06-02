@@ -16,6 +16,7 @@
     ../../home/programs/lazygit
     # ../../home/programs/anyrun
     ../../home/programs/thunar
+    ../../home/programs/vscode
 
     # Scripts
     ../../home/scripts # All scripts
@@ -39,7 +40,7 @@
       gnome-clocks
       gnome-text-editor
       mpv # Video player
-
+            
       # Dev
       python3
 
