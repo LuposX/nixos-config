@@ -1,10 +1,13 @@
-{ pkgs, config, ... }: {
-
+{
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     # User-specific Configurations
     ./variables.nix
-    
-     # Programs
+
+    # Programs
     ../../home/programs/kitty
     ../../home/programs/shell
     ../../home/programs/firefox
@@ -14,11 +17,15 @@
     # ../../home/programs/anyrun
     ../../home/programs/thunar
 
+    # Scripts
+    ../../home/scripts # All scripts
+
     # System
     ../../home/system/wofi
-    # ../../home/system/hyprpanel
+    ../../home/system/hyprpanel
+    ../../home/system/hyprland
   ];
-  
+
   home = {
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
@@ -28,7 +35,7 @@
       vlc # Video player
       gnome-calendar # Calendar
       textpieces # Manipulate texts
-      resources # Monitor for your system resources 
+      resources # Monitor for your system resources
       gnome-clocks
       gnome-text-editor
       mpv # Video player

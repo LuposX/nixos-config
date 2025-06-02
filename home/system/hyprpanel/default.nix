@@ -1,10 +1,12 @@
 # Hyprpanel is the bar on top of the screen
 # Display informations like workspaces, battery, wifi, ...
 # For documentation see: https://hyprpanel.com/getting_started/installation.html#nixos
-{ inputs, config, ... }:
-let
+{
+  inputs,
+  config,
+  ...
+}: let
   #transparentButtons = config.theme.bar.transparentButtons;
-
   #accent = "#${config.lib.stylix.colors.base0D}";
   #accent-alt = "#${config.lib.stylix.colors.base03}";
   #background = "#${config.lib.stylix.colors.base00}";
@@ -13,52 +15,46 @@ let
   #foregroundOnWallpaper = "#${config.theme.textColorOnWallpaper}";
   #font = "${config.stylix.fonts.serif.name}";
   #fontSizeForHyprpanel = "${toString config.stylix.fonts.sizes.desktop}px";
-
   #rounding = config.theme.rounding;
   #border-size = config.theme.border-size;
-
   #gaps-out = config.theme.gaps-out;
   #gaps-in = config.theme.gaps-in;
-
   #floating = config.theme.bar.floating;
   #transparent = config.theme.bar.transparent;
   #position = config.theme.bar.position; # "top" ou "bottom"
-
   #notificationOpacity = 90;
-
   #location = config.var.location;
   transparentButtons = true;
 
-    accent = "#88C0D0";             # Cyan
-    accent-alt = "#4C566A";         # Muted dark blue-grey
-    background = "#2E3440";         # Dark slate
-    background-alt = "#3B4252";     # Slightly lighter than background
-    foreground = "#ECEFF4";         # Near-white
-    foregroundOnWallpaper = "#FFFFFF";  # White for text over wallpaper
+  accent = "#88C0D0"; # Cyan
+  accent-alt = "#4C566A"; # Muted dark blue-grey
+  background = "#2E3440"; # Dark slate
+  background-alt = "#3B4252"; # Slightly lighter than background
+  foreground = "#ECEFF4"; # Near-white
+  foregroundOnWallpaper = "#FFFFFF"; # White for text over wallpaper
 
-    font = "Inter";
-    fontSizeForHyprpanel = "14px";
+  font = "Inter";
+  fontSizeForHyprpanel = "14px";
 
-    rounding = 10;
-    border-size = 2;
+  rounding = 10;
+  border-size = 2;
 
-    gaps-out = 8;
-    gaps-in = 4;
+  gaps-out = 8;
+  gaps-in = 4;
 
-    floating = false;
-    transparent = true;
-    position = "top";  # or "bottom"
+  floating = false;
+  transparent = true;
+  position = "top"; # or "bottom"
 
-    notificationOpacity = 90;
+  notificationOpacity = 90;
 
-    location = "Europe/Berlin";  
+  location = "Europe/Berlin";
 in {
-
-  imports = [ inputs.hyprpanel.homeManagerModules.hyprpanel ];
+  imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 
   programs.hyprpanel = {
     enable = true;
-    #hyprland.enable = true;
+    hyprland.enable = true;
     overwrite.enable = true;
     overlay.enable = true;
 
@@ -66,8 +62,8 @@ in {
       layout = {
         "bar.layouts" = {
           "*" = {
-            "left" = [ "dashboard" "workspaces" "windowtitle" ];
-            "middle" = [ "media" "cava" ];
+            "left" = ["dashboard" "workspaces" "windowtitle"];
+            "middle" = ["media" "cava"];
             "right" = [
               "systray"
               "volume"
@@ -85,28 +81,48 @@ in {
       theme.font.size = fontSizeForHyprpanel;
 
       theme.bar.outer_spacing =
-        if floating && transparent then "0px" else "8px";
+        if floating && transparent
+        then "0px"
+        else "8px";
       theme.bar.buttons.y_margins =
-        if floating && transparent then "0px" else "8px";
+        if floating && transparent
+        then "0px"
+        else "8px";
       theme.bar.buttons.spacing = "0.3em";
       theme.bar.buttons.radius =
-        (if transparent then toString rounding else toString (rounding - 8))
+        (
+          if transparent
+          then toString rounding
+          else toString (rounding - 8)
+        )
         + "px";
       theme.bar.floating = floating;
       theme.bar.buttons.padding_x = "0.8rem";
       theme.bar.buttons.padding_y = "0.4rem";
 
       theme.bar.margin_top =
-        (if position == "top" then toString (gaps-in * 2) else "0") + "px";
+        (
+          if position == "top"
+          then toString (gaps-in * 2)
+          else "0"
+        )
+        + "px";
       theme.bar.margin_bottom =
-        (if position == "top" then "0" else toString (gaps-in * 2)) + "px";
+        (
+          if position == "top"
+          then "0"
+          else toString (gaps-in * 2)
+        )
+        + "px";
       theme.bar.margin_sides = toString gaps-out + "px";
       theme.bar.border_radius = toString rounding + "px";
       theme.bar.transparent = transparent;
       theme.bar.location = position;
       theme.bar.dropdownGap = "4.5em";
       theme.bar.menus.shadow =
-        if transparent then "0 0 0 0" else "0px 0px 3px 1px #16161e";
+        if transparent
+        then "0 0 0 0"
+        else "0px 0px 3px 1px #16161e";
       theme.bar.buttons.style = "default";
       theme.bar.buttons.monochrome = true;
       theme.bar.menus.monochrome = true;
@@ -172,8 +188,7 @@ in {
       menus.dashboard.shortcuts.right.shortcut1.command = "hyprpicker -a";
       menus.dashboard.shortcuts.right.shortcut1.tooltip = "Color Picker";
       menus.dashboard.shortcuts.right.shortcut3.icon = "󰄀";
-      menus.dashboard.shortcuts.right.shortcut3.command =
-        "screenshot region swappy";
+      menus.dashboard.shortcuts.right.shortcut3.command = "screenshot region swappy";
       menus.dashboard.shortcuts.right.shortcut3.tooltip = "Screenshot";
 
       menus.power.lowBatteryNotification = true;
@@ -208,15 +223,28 @@ in {
       "theme.bar.menus.dropdownmenu.background" = background-alt;
       "theme.bar.menus.dropdownmenu.text" = foreground;
 
-      "theme.bar.background" = background
-        + (if transparentButtons && transparent then "00" else "");
-      "theme.bar.buttons.text" = if transparent && transparentButtons then
-        foregroundOnWallpaper
-      else
-        foreground;
+      "theme.bar.background" =
+        background
+        + (
+          if transparentButtons && transparent
+          then "00"
+          else ""
+        );
+      "theme.bar.buttons.text" =
+        if transparent && transparentButtons
+        then foregroundOnWallpaper
+        else foreground;
       "theme.bar.buttons.background" =
-        (if transparent then background else background-alt)
-        + (if transparentButtons then "00" else "");
+        (
+          if transparent
+          then background
+          else background-alt
+        )
+        + (
+          if transparentButtons
+          then "00"
+          else ""
+        );
       "theme.bar.buttons.icon" = accent;
 
       "theme.bar.buttons.notifications.background" = background-alt;
