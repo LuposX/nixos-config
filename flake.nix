@@ -5,6 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
+    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     nvf.url = "github:notashelf/nvf";     # This is for Neovim
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
 

@@ -50,7 +50,7 @@ in {
   # Nvidia configuration
   hardware = {
     nvidia = {
-      open = true; # Proprietary driver for better performance
+      open = false; # Proprietary driver for better performance
       nvidiaSettings = true; # Nvidia settings utility
       powerManagement = {
         enable = true; # Power management
