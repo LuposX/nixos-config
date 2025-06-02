@@ -1,11 +1,18 @@
-{ config, lib, ... }: {
+{
+  config,
+  lib,
+  ...
+}: {
   imports = [
+    ../../themes/default-theme.nix
   ];
 
   config.var = {
     hostname = "nixos";
     username = "monkeman";
-    configDirectory = "/home/" + config.var.username
+    configDirectory =
+      "/home/"
+      + config.var.username
       + "/nixos-config"; # The path of the nixos configuration directory
 
     keyboardLayout = "us";
@@ -29,7 +36,7 @@
   options = {
     var = lib.mkOption {
       type = lib.types.attrs;
-      default = { };
+      default = {};
     };
   };
 }

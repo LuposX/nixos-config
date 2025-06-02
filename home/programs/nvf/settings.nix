@@ -114,14 +114,11 @@ isMaximal: {
     statusline = {
       lualine = {
         enable = true;
-        theme = "catppuccin";
       };
     };
 
     theme = {
       enable = true;
-      name = "catppuccin";
-      style = "mocha";
       transparent = false;
     };
 
