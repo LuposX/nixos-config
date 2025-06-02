@@ -1,11 +1,17 @@
 # Fish is a Bash Replacement
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.fish = {
     enable = true;
 
     interactiveShellInit = ''
       # disable fish greeting
       set fish_greeting
+
+      # Opens file from directory browser in editor or via default application.
+      # The Keycombinations are meant to be pressed when inside fzf directory search, hovering over a file.
+         set fzf_directory_opts \
+        --bind "ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty)+abort" \
+        --bind "ctrl-x:execute(xdg-open {} &> /dev/tty)+abort"
     '';
 
     shellAliases = {
@@ -14,16 +20,19 @@
       ls = "eza --icons=always --no-quotes";
       tree = "eza --icons=always --tree --no-quotes";
 
-      # Git 
+      # Git
       gc = "git commit -m";
       ga = "git add";
       gl = "git log";
       lg = "lazygit";
- 
+
       # General
       c = "clear";
       cat = "bat";
       find = "fd";
+
+      # Editor
+      v = "nvim";
 
       # NixOS related
       rb = "sudo nixos-rebuild switch --flake ."; # Stands for rebuild
@@ -35,7 +44,7 @@
         name = "done";
         src = pkgs.fishPlugins.done.src;
       }
-      # Fuzzy Finder, efficiently find what you need using. 
+      # Fuzzy Finder, efficiently find what you need using.
       # Keybindings:
       # - Search File: Ctrl+Alt+F
       # - Search Command History: Ctrl+R
