@@ -26,6 +26,9 @@
       set fzf_directory_opts \
         --bind "ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty)+abort" \
         --bind "ctrl-x:execute(xdg-open {} &> /dev/tty)+abort"
+
+      # Press CTRL+G to activate ripgrep with fzf, to fuzzy search content within files.
+      bind \cg ripgrep_fzf
     '';
 
     shellAliases = {
