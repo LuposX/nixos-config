@@ -25,6 +25,7 @@
     ../../home/system/wofi
     ../../home/system/hyprpanel
     ../../home/system/hyprland
+    ../../home/system/mime
   ];
 
   home = {
@@ -40,7 +41,8 @@
       gnome-clocks
       gnome-text-editor
       mpv # Video player
-            
+      libreoffice-qt6 # Office Stuff
+
       # Dev
       python3
 
