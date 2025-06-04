@@ -1,11 +1,51 @@
 {pkgs, ...}: let
   # This is a Script that allows in Kitty to preview Images using fzf
-  fzfPreviewScript = pkgs.writeShellScript "fzf-preview.sh" (
+  fzfImagePreviewScript = pkgs.writeShellScript "fzf-preview.sh" (
     builtins.readFile (pkgs.fetchurl {
       url = "https://raw.githubusercontent.com/junegunn/fzf/bfea9e53a62777a433af25552d440537297a1323/bin/fzf-preview.sh";
       sha256 = "1cvdwbwxbvjklblgx80lgkhnqyrnvh4rn0b60ig440g7qgraapaw"; # To get hash use, nix-prefetch-url.
     })
   );
+
+  # DEPRECATED, use `fzfPreviewScript` instead.
+  previewFZF = pkgs.fetchFromGitHub {
+    owner = "kidonng";
+    repo = "preview.fish";
+    rev = "ba3fbef3a9f23840b25764be2e1c82da5b205d42"; # Pin the latest known good commit
+    sha256 = "sha256-dxG9Drbmy0M5c4lCzeJ4k7BnkrJwmpI4IpkeRP6CYFk=";
+  };
+
+  #This is my general preview Script for fzf
+  fzfPreviewScript = pkgs.writeTextFile {
+    name = "preview_fzf.fish";
+    text = ''
+        #!/usr/bin/env fish
+        function preview_fzf
+          set mime_type (file --mime-type --brief "$argv")
+
+          # For Video preview, calculate size
+          set -l char_width 8
+          set -l char_height 16
+          set -l width (math "$FZF_PREVIEW_COLUMNS * $char_width")
+          set -l height (math "$FZF_PREVIEW_LINES * $char_height")
+
+          switch "$mime_type"
+              case "image/*"
+                  ~/.config/fzf/fzf-preview.sh "$argv"
+              case "video/*"
+                  ffmpegthumbnailer -i "$argv" -o /tmp/fzf-preview.png -s 0 -q 5 > /dev/null 2>&1 &&
+                  ~/.config/fzf/fzf-preview.sh /tmp/fzf-preview.png
+                  # mpv --no-config --vo=kitty --vo-kitty-use-shm=yes --no-audio --autofit="$width"x"$height" "$argv"
+              case "application/pdf" "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                  markitdown "$argv" | bat --language=markdown --style=numbers --color=always
+              case "text/markdown"
+                  glow "$argv"
+              case "*"
+                  bat --style=numbers --color=always "$argv"
+          end
+      end
+    '';
+  };
 
   # This integrates ripgrep-all +FZF, to search for content in files.
   ripgrepFzfScript = pkgs.writeTextFile {
@@ -25,11 +65,12 @@
               --delimiter : \
               --preview 'bat --color=always {1} --highlight-line {2}' \
               --preview-window 'up,60%,border-bottom,+{2}+3/3,~3' \
-              --bind 'enter:become(vim {1} +{2})'
+              --bind "ctrl-o:execute(fish -c 'smart_open_fzf {1} ')+abort"
       end
     '';
   };
-  # This allows to open text files in nvim in the current window, whiel for GUI spawning a new window.
+
+  # This allows to open text files in nvim in the current window, while for GUI spawning a new window.
   smartOpenFZFScript = pkgs.writeTextFile {
     name = "smart_open_fzf.fish";
     text = ''
@@ -69,10 +110,17 @@ in {
     pkgs.chafa
     pkgs.bat
     pkgs.ripgrep-all
+    pkgs.perl540Packages.FileMimeInfo # This is used for fzf to open correct program
+    pkgs.ffmpegthumbnailer
+    pkgs.poppler-utils
+    pkgs.python313Packages.markitdown
+    pkgs.glow
+    pkgs.p7zip
+    pkgs.mpv
   ];
 
   home.file.".config/fzf/fzf-preview.sh" = {
-    source = fzfPreviewScript;
+    source = fzfImagePreviewScript;
     executable = true;
   };
 
@@ -81,8 +129,18 @@ in {
     executable = true;
   };
 
+  home.file.".config/fish/functions/preview_fzf.fish" = {
+    source = fzfPreviewScript;
+    executable = true;
+  };
+
   home.file.".config/fish/functions/smart_open_fzf.fish" = {
     source = smartOpenFZFScript;
     executable = true;
+  };
+
+  home.file.".config/fish/functions" = {
+    source = "${previewFZF}/functions";
+    recursive = true;
   };
 }

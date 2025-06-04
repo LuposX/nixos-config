@@ -9,22 +9,12 @@
 
       # Customize “Search Directory” (fzf_directory_opts) to preview images → kitty, else bat.
       # in config.fish (or wherever you set it):
-      # DONT CHANGE ANYTHING, THIS IS VERY SENSITIVE.
-      set -Ux fzf_preview_file_cmd '
-        function __preview_fish
-            set mime_type (file --mime-type --brief "$argv")
-            if string match -rq "^image/" "$mime_type"
-                ~/.config/fzf/fzf-preview.sh "$argv"
-            else
-                bat --style=numbers --color=always "$argv"
-            end
-        end
-        __preview_fish'
+      set -Ux fzf_preview_file_cmd preview_fzf # DEPRECATED: preview
 
       # Opens file from directory browser in editor or via default application.
       # The Keycombinations are meant to be pressed when inside fzf directory search, hovering over a file.
       set fzf_directory_opts \
-        --bind "enter:execute(smart_open_fzf {} )+abort"
+        --bind "ctrl-o:execute(smart_open_fzf {} )+abort"
         # --bind "ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty)+abort" \
         # --bind "ctrl-x:execute(xdg-open {} &> /dev/tty)+abort"
 
@@ -96,10 +86,6 @@
       }
     ];
   };
-
-  home.packages = [
-    pkgs.perl540Packages.FileMimeInfo # This is used for fzf to open correct program
-  ];
 
   # Sets fish as your shell
   # Write a .bashrc that drops into fish (only if bash starts interactively, For more see: https://nixos.wiki/wiki/Fish)
