@@ -15,14 +15,14 @@
       withNodeJs = true;
 
       clipboard = {
-          enable = true;
-          registers = "unnamedplus";
+        enable = true;
+        registers = "unnamedplus";
       };
 
       options = {
         tabstop = 2;
         shiftwidth = 2;
-        wrap = false;
+        wrap = true;
       };
 
       keymaps = [
@@ -198,3 +198,4 @@
     };
   };
 }
+

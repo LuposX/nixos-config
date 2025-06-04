@@ -11,12 +11,8 @@
       # in config.fish (or wherever you set it):
       set -Ux fzf_preview_file_cmd preview_fzf # DEPRECATED: preview
 
-      # Opens file from directory browser in editor or via default application.
-      # The Keycombinations are meant to be pressed when inside fzf directory search, hovering over a file.
       set fzf_directory_opts \
         --bind "ctrl-o:execute(smart_open_fzf {} )+abort"
-        # --bind "ctrl-o:execute($EDITOR {} < /dev/tty > /dev/tty)+abort" \
-        # --bind "ctrl-x:execute(xdg-open {} &> /dev/tty)+abort"
 
       # Press CTRL+G to activate ripgrep with fzf, to fuzzy search content within files.
       bind \cg ripgrep_fzf
