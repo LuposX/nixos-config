@@ -1,5 +1,9 @@
-{ pkgs, config, inputs, ... }:
-let
+{
+  pkgs,
+  config,
+  inputs,
+  ...
+}: let
   hostname = config.var.hostname;
   keyboardLayout = config.var.keyboardLayout;
   configDir = config.var.configDirectory;
@@ -14,8 +18,8 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Enables wireless support via wpa_supplicant.
-  networking.wireless.enable = false;  
-  
+  networking.wireless.enable = false;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
@@ -23,11 +27,11 @@ in {
     enable = autoUpgrade;
     dates = "04:00";
     flake = "${configDir}";
-    flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
     allowReboot = false;
   };
 
-  time = { timeZone = timeZone; };
+  time = {timeZone = timeZone;};
   i18n.defaultLocale = defaultLocale;
   i18n.extraLocaleSettings = {
     LC_ADDRESS = extraLocale;
@@ -65,7 +69,7 @@ in {
     TERM = "kitty";
     BROWSER = "firefox";
   };
-  
+
   # Enable touchpad suppor
   services.libinput.enable = false;
   programs.dconf.enable = true;
@@ -73,7 +77,7 @@ in {
     dbus = {
       enable = true;
       implementation = "broker";
-      packages = with pkgs; [ gcr gnome-settings-daemon ];
+      packages = with pkgs; [gcr gnome-settings-daemon];
     };
     # Allows access network locations (like FTP, SFTP, SMB).
     gvfs.enable = true;
@@ -109,16 +113,16 @@ in {
     enable = true;
     xdgOpenUsePortal = true;
     config = {
-      common.default = [ "gtk" ];
-      # hyprland.default = [ "gtk" "hyprland" ];
+      common.default = ["gtk"];
+      hyprland.default = ["gtk" "hyprland"];
     };
 
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
   security = {
     # allow wayland lockers to unlock the screen
-    # pam.services.hyprlock.text = "auth include login";
+    pam.services.hyprlock.text = "auth include login";
 
     # userland niceness
     rtkit.enable = true;

@@ -6,25 +6,19 @@
 with lib; let
   defaultApps = {
     browser = ["firefox.desktop"];
-    text = ["vim.desktop"];
+    text = ["org.gnome.TextEditor.desktop"];
     image = ["imv-dir.desktop"];
     audio = ["mpv.desktop"];
     video = ["mpv.desktop"];
     directory = ["thunar.desktop"];
     office = ["libreoffice.desktop"];
-    pdf = ["zathura.desktop"];
+    pdf = ["org.pwmt.zathura-pdf-mupdf.desktop"];
     terminal = ["kitty.desktop"];
     archive = ["xarchiver.desktop"];
   };
 
   mimeMap = {
-    text = [
-      "text/"
-      "text/plain"
-      "text/markdown"
-      "text/css"
-      ""
-    ];
+    text = ["text/plain"];
     image = [
       "image/bmp"
       "image/gif"
@@ -35,7 +29,6 @@ with lib; let
       "image/tiff"
       "image/vnd.microsoft.icon"
       "image/webp"
-      "image/avif"
     ];
     audio = [
       "audio/aac"

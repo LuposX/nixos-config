@@ -17,6 +17,7 @@
     # ../../home/programs/anyrun
     ../../home/programs/thunar
     ../../home/programs/vscode
+    ../../home/programs/zathura
 
     # Scripts
     ../../home/scripts # All scripts
