@@ -3,5 +3,6 @@
     ./hyprpanel
     ./screenshot
     ./fzf
+    ./wofi
   ];
 }
