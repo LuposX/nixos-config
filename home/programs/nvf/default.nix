@@ -1,4 +1,5 @@
 # Source: https://github.com/JaKooLit/Ja-ZaneyOS/blob/ja-edited/modules/home/nvf.nix
+# For otpions see: https://notashelf.github.io/nvf/options
 {
   inputs,
   config,
@@ -23,6 +24,13 @@
         tabstop = 2;
         shiftwidth = 2;
         wrap = true;
+      };
+
+      terminal = {
+        toggleterm = {
+          enable = true;
+          lazygit.enable = true;
+        };
       };
 
       keymaps = [
@@ -198,4 +206,3 @@
     };
   };
 }
-
