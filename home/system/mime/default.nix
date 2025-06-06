@@ -1,3 +1,5 @@
+# Sets the default programs that should be used for a given file format;
+# Useful command for debugging: `XDG_UTILS_DEBUG_LEVEL=2 xdg-mime query default application/pdf`
 {
   pkgs,
   lib,
@@ -70,7 +72,10 @@ with lib; let
       "application/rtf"
     ];
     pdf = ["application/pdf"];
-    terminal = ["terminal"];
+    terminal = [
+      "terminal"
+      "x-scheme-handler/terminal"
+    ];
     archive = [
       "application/zip"
       "application/rar"
@@ -85,7 +90,6 @@ with lib; let
       mimeMap));
 in {
   xdg = {
-    configFile."mimeapps.list".force = true;
     mimeApps = {
       enable = true;
       associations.added = associations;

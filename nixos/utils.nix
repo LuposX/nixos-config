@@ -61,6 +61,9 @@ in {
   };
   console.keyMap = keyboardLayout;
 
+  # Annoying, will overwrite usage of other terminals for example in wofi.
+  services.xserver.excludePackages = [pkgs.xterm];
+
   environment.variables = {
     XDG_DATA_HOME = "$HOME/.local/share";
     PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
@@ -104,10 +107,14 @@ in {
     gcc
     git-ignore
     xdg-utils
+    xdg-terminal-exec
     wget
     curl
     vim
   ];
+
+  # For terminal stuff, who knows.
+  xdg.terminal-exec.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -118,6 +125,10 @@ in {
     };
 
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
+  };
+
+  xdg.terminal-exec.settings = {
+    default = ["kitty.desktop"];
   };
 
   security = {
