@@ -31,6 +31,7 @@
             "server"
             "phone"
           ];
+          id = "z6qwq-2hblb";
           ignorePerms = true;
           path = "/home/${config.var.username}/Notes";
         };
@@ -42,6 +43,7 @@
             "phone"
           ];
           ignorePerms = true;
+          id = "cgpft-aw9cu";
           path = "/home/${config.var.username}/ReactionImg";
         };
 
@@ -51,6 +53,7 @@
             "server"
           ];
           ignorePerms = true;
+          id = "27pjd-yfu36";
           path = "/home/${config.var.username}/ReactionImg";
         };
       };

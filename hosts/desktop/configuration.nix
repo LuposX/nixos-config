@@ -20,6 +20,9 @@
     ../../nixos/hyprland.nix
     ../../nixos/sddm.nix
 
+    # Service
+    ../../nixos/syncthing.nix
+
     # Don't change this.
     ./hardware-configuration.nix
     ./variables.nix
