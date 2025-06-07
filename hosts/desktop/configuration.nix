@@ -19,6 +19,7 @@
     ../../nixos/bluetooth.nix
     ../../nixos/hyprland.nix
     ../../nixos/sddm.nix
+    ../../nixos/automount-nas.nix
 
     # Service
     ../../nixos/syncthing.nix

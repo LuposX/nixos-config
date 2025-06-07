@@ -1,6 +1,10 @@
 # Thunar is a file explorer
-{ pkgs, config, ... }:
-let user = config.var.username;
+{
+  pkgs,
+  config,
+  ...
+}: let
+  user = config.var.username;
 in {
   # ctrl + m to toggle the menubar
   home.packages = with pkgs; [
@@ -33,6 +37,7 @@ in {
     "file:///home/${user}/Downloads Downloads"
     "file:///home/${user}/Pictures Pictures"
     "file:///home/${user}/nixos-config"
+    "file:///mnt/nas NAS"
   ];
 
   home.file.".config/xarchiver/xarchiverrc".text = ''

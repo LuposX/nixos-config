@@ -19,6 +19,7 @@ in {
       gitlab-uni-key = {path = "/home/${username}/.ssh/gitlab_uni/id_ed25519";};
       website-key = {path = "/home/${username}/.gnupg/signing-key.asc";};
       website-pub-key = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
+      smbcredentials = {path = "/home/${username}/.smbcredentials";};
     };
   };
 
