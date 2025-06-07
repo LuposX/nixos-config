@@ -54,6 +54,10 @@
       pfetch
       fastfetch
 
+      # Key Stuff
+      gnupg
+      pinentry-curses
+
       # Fun
       peaclock
       cbonsai

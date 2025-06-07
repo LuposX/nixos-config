@@ -27,6 +27,8 @@
       email = "36456825+LuposX@users.noreply.github.com";
     };
 
+    backupFileExtension = "hm-backup";
+
     autoUpgrade = false;
     autoGarbageCollector = true;
   };
