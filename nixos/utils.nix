@@ -11,6 +11,8 @@
   defaultLocale = config.var.defaultLocale;
   extraLocale = config.var.extraLocale;
   autoUpgrade = config.var.autoUpgrade;
+  username = config.var.username;
+  backupFileExtension = config.var.backupFileExtension;
 in {
   networking.hostName = hostname;
 
@@ -29,6 +31,18 @@ in {
     flake = "${configDir}";
     flags = ["--update-input" "nixpkgs" "--commit-lock-file"];
     allowReboot = false;
+  };
+
+  # Automatically deletes configs, which are conflicting, so that home manager doesn't complain.
+  # See: https://github.com/nix-community/home-manager/issues/4199
+  system.userActivationScripts = {
+    removeConflictingFiles = {
+      text = ''
+        rm -f /home/${username}/.config/mimeapps.list.${backupFileExtension}
+        rm -f /home/${username}/.config/hyprpanel/config.json
+        rm -f /home/${username}/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+      '';
+    };
   };
 
   time = {timeZone = timeZone;};
