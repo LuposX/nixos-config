@@ -3,7 +3,7 @@
   pkgs,
   config,
   ...
-}: {  
+}: {
   options.theme = lib.mkOption {
     type = lib.types.attrs;
     default = {
@@ -49,6 +49,7 @@
         package = pkgs.source-sans-pro;
         name = "Source Sans Pro";
       };
+      serif = config.stylix.fonts.sansSerif;
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji";

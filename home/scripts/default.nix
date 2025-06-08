@@ -4,5 +4,6 @@
     ./screenshot
     ./fzf
     ./wofi
+    ./hyprlock
   ];
 }
