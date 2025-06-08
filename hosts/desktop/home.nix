@@ -26,6 +26,7 @@
     ../../home/system/wofi
     ../../home/system/hyprpanel
     ../../home/system/hyprland
+    ../../home/system/hyprpaper
     ../../home/system/mime
     ../../home/system/hyprlock
 
