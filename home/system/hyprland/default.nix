@@ -26,8 +26,10 @@
   background = "0x1e1e2e";
 in {
   imports = [
-    ./bindings.nix
+    # So best window tiling mana# So best window tiling manager
+    ./hyprtasking.nix
     ./polkitagent.nix
+    ./bindings.nix
   ];
 
   home.packages = with pkgs; [
