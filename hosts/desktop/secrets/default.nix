@@ -20,6 +20,7 @@ in {
       website-key = {path = "/home/${username}/.gnupg/signing-key.asc";};
       website-pub-key = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
       smbcredentials = {path = "/home/${username}/.smbcredentials";};
+      weather-api = {path = "/home/${username}/.weather_api_key";};
     };
   };
 

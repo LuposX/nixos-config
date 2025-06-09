@@ -44,7 +44,9 @@ in {
   # Symlink towards my NAS, this help with thunar not freezing when share is not there.
   home.activation.createNASLink = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "$HOME/.NAS"
-    ln -sf /mnt/nas "$HOME/.NAS/nas"
+    if [ ! -L "$HOME/.NAS/nas" ]; then
+      ln -sf /mnt/nas "$HOME/.NAS/nas"
+    fi
   '';
 
   home.file.".config/xarchiver/xarchiverrc".text = ''

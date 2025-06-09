@@ -24,6 +24,8 @@
   position = config.theme.bar.position; # "top" or "bottom"
   notificationOpacity = 90;
   location = config.var.location;
+  profile-pic = config.var.profile-picture;
+  username = config.var.username;
 in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 
@@ -43,7 +45,6 @@ in {
               "systray"
               "volume"
               "bluetooth"
-              "battery"
               "network"
               "clock"
               "notifications"
@@ -141,23 +142,15 @@ in {
       theme.osd.margins = "0px 0px 0px 10px";
       theme.osd.muted_zero = true;
 
-      menus.clock.weather.location = location;
-      menus.clock.weather.unit = "metric";
       menus.dashboard.powermenu.confirmation = false;
-      menus.dashboard.powermenu.avatar.image = "~/.face.icon";
+      menus.dashboard.powermenu.avatar.image = profile-pic;
 
       menus.dashboard.shortcuts.left.shortcut1.icon = "";
       menus.dashboard.shortcuts.left.shortcut1.command = "firefox";
       menus.dashboard.shortcuts.left.shortcut1.tooltip = "Firefox";
-      menus.dashboard.shortcuts.left.shortcut2.icon = "󰅶";
-      menus.dashboard.shortcuts.left.shortcut2.command = "caffeine";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Caffeine";
-      menus.dashboard.shortcuts.left.shortcut3.icon = "󰖔";
-      menus.dashboard.shortcuts.left.shortcut3.command = "night-shift";
-      menus.dashboard.shortcuts.left.shortcut3.tooltip = "Night-shift";
-      menus.dashboard.shortcuts.left.shortcut4.icon = "";
-      menus.dashboard.shortcuts.left.shortcut4.command = "menu";
-      menus.dashboard.shortcuts.left.shortcut4.tooltip = "Search Apps";
+      menus.dashboard.shortcuts.left.shortcut2.icon = "";
+      menus.dashboard.shortcuts.left.shortcut2.command = "menu";
+      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Search Apps";
 
       menus.dashboard.shortcuts.right.shortcut1.icon = "";
       menus.dashboard.shortcuts.right.shortcut1.command = "hyprpicker -a";
@@ -165,8 +158,6 @@ in {
       menus.dashboard.shortcuts.right.shortcut3.icon = "󰄀";
       menus.dashboard.shortcuts.right.shortcut3.command = "screenshot region swappy";
       menus.dashboard.shortcuts.right.shortcut3.tooltip = "Screenshot";
-
-      menus.power.lowBatteryNotification = true;
 
       wallpaper.enable = false;
     };

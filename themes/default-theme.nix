@@ -19,6 +19,9 @@
       textColorOnWallpaper =
         config.lib.stylix.colors.base01; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
 
+      # Name of the profile picture, put it in the resources folder.
+      profile-picture-name = "monke_wide.jpg";
+
       bar = {
         # Hyprpanel
         position = "top"; # "top" | "bottom"
