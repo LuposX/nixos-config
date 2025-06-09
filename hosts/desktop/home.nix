@@ -18,6 +18,7 @@
     ../../home/programs/thunar
     ../../home/programs/vscode
     ../../home/programs/zathura
+    ../../home/programs/ssh
 
     # Scripts
     ../../home/scripts # All scripts

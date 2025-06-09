@@ -25,6 +25,9 @@ in {
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # SSH Agent Service
+  programs.ssh.startAgent = true;
+
   system.autoUpgrade = {
     enable = autoUpgrade;
     dates = "04:00";
