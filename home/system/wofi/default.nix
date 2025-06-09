@@ -5,20 +5,13 @@
   lib,
   ...
 }: let
-  #accent = "#${config.lib.stylix.colors.base0D}";
-  #background = "#${config.lib.stylix.colors.base00}";
-  #background-alt = "#${config.lib.stylix.colors.base01}";
-  #foreground = "#${config.lib.stylix.colors.base05}";
-  #font = config.stylix.fonts.serif.name;
-  #rounding = config.theme.rounding;
-  #font-size = config.stylix.fonts.sizes.popups;
-  accent = "#88C0D0"; # Soft cyan (accent)
-  background = "#2E3440"; # Dark grey-blue background
-  background-alt = "#3B4252"; # Slightly lighter background (e.g., hover)
-  foreground = "#ECEFF4"; # Almost white text
-  font = "Inter"; # You can also try FiraCode, Iosevka, or Inter
-  rounding = 10; # Rounded corners in pixels
-  font-size = 14; # Font size in px or pt depending on context
+  accent = "#${config.lib.stylix.colors.base0D}";
+  background = "#${config.lib.stylix.colors.base00}";
+  background-alt = "#${config.lib.stylix.colors.base01}";
+  foreground = "#${config.lib.stylix.colors.base05}";
+  font = config.stylix.fonts.serif.name;
+  rounding = config.theme.rounding;
+  font-size = config.stylix.fonts.sizes.popups;
 in {
   home.packages = with pkgs; [wofi-emoji];
 

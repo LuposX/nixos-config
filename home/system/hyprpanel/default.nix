@@ -6,49 +6,24 @@
   config,
   ...
 }: let
-  #transparentButtons = config.theme.bar.transparentButtons;
-  #accent = "#${config.lib.stylix.colors.base0D}";
-  #accent-alt = "#${config.lib.stylix.colors.base03}";
-  #background = "#${config.lib.stylix.colors.base00}";
-  #background-alt = "#${config.lib.stylix.colors.base01}";
-  #foreground = "#${config.lib.stylix.colors.base05}";
-  #foregroundOnWallpaper = "#${config.theme.textColorOnWallpaper}";
-  #font = "${config.stylix.fonts.serif.name}";
-  #fontSizeForHyprpanel = "${toString config.stylix.fonts.sizes.desktop}px";
-  #rounding = config.theme.rounding;
-  #border-size = config.theme.border-size;
-  #gaps-out = config.theme.gaps-out;
-  #gaps-in = config.theme.gaps-in;
-  #floating = config.theme.bar.floating;
-  #transparent = config.theme.bar.transparent;
-  #position = config.theme.bar.position; # "top" ou "bottom"
-  #notificationOpacity = 90;
-  #location = config.var.location;
-  transparentButtons = true;
-
-  accent = "#88C0D0"; # Cyan
-  accent-alt = "#4C566A"; # Muted dark blue-grey
-  background = "#2E3440"; # Dark slate
-  background-alt = "#3B4252"; # Slightly lighter than background
-  foreground = "#ECEFF4"; # Near-white
-  foregroundOnWallpaper = "#FFFFFF"; # White for text over wallpaper
-
-  font = "Inter";
-  fontSizeForHyprpanel = "14px";
-
-  rounding = 10;
-  border-size = 2;
-
-  gaps-out = 8;
-  gaps-in = 4;
-
-  floating = false;
-  transparent = true;
-  position = "top"; # or "bottom"
-
+  transparentButtons = config.theme.bar.transparentButtons;
+  accent = "#${config.lib.stylix.colors.base0D}";
+  accent-alt = "#${config.lib.stylix.colors.base03}";
+  background = "#${config.lib.stylix.colors.base00}";
+  background-alt = "#${config.lib.stylix.colors.base01}";
+  foreground = "#${config.lib.stylix.colors.base05}";
+  foregroundOnWallpaper = "#${config.theme.textColorOnWallpaper}";
+  font = "${config.stylix.fonts.serif.name}";
+  fontSizeForHyprpanel = "${toString config.stylix.fonts.sizes.desktop}px";
+  rounding = config.theme.rounding;
+  border-size = config.theme.border-size;
+  gaps-out = config.theme.gaps-out;
+  gaps-in = config.theme.gaps-in;
+  floating = config.theme.bar.floating;
+  transparent = config.theme.bar.transparent;
+  position = config.theme.bar.position; # "top" or "bottom"
   notificationOpacity = 90;
-
-  location = "Europe/Berlin";
+  location = config.var.location;
 in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 

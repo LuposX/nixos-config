@@ -7,8 +7,27 @@
   options.theme = lib.mkOption {
     type = lib.types.attrs;
     default = {
-      description = "Theme configuration options";
+      rounding = 20;
+      gaps-in = 10;
+      gaps-out = 10 * 2;
+      active-opacity = 0.96;
+      inactive-opacity = 0.92;
+      blur = true;
+      border-size = 3;
+      animation-speed = "fast"; # "fast" | "medium" | "slow"
+      fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
+      textColorOnWallpaper =
+        config.lib.stylix.colors.base01; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
+
+      bar = {
+        # Hyprpanel
+        position = "top"; # "top" | "bottom"
+        transparent = true;
+        transparentButtons = false;
+        floating = true;
+      };
     };
+    description = "Theme configuration options";
   };
 
   config.stylix = {

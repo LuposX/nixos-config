@@ -6,27 +6,18 @@
   lib,
   ...
 }: let
-  # border-size = config.theme.border-size;
-  # gaps-in = config.theme.gaps-in;
-  # gaps-out = config.theme.gaps-out;
-  # active-opacity = config.theme.active-opacity;
-  # inactive-opacity = config.theme.inactive-opacity;
-  # rounding = config.theme.rounding;
-  # blur = config.theme.blur;
-  # keyboardLayout = config.var.keyboardLayout;
-  # background = "rgb(" + config.lib.stylix.colors.base00 + ")";
-  border-size = 2;
-  gaps-in = 5;
-  gaps-out = 10;
-  active-opacity = 0.95;
-  inactive-opacity = 0.85;
-  rounding = 10;
-  blur = false;
-  keyboardLayout = "us";
-  background = "0x1e1e2e";
+  border-size = config.theme.border-size;
+  gaps-in = config.theme.gaps-in;
+  gaps-out = config.theme.gaps-out;
+  active-opacity = config.theme.active-opacity;
+  inactive-opacity = config.theme.inactive-opacity;
+  rounding = config.theme.rounding;
+  blur = config.theme.blur;
+  keyboardLayout = config.var.keyboardLayout;
+  background = "rgb(" + config.lib.stylix.colors.base00 + ")";
 in {
   imports = [
-    # So best window tiling mana# So best window tiling manager
+    ./animations.nix
     ./hyprtasking.nix
     ./polkitagent.nix
     ./bindings.nix
