@@ -15,10 +15,11 @@ in {
     defaultSopsFile = ./secrets.yaml;
     secrets = {
       sshconfig = {path = "/home/${username}/.ssh/config";};
-      github-key = {path = "/home/${username}/.ssh/github/id_ed25519";};
+      github-key-personal = {path = "/home/${username}/.ssh/github_personal/id_ed25519";};
+      github-key-website = {path = "/home/${username}/.ssh/github_website/id_ed25519";};
       gitlab-uni-key = {path = "/home/${username}/.ssh/gitlab_uni/id_ed25519";};
-      website-key = {path = "/home/${username}/.gnupg/signing-key.asc";};
-      website-pub-key = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
+      website-key-pgp = {path = "/home/${username}/.gnupg/signing-key.asc";};
+      website-key-pgp-pub = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
       smbcredentials = {path = "/home/${username}/.smbcredentials";};
       weather-api = {path = "/home/${username}/.weather_api_key";};
     };
