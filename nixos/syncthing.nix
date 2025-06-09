@@ -54,7 +54,7 @@
           ];
           ignorePerms = true;
           id = "27pjd-yfu36";
-          path = "/home/${config.var.username}/ReactionImg";
+          path = "/home/${config.var.username}/Website_MonkeMan";
         };
       };
 
