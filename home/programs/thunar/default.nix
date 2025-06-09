@@ -2,6 +2,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: let
   user = config.var.username;
@@ -37,8 +38,14 @@ in {
     "file:///home/${user}/Downloads Downloads"
     "file:///home/${user}/Pictures Pictures"
     "file:///home/${user}/nixos-config"
-    "file:///mnt/nas NAS"
+    "file:///home/${user}/.NAS NAS"
   ];
+
+  # Symlink towards my NAS, this help with thunar not freezing when share is not there.
+  home.activation.createNASLink = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    mkdir -p "$HOME/.NAS"
+    ln -sf /mnt/nas "$HOME/.NAS/nas"
+  '';
 
   home.file.".config/xarchiver/xarchiverrc".text = ''
     [xarchiver]

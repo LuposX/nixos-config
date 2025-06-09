@@ -77,6 +77,7 @@ in {
         "systemctl --user enable --now hypridle.service &"
         "systemctl --user enable --now hyprpolkitagent.service &"
         "systemctl --user enable --now udiskie.service &"
+        "systemctl --user enable --now clipman.service &"
         "hyprpanel"
       ];
 

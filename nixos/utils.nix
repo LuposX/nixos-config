@@ -39,8 +39,8 @@ in {
     removeConflictingFiles = {
       text = ''
         rm -f /home/${username}/.config/mimeapps.list.${backupFileExtension}
-        rm -f /home/${username}/.config/hyprpanel/config.json
-        rm -f /home/${username}/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml
+        rm -f /home/${username}/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml.${backupFileExtension}
+        rm -f /home/${username}/.config/hyprpanel/config.json.${backupFileExtension}
       '';
     };
   };
