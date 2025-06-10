@@ -139,6 +139,9 @@ in {
   ];
   services.gnome.glib-networking.enable = true;
 
+  # If you dual boot windows and linux, disable if you only use linux.
+  time.hardwareClockInLocalTime = true;
+
   # For terminal stuff, who knows.
   xdg.terminal-exec.enable = true;
 
