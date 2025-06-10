@@ -34,7 +34,7 @@
 
     profile-picture =
       config.var.configDirectory
-      + "ressources"
+      + "/ressources/"
       + config.theme.profile-picture-name;
   };
 

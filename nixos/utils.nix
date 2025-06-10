@@ -44,6 +44,8 @@ in {
         rm -f /home/${username}/.config/mimeapps.list.${backupFileExtension}
         rm -f /home/${username}/.config/xfce4/xfconf/xfce-perchannel-xml/thunar.xml.${backupFileExtension}
         rm -f /home/${username}/.config/hyprpanel/config.json.${backupFileExtension}
+        rm -f /home/${username}/.ssh/config.${backupFileExtension}
+        /home/monkeman/.ssh/config
       '';
     };
   };
