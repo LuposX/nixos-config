@@ -121,7 +121,8 @@ in {
       bar.volume.label = false;
       bar.network.truncation_size = 12;
       bar.bluetooth.label = false;
-      bar.clock.format = "%a %b %d  %I:%M %p";
+      bar.clock.format = "%a %b %d %H:%M"; # Alternative 12h: "%a %b %d  %I:%M %p";
+      menus.clock.time.military = true;
       bar.notifications.show_total = true;
       bar.media.show_active_only = true;
 
@@ -145,6 +146,7 @@ in {
 
       menus.clock.weather.location = location;
       menus.clock.weather.unit = "metric";
+      bar.customModules.weather.unit = "metric";
       menus.clock.weather.key = config.sops.secrets.weather-api.path;
       menus.dashboard.powermenu.confirmation = false;
       menus.dashboard.powermenu.avatar.image = profile-pic;
