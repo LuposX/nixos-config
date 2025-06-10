@@ -69,7 +69,7 @@ in {
         "systemctl --user enable --now hyprpolkitagent.service &"
         "systemctl --user enable --now udiskie.service &"
         "systemctl --user enable --now clipman.service &"
-        "systemctl --user enable --now ssh-agent &"
+        # "systemctl --user enable --now ssh-agent &"
         "hyprpanel"
       ];
 
