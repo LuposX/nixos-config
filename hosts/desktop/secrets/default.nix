@@ -21,7 +21,7 @@ in {
       website-key-pgp = {path = "/home/${username}/.gnupg/signing-key.asc";};
       website-key-pgp-pub = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
       smbcredentials = {path = "/home/${username}/.smbcredentials";};
-      weather-api = {path = "/home/${username}/.weather_api_key";};
+      weather-api = {path = "/home/${username}/.weather_api_key.json";};
     };
   };
 

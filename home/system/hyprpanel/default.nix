@@ -2,6 +2,7 @@
 # Display informations like workspaces, battery, wifi, ...
 # For documentation see: https://hyprpanel.com/getting_started/installation.html#nixos
 {
+  pkgs,
   inputs,
   config,
   ...
@@ -142,6 +143,9 @@ in {
       theme.osd.margins = "0px 0px 0px 10px";
       theme.osd.muted_zero = true;
 
+      menus.clock.weather.location = location;
+      menus.clock.weather.unit = "metric";
+      menus.clock.weather.key = config.sops.secrets.weather-api.path;
       menus.dashboard.powermenu.confirmation = false;
       menus.dashboard.powermenu.avatar.image = profile-pic;
 

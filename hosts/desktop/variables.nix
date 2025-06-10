@@ -17,7 +17,7 @@
 
     keyboardLayout = "us";
 
-    location = "Berlin";
+    location = "Karlsruhe";
     timeZone = "Europe/Berlin";
     defaultLocale = "en_US.UTF-8";
     extraLocale = "de_DE.UTF-8";

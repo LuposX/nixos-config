@@ -130,7 +130,14 @@ in {
     wget
     curl
     vim
+
+    # Needed for weather api of hyprpanel
+    glib-networking
+    openssl
+    nss
+    gsettings-desktop-schemas
   ];
+  services.gnome.glib-networking.enable = true;
 
   # For terminal stuff, who knows.
   xdg.terminal-exec.enable = true;
