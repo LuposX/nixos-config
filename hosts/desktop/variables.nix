@@ -29,7 +29,7 @@
 
     backupFileExtension = "hm-backup";
 
-    autoUpgrade = false;
+    autoUpgrade = true;
     autoGarbageCollector = true;
 
     profile-picture =
