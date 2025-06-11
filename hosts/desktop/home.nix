@@ -20,6 +20,7 @@
     ../../home/programs/zathura
     ../../home/programs/ssh
     ../../home/programs/spotify
+    ../../home/programs/thunderbird
 
     # Scripts
     ../../home/scripts # All scripts

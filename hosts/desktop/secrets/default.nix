@@ -13,15 +13,22 @@ in {
   sops = {
     age.keyFile = "/home/${username}/.config/sops/age/keys.txt";
     defaultSopsFile = ./secrets.yaml;
+
     secrets = {
+      # Config
       sshconfig = {path = "/home/${username}/.ssh/config";};
+
+      # Keys
       github-key-personal = {path = "/home/${username}/.ssh/github_personal/id_ed25519";};
       github-key-website = {path = "/home/${username}/.ssh/github_website/id_ed25519";};
       gitlab-uni-key = {path = "/home/${username}/.ssh/gitlab_uni/id_ed25519";};
       website-key-pgp = {path = "/home/${username}/.gnupg/signing-key.asc";};
       website-key-pgp-pub = {path = "/home/${username}/.gnupg/signing-key-pub.asc";};
-      smbcredentials = {path = "/home/${username}/.smbcredentials";};
+      # API
       weather-api = {path = "/home/${username}/.weather_api_key.json";};
+
+      # Credentials
+      smbcredentials = {path = "/home/${username}/.smbcredentials";};
     };
   };
 
