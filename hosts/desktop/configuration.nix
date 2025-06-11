@@ -20,6 +20,7 @@
     ../../nixos/hyprland.nix
     ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
+    ../../nixos/kdeconnect.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
 
     # Service
