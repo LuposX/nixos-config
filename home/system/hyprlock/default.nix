@@ -42,7 +42,8 @@ in {
         # Time
         {
           monitor = "";
-          text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+          # Alternative 12h: text = ''cmd[update:1000] echo "<span>$(date +"%I:%M")</span>"'';
+          text = ''cmd[update:1000] echo "<span>$(date +"%H:%M")</span>"'';
           color = foreground;
           font_size = 160;
           font_family = "steelfish outline regular";
@@ -59,7 +60,7 @@ in {
           dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
           dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
           dots_center = true;
-          font_size = 18;
+          font_size = 20;
           font_family = font + " Bold";
           position = "0, -180";
           halign = "center";
@@ -70,9 +71,9 @@ in {
       # INPUT FIELD
       input-field = lib.mkForce {
         monitor = "";
-        size = "300, 60";
-        outline_thickness = 2;
-        dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
+        size = "350, 70";
+        outline_thickness = 3;
+        dots_size = 0.3; # Scale of input-field height, 0.2 - 0.8
         dots_spacing = 0.2; # Scale of dots' absolute size, 0.0 - 1.0
         dots_center = true;
         outer_color = "rgba(25, 25, 25, 0)";
