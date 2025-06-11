@@ -2,13 +2,14 @@
   description = "A simple NixOS flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
     nvf.url = "github:notashelf/nvf"; # This is for Neovim
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top.
-    stylix.url = "github:nix-community/stylix/release-25.05"; # Theming
+    stylix.url = "github:nix-community/stylix"; # Theming
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
 
     nix-vscode-extensions = {
@@ -18,7 +19,7 @@
 
     # Used for managing a user environment
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
