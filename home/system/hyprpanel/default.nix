@@ -151,19 +151,7 @@ in {
       menus.dashboard.powermenu.confirmation = false;
       menus.dashboard.powermenu.avatar.image = profile-pic;
 
-      menus.dashboard.shortcuts.left.shortcut1.icon = "";
-      menus.dashboard.shortcuts.left.shortcut1.command = "firefox";
-      menus.dashboard.shortcuts.left.shortcut1.tooltip = "Firefox";
-      menus.dashboard.shortcuts.left.shortcut2.icon = "";
-      menus.dashboard.shortcuts.left.shortcut2.command = "menu";
-      menus.dashboard.shortcuts.left.shortcut2.tooltip = "Search Apps";
-
-      menus.dashboard.shortcuts.right.shortcut1.icon = "";
-      menus.dashboard.shortcuts.right.shortcut1.command = "hyprpicker -a";
-      menus.dashboard.shortcuts.right.shortcut1.tooltip = "Color Picker";
-      menus.dashboard.shortcuts.right.shortcut3.icon = "󰄀";
-      menus.dashboard.shortcuts.right.shortcut3.command = "screenshot region swappy";
-      menus.dashboard.shortcuts.right.shortcut3.tooltip = "Screenshot";
+      menus.dashboard.shortcuts.enabled = false;
 
       wallpaper.enable = false;
     };
