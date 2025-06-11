@@ -20,12 +20,13 @@
     ../../nixos/hyprland.nix
     ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
+    # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
 
     # Service
     ../../nixos/syncthing.nix
 
     # Don't change this.
-    ./hardware-configuration-new.nix
+    ./hardware-configuration.nix
     ./variables.nix
   ];
 

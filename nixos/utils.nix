@@ -130,8 +130,13 @@ in {
     wget
     curl
     vim
-
     gparted
+
+    # Ventoy with GUI override
+    (ventoy.override {
+      defaultGuiType = "qt5";
+      withQt5 = true;
+    })
 
     # Needed for weather api of hyprpanel
     glib-networking
@@ -140,7 +145,10 @@ in {
     gsettings-desktop-schemas
   ];
   services.gnome.glib-networking.enable = true;
-
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.05"
+    "ventoy-qt5-1.1.05"
+  ];
   # If you dual boot windows and linux, disable if you only use linux.
   time.hardwareClockInLocalTime = true;
 
