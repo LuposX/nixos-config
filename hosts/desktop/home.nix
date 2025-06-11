@@ -19,6 +19,7 @@
     ../../home/programs/vscode
     ../../home/programs/zathura
     ../../home/programs/ssh
+    ../../home/programs/spotify
 
     # Scripts
     ../../home/scripts # All scripts

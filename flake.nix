@@ -34,6 +34,12 @@
       url = "github:raybbian/hyprtasking";
       inputs.hyprland.follows = "hyprland";
     };
+
+    # Spotify
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
