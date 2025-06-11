@@ -21,6 +21,7 @@ in {
     ./hyprtasking.nix
     ./polkitagent.nix
     ./bindings.nix
+    ./hyprpicker.nix
   ];
 
   home.packages = with pkgs; [
