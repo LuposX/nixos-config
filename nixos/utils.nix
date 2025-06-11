@@ -131,6 +131,8 @@ in {
     curl
     vim
 
+    gparted
+
     # Needed for weather api of hyprpanel
     glib-networking
     openssl
