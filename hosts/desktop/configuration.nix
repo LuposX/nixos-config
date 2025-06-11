@@ -25,7 +25,7 @@
     ../../nixos/syncthing.nix
 
     # Don't change this.
-    ./hardware-configuration.nix
+    ./hardware-configuration-new.nix
     ./variables.nix
   ];
 
