@@ -21,6 +21,7 @@
     ../../home/programs/ssh
     ../../home/programs/spotify
     ../../home/programs/thunderbird
+    ../../home/programs/tailscale
 
     # Scripts
     ../../home/scripts # All scripts
