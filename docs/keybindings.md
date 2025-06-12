@@ -87,3 +87,8 @@
 | Search History – fuzzy find past commands                       | Ctrl + R       |
 | Search Processes – fuzzy find running processes, insert PIDs    | Ctrl + Alt + P |
 | Search Variables – fuzzy find shell variables in scope          | Ctrl + V       |
+
+## Neovim
+
+> [!NOTE]
+> For easy mode switch, bind `CAPS LOCK` to `ESCAPE`
