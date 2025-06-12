@@ -16,5 +16,6 @@
     bat
     fd
     file # Required for fzf file preview
+    nerdfetch
   ];
 }

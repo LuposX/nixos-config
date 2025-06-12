@@ -16,6 +16,8 @@
 
       # Press CTRL+G to activate ripgrep with fzf, to fuzzy search content within files.
       bind \cg ripgrep_fzf
+
+      nerdfetch
     '';
 
     shellAliases = {
