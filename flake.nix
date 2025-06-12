@@ -7,10 +7,14 @@
 
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
     hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
-    nvf.url = "github:notashelf/nvf"; # This is for Neovim
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top.
     stylix.url = "github:nix-community/stylix"; # Theming
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
+
+    # nvf.url = "github:notashelf/nvf"; # This is for Neovim
+    
+    # My own fork, for easier changes.
+    nvix.url = "github:LuposX/nvix";
 
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";

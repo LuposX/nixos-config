@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -11,10 +12,8 @@
     ../../home/programs/kitty
     ../../home/programs/shell
     ../../home/programs/firefox
-    ../../home/programs/nvf
     ../../home/programs/git
     ../../home/programs/lazygit
-    # ../../home/programs/anyrun
     ../../home/programs/thunar
     ../../home/programs/vscode
     ../../home/programs/zathura
@@ -22,6 +21,8 @@
     ../../home/programs/spotify
     ../../home/programs/thunderbird
     ../../home/programs/tailscale
+    # ../../home/programs/anyrun
+    # ../../home/programs/nvf
 
     # Scripts
     ../../home/scripts # All scripts
@@ -45,6 +46,8 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
+      inputs.nvix.packages.${pkgs.system}.core
+      
       # Apps
       vlc # Video player
       gnome-calendar # Calendar
