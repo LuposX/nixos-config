@@ -34,8 +34,6 @@
         "$shiftMod,T, exec, hyprpanel-toggle" # Toggle hyprpanel
         "$shiftMod,C, exec, clipboard" # Clipboard picker with wofi
         "$shiftMod,E, exec, ${pkgs.wofi-emoji}/bin/wofi-emoji" # Emoji picker with wofi
-        "$mod,F2, exec, night-shift" # Toggle night shift
-        "$mod,F3, exec, night-shift" # Toggle night shift
       ]
       ++ (builtins.concatLists (builtins.genList (i: let
           ws = i + 1;

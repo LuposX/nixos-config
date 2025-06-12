@@ -5,5 +5,6 @@
     ./fzf
     ./wofi
     ./hyprlock
+    ./gui
   ];
 }
