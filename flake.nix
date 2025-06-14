@@ -12,7 +12,7 @@
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
 
     # nvf.url = "github:notashelf/nvf"; # This is for Neovim
-    
+
     # My own fork, for easier changes.
     nvix.url = "github:LuposX/nvix";
 
@@ -51,21 +51,40 @@
     nixpkgs,
     ...
   } @ inputs: {
-    # Please replace my-nixos with your hostname
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        {
-          nixpkgs.overlays = [inputs.hyprpanel.overlay];
-          # With this other Modules will have acess to the inputs
-          _module.args = {inherit inputs;};
-        }
-        inputs.sops-nix.nixosModules.sops
-        inputs.flake-programs-sqlite.nixosModules.programs-sqlite
-        inputs.home-manager.nixosModules.home-manager
-        inputs.stylix.nixosModules.stylix
-        ./hosts/desktop/configuration.nix
-      ];
+    # Please replace my-nixos with your hostname.
+    nixosConfigurations = {
+      # My Desktop Pc
+      logos = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            nixpkgs.overlays = [inputs.hyprpanel.overlay];
+            # With this other Modules will have access to the inputs
+            _module.args = {inherit inputs;};
+          }
+          inputs.sops-nix.nixosModules.sops
+          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          ./hosts/desktop/configuration.nix
+        ];
+      };
+      # My Laptop
+      pneuma = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          {
+            nixpkgs.overlays = [inputs.hyprpanel.overlay];
+            # With this other Modules will have access to the inputs
+            _module.args = {inherit inputs;};
+          }
+          inputs.sops-nix.nixosModules.sops
+          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+          inputs.home-manager.nixosModules.home-manager
+          inputs.stylix.nixosModules.stylix
+          ./hosts/laptop/configuration.nix
+        ];
+      };
     };
   };
 }

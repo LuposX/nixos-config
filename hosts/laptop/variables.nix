@@ -8,7 +8,7 @@
   ];
 
   config.var = {
-    hostname = "logos";
+    hostname = "pneuma";
     username = "monkeman";
     configDirectory =
       "/home/"
