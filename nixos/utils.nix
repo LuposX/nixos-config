@@ -19,9 +19,6 @@ in {
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  # Enables wireless support via wpa_supplicant.
-  networking.wireless.enable = isLaptop;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 

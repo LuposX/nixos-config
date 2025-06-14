@@ -2,7 +2,6 @@
 # Display informations like workspaces, battery, wifi, ...
 # For documentation see: https://hyprpanel.com/getting_started/installation.html#nixos
 {
-  pkgs,
   inputs,
   config,
   ...
@@ -27,6 +26,7 @@
   location = config.var.location;
   profile-pic = config.var.profile-picture;
   username = config.var.username;
+  isLaptop = config.var.isLaptop;
 in {
   imports = [inputs.hyprpanel.homeManagerModules.hyprpanel];
 
@@ -46,6 +46,7 @@ in {
               "systray"
               "volume"
               "bluetooth"
+            ] ++ (if isLaptop then ["battery"] else []) ++ [
               "network"
               "clock"
               "notifications"
@@ -152,6 +153,8 @@ in {
       menus.dashboard.powermenu.avatar.image = profile-pic;
 
       menus.dashboard.shortcuts.enabled = false;
+
+      menus.power.lowBatteryNotification = isLaptop;
 
       wallpaper.enable = false;
     };

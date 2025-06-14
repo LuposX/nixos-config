@@ -3,7 +3,9 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  isLaptop = config.var.isLaptop;
+in {
   services.syncthing = {
     enable = true;
 
@@ -11,7 +13,7 @@
     settings = {
       devices = {
         "laptop" = {
-          id = "5SQ6H5H-IIURK6E-NC2FKIE-Q2EXBV4-3OWN7YL-5JVTD42-EWIMSOF-ZH5IYQ6";
+          id = "LJIDAUP-SG6U6UQ-SU4OEGL-3T6ZRXY-PUYDEAB-4JI7EKC-VYMYMQY-YY42SQH";
           introducer = false;
         };
         "phone" = {
