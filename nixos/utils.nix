@@ -103,6 +103,7 @@ in {
     gvfs.enable = true;
     # Switch between: power saving / balanced / performance profiles.
     power-profiles-daemon.enable = true;
+    upower.enable = true;
     # daemon for managing disk drives.
     udisks2.enable = true;
   };
