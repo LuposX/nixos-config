@@ -3,16 +3,18 @@
   pkgs,
   lib,
   ...
-}: let
-  isLaptop = config.var.isLaptop;
-in {
+}: {
   services.syncthing = {
     enable = true;
 
     dataDir = "/home/${config.var.username}";
     settings = {
       devices = {
-        "laptop" = {
+        "desktop-logos" = {
+          id = "3D5FFPZ-RE6WJJH-5P4GNAE-Y3C6ZGF-JYTFM4C-BPLSH47-KMTS5S4-5TFOCA6";
+          introducer = false;
+        };
+        "laptop-pneuma" = {
           id = "LJIDAUP-SG6U6UQ-SU4OEGL-3T6ZRXY-PUYDEAB-4JI7EKC-VYMYMQY-YY42SQH";
           introducer = false;
         };
@@ -29,7 +31,8 @@ in {
       folders = {
         "Notes" = {
           devices = [
-            "laptop"
+            "laptop-pneuma"
+            "desktop-logos"
             "server"
             "phone"
           ];
@@ -40,7 +43,8 @@ in {
 
         "ReactionImg" = {
           devices = [
-            "laptop"
+            "laptop-pneuma"
+            "desktop-logos"
             "server"
             "phone"
           ];
@@ -51,7 +55,8 @@ in {
 
         "Website_MonkeMan" = {
           devices = [
-            "laptop"
+            "laptop-pneuma"
+            "desktop-logos"
             "server"
           ];
           ignorePerms = true;
