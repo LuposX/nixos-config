@@ -8,6 +8,8 @@
   ];
 
   config.var = {
+    isLaptop = true;
+
     hostname = "pneuma";
     username = "monkeman";
     configDirectory =
@@ -15,7 +17,7 @@
       + config.var.username
       + "/nixos-config"; # The path of the nixos configuration directory
 
-    keyboardLayout = "us";
+    keyboardLayout = "de";
 
     location = "Karlsruhe";
     timeZone = "Europe/Berlin";

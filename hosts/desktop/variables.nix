@@ -8,6 +8,8 @@
   ];
 
   config.var = {
+    isLaptop = false;
+
     hostname = "logos";
     username = "monkeman";
     configDirectory =

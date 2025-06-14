@@ -1,7 +1,6 @@
 {
   pkgs,
   config,
-  inputs,
   ...
 }: let
   hostname = config.var.hostname;
@@ -13,6 +12,7 @@
   autoUpgrade = config.var.autoUpgrade;
   username = config.var.username;
   backupFileExtension = config.var.backupFileExtension;
+  isLaptop = config.var.isLaptop;
 in {
   networking.hostName = hostname;
 
@@ -20,7 +20,7 @@ in {
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Enables wireless support via wpa_supplicant.
-  networking.wireless.enable = false;
+  networking.wireless.enable = isLaptop;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -93,7 +93,8 @@ in {
   };
 
   # Enable touchpad suppor
-  services.libinput.enable = false;
+  services.libinput.enable = isLaptop;
+
   programs.dconf.enable = true;
   services = {
     dbus = {
@@ -150,7 +151,7 @@ in {
     "ventoy-qt5-1.1.05"
   ];
   # If you dual boot windows and linux, disable if you only use linux.
-  time.hardwareClockInLocalTime = true;
+  time.hardwareClockInLocalTime = !isLaptop;
 
   # For terminal stuff, who knows.
   xdg.terminal-exec.enable = true;

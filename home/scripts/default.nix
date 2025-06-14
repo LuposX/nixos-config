@@ -6,5 +6,6 @@
     ./wofi
     ./hyprlock
     ./gui
+    ./brightness
   ];
 }
