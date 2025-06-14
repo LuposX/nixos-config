@@ -143,6 +143,8 @@ in {
     nss
     gsettings-desktop-schemas
 
+    imagemagick
+
     # For my Website
     hugo
   ];
