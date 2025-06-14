@@ -88,6 +88,14 @@
 | Search Processes – fuzzy find running processes, insert PIDs    | Ctrl + Alt + P |
 | Search Variables – fuzzy find shell variables in scope          | Ctrl + V       |
 
+### Kitty
+
+| Description                       | Keybinding   |
+| --------------------------------- | ------------ |
+| Kitty Terminal Increase Font Size | Ctrl + PLUS  |
+| Kitty Terminal Decrease Font Size | Ctrl + MINUS |
+
+
 ## Neovim
 
 > [!NOTE]

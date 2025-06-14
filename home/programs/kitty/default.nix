@@ -3,6 +3,8 @@
   programs.kitty = {
     enable = true;
     keybindings = {
+      "ctrl+plus" = "change_font_size all +1";
+      "ctrl+minus" = "change_font_size all -1";
     };
     settings = {
       scrollback_lines = 10000;
