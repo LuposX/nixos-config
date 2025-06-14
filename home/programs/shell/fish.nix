@@ -1,5 +1,8 @@
 # Fish is a Bash Replacement
-{pkgs, ...}: {
+{pkgs, config, ...}: let
+  configDirectory = config.var.configDirectory;
+  hostname = config.var.hostname;
+in {
   programs.fish = {
     enable = true;
 
@@ -41,7 +44,7 @@
       v = "nvim";
 
       # NixOS related
-      rb = "sudo nixos-rebuild switch --flake ."; # Stands for rebuild
+      rb = "sudo nixos-rebuild switch --flake ${configDirectory}#${hostname}"; # Stands for rebuild
     };
 
     plugins = [
