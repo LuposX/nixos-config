@@ -142,6 +142,9 @@ in {
     openssl
     nss
     gsettings-desktop-schemas
+
+    # For my Website
+    hugo
   ];
   services.gnome.glib-networking.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
