@@ -7,5 +7,6 @@
     ./hyprlock
     ./gui
     ./brightness
+    ./sounds
   ];
 }
