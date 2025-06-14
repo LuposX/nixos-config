@@ -38,6 +38,8 @@ in {
     "file:///home/${user}/Downloads Downloads"
     "file:///home/${user}/Pictures Pictures"
     "file:///home/${user}/nixos-config"
+    "file:///home/${user}/Website_MonkeMan Website"
+    "file:///home/${user}/Notes Notes"
     "file:///home/${user}/.NAS NAS"
   ];
 
