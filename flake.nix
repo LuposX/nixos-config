@@ -51,7 +51,6 @@
     nixpkgs,
     ...
   } @ inputs: {
-    # Please replace my-nixos with your hostname.
     nixosConfigurations = {
       # My Desktop Pc
       logos = nixpkgs.lib.nixosSystem {
