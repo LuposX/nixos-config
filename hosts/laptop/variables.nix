@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ../../themes/default-theme.nix
+    ../../themes/theme-laptop.nix
   ];
 
   config.var = {
