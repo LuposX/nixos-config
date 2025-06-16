@@ -28,7 +28,6 @@ in {
          c = "fzcd";
          o = "fzopen";
          p = "preview-tui";
-         v = "imgview";
       };
     };
   };

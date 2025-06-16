@@ -2,6 +2,7 @@
 {
   programs.kitty = {
     enable = true;
+    shellIntegration.enableFishIntegration = true;
     keybindings = {
       "ctrl+plus" = "change_font_size all +1";
       "ctrl+minus" = "change_font_size all -1";
@@ -23,6 +24,11 @@
       cursor_trail_decay = "0.1 0.4";
       window_padding_width = 10;
       open_url_with = "default";
+
+      # Needed For NNN
+      allow_remote_control = "yes";
+      listen_on = "unix:/tmp/kitty";
+      enabled_layouts = "splits";
     };
   };
 }

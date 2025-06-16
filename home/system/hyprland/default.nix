@@ -79,6 +79,8 @@ in {
       ];
 
       env = [
+        "NNN_FIFO,/tmp/nnn.fifo" # For NNN-Preview to work.
+        "NNN_TMPFILE,/tmp/nnn-lastdir"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "MOZ_ENABLE_WAYLAND,1"
         "ANKI_WAYLAND,1"

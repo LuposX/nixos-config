@@ -97,6 +97,28 @@
 | Kitty Terminal Decrease Font Size | Ctrl + MINUS |
 
 
+## NNN - File Manager
+
+| Description                           | Keybinding            |
+| ------------------------------------- | --------------------- |
+| Go Upwards                            | k / Up-Arrow          |
+| Go Downwards                          | j / Down-Arrow        |
+| Enter a folder                        | Enter                 |
+| Open current entry in EDITOR          | e                     |
+| Open current entry in xdg-open        | o                     |
+| Go to Parent Directory                | h                     |
+| Go to Home Directory                  | ~                     |
+| Toggle detail View                    | d                     |
+| Toggle help and settings screen       | ?                     |
+| Toggle hide .dot files                | .                     |
+| Rename a folder                       | r                     |
+| Bookmark                              | b + LETTER (c, w, n, u)|
+| Search with FZF and enter Directory   | Alt + c               |
+| Search with FZF and Open File         | Alt + o               |
+| Image Preview in Console              | Alt + p               |
+
+
+
 ## Neovim
 
 > [!NOTE]
