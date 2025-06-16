@@ -172,18 +172,8 @@ in {
     pkgs.mpv
   ];
 
-  home.file.".config/fzf/fzf-preview.sh" = {
-    source = fzfImagePreviewScript;
-    executable = true;
-  };
-
   home.file.".config/fish/functions/ripgrep_fzf.fish" = {
     source = ripgrepFzfScript;
-    executable = true;
-  };
-
-  home.file.".config/fish/functions/preview_fzf.fish" = {
-    source = fzfPreviewScript;
     executable = true;
   };
 
@@ -192,10 +182,24 @@ in {
     executable = true;
   };
 
-  home.file.".config/fish/functions/_fzf_search_directory.fish" = {
-    source = fzfSearchDirectory;
-    executable = true;
-  };
+  # DEPRECATED
+  # -------------
+  #
+  # home.file.".config/fzf/fzf-preview.sh" = {
+  #   source = fzfImagePreviewScript;
+  #   executable = true;
+  # };
+
+  # home.file.".config/fish/functions/preview_fzf.fish" = {
+  #   source = fzfPreviewScript;
+  #   executable = true;
+  # };
+  #
+  #
+  # home.file.".config/fish/functions/_fzf_search_directory.fish" = {
+  #   source = fzfSearchDirectory;
+  #   executable = true;
+  # };
 
   # I think, not sure, this replaces the whole function folder, effectively overwriting all your functions.
   # If you want to use this, you should do one `home.file` statement per file you want to import.

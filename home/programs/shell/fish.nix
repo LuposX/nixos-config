@@ -12,10 +12,11 @@ in {
 
       # Customize “Search Directory” (fzf_directory_opts) to preview images → kitty, else bat.
       # in config.fish (or wherever you set it):
-      set -Ux fzf_preview_file_cmd preview_fzf # DEPRECATED: preview
+      # Deprecated
+      # set -Ux fzf_preview_file_cmd preview_fzf # DEPRECATED: preview
 
-      set fzf_directory_opts \
-        --bind "ctrl-o:execute(smart_open_fzf {} )+abort"
+      # set fzf_directory_opts \
+      #  --bind "ctrl-o:execute(smart_open_fzf {} )+abort"
 
       # Press CTRL+G to activate ripgrep with fzf, to fuzzy search content within files.
       bind \cg ripgrep_fzf
