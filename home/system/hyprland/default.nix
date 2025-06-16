@@ -13,6 +13,7 @@
   inactive-opacity = config.theme.inactive-opacity;
   rounding = config.theme.rounding;
   blur = config.theme.blur;
+  shadow = config.theme.shadow;
   keyboardLayout = config.var.keyboardLayout;
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
 in {
@@ -122,7 +123,10 @@ in {
         inactive_opacity = inactive-opacity;
         rounding = rounding;
         shadow = {
-          enabled = true;
+          enabled =
+            if shadow
+            then "true"
+            else "false";
           range = 20;
           render_power = 3;
         };

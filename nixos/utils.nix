@@ -89,8 +89,6 @@ in {
     BROWSER = "firefox";
   };
 
-  # Enable touchpad suppor
-  services.libinput.enable = isLaptop;
 
   programs.dconf.enable = true;
   services = {
@@ -150,9 +148,6 @@ in {
 
     # Internet
     wpa_supplicant
-
-    # For Battery
-    powertop
   ];
   services.gnome.glib-networking.enable = true;
   nixpkgs.config.permittedInsecurePackages = [

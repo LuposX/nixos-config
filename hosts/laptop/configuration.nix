@@ -23,6 +23,7 @@
     ../../nixos/kdeconnect.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
+    ../../nixos/laptop.nix
 
     # Service
     ../../nixos/syncthing.nix

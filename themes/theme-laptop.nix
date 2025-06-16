@@ -14,7 +14,8 @@ in {
       gaps-out = 5 * 2;
       active-opacity = 0.96;
       inactive-opacity = 0.9;
-      blur = true;
+      blur = false;
+      shadow = false;
       border-size = 3;
       animation-speed = "fast"; # "fast" | "medium" | "slow"
       fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
