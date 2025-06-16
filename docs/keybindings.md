@@ -12,6 +12,7 @@
 | Launch Kitty                      | Mod + RETURN     |
 | Launch Thunar                     | Mod + E          |
 | Launch Firefox                    | Mod + B          |
+| Launch NNN                        | MOD + N          |
 | Lock Screen (Hyprlock)            | Mod + L          |
 | Open App Launcher (menu)          | Mod + SPACE      |
 | Toggle Hyprtasking                | Mod + tab        |

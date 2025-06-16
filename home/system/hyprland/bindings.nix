@@ -7,6 +7,7 @@
         "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar
         "$mod,B, exec,  uwsm app -- firefox" # Browser
         "$mod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
+        "$mod,N, exec, uwsm app -- ${pkgs.bash}/bin/bash -c '${pkgs.kitty}/bin/kitty --class nnn -e nnn'"
         # "$mod,X, exec, powermenu" # Powermenu
         "$mod,SPACE, exec, menu" # Launcher
         # "$mod,C, exec, quickmenu" # Quickmenu

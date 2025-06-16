@@ -41,6 +41,8 @@ in {
       cat = "bat";
       find = "fd";
 
+      n = "nnn";
+
       # Editor
       v = "nvim";
 
