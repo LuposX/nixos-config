@@ -150,6 +150,9 @@ in {
 
     # Internet
     wpa_supplicant
+
+    # For Battery
+    powertop
   ];
   services.gnome.glib-networking.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
