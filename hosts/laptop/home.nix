@@ -23,6 +23,7 @@
     ../../home/programs/tailscale
     # ../../home/programs/anyrun
     # ../../home/programs/nvf
+    ../../home/programs/nnn
 
     # Scripts
     ../../home/scripts # All scripts
@@ -47,7 +48,7 @@
 
     packages = with pkgs; [
       inputs.nvix.packages.${pkgs.system}.core
-      
+
       # Apps
       vlc # Video player
       gnome-calendar # Calendar
