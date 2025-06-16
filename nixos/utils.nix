@@ -147,6 +147,9 @@ in {
 
     # For my Website
     hugo
+
+    # Internet
+    wpa_supplicant
   ];
   services.gnome.glib-networking.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
