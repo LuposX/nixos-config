@@ -15,6 +15,7 @@ in {
       active-opacity = 0.96;
       inactive-opacity = 0.92;
       blur = true;
+      shadow = true;
       border-size = 3;
       animation-speed = "fast"; # "fast" | "medium" | "slow"
       fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
