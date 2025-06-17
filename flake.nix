@@ -89,6 +89,20 @@
           ./hosts/laptop/configuration.nix
         ];
       };
+      # My Rasperry Pi
+      prohairesis = {
+        system = "aarch64-linux";
+        modules = [
+          {
+            # With this other Modules will have access to the inputs
+            _module.args = {inherit inputs;};
+          }
+          inputs.sops-nix.nixosModules.sops
+          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
+          inputs.home-manager.nixosModules.home-manager
+          ./hosts/raspberry/configuration.nix
+        ];
+      };
     };
   };
 }
