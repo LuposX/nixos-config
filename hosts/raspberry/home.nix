@@ -5,8 +5,10 @@
   ...
 }: {
   imports = [
-       # Programs
-    ../../home/programs/nvf
+    # User-specific Configurations
+    ./variables.nix
+
+    # Programs
     ../../home/programs/shell
     ../../home/programs/git
     ../../home/programs/lazygit
@@ -18,7 +20,7 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
-      inputs.nvix.packages.${pkgs.system}.corae
+      inputs.nvix.packages.${pkgs.system}.bare
 
        # Utils
       zip

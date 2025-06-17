@@ -90,7 +90,7 @@
         ];
       };
       # My Rasperry Pi
-      prohairesis = {
+      prohairesis = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         modules = [
           {

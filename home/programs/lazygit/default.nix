@@ -4,8 +4,9 @@
   lib,
   ...
 }: let
-  accent = "#${config.lib.stylix.colors.base0D}";
-  muted = "#${config.lib.stylix.colors.base03}";
+  stylixExists = builtins.hasAttr "stylix" config.lib;
+  accent = if stylixExists then "#${config.lib.stylix.colors.base0D}" else "#FF0000";  # fallback color
+  muted = if stylixExists then "#${config.lib.stylix.colors.base03}" else "#888888";   # fallback color
 in {
   programs.lazygit = {
     enable = true;

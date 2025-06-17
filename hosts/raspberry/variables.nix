@@ -3,10 +3,6 @@
   lib,
   ...
 }: {
-  imports = [
-    ../../themes/theme-laptop.nix
-  ];
-
   config.var = {
     isLaptop = true;
 
@@ -33,11 +29,6 @@
 
     autoUpgrade = false;
     autoGarbageCollector = true;
-
-    profile-picture =
-      config.var.configDirectory
-      + "/ressources/"
-      + config.theme.profile-picture-name;
   };
 
   # Let this here

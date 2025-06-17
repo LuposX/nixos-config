@@ -10,9 +10,10 @@
     ../../nixos/home-manager.nix
     ../../nixos/users.nix
     ../../nixos/nix.nix
+    ../../nixos/boot.nix
 
     # Modules
-    ../../server-modules/adguardhome.nix
+    ../../server-modules/adguard.nix
 
     ./hardware-configuration.nix
     ./variables.nix
