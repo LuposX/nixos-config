@@ -91,10 +91,14 @@ in {
     # ----------------
 
     polarity = "light";
-    # image = configDirectory + "/ressources/" + "reverend_insanity.jpeg"
+    # image = configDirectory + "/ressources/" + "reverend_insanity.jpeg";
+    # image = pkgs.fetchurl {
+    #   url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/oneway-street_purple.png";
+    #   sha256 = "sha256-yAU5gHNVgBCRwbtOuQvGHWBHjheqdlA0Db/kYnKUr9A=";
+    # };
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/oneway-street_purple.png";
-      sha256 = "sha256-yAU5gHNVgBCRwbtOuQvGHWBHjheqdlA0Db/kYnKUr9A=";
+      url = "https://raw.githubusercontent.com/LuposX/dotfiles/refs/heads/main/Pictures/wallpaper/reverend_insane.jpeg";
+      sha256 = "sha256-MBGB+jLLDPRAqjkvBqxG7p2uAqfHV4Oq4G7rQIumzKY=";
     };
   };
 }
