@@ -24,6 +24,7 @@
     # ../../home/programs/anyrun
     # ../../home/programs/nvf
     ../../home/programs/nnn
+    ../../home/programs/zen
 
     # Scripts
     ../../home/scripts # All scripts
