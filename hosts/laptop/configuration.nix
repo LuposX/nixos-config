@@ -15,7 +15,6 @@
     ../../nixos/audio.nix
     ../../nixos/boot.nix
     ../../nixos/nix.nix
-    ../../nixos/intel.nix
     ../../nixos/bluetooth.nix
     ../../nixos/hyprland.nix
     ../../nixos/sddm.nix

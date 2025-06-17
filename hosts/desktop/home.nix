@@ -20,7 +20,7 @@
     ../../home/programs/ssh
     ../../home/programs/spotify
     ../../home/programs/thunderbird
-    ../../home/programs/tailscale
+    # ../../home/programs/tailscale
     # ../../home/programs/anyrun
     # ../../home/programs/nvf
     ../../home/programs/nnn

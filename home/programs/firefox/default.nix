@@ -7,6 +7,9 @@
       "en-US"
     ];
 
+    # Stylix needs a profile.
+    profiles.default = {};
+
     # ---- POLICIES ----
     # Check about:policies#documentation for options.
     policies = {
@@ -76,4 +79,5 @@
       };
     };
   };
+  stylix.targets.firefox.profileNames = [ "default" ];
 }
