@@ -10,7 +10,6 @@
     ../../nixos/home-manager.nix
     ../../nixos/users.nix
     ../../nixos/nix.nix
-    ../../nixos/boot.nix
 
     # Modules
     ../../server-modules/adguard.nix
@@ -18,6 +17,9 @@
     ./hardware-configuration.nix
     ./variables.nix
   ];
+
+  boot.loader.grub.enable = false;
+  boot.loader.generic-extlinux-compatible.enable = true;
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 

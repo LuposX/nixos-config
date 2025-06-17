@@ -6,6 +6,7 @@ in {
     users.${username} = {
       isNormalUser = true;
       description = "${username} account";
+      initialPassword = "changeme-nixos";
       extraGroups = [ "networkmanager" "wheel" ];
     };
   };
