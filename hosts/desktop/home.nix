@@ -58,6 +58,7 @@
       gnome-text-editor
       mpv # Video player
       libreoffice-qt6 # Office Stuff
+      popsicle
 
       # Dev
       python3
