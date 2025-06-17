@@ -20,6 +20,7 @@
 
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
+  services.openssh.enable = true;
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 
