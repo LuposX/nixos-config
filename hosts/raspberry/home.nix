@@ -29,7 +29,6 @@
       unzip
       btop
       nerdfetch
-      pfetch
       wget
     ];
 
