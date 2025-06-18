@@ -13,6 +13,7 @@
 
     # Modules
     ../../server-modules/adguard.nix
+    ../../server-modules/ssh.nix
 
     ./hardware-configuration.nix
     ./variables.nix
@@ -24,8 +25,6 @@
     "kernel.unprivileged_userns_clone" = 1; # else i get erros when building problems with sandbox
   };
   nix.settings.trusted-users = [ "${config.var.username}" ]; # Needed for remote building
-
-  services.openssh.enable = true;
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 

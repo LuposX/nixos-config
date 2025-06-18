@@ -1,0 +1,26 @@
+{ config, ...}: let
+  username = config.var.username;
+in {
+  services.adguardhome = {
+    enable = true;
+    openFirewall = true;
+
+    settings = {
+      bind_port = 53;
+      bind_host = "0.0.0.0";
+
+      users = [
+        {
+          name = "${username}";
+          password = "yourHashedPasswordHere";
+        }
+      ];
+      statistics.enabled = true;
+
+      web_port = 3000;
+      web_host = "0.0.0.0";
+
+      schema_version = 20;
+    };
+  };
+}

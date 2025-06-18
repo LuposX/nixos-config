@@ -36,7 +36,7 @@ in {
     keys:
       - &primary age15wmx8wx7z8llrp8j9t6094xt594j0rnxt6prftjeyfcqjcj6vs3spupn3k
     creation_rules:
-      - path_regex: hosts/desktop/secrets/secrets.yaml$
+      - path_regex: hosts/laptop/secrets/secrets.yaml$
         key_groups:
           - age:
             - *primary
