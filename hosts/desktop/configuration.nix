@@ -21,6 +21,7 @@
     ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
     ../../nixos/kdeconnect.nix
+    ../../nixos/blockedsites.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
 
