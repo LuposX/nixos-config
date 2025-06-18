@@ -9,4 +9,6 @@ in {
 
     settings.statistics.enabled = true;
   };
+  networking.firewall.allowedTCPPorts = [ 22 53 3000 ];
+  networking.firewall.allowedUDPPorts = [ 53 ];
 }
