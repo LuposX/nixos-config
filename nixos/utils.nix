@@ -182,4 +182,5 @@ in {
     # don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
   };
+  networking.nameservers = [ "192.168.12.100" ];
 }
