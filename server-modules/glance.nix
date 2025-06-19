@@ -1,4 +1,11 @@
+{ config, ...}:
 {
+  users.groups.glance = {};
+  users.users.glance = {
+    isSystemUser = true;
+    group = "glance";
+  };
+
   services = {
     glance = {
       enable = true;
@@ -19,31 +26,11 @@
                     location = "Karlsruhe, Germany";
                   }
                   {
-                    type = "markets";
-                    markets = [
-                      {
-                        symbol = "FTSE-Dev-World";
-                        name = "Developed World";
-                        chat-link = "https://www.tradingview.com/chart/?symbol=MIL%3AVEVE";
-                      }
-                      {
-                        symbol = "BTC-USD";
-                        name = "Bitcoin";
-                        chart-link = "https://www.tradingview.com/chart/?symbol=INDEX:BTCUSD";
-                      }
-                      {
-                        symbol = "ETH-USD";
-                        name = "Ethereum";
-                        chart-link = "https://www.tradingview.com/chart/?symbol=INDEX:ETHUSD";
-                      }
-                    ];
-                  }
-                  {
                     type = "dns-stats";
                     service = "adguard";
                     url = "http://192.168.12.100:3000/";
                     username = "monkeman";
-                    password = "\${secret:adguard-pwd}";
+                    password = "\${secret:adguard-pwd}"; # "${config.sops.secrets.adguard-pwd.path}";
                   }
                 ];
               }
@@ -134,9 +121,11 @@
           }
         ];
         server = {
+          host = "0.0.0.0";
           port = 5678;
         };
       };
     };
   };
+  networking.firewall.allowedTCPPorts = [ 5678 ];
 }

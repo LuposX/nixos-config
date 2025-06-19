@@ -18,6 +18,8 @@
 
     ./hardware-configuration.nix
     ./variables.nix
+
+    ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
 
   home-manager.users."${config.var.username}" = import ./home.nix;
