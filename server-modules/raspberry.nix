@@ -1,5 +1,6 @@
 {config, ...} : let
     hostname = config.var.hostname;
+    ipAddress = config.var.ipAddress;
 in {
   # RasperryPi has its own bootloader.
   boot.loader.grub.enable = false;
@@ -13,7 +14,7 @@ in {
   };
 
   networking.interfaces.eth0.ipv4.addresses = [
-    { address = "192.168.12.100"; prefixLength = 24; }
+    { address = ipAddress; prefixLength = 24; }
   ];
 
   networking.hostName = hostname;

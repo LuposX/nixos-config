@@ -1,5 +1,6 @@
 { config, ...}: let
   username = config.var.username;
+  ipAddress = config.var.ipAddress;
 in {
   services.adguardhome = {
     enable = true;
@@ -13,7 +14,7 @@ in {
       rewrites = [
         {
         domain = "home.local";
-        answer = (builtins.elemAt config.networking.interfaces.eth0.ipv4.addresses 0).address;
+        answer = ipAddress;
         }
       ];
     };

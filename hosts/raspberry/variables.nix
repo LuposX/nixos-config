@@ -20,6 +20,8 @@
     defaultLocale = "en_US.UTF-8";
     extraLocale = "de_DE.UTF-8";
 
+    ipAddress = "192.168.12.100";
+
     git = {
       username = "LuposX";
       email = "36456825+LuposX@users.noreply.github.com";
