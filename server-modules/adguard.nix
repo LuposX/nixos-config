@@ -13,7 +13,7 @@ in {
       rewrites = [
         {
         domain = "home.local";
-        answer = config.networking.interfaces.eth0.ipv4.addresses[0].address;
+        answer = (builtins.elemAt config.networking.interfaces.eth0.ipv4.addresses 0).address;
         }
       ];
     };
