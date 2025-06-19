@@ -66,8 +66,8 @@ in {
         # Desktop: Screen off at 11 min
         {
           timeout = 660;
-          on-timeout = "hyprctl dispatch dpms off";
-          on-resume = "$hyprctl dispatch dpms on";
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
         }
 
         # Desktop: Suspend at 30 min
