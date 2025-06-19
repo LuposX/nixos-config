@@ -16,8 +16,5 @@ in {
     { address = "192.168.12.100"; prefixLength = 24; }
   ];
 
-  networking.interfaces.edns0.dhcp = {
-    useDNS = false;  # Ignore DNS from DHCP
-  };
   networking.hostName = hostname;
 }
