@@ -11,7 +11,7 @@ in {
     settings = {
       statistics.enabled = true;
 
-      rewrites = [
+      filtering.rewrites = [
         {
         domain = "home.local";
         answer = ipAddress;
