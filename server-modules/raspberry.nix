@@ -10,4 +10,8 @@
   boot.kernel.sysctl = {
     "kernel.unprivileged_userns_clone" = 1;
   };
+
+  networking.interfaces.eth0.ipv4.addresses = [
+    { address = "192.168.12.100"; prefixLength = 24; }
+  ];
 }
