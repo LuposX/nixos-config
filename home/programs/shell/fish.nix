@@ -86,7 +86,7 @@ in {
 
       # NixOS related
       rb = "sudo nixos-rebuild switch --flake ${configDirectory}#${hostname}"; # Stands for rebuild
-      rbr = "sudo nixos-rebuild switch --flake .#prohairesis --target-host monkeman@prohairesis --sudo --ask-sudo-password";
+      rbr = "sudo nix build .#nixosConfigurations.prohairesis.config.system.build.toplevel; sleep 1; sudo nixos-rebuild switch --flake .#prohairesis --target-host monkeman@prohairesis --sudo --ask-sudo-password"; # If I only do the latetr command, I get a sandbox error.
     };
 
     plugins = [
