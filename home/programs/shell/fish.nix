@@ -73,6 +73,7 @@ in {
       gl = "git log";
       lg = "lazygit";
 
+
       # General
       c = "clear";
       cat = "bat";
@@ -85,6 +86,7 @@ in {
 
       # NixOS related
       rb = "sudo nixos-rebuild switch --flake ${configDirectory}#${hostname}"; # Stands for rebuild
+      rbr = "sudo nixos-rebuild switch --flake .#prohairesis --target-host monkeman@prohairesis --sudo --ask-sudo-password";
     };
 
     plugins = [
