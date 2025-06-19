@@ -14,6 +14,7 @@
     ../../server-modules/adguard.nix
     ../../server-modules/ssh.nix
     ../../server-modules/raspberry.nix
+    ../../server-modules/glance.nix
 
     ./hardware-configuration.nix
     ./variables.nix

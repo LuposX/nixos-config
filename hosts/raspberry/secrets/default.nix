@@ -15,6 +15,7 @@ in {
     defaultSopsFile = ./secrets.yaml;
 
     secrets = {
+       adguard-pwd = { };
     };
   };
 
