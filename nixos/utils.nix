@@ -125,7 +125,7 @@ in {
     curl
     vim
     gparted
-    busybox
+    dig
 
     # Ventoy with GUI override
     (ventoy.override {
