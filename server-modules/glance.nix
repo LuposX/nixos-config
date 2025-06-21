@@ -78,6 +78,7 @@ in {
                         { title = "Proxmox"; url = "https://prox.${domain}"; icon = "si:proxmox"; }
                         { title = "Gotify"; url = "https://gotify.${domain}"; icon = "sh:gotify"; }
                         { title = "Wireguard"; url = "https://wg.${domain}"; icon = "si:wireguard"; }
+                        { title = "Netbird"; url = "https://app.netbird.io/peers"; icon = "sh:netbird"; }
                         { title = "NAS"; url = "https://nas.${domain}"; icon = "si:openmediavault"; }
                         { title = "Adguard"; url = "https://adguard.${domain}"; icon = "si:adguard"; }
                       ];

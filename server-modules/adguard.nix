@@ -1,5 +1,4 @@
 { config, ...}: let
-  username = config.var.username;
   ipAddress = config.var.ipAddress;
   domain = "idk-this-is-test.duckdns.org";
 in {

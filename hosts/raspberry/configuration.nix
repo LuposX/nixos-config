@@ -16,6 +16,7 @@
     ../../server-modules/raspberry.nix
     ../../server-modules/glance.nix
     ../../server-modules/nginx.nix
+    ../../server-modules/netbird.nix
 
     ./hardware-configuration.nix
     ./variables.nix
