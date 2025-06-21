@@ -16,6 +16,7 @@ in {
         group = "glance";
         mode = "0440";  # owner+group can read
       };
+      duckdns-dns-token = {path = "/etc/duckdns/dnskey.txt";};
     };
   };
 

@@ -28,6 +28,7 @@
       btop
       nerdfetch
       wget
+      dig
     ];
 
     # Don't touch this

@@ -15,6 +15,7 @@
     ../../server-modules/ssh.nix
     ../../server-modules/raspberry.nix
     ../../server-modules/glance.nix
+    ../../server-modules/nginx.nix
 
     ./hardware-configuration.nix
     ./variables.nix
