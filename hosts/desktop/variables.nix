@@ -29,6 +29,8 @@
       email = "36456825+LuposX@users.noreply.github.com";
     };
 
+    domain = "idk-this-is-test.duckdns.org";
+
     backupFileExtension = "hm-backup";
 
     autoUpgrade = true;

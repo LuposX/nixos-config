@@ -24,6 +24,8 @@
     defaultLocale = "en_US.UTF-8";
     extraLocale = "de_DE.UTF-8";
 
+    domain = "idk-this-is-test.duckdns.org";
+
     git = {
       username = "LuposX";
       email = "36456825+LuposX@users.noreply.github.com";

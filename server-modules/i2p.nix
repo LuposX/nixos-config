@@ -1,4 +1,5 @@
 # Source: https://voidcruiser.nl/rambles/i2p-on-nixos/
+# For hosting see: https://mdleom.com/blog/2020/03/21/i2p-eepsite-nixos/
 { config, ... }: let
   domain = config.var.domain;
 in {
@@ -22,10 +23,13 @@ in {
         bandwidth = 100; # In KBps
         proto = {
           http.enable = true;
-          http.address = "0.0.0.0";
+          http.address = "0.0.0.0"; # Anybody localy can conenct to it.
           http.strictHeaders = false; # Careful with this one
-          socksProxy.enable = true;
+
           httpProxy.enable = true;
+          httpProxy.address = "0.0.0.0";
+
+          socksProxy.enable = true;
           sam.enable = true;
         };
       };
