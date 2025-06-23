@@ -1,5 +1,5 @@
 { config, ... }: let
-  domain = "idk-this-is-test.duckdns.org";
+  domain = config.var.domain;
 in {
   users.groups.glance = {};
   users.users.glance = {
@@ -81,6 +81,7 @@ in {
                         { title = "Netbird"; url = "https://app.netbird.io/peers"; icon = "sh:netbird"; }
                         { title = "NAS"; url = "https://nas.${domain}"; icon = "si:openmediavault"; }
                         { title = "Adguard"; url = "https://adguard.${domain}"; icon = "si:adguard"; }
+                        { title = "I2PD"; url = "https://i2pd-web.${domain}"; icon = "di:i2pd"; }
                       ];
                     }
                   ];

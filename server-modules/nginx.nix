@@ -207,6 +207,14 @@ in {
           "http://192.168.12.140:51821";
       };
     };
+    "i2pd-web.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.100:7070";
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];

@@ -1,5 +1,7 @@
 # Source: https://voidcruiser.nl/rambles/i2p-on-nixos/
-{ ... }: {
+{ config, ... }: let
+  domain = config.var.domain;
+in {
   containers.i2pd-container = {
     autoStart = true;
     config = { ... }: {
@@ -17,8 +19,11 @@
       services.i2pd = {
         enable = true;
         address = "0.0.0.0";
+        bandwidth = 100; # In KBps
         proto = {
           http.enable = true;
+          http.address = "0.0.0.0";
+          http.strictHeaders = false; # Careful with this one
           socksProxy.enable = true;
           httpProxy.enable = true;
           sam.enable = true;
@@ -26,4 +31,11 @@
       };
     };
   };
+  # Expose the ports outside the machine
+  networking.firewall.allowedTCPPorts = [
+    # 7656
+    7070
+    # 4447
+    4444
+  ];
 }

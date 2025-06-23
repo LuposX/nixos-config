@@ -1,6 +1,6 @@
 { config, ...}: let
   ipAddress = config.var.ipAddress;
-  domain = "idk-this-is-test.duckdns.org";
+  domain = config.var.domain;
 in {
   services = {
     adguardhome = {
