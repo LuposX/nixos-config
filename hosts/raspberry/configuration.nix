@@ -17,6 +17,7 @@
     ../../server-modules/glance.nix
     ../../server-modules/nginx.nix
     ../../server-modules/netbird.nix
+    ../../server-modules/i2p.nix
 
     ./hardware-configuration.nix
     ./variables.nix
