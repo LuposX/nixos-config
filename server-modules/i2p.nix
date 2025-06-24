@@ -5,7 +5,7 @@
 in {
   containers.i2pd-container = {
     autoStart = true;
-    additionalCapabilities = [ "CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" ];
+    enableTune = true;
 
     config = { config, ... }: {
 

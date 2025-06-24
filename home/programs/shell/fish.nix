@@ -113,10 +113,10 @@ in {
         src = pkgs.fishPlugins.autopair.src;
       }
       # Keeps shell history clean from typos and incorrectly used commands.
-      {
-        name = "sponge";
-        src = pkgs.fishPlugins.sponge.src;
-      }
+      # {
+      #   name = "sponge";
+      #   src = pkgs.fishPlugins.sponge.src;
+      # }
       # Typing consecutive dots after .. will automatically expand to ../.., then ../../.. and so on.
       {
         name = "puffer";
