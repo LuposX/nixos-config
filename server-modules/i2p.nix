@@ -36,7 +36,6 @@ in {
 
       # Route all trafic that goes external through a VPN and all local traffic not
       # I do this so, I do not need to port forward anything.
-      networking.useDHCP = true;
       networking.wg-quick.interfaces.vpn0 = {
         address = [ "10.164.125.229/32" "fd7d:76ee:e68f:a993:d9b1:f36a:cba3:1200/128" ];
         privateKeyFile = "/etc/wireguard/privatekey";
