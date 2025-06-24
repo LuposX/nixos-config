@@ -5,7 +5,7 @@
 in {
   containers.i2pd-container = {
     autoStart = true;
-    enableTune = true;
+    enableTun = true;
 
     config = { config, ... }: {
 
