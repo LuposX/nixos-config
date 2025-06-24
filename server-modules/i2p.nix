@@ -5,6 +5,8 @@
 in {
   containers.i2pd-container = {
     autoStart = true;
+    capabilities = [ "CAP_NET_ADMIN" "CAP_NET_BIND_SERVICE" ];
+
     config = { config, ... }: {
 
       system.stateVersion = "25.11"; # If you don't add a state version, nix will complain at every rebuild
@@ -97,6 +99,7 @@ in {
       };
     };
   };
+
   # Expose the ports outside the machine
   networking.firewall.allowedTCPPorts = [
     # 7656
