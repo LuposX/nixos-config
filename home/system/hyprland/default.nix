@@ -80,6 +80,7 @@ in {
       ];
 
       env = [
+        "GRIMBLAST_HIDE_CURSOR, 0" # See: https://github.com/Jas-SinghFSU/HyprPanel/issues/888
         "NNN_FIFO,/tmp/nnn.fifo" # For NNN-Preview to work.
         "NNN_TMPFILE,/tmp/nnn-lastdir"
         "XDG_CURRENT_DESKTOP,Hyprland"
