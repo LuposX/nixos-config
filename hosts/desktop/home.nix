@@ -79,6 +79,8 @@
       cbonsai
       pipes
       cmatrix
+
+      zoom-us
     ];
 
     # Don't touch this
