@@ -12,5 +12,6 @@
     127.0.0.1 inv.nadeko.net
     127.0.0.1 yewtu.be
     127.0.0.1 invidious.nerdvpn.de
+    127.0.0.1 reddit.com
   '';
 }
