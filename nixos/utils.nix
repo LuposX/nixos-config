@@ -86,6 +86,8 @@ in {
     BROWSER = "firefox";
   };
 
+  # When program is missing, this gives you proposals
+  programs.command-not-found.enable = true;
 
   programs.dconf.enable = true;
   services = {

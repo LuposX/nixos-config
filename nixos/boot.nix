@@ -18,7 +18,7 @@
     # Uses the most recent mainline Linux kernel.
     # Alternatives: _zen, _hardened, _rt, _rt_latest, etc.
     # kernelPackages = pkgs.linuxPackages_latest; # Kernel 6.15 has currently a nvidia bug.
-    kernelPackages = pkgs.linuxPackages_6_14;
+    # kernelPackages = pkgs.linuxPackages_6_14;
 
     # Silent boot
     kernelParams = [

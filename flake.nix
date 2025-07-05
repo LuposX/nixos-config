@@ -62,7 +62,7 @@
         system = "x86_64-linux";
         modules = [
           {
-            nixpkgs.overlays = [inputs.hyprpanel.overlay];
+            nixpkgs.overlays = [];
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }
@@ -78,7 +78,7 @@
         system = "x86_64-linux";
         modules = [
           {
-            nixpkgs.overlays = [inputs.hyprpanel.overlay];
+            nixpkgs.overlays = [];
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }
