@@ -13,6 +13,11 @@
 
     # nvf.url = "github:notashelf/nvf"; # This is for Neovim
 
+# Csuotm Status bar for zellij
+    zjstatus = {
+      url = "github:dj95/zjstatus";
+     };
+
     # My own fork, for easier changes.
     nvix.url = "github:LuposX/nvix";
 
@@ -62,7 +67,6 @@
         system = "x86_64-linux";
         modules = [
           {
-            nixpkgs.overlays = [];
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }
@@ -78,7 +82,6 @@
         system = "x86_64-linux";
         modules = [
           {
-            nixpkgs.overlays = [];
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }

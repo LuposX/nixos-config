@@ -10,6 +10,7 @@
     ./fish.nix
     ./starship.nix
     ./fzf.nix
+    ./zellij.nix
   ];
 
   home.packages = with pkgs; [
