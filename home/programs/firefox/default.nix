@@ -1,6 +1,6 @@
 # Source firefox: https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
 # For settings: https://github.com/witchof0x20/nix-cfg-jade/blob/448efb5921013f907020a1a953d0988e6f12c896/home/desktop/firefox.nix
-{config, ...}: let
+{config, lib, ...}: let
   domain = config.var.domain;
   commonSettings = {
     "browser.profiles.enabled" = true;
@@ -31,6 +31,55 @@
     "toolkit.telemetry.unified" = false;
     "toolkit.telemetry.unifiedIsOptIn" = false;
     "toolkit.telemetry.updatePing.enabled" = false;
+
+    "sidebar.verticalTabs" = true;
+    "browser.ml.chat.enabled" = false;
+
+    # Extensions are managed with Nix, so don't update.
+    "extensions.update.autoUpdateDefault" = false;
+    "extensions.update.enabled" = false;
+
+    # Disable search suggestions
+    "browser.search.suggest.enabled" = false;
+    "browser.urlbar.suggest.searched" = false;
+    "browser.urlbar.trending.featureGate" = false;
+    "browser.urlbar.addons.featureGate" = false;
+    "browser.urlbar.mdn.featureGate" = false;
+    "browser.urlbar.pocket.featureGate" = false;
+    "browser.urlbar.weather.featureGate" = false;
+    "browser.urlbar.yelp.featureGate" = false;
+    "extensions.getAddons.showPane" = false;
+
+    # Enable DRM
+    "media.eme.enabled" = true;
+
+    # Don't ask for download dir
+    "browser.download.useDownloadDir" = false;
+
+    # Disable crappy home activity stream page
+    "browser.newtabpage.activity-stream.feeds.topsites" = false;
+    "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
+    "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts" = false;
+    "browser.newtabpage.blocked" = lib.genAttrs [
+      # Youtube
+      "26UbzFJ7qT9/4DhodHKA1Q=="
+      # Facebook
+      "4gPpjkxgZzXPVtuEoAL9Ig=="
+      # Wikipedia
+      "eV8/WsSLxHadrTL1gAxhug=="
+      # Reddit
+      "gLv0ja2RYVgxKdp0I5qwvA=="
+      # Amazon
+      "K00ILysCaEq8+bEqV/3nuw=="
+      # Twitter
+      "T9nJot5PurhJSy8n038xGA=="
+    ] (_: 1);
+
+    # Disable fx accounts
+    "identity.fxaccounts.enabled" = false;
+
+    # Disable Synch Tabs
+    "services.sync.engine.tabs" = false;
   };
 in {
   programs.firefox = {
@@ -44,7 +93,15 @@ in {
     profiles.default = {
         id = 0;
         isDefault = true;
-        settings = commonSettings;
+        settings = commonSettings // {
+          "browser.startup.homepage" = "https://${domain}";
+
+          "browser.urlbar.placeholderName" = "DuckDuckGo";
+          "browser.urlbar.placeholderName.private" = "DuckDuckGo";
+          "browser.search.defaultenginename" = "DuckDuckGo";
+          "browser.search.selectedEngine" = "DuckDuckGo";
+          "browser.search.order.1" = "DuckDuckGo";
+        };
     };
 
     profiles.i2p = {
@@ -109,6 +166,8 @@ in {
       DisplayBookmarksToolbar = "newtab"; # alternatives: "always" or "newtab"
       DisplayMenuBar = "default-off"; # alternatives: "always", "never" or "default-on"
       SearchBar = "unified"; # alternative: "separate"
+
+      SearchEngines.Default = "DuckDuckGo";
 
       # ---- EXTENSIONS ----
       # Check about:support for extension/add-on ID strings.

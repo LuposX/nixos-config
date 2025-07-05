@@ -33,7 +33,7 @@
 | Screenshot region + edit (Swappy) | ALT + CTRL + P   |
 | Toggle Hyprpanel                  | ShiftMod + T     |
 | Clipboard picker (wofi)           | ShiftMod + C     |
-| Emoji picker (wofi-emoji)         | ShiftMod + E     |
+| [Emoji](2025-07-05_emoji.md) picker (wofi-emoji)         | ShiftMod + E     |
 
 ---
 
@@ -123,3 +123,13 @@
 
 > [!NOTE]
 > For easy mode switch, bind `CAPS LOCK` to `ESCAPE`
+
+
+## Firefox
+
+| Description        | Keybinding |
+| ------------------ | ---------- |
+| New Tab            | STRG + t   |
+| Close Tab          | STRG + w   |
+| Switch to next Tab | STRG + TAB |
+| Go to Tab *i*      | ALT + *i*  |
