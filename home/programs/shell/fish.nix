@@ -57,8 +57,6 @@ in {
             rm -- $NNN_TMPFILE
         end
       end
-
-      nerdfetch
     '';
 
     shellAliases = {
