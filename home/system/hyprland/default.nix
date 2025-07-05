@@ -65,6 +65,7 @@ in {
       "$shiftMod" = "SUPER_SHIFT";
 
       exec-once = [
+        # System related
         "dbus-update-activation-environment --systemd --all &"
         "systemctl --user enable --now hyprpaper.service &"
         "systemctl --user enable --now hypridle.service &"
@@ -73,6 +74,10 @@ in {
         "systemctl --user enable --now clipman.service &"
         # "systemctl --user enable --now ssh-agent &"
         "hyprpanel"
+
+        # User Related
+        "[workspace 1 silent] firefox"
+        "[workspace 2 silent] kitty"
       ];
 
       monitor = [
