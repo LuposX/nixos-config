@@ -75,9 +75,18 @@ in {
         # "systemctl --user enable --now ssh-agent &"
         "hyprpanel"
 
+        # Start sessions in background
+        "sh -c 'zellij delete-all-sessions --yes'"
+        "sh -c 'zellij kill-all-sessions --yes'"
+        "sh -c 'zellij --new-session-with-layout notes --session Notes'"
+        "sh -c 'zellij --new-session-with-layout university --session University'"
+        "sh -c 'zellij --new-session-with-layout website --session Website'"
+        "sh -c 'zellij --new-session-with-layout nixos_config --session NixOS_Config'"
+
         # User Related
         "[workspace 1 silent] firefox"
         "[workspace 2 silent] kitty"
+        "[workspace 9 silent] spotify"
       ];
 
       monitor = [
