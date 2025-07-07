@@ -18,6 +18,8 @@
     ../../server-modules/nginx.nix
     ../../server-modules/netbird.nix
     ../../server-modules/i2p.nix
+    ../../server-modules/grafana.nix
+    ../../server-modules/prometheus.nix
 
     ./hardware-configuration.nix
     ./variables.nix

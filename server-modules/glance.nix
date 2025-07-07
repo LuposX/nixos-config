@@ -82,6 +82,8 @@ in {
                         { title = "NAS"; url = "https://nas.${domain}"; icon = "si:openmediavault"; }
                         { title = "Adguard"; url = "https://adguard.${domain}"; icon = "si:adguard"; }
                         { title = "I2PD"; url = "https://i2pd-web.${domain}"; icon = "di:i2pd"; }
+                        { title = "Grafana"; url = "https://grafana.${domain}"; icon = "si:grafana"; }
+                        { title = "Prometheus"; url = "https://prometheus.${domain}"; icon = "si:prometheus"; }
                       ];
                     }
                   ];
