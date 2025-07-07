@@ -6,6 +6,8 @@ in {
   boot.loader.grub.enable = false;
   boot.loader.generic-extlinux-compatible.enable = true;
 
+  virtualisation.docker.enable = true;
+
   # Needed for remote building.
   # Else I get error when building problems with sandbox.
   nix.settings.trusted-users = [ "${config.var.username}" ];
