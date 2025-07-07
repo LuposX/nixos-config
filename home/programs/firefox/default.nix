@@ -110,11 +110,10 @@ in {
       settings = commonSettings // {
         "browser.profiles.enabled" = true;
         "network.proxy.type" = 1;
-        "network.proxy.http" = "i2pd-proxy.${domain}";
+        "network.proxy.http" = "192.168.12.100";
         "network.proxy.http_port" = 4444;
-        "network.proxy.ssl" = "i2pd-proxy.${domain}";
+        "network.proxy.ssl" = "192.168.12.100";
         "network.proxy.ssl_port" = 4444;
-        "network.proxy.no_proxies_on" = "localhost, i2pd-proxy.${domain}";
         "media.peerconnection.ice.proxy_only" = true;
       };
       bookmarks = {

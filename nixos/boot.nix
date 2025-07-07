@@ -9,8 +9,8 @@
         enable = true;
         # Controls the resolution of the bootloader console.
         consoleMode = "auto";
-        # Keeps only the 8 most recent boot configurations.
-        configurationLimit = 8;
+        # Keeps only the 10 most recent boot configurations.
+        configurationLimit = 10;
       };
     };
     # Cleans /tmp at boot.
