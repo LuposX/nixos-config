@@ -79,6 +79,9 @@
       cbonsai
       pipes
       cmatrix
+
+      lutris
+      adwaita-icon-theme
     ];
 
     # Don't touch this
