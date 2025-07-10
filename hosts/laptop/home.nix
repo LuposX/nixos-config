@@ -59,7 +59,7 @@
       gnome-text-editor
       mpv # Video player
       libreoffice-qt6 # Office Stuff
-      nwg-displays
+      anki
 
       # Dev
       python3

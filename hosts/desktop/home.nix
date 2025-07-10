@@ -59,6 +59,7 @@
       mpv # Video player
       libreoffice-qt6 # Office Stuff
       popsicle
+      anki
 
       # Dev
       python3
@@ -80,7 +81,8 @@
       pipes
       cmatrix
 
-      zoom-us
+      # Spyware, use web-client.
+      # zoom-us
     ];
 
     # Don't touch this
