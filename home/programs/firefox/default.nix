@@ -94,7 +94,8 @@ in {
         id = 0;
         isDefault = true;
         settings = commonSettings // {
-          "browser.startup.homepage" = "https://${domain}";
+          "browser.startup.homepage" = "https://${domain}|https://chatgpt.com";
+          "browser.startup.page" = 1;  # 1 = show homepage on startup
 
           "browser.urlbar.placeholderName" = "DuckDuckGo";
           "browser.urlbar.placeholderName.private" = "DuckDuckGo";
