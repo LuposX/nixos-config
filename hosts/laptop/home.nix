@@ -59,6 +59,7 @@
       gnome-text-editor
       mpv # Video player
       libreoffice-qt6 # Office Stuff
+      nwg-displays
 
       # Dev
       python3
@@ -80,6 +81,7 @@
       pipes
       cmatrix
 
+      # Games
       lutris
       adwaita-icon-theme
     ];

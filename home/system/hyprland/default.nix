@@ -90,7 +90,8 @@ in {
       ];
 
       monitor = [
-        ",prefered,auto,1" # default
+        "eDP-1,preferred,auto,1" # default
+        ",preferred,auto,1,mirror,eDP-1"
       ];
 
       env = [
