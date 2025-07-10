@@ -16,6 +16,8 @@
   shadow = config.theme.shadow;
   keyboardLayout = config.var.keyboardLayout;
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
+
+  primary_monitor = config.var.primary_monitor;
 in {
   imports = [
     ./animations.nix
@@ -90,8 +92,8 @@ in {
       ];
 
       monitor = [
-        "eDP-1,preferred,auto,1" # default
-        ",preferred,auto,1,mirror,eDP-1"
+        "${primary_monitor},preferred,auto,1" # default eDP-1
+        ",preferred,auto,1,mirror,${primary_monitor}"
       ];
 
       env = [

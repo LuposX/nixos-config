@@ -36,6 +36,11 @@
     autoUpgrade = true;
     autoGarbageCollector = true;
 
+    # name of the primary monitor
+    # Use `hyprctl monitors` to get it
+    # Other Monitor gets mirrored
+    primary_monitor = "eDP-1";
+
     profile-picture =
       config.var.configDirectory
       + "/ressources/"
