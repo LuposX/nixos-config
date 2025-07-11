@@ -8,6 +8,7 @@
         "$mod,B, exec,  uwsm app -- firefox" # Browser
         "$mod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
         "$mod,N, exec, uwsm app -- ${pkgs.kitty}/bin/kitty --class n -e fish -i -c 'n; c; exec fish'"
+        "$mod,D, exec, ${pkgs.kitty}/bin/kitty --directory ~/Notes fzf_search_directory"
 
         # "$mod,X, exec, powermenu" # Powermenu
         "$mod,SPACE, exec, menu" # Launcher

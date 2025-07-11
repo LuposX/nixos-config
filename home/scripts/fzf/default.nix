@@ -7,54 +7,45 @@
     })
   );
 
-  # DEPRECATED, use `fzfPreviewScript` instead.
-  # previewFZF = pkgs.fetchFromGitHub {
-  #   owner = "kidonng";
-  #   repo = "preview.fish";
-  #   rev = "ba3fbef3a9f23840b25764be2e1c82da5b205d42"; # Pin the latest known good commit
-  #   sha256 = "sha256-dxG9Drbmy0M5c4lCzeJ4k7BnkrJwmpI4IpkeRP6CYFk=";
-  # };
 
-  #This is my general preview Script for fzf
-  fzfPreviewScript = pkgs.writeTextFile {
-    name = "preview_fzf.fish";
+  # So I can execute it from hyprland directly
+  fzf_search_directory = pkgs.writeTextFile {
+    name = "fzf_search_directory.fish";
     text = ''
         #!/usr/bin/env fish
-        function preview_fzf
-          set mime_type (file --mime-type --brief "$argv")
+        function fzf_search_directory --description "Search the current directory. Replace the current token with the selected file paths."
+            # Directly use fd binary to avoid output buffering delay caused by a fd alias, if any.
+            # Debian-based distros install fd as fdfind and the fd package is something else, so
+            # check for fdfind first. Fall back to "fd" for a clear error message.
+            set -f fd_cmd (command -v fdfind || command -v fd  || echo "fd")
+            set -f --append fd_cmd --color=always $fzf_fd_opts
 
-          # For Video preview, calculate size using mpv.
-          # set -l char_width 8
-          # set -l char_height 16
-          # set -l width (math "$FZF_PREVIEW_COLUMNS * $char_width")
-          # set -l height (math "$FZF_PREVIEW_LINES * $char_height")
+            set -f fzf_arguments --multi --ansi $fzf_directory_opts
+            set -f token (commandline --current-token)
+            # expand any variables or leading tilde (~) in the token
+            set -f expanded_token (eval echo -- $token)
+            # unescape token because it's already quoted so backslashes will mess up the path
+            set -f unescaped_exp_token (string unescape -- $expanded_token)
 
-          if test -d $argv[1]
-            ls $argv[1]
-            exit
-            return
-          end
+            # If the current token is a directory and has a trailing slash,
+            # then use it as fd's base directory.
+            if string match --quiet -- "*/" $unescaped_exp_token && test -d "$unescaped_exp_token"
+                set --append fd_cmd --base-directory=$unescaped_exp_token
+                # use the directory name as fzf's prompt to indicate the search is limited to that directory
+                set --prepend fzf_arguments --prompt="Directory $unescaped_exp_token> " --preview="_fzf_preview_file $expanded_token{}"
+                set -f file_paths_selected $unescaped_exp_token($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
+            else
+                set --prepend fzf_arguments --prompt="Directory> " --query="$unescaped_exp_token" --preview='_fzf_preview_file {}'
+                set -f file_paths_selected ($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
+            end
 
-          switch "$mime_type"
-              case "image/*"
-                  ~/.config/fzf/fzf-preview.sh "$argv"
-                  return
-              case "video/*"
-                  ffmpegthumbnailer -i "$argv" -o /tmp/fzf-preview.png -s 0 -q 5 > /dev/null 2>&1 &&
-                  ~/.config/fzf/fzf-preview.sh /tmp/fzf-preview.png
-                  return
-                  # mpv --no-config --vo=kitty --vo-kitty-use-shm=yes --no-audio --autofit="$width"x"$height" "$argv"
-              case "application/pdf" "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                  markitdown "$argv" | bat --language=markdown --style=numbers --color=always
-                  return
-              case "text/markdown"
-                  glow "$argv"
-                  return
-              case "*"
-                  bat --style=numbers --color=always "$argv"
-                  return
-          end
-      end
+
+            if test $status -eq 0
+                commandline --current-token --replace -- (string escape -- $file_paths_selected | string join ' ')
+            end
+
+            commandline --function repaint
+        end
     '';
   };
 
@@ -182,6 +173,11 @@ in {
     executable = true;
   };
 
+  home.file.".config/fish/functions/fzf_search_directory.fish" = {
+    source = fzf_search_directory;
+    executable = true;
+  };
+
   # DEPRECATED
   # -------------
   #
@@ -190,8 +186,8 @@ in {
   #   executable = true;
   # };
 
-  # home.file.".config/fish/functions/preview_fzf.fish" = {
-  #   source = fzfPreviewScript;
+  # home.file.".config/fish/functions/fzf_search_directory.fish" = {
+  #   source = fzf_search_directory;
   #   executable = true;
   # };
   #

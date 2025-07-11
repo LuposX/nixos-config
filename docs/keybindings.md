@@ -13,6 +13,7 @@
 | Launch Thunar                     | Mod + E          |
 | Launch Firefox                    | Mod + B          |
 | Launch NNN                        | MOD + N          |
+| Launch FZF                        | MOD + D          |
 | Lock Screen (Hyprlock)            | Mod + L          |
 | Open App Launcher (menu)          | Mod + SPACE      |
 | Toggle Hyprtasking                | Mod + tab        |
