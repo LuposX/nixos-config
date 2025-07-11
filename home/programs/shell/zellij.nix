@@ -1,11 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, config, lib, ... }:
 {
   # If you get error when creating new session try to delte the cahce
   # $HOME/.cache/zellij
   # See https://github.com/NixOS/nixpkgs/issues/216961
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true;
+    enableFishIntegration = false; # This also enables zellih in non-interactive show_release_notes
     settings = {
       # default_layout = "compact";
       on_force_close = "quit";
@@ -16,6 +16,12 @@
     };
   };
 
+  # Enables zellij only for interactvie cases
+  programs.fish.interactiveShellInit = ''
+    if status is-interactive
+      eval (${lib.getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
+    end
+  '';
 
 home.file.".config/zellij/layouts/notes.kdl".text = ''
   layout {

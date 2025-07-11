@@ -34,7 +34,7 @@
 | Screenshot region + edit (Swappy) | ALT + CTRL + P   |
 | Toggle Hyprpanel                  | ShiftMod + T     |
 | Clipboard picker (wofi)           | ShiftMod + C     |
-| [Emoji](2025-07-05_emoji.md) picker (wofi-emoji)         | ShiftMod + E     |
+| Emoji picker (wofi-emoji)         | ShiftMod + E     |
 
 ---
 
