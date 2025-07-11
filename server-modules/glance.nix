@@ -26,6 +26,73 @@ in {
                   username = "monkeman";
                   password = "${secret:adguard-pwd}";
                 }
+                { type = "rss";
+                  title = "Lainchan";
+                  style = "horizontal-cards";
+                  feeds = [
+                    { url = "https://gapandfriends.neocities.org/blog/feed.rss"; title = "Gap and friends"; }
+                    { url = "https://0x19.org/posts/feed.php"; title = "0x19.org"; }
+                    { url = "https://b4rkod.net.tr/rss.xml"; title = "Barkods Basement"; }
+                    { url = "https://bendersteed.tech/feed.xml"; title = "Bendersteed"; }
+                    { url = "https://321cosmica.neocities.org/en/cosmica-en.xml"; title = "Cosmica"; }
+                    { url = "https://cabbagesorter.neocities.org/rss.xml"; title = "Cabbage Sorter"; }
+                    { url = "https://confusion.codeberg.page/rss.xml"; title = "Confusions Blog"; }
+                    { url = "https://www.cozynet.org/feed/feed.xml"; title = "CozyNet"; }
+                    { url = "https://flammableduck.xyz/feed.xml"; title = "Flammable Duck"; }
+                    { url = "https://glowbox.cc/rss.php"; title = "dshells notes"; }
+                    { url = "https://grafo.zone/index.xml"; title = "Grafo Zone"; }
+                    { url = "https://swindlesmccoop.xyz/rss.xml"; title = "Home of Swindles"; }
+                    { url = "https://andresz.xyz/index.xml"; title = "Ándros"; }
+                    { url = "https://www.idelides.xyz/rss/"; title = "Idelides"; }
+                    { url = "https://jahanrashidi.com/rss/"; title = "Jahans site"; }
+                    { url = "https://blog.jjakke.com/rss.xml"; title = "Jakes thoughts"; }
+                    { url = "https://kassy.neocities.org/miscfeed.xml"; title = "kassy"; }
+                    { url = "https://kinisis.xyz/rss.xml"; title = "Kinisis web"; }
+                    { url = "https://kirillov.neocities.org/feed.xml"; title = "Kirillov"; }
+                    { url = "https://lainnet.arcesia.net/rss.xml"; title = "LainNet"; }
+                    { url = "https://blog.libertywitch.com/rss.xml"; title = "Liberty Witch"; }
+                    { url = "https://lyricaltokarev.com/blog/rss"; title = "Lyrical Tokarev"; }
+                    { url = "https://mayvaneday.org/feed.xml"; title = "MayVaneDay Studios"; }
+                    { url = "https://midnightmountain.xyz/index.xml"; title = "midnight mountain"; }
+                    { url = "https://newdigitalera.org/feed.xml"; title = "New Digital Era"; }
+                    { url = "https://nosleepforme.neocities.org/rss.xml"; title = "No Sleep"; }
+                    { url = "https://seapunk.xyz/atom.xml"; title = "Seapunk"; }
+                    { url = "https://skumsoft.ltd/slimenet/chamber.rss"; title = "Slime-Net"; }
+                    { url = "https://slushbin.net/feed.rss"; title = "slushbin"; }
+                    { url = "https://sor.neocities.org/rss.xml"; title = "Sorzitos Layer"; }
+                    { url = "http://extramundane.xyz/rss.xml"; title = "The Extramundane"; }
+                    { url = "https://torpus.info/index.xml"; title = "torpus"; }
+                    { url = "https://voicedrew.xyz/rss.xml"; title = "voicedrew"; }
+                    { url = "https://world-playground-deceit.net/global.xml"; title = "World Playground Deceit"; }
+                    { url = "https://yukinu.com/feed/rss.xml"; title = "Yukinu"; }
+                    { url = "https://mouse.services/rss.xml"; title = "a7th Layer"; }
+                    { url = "https://blogelogeluren.netlify.app/rss.xml"; title = "turpelurpeluren"; }
+                    { url = "https://chknz.org/feed.xml"; title = "chknz"; }
+                    { url = "https://cool-website.xyz/rss.xml"; title = "cool-website.xyz"; }
+                    { url = "https://eyetower.xyz/blog/feed.xml"; title = "eyetower"; }
+                    { url = "https://foreverliketh.is/blog/index.xml"; title = "foreverliketh.is"; }
+                    { url = "https://gau7ilu.xyz/atom.xml"; title = "gau7ilu.xyz"; }
+                    { url = "https://getimiskon.xyz/rss.xml"; title = "getimiskons space"; }
+                    { url = "https://lckdscl.xyz/feed.xml"; title = "lckdscl"; }
+                    { url = "https://maerk.xyz/index.html"; title = "maerk.xyz"; }
+                    { url = "https://minugahana.neocities.org/feeds/blog.xml"; title = "minugahana"; }
+                    { url = "https://miredo.neocities.org/atom.xml"; title = "miredo"; }
+                    { url = "https://monkemanx.github.io/index.xml"; title = "monkemanx"; }
+                    { url = "https://orizuru.neocities.org/atom.xml"; title = "orizuru"; }
+                    { url = "https://dataswamp.org/~lich/rss.xml"; title = "lichs website"; }
+                    { url = "https://psychool.org/index.xml"; title = "psychool"; }
+                    { url = "https://risingthumb.xyz/Writing/Blog/index.rss"; title = "Rising Thumb"; }
+                    { url = "https://strlst.myogaya.jp/rss.xml"; title = "satorialistic"; }
+                    { url = "https://blog.shr4pnel.com/feed.xml"; title = "shrapnelnet"; }
+                    { url = "https://sizeof.cat/index.xml"; title = "sizeof(cat)"; }
+                    { url = "https://blog.tinfoil-hat.net/index.xml"; title = "tinfoil-hat"; }
+                    { url = "https://www.tohya.net/feed.rss"; title = "saturnexplorers"; }
+                    { url = "https://trrb.xyz/blog/feed.rss"; title = "trrb"; }
+                    { url = "https://urof.net/blog/feed.xml"; title = "urof.net"; }
+                    { url = "https://vendell.online/blog/feed.xml"; title = "Vendell"; }
+                    { url = "https://ful4n.bearblog.dev/feed/"; title = "ful4n"; }
+                  ];
+                }
               ];
             }
             {

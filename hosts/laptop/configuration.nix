@@ -34,6 +34,9 @@
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 
+  # Enables emulation of arm system to compile NixOS for Raspberry device.
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # Do Not Change!
   system.stateVersion = "25.05";
 }

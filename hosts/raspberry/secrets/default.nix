@@ -17,6 +17,13 @@ in {
         mode = "0440";  # owner+group can read
       };
       duckdns-dns-token = {path = "/etc/duckdns/dnskey.txt";};
+
+      netbird-setup-key = {
+        key = "netbird/setup-keys/netbird-io/${config.var.hostname}";
+        owner = "netbird-netbird-io";
+        group = "netbird-netbird-io";
+        mode = "0440";
+      };
     };
   };
 
