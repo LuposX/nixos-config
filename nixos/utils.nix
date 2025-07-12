@@ -148,7 +148,18 @@ in {
 
     # Internet
     wpa_supplicant
+
+    # For keys
+    pinentry-tty
+    pinentry-gtk2
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
+
   services.gnome.glib-networking.enable = true;
   nixpkgs.config.permittedInsecurePackages = [
     "ventoy-1.1.05"
