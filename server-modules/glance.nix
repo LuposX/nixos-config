@@ -99,7 +99,7 @@ in {
               size = "full";
               widgets = [
                 # Search stays at the top by default
-                { type = "search"; search-engine = "duckduckgo"; }
+                { type = "search"; search-engine = "duckduckgo"; new-tab = true; }
 
                 # Domain service monitors
                 { type = "group";
@@ -164,23 +164,23 @@ in {
                 # Bookmarks at the bottom
                 { type = "bookmarks";
                   groups = [
-                    { title = ""; same-tab = true; color = "200 50 50";
+                    { title = "Socials"; same-tab = false; color = "200 50 50";
                       links = [
                         { title = "ProtonMail"; url = "https://proton.me/mail"; }
                         { title = "Github"; url = "https://github.com"; }
                       ];
                     }
-                    { title = "Docs"; same-tab = true; color = "200 50 50";
+                    { title = "Docs"; same-tab = false; color = "200 50 50";
                       links = [
                         { title = "Nixpkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
                         { title = "Hyprland wiki"; url = "https://wiki.hyprland.org/"; }
                         { title = "Search NixOS"; url = "https://search.nixos.org/packages"; }
                       ];
                     }
-                    { title = "Homelab"; same-tab = true; color = "100 50 50";
+                    { title = "Homelab"; same-tab = false; color = "100 50 50";
                       links = [ { title = "Router"; url = "http://192.168.12.1/"; } ];
                     }
-                    { title = "Misc"; same-tab = true;
+                    { title = "Misc"; same-tab = false;
                       links = [
                         { title = "Svgl"; url = "https://svgl.app/"; }
                         { title = "Excalidraw"; url = "https://excalidraw.com/"; }

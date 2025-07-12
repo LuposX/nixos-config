@@ -19,9 +19,8 @@ in {
       duckdns-dns-token = {path = "/etc/duckdns/dnskey.txt";};
 
       netbird-setup-key = {
-        key = "netbird/setup-keys/netbird-io/${config.var.hostname}";
-        owner = "netbird-netbird-io";
-        group = "netbird-netbird-io";
+        owner = "root";
+        group = "root";
         mode = "0440";
       };
     };
