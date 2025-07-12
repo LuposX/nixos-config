@@ -19,16 +19,10 @@ in {
               size = "small";
               widgets = [
                 { type = "clock"; hour-format = "24h"; }
-                { type = "weather"; location = "Karlsruhe, Germany"; }
-                { type = "dns-stats";
-                  service = "adguard";
-                  url = "https://adguard.${domain}";
-                  username = "monkeman";
-                  password = "${secret:adguard-pwd}";
-                }
                 { type = "rss";
                   title = "Lainchan";
-                  style = "horizontal-cards";
+                  collapse-after = 8;
+                  style = "vertical-list";
                   feeds = [
                     { url = "https://gapandfriends.neocities.org/blog/feed.rss"; title = "Gap and friends"; }
                     { url = "https://0x19.org/posts/feed.php"; title = "0x19.org"; }
@@ -191,6 +185,13 @@ in {
                   ];
                 }
               ];
+            }
+            {
+            size = "small";
+            widgets = [
+              { type = "weather"; location = "Karlsruhe, Germany"; }
+              { type = "calendar"; first-day-of-week = "monday"; }
+            ];
             }
           ];
           name = "Home";
