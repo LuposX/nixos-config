@@ -17,9 +17,12 @@
   };
 
   # Enables zellij only for interactvie cases
+  # set HYPRLAND_FZF=1 if you want to start terminal without zellij
   programs.fish.interactiveShellInit = ''
     if status is-interactive
-      eval (${lib.getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
+      if test "$HYPRLAND_FZF" != "1"
+        eval (${lib.getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
+      end
     end
   '';
 

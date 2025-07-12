@@ -10,6 +10,8 @@
   config.var = {
     isLaptop = false;
 
+    primary_monitor = "HDMI-A-3";
+
     hostname = "logos";
     username = "monkeman";
     configDirectory =

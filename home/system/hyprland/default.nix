@@ -179,6 +179,11 @@ in {
         # telegram media viewer
         "float, title:^(Media viewer)$"
 
+        # FZF Script
+        "float, class:^(fzffloat)$"
+        "center, class:^(fzffloat)$"
+        "size 1200 600, class:^(fzffloat)$"
+
         # Bitwarden extension
         "float, title:^(.*Bitwarden Password Manager.*)$"
 

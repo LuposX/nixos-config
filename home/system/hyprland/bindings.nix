@@ -7,9 +7,10 @@
         "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar
         "$mod,B, exec,  uwsm app -- firefox" # Browser
         "$mod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
-        "$mod,N, exec, uwsm app -- ${pkgs.kitty}/bin/kitty --class n fish --no-config -c 'nnn; c; exec fish'"
+        "$mod,S, exec, HYPRLAND_FZF=1 uwsm app -- ${pkgs.kitty}/bin/kitty --class fzffloat fish -c 'fzf_search_files; exit'"
+        "$mod,G, exec, HYPRLAND_FZF=1 uwsm app -- ${pkgs.kitty}/bin/kitty --class fzffloat fish -c 'fzf_search_rga; exit'"
 
-        # "$mod,X, exec, powermenu" # Powermenu
+        "$mod,X, exec, powermenu" # Powermenu
         "$mod,SPACE, exec, menu" # Launcher
         # "$mod,C, exec, quickmenu" # Quickmenu
         # "$shiftMod,SPACE, exec, hyprfocus-toggle" # Toggle HyprFocus
