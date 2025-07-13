@@ -8,6 +8,8 @@
     "browser.newtabpage.directory.source" = "";
     "browser.pocket.enabled" = false;
 
+    "browser.sessionstore.resume_from_crash" = false;
+
     # Settings from https://github.com/K3V1991/Disable-Firefox-Telemetry-and-Data-Collection
     "browser.newtabpage.activity-stream.feeds.telemetry" = false;
     "browser.newtabpage.activity-stream.telemetry" = false;
