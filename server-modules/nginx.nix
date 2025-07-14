@@ -231,6 +231,14 @@ in {
           "http://192.168.12.100:4444";
       };
     };
+    "kvm.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.51";
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];

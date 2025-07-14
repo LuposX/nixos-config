@@ -17,6 +17,10 @@ in {
   networking.hostName = hostname;
 
   networking.networkmanager.enable = true;
+
+  # Needed for Netbird Exit Nodes to work (?)
+  services.resolved.enable = true;
+
   systemd.services.NetworkManager-wait-online.enable = false;
 
   # Enable CUPS to print documents.
@@ -196,5 +200,4 @@ in {
     # don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
   };
-  networking.nameservers = [ "192.168.12.100" ];
 }

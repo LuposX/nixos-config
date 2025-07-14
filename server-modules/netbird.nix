@@ -37,13 +37,33 @@ in {
     ${pkgs.docker}/bin/docker pull netbirdio/netbird:latest || true
   '';
 
-  networking.firewall.allowedTCPPorts = [
-    443
-  ];
-  networking.firewall.allowedUDPPorts = [
-    80
-    443
-    3478
-    5555
-  ];
+  # This is needed I think, for exit nodes.
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  networking = {
+    nat = {
+      enable = true;
+      internalInterfaces = [ "wt0" ];  # NetBird wg interface
+      externalInterface = "eth0";
+    };
+
+    firewall = {
+      checkReversePath = "loose";
+
+      extraCommands = ''
+        iptables -t nat -A POSTROUTING -s 100.71.0.0/16 -d 192.168.12.0/24 -j MASQUERADE
+      '';
+
+      allowedTCPPorts = [
+        443
+      ];
+
+      allowedUDPPorts = [
+        80
+        443
+        3478
+        5555
+        51820
+      ];
+    };
+  };
 }

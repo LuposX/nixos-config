@@ -145,6 +145,7 @@ in {
                         { title = "I2PD"; url = "https://i2pd-web.${domain}"; icon = "di:i2pd"; }
                         { title = "Grafana"; url = "https://grafana.${domain}"; icon = "si:grafana"; }
                         { title = "Prometheus"; url = "https://prometheus.${domain}"; icon = "si:prometheus"; }
+                        { title = "KVM"; url = "https://kvm.${domain}"; icon = "sh:pikvm-dark"; }
                       ];
                     }
                   ];
