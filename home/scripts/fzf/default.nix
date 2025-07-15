@@ -5,45 +5,36 @@
     text = ''
         #!/usr/bin/env fish
         function fzf_search_files
-            # pick fd/fdfind
-            set fd_bin (command -v fdfind || command -v fd || echo "fd")
+            set -f fd_cmd (command -v fdfind || command -v fd || echo "fd")
+            set -f --append fd_cmd --color=always --exclude Games $fzf_fd_opts
+            # Alternatively, use --exclude ~/Games for explicit home directory reference
 
-            # always exclude any Games folder and colorize
-            set -l fd_cmd $fd_bin --color=always \
-                --exclude Games \
-                --exclude "$HOME/Games" \
-                $fzf_fd_opts
-
-            set -l fzf_arguments --multi --ansi $fzf_directory_opts
-            set -l token (commandline --current-token)
-            set -l expanded_token (eval echo -- $token)
-            set -l unescaped_exp_token (string unescape -- $expanded_token)
+            set -f fzf_arguments --multi --ansi $fzf_directory_opts
+            set -f token (commandline --current-token)
+            set -f expanded_token (eval echo -- $token)
+            set -f unescaped_exp_token (string unescape -- $expanded_token)
 
             if string match --quiet -- "*/" $unescaped_exp_token && test -d "$unescaped_exp_token"
-                # if user has typed a directory prefix
                 set --append fd_cmd --base-directory=$unescaped_exp_token
-                set --prepend fzf_arguments \
-                    --prompt="Directory $unescaped_exp_token> " \
-                    --preview="exa --color=always -l --icons $expanded_token{}"
-                set -l file_paths_selected \
-                    $unescaped_exp_token($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
+                set --prepend fzf_arguments --prompt="Directory $unescaped_exp_token> " --preview="exa --color=always -l --icons $expanded_token{}"
+                set -f file_paths_selected $unescaped_exp_token($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
             else
-                set --prepend fzf_arguments \
-                    --prompt="Directory> " \
-                    --query="$unescaped_exp_token" \
-                    --preview='exa --color=always -l --icons {}'
-                set -l file_paths_selected ($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
+                set --prepend fzf_arguments --prompt="Directory> " --query="$unescaped_exp_token" --preview='exa --color=always -l --icons {}'
+                set -f file_paths_selected ($fd_cmd 2>/dev/null | _fzf_wrapper $fzf_arguments)
             end
 
             if test $status -eq 0
                 for f in $file_paths_selected
+                    # Open each file with default app, detach, ignore output
                     xdg-open $f &>/dev/null & disown
                 end
 
+                # If not running from keybinding, update commandline for interactive shell
                 if not set -q HYPRLAND_FZF
                     commandline --current-token --replace -- (string escape -- $file_paths_selected | string join ' ')
                     commandline --function repaint
                 else
+                    # When run from keybinding, wait a bit then exit so terminal closes gracefully
                     sleep 0.2
                     exit
                 end
