@@ -152,6 +152,8 @@ in {
 
     # Internet
     wpa_supplicant
+    networkmanager
+    networkmanagerapplet
 
     # For keys
     pinentry-tty
