@@ -139,6 +139,8 @@ in {
       withQt5 = true;
     })
 
+    openvpn
+
     # Needed for weather api of hyprpanel
     glib-networking
     openssl
