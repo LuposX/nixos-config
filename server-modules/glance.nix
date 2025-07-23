@@ -170,6 +170,7 @@ in {
                         { title = "Nixpkgs repo"; url = "https://github.com/NixOS/nixpkgs"; }
                         { title = "Hyprland wiki"; url = "https://wiki.hyprland.org/"; }
                         { title = "Search NixOS"; url = "https://search.nixos.org/packages"; }
+                        { title = "Search HomeManager"; url = "https://home-manager-options.extranix.com/"; }
                       ];
                     }
                     { title = "Homelab"; same-tab = false; color = "100 50 50";

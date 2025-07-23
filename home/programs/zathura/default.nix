@@ -9,6 +9,7 @@
       statusbar-basename = true;
       render-loading = false;
       scroll-step = 120;
+      selection-clipboard = "clipboard";
     };
   };
 }
