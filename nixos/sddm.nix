@@ -52,5 +52,7 @@ in {
   environment.systemPackages = [sddm-astronaut];
 
   # Prevent shutdown hang
-  systemd.extraConfig = "DefaultTimeoutStopSec=10s";
+  systemd.settings.Manager = {
+    DefaultTimeoutStopSec = "10s";
+  };
 }

@@ -60,6 +60,10 @@
       libreoffice-qt6 # Office Stuff
       popsicle
       anki
+      tor
+      tor-browser
+      ledger-udev-rules
+      ledger-live-desktop
 
       # Dev
       python3
