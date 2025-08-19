@@ -88,7 +88,7 @@ in {
         # User Related
         "[workspace 2 silent] kitty"
         "[workspace 9 silent] spotify"
-        "[workspace 1 silent] firefox"
+        "sleep 2 && [workspace 1 silent] firefox"
       ];
 
       monitor = [

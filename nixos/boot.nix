@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, config, lib, ... }: let
+    isLaptop = config.var.isLaptop;
+in {
   boot = {
     # Makes boot entries (in /efi/loader/entries/) structured and discoverable by other tools.
     bootspec.enable = true;
@@ -12,6 +14,7 @@
         # Keeps only the 10 most recent boot configurations.
         configurationLimit = 10;
       };
+      timeout = 0; # This should make it so that nixos starts, press escape for boot menu to show up
     };
     # Cleans /tmp at boot.
     tmp.cleanOnBoot = true;
