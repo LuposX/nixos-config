@@ -8,5 +8,6 @@
     ./gui
     ./brightness
     ./sounds
+    ./caffeine
   ];
 }
