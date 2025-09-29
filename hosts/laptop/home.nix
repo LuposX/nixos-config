@@ -63,7 +63,7 @@
       calibre
 
       # Dev
-      python3
+      # python3 # Use nix-shell
 
       # Utils
       zip
