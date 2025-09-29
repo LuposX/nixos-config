@@ -35,7 +35,7 @@ home.file.".config/zellij/layouts/notes.kdl".text = ''
 
 home.file.".config/zellij/layouts/university.kdl".text = ''
   layout {
-    cwd "~/Notes/University/Bachelor/Semester_8"
+    cwd "~/Notes/University/Bachelor"
     pane command="nvim"
   }
 '';
