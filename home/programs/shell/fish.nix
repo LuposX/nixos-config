@@ -7,6 +7,10 @@ in {
     enable = true;
 
     interactiveShellInit = ''
+      if status --is-interactive
+        direnv hook fish | source
+      end
+
       # disable fish greeting
       set fish_greeting
 
