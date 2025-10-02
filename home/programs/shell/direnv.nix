@@ -5,7 +5,7 @@
   programs = {
     direnv = {
       enable = true;
-      enableFishIntegration = true;
+      # enableFishIntegration = true; Activated by default
       nix-direnv.enable = true;
     };
   };
