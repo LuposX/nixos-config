@@ -84,6 +84,7 @@ in {
         "sh -c 'zellij --new-session-with-layout university --session University'"
         "sh -c 'zellij --new-session-with-layout website --session Website'"
         "sh -c 'zellij --new-session-with-layout nixos_config --session NixOS_Config'"
+        "sh -c 'zellij --new-session-with-layout SpikeSynth --session SpikeSynth'"
 
         # User Related
         "[workspace 2 silent] kitty"

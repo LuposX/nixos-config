@@ -26,21 +26,6 @@
     end
   '';
 
-home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
-  layout {
-    pane split_direction="vertical" {
-      pane {
-        cwd "~/SpikeSynth"
-      }
-      pane {
-        cwd "~/SpikeSynth"
-        size "30%"
-      }
-    }
-  }
-'';
-
-
 home.file.".config/zellij/layouts/notes.kdl".text = ''
   layout {
     cwd "~/Notes"
@@ -79,6 +64,20 @@ home.file.".config/zellij/layouts/nixos_config.kdl".text = ''
       }
       pane {
         cwd "~/nixos-config"
+        size "30%"
+      }
+    }
+  }
+'';
+
+home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
+  layout {
+    pane split_direction="vertical" {
+      pane {
+        cwd "~/SpikeSynth"
+      }
+      pane {
+        cwd "~/SpikeSynth"
         size "30%"
       }
     }
