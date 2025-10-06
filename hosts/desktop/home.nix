@@ -39,8 +39,6 @@
     ../../home/system/udiskie
     ../../home/system/clipman
 
-    ../../server-modules/ssh.nix
-
     ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
 
