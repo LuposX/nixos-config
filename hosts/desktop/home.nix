@@ -64,7 +64,7 @@
       tor-browser
       ledger-udev-rules
       ledger-live-desktop
-      libsForQt5.kleopatra
+      kdePackages.kleopatra
 
       # Dev
       python3
