@@ -37,6 +37,17 @@
   # Enables emulation of arm system to compile NixOS for Raspberry device.
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
+  services.fail2ban.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [ 22 ];
+    openFirewall = true;
+    settings = {
+      PermitRootLogin = "no";
+      PasswordAuthentication = true;
+    };
+  };
+
   virtualisation.docker.enable = true;
 
   home-manager.users."${config.var.username}" = import ./home.nix;
