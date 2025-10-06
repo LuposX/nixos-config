@@ -44,8 +44,9 @@
     };
 
     # Gives Overview over Workspaces.
+    # See: https://github.com/raybbian/hyprtasking/pull/73
     hyprtasking = {
-      url = "github:raybbian/hyprtasking";
+      url = "github:r00t3g/hyprtasking/9388b8ca1bd53a5bfa89b1a6caec7a801df0b6aa";
       inputs.hyprland.follows = "hyprland";
     };
 

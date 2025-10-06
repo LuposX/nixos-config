@@ -134,10 +134,10 @@ in {
     dig
 
     # Ventoy with GUI override
-    (ventoy.override {
-      defaultGuiType = "qt5";
-      withQt5 = true;
-    })
+    # (ventoy.override {
+    #   defaultGuiType = "qt5";
+    #   withQt5 = true;
+    # })
 
     openvpn
 
@@ -169,10 +169,10 @@ in {
   };
 
   services.gnome.glib-networking.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.05"
-    "ventoy-qt5-1.1.05"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "ventoy-1.1.05"
+  #   "ventoy-qt5-1.1.05"
+  # ];
   # If you dual boot windows and linux, disable if you only use linux.
   time.hardwareClockInLocalTime = !isLaptop;
 

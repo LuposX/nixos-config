@@ -85,13 +85,6 @@
       # Games
       lutris
       adwaita-icon-theme
-
-      # Calendar
-      libsForQt5.korganizer
-      libsForQt5.akonadi
-      libsForQt5.kdepim-runtime
-      libsForQt5.kaccounts-integration
-      libsForQt5.kaccounts-providers
     ];
 
     # Don't touch this
