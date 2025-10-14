@@ -64,6 +64,7 @@
 
       # Dev
       # python3 # Use nix-shell
+      uv
 
       # Utils
       zip
