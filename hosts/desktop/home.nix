@@ -68,6 +68,7 @@
 
       # Dev
       uv
+      reptyr
 
       # Utils
       zip
