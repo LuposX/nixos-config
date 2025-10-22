@@ -69,6 +69,8 @@ in {
       ls = "eza --icons=always --no-quotes";
       tree = "eza --icons=always --tree --no-quotes";
 
+      zellij = "systemd-run --scope --user zellij";
+
       # Git
       gc = "git commit -m";
       ga = "git add";
