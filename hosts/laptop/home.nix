@@ -64,6 +64,7 @@
 
       # Dev
       # python3 # Use nix-shell
+      jetbrains.pycharm-community
 
       # Utils
       zip
