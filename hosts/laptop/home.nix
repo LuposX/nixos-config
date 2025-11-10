@@ -64,6 +64,7 @@
 
       # Dev
       # python3 # Use nix-shell
+      uv
       jetbrains.pycharm-community
 
       # Utils

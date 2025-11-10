@@ -67,7 +67,8 @@
       kdePackages.kleopatra
 
       # Dev
-      python3
+      uv
+      reptyr
 
       # Utils
       zip
