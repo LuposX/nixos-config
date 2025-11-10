@@ -74,6 +74,7 @@ in {
       # Git
       gc = "git commit -m";
       ga = "git add";
+      gp = "git push";
       gl = "git log";
       lg = "lazygit";
 
