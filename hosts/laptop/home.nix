@@ -61,6 +61,9 @@
       libreoffice-qt6 # Office Stuff
       anki
       calibre
+      eddie # Airvpn
+      qbittorrent
+      wireguard-ui
 
       # Dev
       # python3 # Use nix-shell
