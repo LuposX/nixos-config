@@ -89,7 +89,7 @@ in {
         # User Related
         "[workspace 2 silent] kitty"
         "[workspace 9 silent] spotify"
-        "sleep 2 && [workspace 1 silent] firefox"
+        "hyprctl dispatch exec '[workspace 1 silent] firefox'"
       ];
 
       monitor = [
