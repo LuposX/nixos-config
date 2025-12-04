@@ -99,7 +99,6 @@ in {
   # Additional useful packages
   environment.systemPackages = with pkgs; [
     vulkan-tools
-    glxinfo
     libva-utils # VA-API debugging tools
   ];
 }

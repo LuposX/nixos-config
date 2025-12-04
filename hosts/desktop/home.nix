@@ -55,7 +55,6 @@
       textpieces # Manipulate texts
       resources # Monitor for your system resources
       gnome-clocks
-      gnome-text-editor
       mpv # Video player
       libreoffice-qt6 # Office Stuff
       popsicle
