@@ -178,6 +178,7 @@ in {
         disable_autoreload = true;
         focus_on_activate = true;
         new_window_takes_over_fullscreen = 2;
+        no_donation_nag = true;
       };
 
       windowrulev2 = [
