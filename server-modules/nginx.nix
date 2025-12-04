@@ -139,7 +139,6 @@ in {
             proxy_set_header Connection $connection_upgrade;
           '';
         };
-      };
     };
     "radarr.${domain}" = {
       useACMEHost = "${domain}";
