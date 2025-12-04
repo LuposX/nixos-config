@@ -16,18 +16,18 @@ in {
 
   programs.spicetify = {
     enable = true;
-    theme = lib.mkForce spicePkgs.themes.dribbblish;
+    # theme = lib.mkForce spicePkgs.themes.dribbblish;
 
-    colorScheme = "custom";
+    # colorScheme = "custom";
 
-    customColorScheme = {
-      button = accent;
-      button-active = accent;
-      tab-active = accent;
-      player = background;
-      main = background;
-      sidebar = background;
-    };
+    # customColorScheme = {
+    #   button = accent;
+    #   button-active = accent;
+    #   tab-active = accent;
+    #   player = background;
+    #   main = background;
+    #   sidebar = background;
+    # };
 
     enabledExtensions = with spicePkgs.extensions; [
       playlistIcons
