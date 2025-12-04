@@ -20,6 +20,7 @@
     ../../server-modules/i2p.nix
     ../../server-modules/grafana.nix
     ../../server-modules/prometheus.nix
+    ../../server-modules/wakeserver.nix
 
     ./hardware-configuration.nix
     ./variables.nix

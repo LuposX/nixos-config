@@ -61,7 +61,6 @@ in {
             keys = "myEep-keys.dat";
             inPort = 8081;
             address = "127.0.0.1";
-            destination = "127.0.0.1";
             port = 8082;
           };
         };

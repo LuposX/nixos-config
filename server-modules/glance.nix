@@ -19,9 +19,20 @@ in {
               size = "small";
               widgets = [
                 { type = "clock"; hour-format = "24h"; }
+                {
+                  type = "rss";
+                  title = "Philosophy";
+                  collapse-after = 4;
+                  style = "vertical-list";
+                  feeds = [
+                    { url = "http://philosophybreak.com/rss.xml"; title = "Philosophy Break"; }
+                    { url = "https://1000wordphilosophy.com/feed/"; title = "1000 Word Philosophy"; }
+                    { url = "https://www.thecollector.com/philosophy/rss/"; title = "The Collector"; }
+                  ];
+                }
                 { type = "rss";
                   title = "Lainchan";
-                  collapse-after = 8;
+                  collapse-after = 4;
                   style = "vertical-list";
                   feeds = [
                     { url = "https://gapandfriends.neocities.org/blog/feed.rss"; title = "Gap and friends"; }
