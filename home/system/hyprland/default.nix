@@ -171,6 +171,10 @@ in {
         mfact = 0.5;
       };
 
+      ecosystem = {
+        no_donation_nag = true;
+      };
+
       misc = {
         vfr = true;
         disable_hyprland_logo = true;
@@ -178,7 +182,6 @@ in {
         disable_autoreload = true;
         focus_on_activate = true;
         new_window_takes_over_fullscreen = 2;
-        no_donation_nag = true;
       };
 
       windowrulev2 = [
