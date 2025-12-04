@@ -10,10 +10,11 @@ in {
     settings = {
       # default_layout = "compact";
       on_force_close = "quit";
-      default_layout =  if isLaptop then "welcome" else "website";
+      default_layout =  "welcome";
       show_startup_tips = false;
       show_release_notes = false;
-      session_serialization = false;
+      session_serialization = true;
+      pane_viewport_serialization = true;
     };
   };
 

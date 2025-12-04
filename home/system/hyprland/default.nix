@@ -33,7 +33,7 @@ in {
     qt5.qtwayland
     qt6.qtwayland
     libsForQt5.qt5ct
-    qt6ct
+    qt6Packages.qt6ct
     hyprshot
     hyprpicker
     swappy
@@ -82,21 +82,33 @@ in {
         # Start sessions in background
         "sh -c 'zellij delete-all-sessions --yes'"
         "sh -c 'zellij kill-all-sessions --yes'"
-        "sh -c 'zellij --new-session-with-layout notes --session Notes'"
-        "sh -c 'zellij --new-session-with-layout university --session University'"
-        "sh -c 'zellij --new-session-with-layout website --session Website'"
-        "sh -c 'zellij --new-session-with-layout nixos_config --session NixOS_Config'"
-        "sh -c 'zellij --new-session-with-layout SpikeSynth --session SpikeSynth'"
+
+         # Start sessions properly sized in background
+        "sh -c 'sleep 1; zellij --new-session-with-layout notes --session Notes &'"
+        "sh -c 'sleep 2; zellij detach --session Notes'"
+
+        "sh -c 'sleep 1; zellij --new-session-with-layout university --session University &'"
+        "sh -c 'sleep 2; zellij detach --session University'"
+
+        "sh -c 'sleep 1; zellij --new-session-with-layout website --session Website &'"
+        "sh -c 'sleep 2; zellij detach --session Website'"
+
+        "sh -c 'sleep 1; zellij --new-session-with-layout nixos_config --session NixOS_Config &'"
+        "sh -c 'sleep 2; zellij detach --session NixOS_Config'"
+
+        "sh -c 'sleep 1; zellij --new-session-with-layout SpikeSynth --session SpikeSynth &'"
+        "sh -c 'sleep 2; zellij detach --session SpikeSynth'"
 
         # User Related
         "[workspace 9 silent] spotify"
         ]
         ++ (if isLaptop then [
           "[workspace 2 silent] kitty"
-          "hyprctl dispatch exec '[workspace 1 silent] firefox'"
+          "sleep 1; hyprctl dispatch exec '[workspace 1 silent] firefox'"
         ] else [
           "[workspace 1 silent] kitty"
-          "hyprctl dispatch exec '[workspace 2 silent] firefox'"
+          "[workspace 2 silent] sleep 1; hyprctl dispatch exec '[workspace 2 silent] firefox'"
+          "sleep 2 && hyprctl dispatch workspace 1"
         ]);
 
       monitor = [
@@ -169,6 +181,10 @@ in {
         new_status = true;
         allow_small_split = true;
         mfact = 0.5;
+      };
+
+      ecosystem = {
+        no_donation_nag = true;
       };
 
       misc = {
