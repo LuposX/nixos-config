@@ -1,5 +1,6 @@
-{ pkgs, config, lib, ... }:
-{
+{ pkgs, config, lib, ... }: let
+  isLaptop = config.var.isLaptop;
+in {
   # If you get error when creating new session try to delte the cahce
   # $HOME/.cache/zellij
   # See https://github.com/NixOS/nixpkgs/issues/216961
@@ -9,7 +10,7 @@
     settings = {
       # default_layout = "compact";
       on_force_close = "quit";
-      default_layout = "welcome";
+      default_layout =  if isLaptop then "welcome" else "website";
       show_startup_tips = false;
       show_release_notes = false;
       session_serialization = false;
