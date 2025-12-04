@@ -171,6 +171,10 @@ in {
         mfact = 0.5;
       };
 
+      ecosystem = {
+        no_donation_nag = true;
+      };
+
       misc = {
         vfr = true;
         disable_hyprland_logo = true;
