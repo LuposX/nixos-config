@@ -133,6 +133,12 @@ in {
       locations."/" = {
         proxyPass =
           "http://192.168.12.10:8006";
+           extraConfig = ''
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection $connection_upgrade;
+          '';
+        };
       };
     };
     "radarr.${domain}" = {
@@ -181,7 +187,13 @@ in {
       locations."/" = {
         proxyPass =
           "http://192.168.12.116:8384";
-      };
+          extraConfig = ''
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+          '';
+        };
     };
     "tandoor.${domain}" = {
       useACMEHost = "${domain}";
@@ -232,6 +244,14 @@ in {
       };
     };
     "kvm.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.51";
+      };
+    };
+    "yt.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {

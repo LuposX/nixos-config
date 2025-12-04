@@ -67,7 +67,8 @@
 
       gui = {
         theme = "black";
-        tls = true;
+        tls = false;
+        insecureSkipHostCheck = true;
       };
     };
     user = "${config.var.username}";
