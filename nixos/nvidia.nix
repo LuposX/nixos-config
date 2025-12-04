@@ -44,7 +44,7 @@ in {
   # Configuration for proprietary packages
   nixpkgs.config = {
     nvidia.acceptLicense = true;
-    allowUnfree = true; 
+    allowUnfree = true;
   };
 
   # Nvidia configuration
@@ -77,7 +77,7 @@ in {
       enable32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
-        vaapiVdpau
+        libva-vdpau-driver
         libvdpau-va-gl
         mesa
         egl-wayland
@@ -99,7 +99,6 @@ in {
   # Additional useful packages
   environment.systemPackages = with pkgs; [
     vulkan-tools
-    glxinfo
     libva-utils # VA-API debugging tools
   ];
 }

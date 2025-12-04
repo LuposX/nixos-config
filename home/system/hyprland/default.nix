@@ -18,6 +18,8 @@
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
 
   primary_monitor = config.var.primary_monitor;
+
+  isLaptop = config.var.isLaptop;
 in {
   imports = [
     ./animations.nix
@@ -31,7 +33,7 @@ in {
     qt5.qtwayland
     qt6.qtwayland
     libsForQt5.qt5ct
-    qt6ct
+    qt6Packages.qt6ct
     hyprshot
     hyprpicker
     swappy
@@ -87,10 +89,15 @@ in {
         "sh -c 'zellij --new-session-with-layout SpikeSynth --session SpikeSynth'"
 
         # User Related
-        "[workspace 2 silent] kitty"
         "[workspace 9 silent] spotify"
-        "hyprctl dispatch exec '[workspace 1 silent] firefox'"
-      ];
+        ]
+        ++ (if isLaptop then [
+          "[workspace 2 silent] kitty"
+          "hyprctl dispatch exec '[workspace 1 silent] firefox'"
+        ] else [
+          "[workspace 1 silent] kitty"
+          "hyprctl dispatch exec '[workspace 2 silent] firefox'"
+        ]);
 
       monitor = [
         "${primary_monitor},preferred,auto,1" # default eDP-1

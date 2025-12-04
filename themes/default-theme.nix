@@ -76,7 +76,7 @@ in {
       };
       serif = config.stylix.fonts.sansSerif;
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {
@@ -92,9 +92,10 @@ in {
 
     polarity = "light";
     # image = configDirectory + "/ressources/" + "reverend_insanity.jpeg"
+
     image = pkgs.fetchurl {
-      url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/oneway-street_purple.png";
-      sha256 = "sha256-yAU5gHNVgBCRwbtOuQvGHWBHjheqdlA0Db/kYnKUr9A=";
+        url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/clouds-dodge-the-moon-2.png";
+        sha256 = "sha256-LlvAKiRKWnL2/r0w/Z7R5RFq7/tLmuHsEJHh0HRp100=";
     };
   };
 }

@@ -6,7 +6,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     anyrun.url = "github:fufexan/anyrun/launch-prefix";
-    hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
+    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
+    hyprland.url = "github:hyprwm/Hyprland/v0.52.1";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top.
     stylix.url = "github:nix-community/stylix"; # Theming
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
@@ -46,8 +47,10 @@
     # Gives Overview over Workspaces.
     # See: https://github.com/raybbian/hyprtasking/pull/73
     hyprtasking = {
-      url = "github:r00t3g/hyprtasking/9388b8ca1bd53a5bfa89b1a6caec7a801df0b6aa";
+      url = "github:raybbian/hyprtasking";
       inputs.hyprland.follows = "hyprland";
+      # url = "github:r00t3g/hyprtasking/9388b8ca1bd53a5bfa89b1a6caec7a801df0b6aa";
+      # inputs.hyprland.follows = "hyprland";
     };
 
     # Spotify
