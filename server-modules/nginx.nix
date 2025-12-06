@@ -8,6 +8,11 @@ in {
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header X-Forwarded-Proto $scheme;
+
+      map $http_upgrade $connection_upgrade {
+        default upgrade;
+        ""      close;
+      }
     '';
   };
 
@@ -53,6 +58,11 @@ in {
       locations."/" = {
         proxyPass =
           "http://192.168.12.49:13378";
+        extraConfig = ''
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+        '';
       };
     };
     "calibre.${domain}" = {
@@ -187,10 +197,8 @@ in {
         proxyPass =
           "http://192.168.12.116:8384";
           extraConfig = ''
-            proxy_set_header Host $host;
-            proxy_set_header X-Real-IP $remote_addr;
-            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_read_timeout      600s;
+            proxy_send_timeout      600s;
           '';
         };
     };
