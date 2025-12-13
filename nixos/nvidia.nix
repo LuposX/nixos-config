@@ -2,21 +2,11 @@
 
 let
   # Using beta driver for recent GPUs like RTX 4070
-  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.beta;
-  # Currently there is a bug: https://github.com/NixOS/nixpkgs/pull/412157
-  # You can remove this, when the PR hits stable.
-  # nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.beta.overrideAttrs {
-  #      version = "575.57.08";
-  #      sha256_64bit = "sha256-KqcB2sGAp7IKbleMzNkB3tjUTlfWBYDwj50o3R//xvI=";
-  #      sha256_aarch64 = "sha256-VJ5z5PdAL2YnXuZltuOirl179XKWt0O4JNcT8gUgO98=";
-  #      openSha256 = "sha256-DOJw73sjhQoy+5R0GHGnUddE6xaXb/z/Ihq3BKBf+lg=";
-  #      settingsSha256 = "sha256-AIeeDXFEo9VEKCgXnY3QvrW5iWZeIVg4LBCeRtMs5Io=";
-  #      persistencedSha256 = "sha256-Len7Va4HYp5r3wMpAhL4VsPu5S0JOshPFywbO7vYnGo=";
-  # };
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.stable;
 in {
   # Video drivers configuration for Xorg and Wayland
   services.xserver.videoDrivers =
-    [ "nvidia" ]; # Simplified - other modules are loaded automatically
+    [ "modesetting" "nvidia" ]; # Simplified - other modules are loaded automatically
 
   # Kernel parameters for better Wayland and Hyprland integration
   boot.kernelParams = [
@@ -28,17 +18,11 @@ in {
 
   # Environment variables for better compatibility
   environment.variables = {
-    LIBVA_DRIVER_NAME = "nvidia"; # Hardware video acceleration
-    XDG_SESSION_TYPE = "wayland"; # Force Wayland
-    GBM_BACKEND = "nvidia-drm"; # Graphics backend for Wayland
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia"; # Use Nvidia driver for GLX
-    WLR_NO_HARDWARE_CURSORS = "1"; # Fix for cursors on Wayland
-    NIXOS_OZONE_WL = "1"; # Wayland support for Electron apps
-    __GL_GSYNC_ALLOWED = "1"; # Enable G-Sync if available
-    __GL_VRR_ALLOWED = "1"; # Enable VRR (Variable Refresh Rate)
-    WLR_DRM_NO_ATOMIC = "1"; # Fix for some issues with Hyprland
-    NVD_BACKEND = "direct"; # Configuration for new driver
-    MOZ_ENABLE_WAYLAND = "1"; # Wayland support for Firefox
+    MOZ_ENABLE_WAYLAND = "1";
+    NIXOS_OZONE_WL = "1";
+
+    # Let Wayland auto-detect GPU correctly
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
 
   # Configuration for proprietary packages
@@ -57,12 +41,12 @@ in {
         finegrained = false; # More precise power consumption control
       };
       modesetting.enable = true; # Required for Wayland
-      package = nvidiaDriverChannel;
-      forceFullCompositionPipeline = true; # Prevents screen tearing
+        # sync.enable = true;
 
       # Configuration for hybrid INTEL+Nvidia
       prime = {
-        sync.enable = true;
+        # sync.enable = true;
+         offload.enable = true;
 
         # PCI IDs verified for your hardware
         intelBusId = "PCI:0:2:0"; # Integrated INTEL GPU
