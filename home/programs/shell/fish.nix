@@ -88,6 +88,7 @@ in {
 
       # Editor
       v = "nvim";
+      vim = "nvim";
 
       # NixOS related
       rb = "sudo nixos-rebuild switch --flake ${configDirectory}#${hostname}"; # Stands for rebuild
