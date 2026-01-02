@@ -29,6 +29,10 @@ in {
     ./hyprpicker.nix
   ];
 
+  services.psd = {
+    enable = false;
+  };
+
   home.packages = with pkgs; [
     qt5.qtwayland
     qt6.qtwayland
@@ -51,6 +55,7 @@ in {
     direnv
     meson
   ];
+
 
   wayland.windowManager.hyprland = {
     enable = true;

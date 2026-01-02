@@ -114,7 +114,7 @@ in {
     pkgs.bat
     pkgs.eza
     pkgs.ripgrep-all
-    pkgs.perl540Packages.FileMimeInfo # This is used for fzf to open correct program
+    pkgs.perl5Packages.FileMimeInfo # This is used for fzf to open correct program
     pkgs.poppler
   ];
 

@@ -206,7 +206,25 @@ in {
         # Bitwarden
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi";
-          default_area = "navbar";
+          installation_mode = "force_installed";
+        };
+
+        # Youtube: Unhook
+        "myallychou@gmail.com" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi";
+          installation_mode = "force_installed";
+        };
+
+        # Purify: Censor adult content
+        "puryfi@pury.fi" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/puryfi/latest.xpi";
+          installation_mode = "force_installed";
+        };
+
+
+        # BlockNSFW : Block adult content
+        "blocknsfw@extension.local" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/blocknsfw-porn-adult-content/latest.xpi";
           installation_mode = "force_installed";
         };
 
