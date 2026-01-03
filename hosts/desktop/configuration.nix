@@ -52,6 +52,11 @@
   # Kills processes when too much ram is used
   systemd.oomd.enable = true;
   systemd.oomd.enableUserSlices = true;
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    memoryPercent = 30;
+  };
 
   virtualisation.docker.enable = true;
 
