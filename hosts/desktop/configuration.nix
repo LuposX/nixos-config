@@ -49,6 +49,10 @@
     };
   };
 
+  # Kills processes when too much ram is used
+  systemd.oomd.enable = true;
+  systemd.oomd.enableUserSlices = true;
+
   virtualisation.docker.enable = true;
 
   home-manager.users."${config.var.username}" = import ./home.nix;
