@@ -5,7 +5,7 @@
         # Startup Apps
         "$mod,RETURN, exec, uwsm app -- ${pkgs.kitty}/bin/kitty" # Kitty
         "$mod,E, exec,  uwsm app -- ${pkgs.xfce.thunar}/bin/thunar" # Thunar
-        "$mod,B, exec,  uwsm app -- firefox" # Browser
+        "$mod,B, exec,  uwsm app -- zen-twilight" # Browser
         "$mod,L, exec,  uwsm app -- ${pkgs.hyprlock}/bin/hyprlock" # Lock
         "$mod,S, exec, HYPRLAND_FZF=1 uwsm app -- ${pkgs.kitty}/bin/kitty --class fzffloat fish -c 'fzf_search_files; exit'"
         "$mod,G, exec, HYPRLAND_FZF=1 uwsm app -- ${pkgs.kitty}/bin/kitty --class fzffloat fish -c 'fzf_search_rga; exit'"

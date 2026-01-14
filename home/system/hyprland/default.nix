@@ -127,6 +127,7 @@ in {
         "NNN_TMPFILE,/tmp/nnn-lastdir"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "MOZ_ENABLE_WAYLAND,1"
+        "MOZ_LEGACY_PROFILES,1"
         "ANKI_WAYLAND,1"
         "DISABLE_QT5_COMPAT,0"
         "NIXOS_OZONE_WL,1"
