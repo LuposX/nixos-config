@@ -15,7 +15,7 @@
         # "$mod,C, exec, quickmenu" # Quickmenu
         # "$shiftMod,SPACE, exec, hyprfocus-toggle" # Toggle HyprFocus
 
-        "$mod, tab, hyprtasking:toggle, all" # Hyprtasking
+        # "$mod, tab, hyprtasking:toggle, all" # Hyprtasking
 
         "$mod,Q, killactive," # Close window
         "$mod,T, togglefloating," # Toggle Floating

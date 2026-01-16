@@ -23,7 +23,7 @@
 in {
   imports = [
     ./animations.nix
-    ./hyprtasking.nix
+    # ./hyprtasking.nix
     ./polkitagent.nix
     ./bindings.nix
     ./hyprpicker.nix
