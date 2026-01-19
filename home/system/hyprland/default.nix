@@ -69,6 +69,7 @@ in {
     package = null;
     portalPackage = null;
 
+
     settings = {
       "$mod" = "SUPER";
       "$shiftMod" = "SUPER_SHIFT";
@@ -104,22 +105,22 @@ in {
         "sh -c 'sleep 1; zellij --new-session-with-layout SpikeSynth --session SpikeSynth &'"
         "sh -c 'sleep 2; zellij detach --session SpikeSynth'"
 
-        # User Related
-        "[workspace 9 silent] spotify"
         ]
         ++ (if isLaptop then [
-          "[workspace 2 silent] kitty"
-          "sleep 1; hyprctl dispatch exec '[workspace 1 silent] firefox'"
+          "[workspace 2] kitty"
+          "[workspace 1] zen-twilight"
         ] else [
-          "[workspace 1 silent] kitty"
-          "[workspace 2 silent] sleep 1; hyprctl dispatch exec '[workspace 2 silent] firefox'"
-          "sleep 2 && hyprctl dispatch workspace 1"
-        ]);
+          "[workspace 1] kitty"
+          "[workspace 2] zen-twilight"
+        ])
+        ++ ["[workspace 9 silent] spotify"];
 
       monitor = [
         "${primary_monitor},preferred,auto,1" # default eDP-1
         ",preferred,auto,1,mirror,${primary_monitor}"
       ];
+
+      windowrule = "match:class ^(spotify)$, workspace 9 silent";
 
       env = [
         "GRIMBLAST_HIDE_CURSOR, 0" # See: https://github.com/Jas-SinghFSU/HyprPanel/issues/888
