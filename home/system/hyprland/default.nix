@@ -69,6 +69,7 @@ in {
     package = null;
     portalPackage = null;
 
+
     settings = {
       "$mod" = "SUPER";
       "$shiftMod" = "SUPER_SHIFT";
@@ -104,22 +105,22 @@ in {
         "sh -c 'sleep 1; zellij --new-session-with-layout SpikeSynth --session SpikeSynth &'"
         "sh -c 'sleep 2; zellij detach --session SpikeSynth'"
 
-        # User Related
-        "[workspace 9 silent] spotify"
         ]
         ++ (if isLaptop then [
-          "[workspace 2 silent] kitty"
-          "sleep 1; hyprctl dispatch exec '[workspace 1 silent] firefox'"
+          "[workspace 2] kitty"
+          "[workspace 1] zen-twilight"
         ] else [
-          "[workspace 1 silent] kitty"
-          "[workspace 2 silent] sleep 1; hyprctl dispatch exec '[workspace 2 silent] firefox'"
-          "sleep 2 && hyprctl dispatch workspace 1"
-        ]);
+          "[workspace 1] kitty"
+          "[workspace 2] zen-twilight"
+        ])
+        ++ ["[workspace 9 silent] spotify"];
 
       monitor = [
         "${primary_monitor},preferred,auto,1" # default eDP-1
         ",preferred,auto,1,mirror,${primary_monitor}"
       ];
+
+      windowrule = "match:class ^(spotify)$, workspace 9 silent";
 
       env = [
         "GRIMBLAST_HIDE_CURSOR, 0" # See: https://github.com/Jas-SinghFSU/HyprPanel/issues/888
@@ -199,49 +200,7 @@ in {
         disable_splash_rendering = true;
         disable_autoreload = true;
         focus_on_activate = true;
-        new_window_takes_over_fullscreen = 2;
       };
-
-      windowrulev2 = [
-        "float, tag:modal"
-        "pin, tag:modal"
-        "center, tag:modal"
-        # telegram media viewer
-        "float, title:^(Media viewer)$"
-
-        # FZF Script
-        "float, class:^(fzffloat)$"
-        "center, class:^(fzffloat)$"
-        "size 1200 600, class:^(fzffloat)$"
-
-        # Bitwarden extension
-        "float, title:^(.*Bitwarden Password Manager.*)$"
-
-        # gnome calculator
-        "float, class:^(org.gnome.Calculator)$"
-        "size 360 490, class:^(org.gnome.Calculator)$"
-
-        # make Firefox/Zen PiP window floating and sticky
-        "float, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
-
-        # idle inhibit while watching videos
-        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-        "idleinhibit focus, class:^(zen)$, title:^(.*YouTube.*)$"
-        "idleinhibit fullscreen, class:^(zen)$"
-
-        "dimaround, class:^(gcr-prompter)$"
-        "dimaround, class:^(xdg-desktop-portal-gtk)$"
-        "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
-        "dimaround, class:^(zen)$, title:^(File Upload)$"
-
-        # fix xwayland apps
-        "rounding 0, xwayland:1"
-        "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
-        "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
-      ];
-
-      layerrule = ["noanim, launcher" "noanim, ^ags-.*"];
 
       input = {
         kb_layout = keyboardLayout;
