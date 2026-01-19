@@ -199,49 +199,7 @@ in {
         disable_splash_rendering = true;
         disable_autoreload = true;
         focus_on_activate = true;
-        new_window_takes_over_fullscreen = 2;
       };
-
-      windowrulev2 = [
-        "float, tag:modal"
-        "pin, tag:modal"
-        "center, tag:modal"
-        # telegram media viewer
-        "float, title:^(Media viewer)$"
-
-        # FZF Script
-        "float, class:^(fzffloat)$"
-        "center, class:^(fzffloat)$"
-        "size 1200 600, class:^(fzffloat)$"
-
-        # Bitwarden extension
-        "float, title:^(.*Bitwarden Password Manager.*)$"
-
-        # gnome calculator
-        "float, class:^(org.gnome.Calculator)$"
-        "size 360 490, class:^(org.gnome.Calculator)$"
-
-        # make Firefox/Zen PiP window floating and sticky
-        "float, title:^(Picture-in-Picture)$"
-        "pin, title:^(Picture-in-Picture)$"
-
-        # idle inhibit while watching videos
-        "idleinhibit focus, class:^(mpv|.+exe|celluloid)$"
-        "idleinhibit focus, class:^(zen)$, title:^(.*YouTube.*)$"
-        "idleinhibit fullscreen, class:^(zen)$"
-
-        "dimaround, class:^(gcr-prompter)$"
-        "dimaround, class:^(xdg-desktop-portal-gtk)$"
-        "dimaround, class:^(polkit-gnome-authentication-agent-1)$"
-        "dimaround, class:^(zen)$, title:^(File Upload)$"
-
-        # fix xwayland apps
-        "rounding 0, xwayland:1"
-        "center, class:^(.*jetbrains.*)$, title:^(Confirm Exit|Open Project|win424|win201|splash)$"
-        "size 640 400, class:^(.*jetbrains.*)$, title:^(splash)$"
-      ];
-
-      layerrule = ["noanim, launcher" "noanim, ^ags-.*"];
 
       input = {
         kb_layout = keyboardLayout;
