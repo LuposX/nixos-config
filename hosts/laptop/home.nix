@@ -63,7 +63,7 @@
       calibre
       qbittorrent
       wireguard-ui
-      kdePackages.kdenlive
+      # kdePackages.kdenlive
 
       # Dev
       # python3 # Use nix-shell
