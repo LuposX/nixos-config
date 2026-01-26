@@ -85,12 +85,6 @@ in {
         "match:class ^(.sameboy-wrapped)$, float on"
         "match:class ^(org.pulseaudio.pavucontrol)$, float on"
 
-        "match:class ^(zenity)$, size 850 500"
-        "match:class ^(SoundWireServer)$, size 725 330"
-
-        "match:title ^(Volume Control)$, size 700 450"
-        "match:title ^(Volume Control)$, move 40 55%"
-
         "match:title ^(Picture-in-Picture)$, pin on"
         "match:title ^(Picture-in-Picture)$, float on"
 
