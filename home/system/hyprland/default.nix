@@ -80,9 +80,7 @@ in {
         "match:class ^(mpv)$, float on"
         "match:class ^(zenity)$, float on"
         "match:class ^(zen-twilight)$, float on"
-        "match:class ^(waypaper)$, float on"
         "match:class ^(SoundWireServer)$, float on"
-        "match:class ^(.sameboy-wrapped)$, float on"
         "match:class ^(org.pulseaudio.pavucontrol)$, float on"
 
         "match:title ^(Picture-in-Picture)$, pin on"
@@ -91,16 +89,6 @@ in {
         "match:class ^(mpv)$, idle_inhibit focus"
         "match:class ^(zen-beta)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
         "match:class ^(zen)$, idle_inhibit fullscreen"
-
-        "match:class ^(xdg-desktop-portal-gtk)$, dim_around on"
-
-        "match:xwayland true, rounding 0"
-
-        # No gaps when only
-        "border_size 0, match:float 0, match:workspace w[tv1]"
-        "rounding 0, match:float 0, match:workspace w[tv1]"
-        "border_size 0, match:float 0, match:workspace f[1]"
-        "rounding 0, match:float 0, match:workspace f[1]"
       ];
 
       exec-once = [
