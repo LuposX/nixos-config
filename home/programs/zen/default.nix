@@ -64,6 +64,8 @@ in {
         "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = { id = "github-file-icons"; pinned = false; };
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = { id = "return-youtube-dislikes"; pinned = false; };
         "{74145f27-f039-47ce-a470-a662b129930a}" = { id = "clearurls"; pinned = false; };
+        "myallychou@gmail.com" = { id = "youtube-recommended-videos"; pinned = false; };
+        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = { id = "old-reddit-redirect"; pinned = false; };
         "github-no-more@ihatereality.space" = { id = "github-no-more"; pinned = false; };
         "github-repository-size@pranavmangal" = { id = "gh-repo-size"; pinned = false; };
         "@searchengineadremover" = { id = "searchengineadremover"; pinned = false; };

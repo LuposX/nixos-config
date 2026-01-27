@@ -78,8 +78,6 @@ in {
         "match:class ^(spotify)$, workspace 9 silent"
         "match:class ^(imv)$, float on"
         "match:class ^(mpv)$, float on"
-        "match:class ^(zenity)$, float on"
-        "match:class ^(zen-twilight)$, float on"
         "match:class ^(SoundWireServer)$, float on"
         "match:class ^(org.pulseaudio.pavucontrol)$, float on"
 
