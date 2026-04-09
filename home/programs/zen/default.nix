@@ -118,9 +118,13 @@ in {
 
       bookmarks = {
         force = true; # must be explicitly set to apply bookmarks
+        # Bookmarks can be opened with: CTRL + B
         settings = [
           { name = "KIT Illias"; url = "https://ilias.studium.kit.edu/ilias.php?baseClass=ilrepositorygui&ref_id=1"; }
+          { name = "KIT CAS"; url = "https://campus.studium.kit.edu/"; }
+          { name = "Overleaf"; url = "https://www.overleaf.com/project"; }
           { name = "Teams"; url = "https://teams.microsoft.com/v2/"; }
+          { name = "Discord Web"; url = "https://discord.com/app"; }
         ];
       };
 
