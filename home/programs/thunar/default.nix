@@ -40,6 +40,7 @@ in {
     "file:///home/${user}/nixos-config"
     "file:///home/${user}/Website_MonkeMan Website"
     "file:///home/${user}/Notes Notes"
+    "file:///home/${user}/Notes/University/Master/Semester_1 University"
     "file:///home/${user}/.NAS NAS"
   ];
 
