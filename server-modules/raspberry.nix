@@ -15,8 +15,6 @@ in {
     "kernel.unprivileged_userns_clone" = 1;
   };
 
-  programs.command-not-found.enable = true;
-
   networking.interfaces.eth0.ipv4.addresses = [
     { address = ipAddress; prefixLength = 24; }
   ];

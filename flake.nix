@@ -38,12 +38,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # This fixes the bug, when a command is not found.
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Gives Overview over Workspaces.
     # See: https://github.com/raybbian/hyprtasking/pull/73
     hyprtasking = {
@@ -75,7 +69,6 @@
             _module.args = {inherit inputs;};
           }
           inputs.sops-nix.nixosModules.sops
-          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           ./hosts/desktop/configuration.nix
@@ -90,7 +83,6 @@
             _module.args = {inherit inputs;};
           }
           inputs.sops-nix.nixosModules.sops
-          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           ./hosts/laptop/configuration.nix
@@ -105,7 +97,6 @@
             _module.args = {inherit inputs;};
           }
           inputs.sops-nix.nixosModules.sops
-          inputs.flake-programs-sqlite.nixosModules.programs-sqlite
           inputs.home-manager.nixosModules.home-manager
           ./hosts/raspberry/configuration.nix
         ];
