@@ -11,7 +11,6 @@
 in {
   imports = [
     inputs.zen-browser.homeModules.twilight
-    ./xdg.nix
   ];
 
   programs.zen-browser = {
