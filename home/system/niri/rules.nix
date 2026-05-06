@@ -36,22 +36,44 @@
         matches = [
           { title = "spotify_player"; }
         ];
-        open-on-workspace = "music";
+        open-on-workspace = "4";
       }
       {
         matches = [
           { title = "Cider"; }
         ];
-        open-on-workspace = "music";
+        open-on-workspace = "4";
+      }
+
+      {
+        matches = [
+          { app-id = "zen"; }
+        ];
+        open-on-workspace = "1";
+      }
+
+      {
+        matches = [
+          { app-id = "kitty"; }
+        ];
+        open-on-workspace = "2";
+      }
+
+      {
+        matches = [
+          { app-id = "blueman-manager"; }
+        ];
+        floating = true;
+        center = true;
       }
 
       {
         matches = [ { } ];
         geometry-corner-radius = {
-          top-left = 20.0;
-          top-right = 20.0;
-          bottom-left = 20.0;
-          bottom-right = 20.0;
+          top-left = 4.0;
+          top-right = 4.0;
+          bottom-left = 4.0;
+          bottom-right = 4.0;
         };
         clip-to-geometry = true;
       }

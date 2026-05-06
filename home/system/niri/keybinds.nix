@@ -55,6 +55,7 @@ in
     "super+t".action = toggle-window-floating;
 
     # Screenshots
+    "super+p".action = screenshot;  # Screenshot current screen
     "super+shift+p".action.screenshot-window = [ ];  # Screenshot active window
     "control+shift+p".action.screenshot = [ ];  # Screenshot region
     "alt+control+p".action = spawn ["bash" "-c" "'${pkgs.grim}/bin/grim -g \"\\$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.swappy}/bin/swappy -f -'"];  # Screenshot region + edit (Swappy)
@@ -72,16 +73,16 @@ in
     "super+shift+down".action = move-column-to-workspace-down;
 
     # Workspace Management (1-4)
-    "super+1".action = focus-workspace "main";
-    "super+2".action = focus-workspace "browser";
-    "super+3".action = focus-workspace "discord";
-    "super+4".action = focus-workspace "music";
+    "super+1".action = focus-workspace "1";
+    "super+2".action = focus-workspace "2";
+    "super+3".action = focus-workspace "3";
+    "super+4".action = focus-workspace "4";
 
     # Move window to workspace
-    "super+shift+1".action = move-column-to-workspace "main";
-    "super+shift+2".action = move-column-to-workspace "browser";
-    "super+shift+3".action = move-column-to-workspace "discord";
-    "super+shift+4".action = move-column-to-workspace "music";
+    "super+shift+1" = { action.move-window-to-workspace = "1"; };
+    "super+shift+2" = { action.move-window-to-workspace = "2"; };
+    "super+shift+3" = { action.move-window-to-workspace = "3"; };
+    "super+shift+4" = { action.move-window-to-workspace = "4"; };
 
     # Lock Screen
     "super+l".action.spawn = noctalia "lockScreen lock";

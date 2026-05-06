@@ -20,7 +20,7 @@ in {
       # BACKGROUND
       background = {
         monitor = "";
-        blur_passes = 0;
+        blur_passes = 8;
         contrast = 0.8916;
         brightness = 0.7172;
         vibrancy = 0.1696;

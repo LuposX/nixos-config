@@ -39,7 +39,7 @@
     #../../home/system/hyprpaper
     ../../home/system/mime
     #../../home/system/hyprlock
-    #../../home/system/hypridle
+    ../../home/system/swayidle
     ../../home/system/udiskie
     ../../home/system/clipman
 

@@ -32,13 +32,13 @@
           };
         };
 
-        gaps = 6;
+        gaps = 0;
 
         struts = {
-          left = 20;
-          right = 20;
-          top = 20;
-          bottom = 20;
+          left = 0;
+          right = 0;
+          top = 0;
+          bottom = 0;
         };
       };
 
@@ -48,7 +48,7 @@
           click-method = "button-areas";
           dwt = true;
           dwtp = true;
-          natural-scroll = true;
+          natural-scroll = false;
           scroll-method = "two-finger";
           tap = true;
           tap-button-map = "left-right-middle";
@@ -57,6 +57,7 @@
         };
         focus-follows-mouse.enable = true;
         warp-mouse-to-focus.enable = false;
+        sensitivity = 1.0;
       };
 
       environment = {

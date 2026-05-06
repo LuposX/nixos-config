@@ -87,8 +87,8 @@ in
 
       location = {
         analogClockInCalendar = "true";
-        name = "Indianapolis, US";
-        useFahrenheit = true;
+        name = config.var.location;
+        useFahrenheit = false;
       };
 
       network = {
