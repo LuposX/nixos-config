@@ -86,17 +86,6 @@
             _module.args = {inherit inputs;};
           }
 
-           # FIX: disable openldap tests, currently is broken
-          {
-            nixpkgs.overlays = [
-              (final: prev: {
-                openldap = prev.openldap.overrideAttrs (_: {
-                  doCheck = false;
-                });
-              })
-            ];
-          }
-
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
