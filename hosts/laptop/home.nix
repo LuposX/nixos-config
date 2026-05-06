@@ -92,7 +92,7 @@
         libreoffice
         anki
         calibre
-        jetbrains.pycharm-oss
+        jetbrains.pycharm-community
         qbittorrent
         lutris
       ]);
