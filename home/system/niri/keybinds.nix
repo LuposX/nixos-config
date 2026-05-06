@@ -50,11 +50,7 @@ in
     "super+q".action = close-window;
     "super+f".action = fullscreen-window;
     "super+t".action = toggle-window-floating;
-    "super+tab".action = toggle-overview;
-
-    # Window Switching
-    "alt+tab".action = switch-window;
-    "alt+shift+tab".action = switch-window-previous;
+    "super+o".action = toggle-overview;
 
     # Screenshots
     "super+p".action.screenshot = [ ];  # Screenshot

@@ -37,10 +37,6 @@ in
               id = "SystemMonitor";
             }
             {
-              id = "VPN";
-              displayMode = "alwaysShow";
-            }
-            {
               id = "ActiveWindow";
             }
             {
