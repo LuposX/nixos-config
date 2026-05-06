@@ -25,28 +25,28 @@
     window-rules = [
       {
         matches = [
-          { app-id = "spotify"; }
+          { app-id = "spotify"; at-startup = true; }
         ];
         open-on-workspace = "music";
       }
 
       {
         matches = [
-          { app-id = "zen-twilight"; }
+          { app-id = "zen-twilight"; at-startup = true; }
         ];
         open-on-workspace = "browser";
       }
 
       {
         matches = [
-          { app-id = "kitty"; }
+          { app-id = "kitty"; at-startup = true; }
         ];
         open-on-workspace = "terminal";
       }
 
       {
         matches = [
-          { app-id = "ghostty"; }
+          { app-id = "ghostty"; at-startup = true; }
         ];
         open-on-workspace = "terminal";
       }

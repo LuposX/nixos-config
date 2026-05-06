@@ -124,6 +124,7 @@ in {
     git-ignore
     xdg-utils
     xdg-terminal-exec
+    xwayland
     wget
     curl
     vim
