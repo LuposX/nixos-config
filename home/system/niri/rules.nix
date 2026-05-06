@@ -4,6 +4,12 @@
 
 {
   programs.niri.settings = {
+    workspaces = {
+      "01-browser" = { name = "browser"; };
+      "02-terminal" = { name = "terminal"; };
+      "03-music" = { name = "music"; };
+    };
+
     layer-rules = [
       {
         # Set the overview wallpaper on the backdrop
@@ -17,52 +23,39 @@
     ];
 
     window-rules = [
-      # Browsers
-      # {
-      #   matches = [
-      #     { app-id = "firefox"; }
-      #   ];
-      #   open-on-workspace = "browser";
-      # }
-      # {
-      #   matches = [
-      #     { app-id = "zen"; }
-      #   ];
-      #   open-on-workspace = "browser";
-      # }
-
-      # Music
       {
         matches = [
-          { title = "spotify_player"; }
+          { app-id = "spotify"; }
         ];
-        open-on-workspace = "4";
-      }
-      {
-        matches = [
-          { title = "Cider"; }
-        ];
-        open-on-workspace = "4";
+        open-on-workspace = "music";
       }
 
       {
         matches = [
-          { app-id = "zen"; }
+          { app-id = "zen-twilight"; }
         ];
-        open-on-workspace = "1";
+        open-on-workspace = "browser";
       }
 
       {
         matches = [
           { app-id = "kitty"; }
         ];
-        open-on-workspace = "2";
+        open-on-workspace = "terminal";
+      }
+
+      {
+        matches = [
+          { app-id = "ghostty"; }
+        ];
+        open-on-workspace = "terminal";
       }
 
       {
         matches = [
           { app-id = "blueman-manager"; }
         ];
+        open-on-workspace = "music";
       }
 
       {

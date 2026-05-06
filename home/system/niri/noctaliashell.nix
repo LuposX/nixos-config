@@ -19,8 +19,8 @@ in
       bar = {
         density = "compact";
         position = "top";
-        barType = "floating";
-        showCapsule = true;
+        barType = "simple";
+        showCapsule = false;
         widgets = {
           left = [
             {
@@ -86,7 +86,7 @@ in
       colorSchemes.predefinedScheme = "Catppuccin-Lavender";
 
       location = {
-        analogClockInCalendar = "true";
+        analogClockInCalendar = true;
         name = config.var.location;
         useFahrenheit = false;
       };

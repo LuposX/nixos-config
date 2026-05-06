@@ -42,9 +42,6 @@ in
     "super+b".action = spawn apps.browser;
     "super+e".action = spawn apps.fileManager;
 
-    # Search and Open Files
-    "super+s".action = spawn ["wofi" "--show=drun" "--width=900" "--height=600"];
-
     # Grep and Open Files (uses fzf)
     "super+g".action = spawn ["bash" "-c" "find /home -type f 2>/dev/null | fzf | xargs -r xdg-open"];
 
@@ -73,16 +70,16 @@ in
     "super+shift+down".action = move-column-to-workspace-down;
 
     # Workspace Management (1-4)
-    "super+1".action = focus-workspace "1";
-    "super+2".action = focus-workspace "2";
-    "super+3".action = focus-workspace "3";
-    "super+4".action = focus-workspace "4";
+    "super+1".action.focus-workspace = 1;
+    "super+2".action.focus-workspace = 2;
+    "super+3".action.focus-workspace = 3;
+    "super+4".action.focus-workspace = 4;
 
     # Move window to workspace
-    "super+shift+1" = { action.move-window-to-workspace = "1"; };
-    "super+shift+2" = { action.move-window-to-workspace = "2"; };
-    "super+shift+3" = { action.move-window-to-workspace = "3"; };
-    "super+shift+4" = { action.move-window-to-workspace = "4"; };
+    "super+shift+1".action.move-window-to-workspace = 1;
+    "super+shift+2".action.move-window-to-workspace = 2;
+    "super+shift+3".action.move-window-to-workspace = 3;
+    "super+shift+4".action.move-window-to-workspace = 4;
 
     # Lock Screen
     "super+l".action.spawn = noctalia "lockScreen lock";
