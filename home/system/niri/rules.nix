@@ -63,8 +63,6 @@
         matches = [
           { app-id = "blueman-manager"; }
         ];
-        floating = true;
-        center = true;
       }
 
       {
