@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     package = pkgs.vscodium;
     # https://github.com/nix-community/nix-vscode-extensions/blob/master/data/cache/open-vsx-latest.json

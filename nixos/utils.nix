@@ -176,6 +176,8 @@ in {
   # For terminal stuff, who knows.
   xdg.terminal-exec.enable = true;
 
+  gtk.gtk4.theme = null; # To get ridd of warning
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;

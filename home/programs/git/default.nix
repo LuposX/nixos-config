@@ -5,26 +5,31 @@ let
   email = config.var.git.email;
 in {
   programs.git = {
-    enable = true;
-    userName = username;
-    userEmail = email;
-    ignores = [
-      ".cache/"
-      ".DS_Store"
-      ".idea/"
-      "*.swp"
-      "*.elc"
-      "auto-save-list"
-      ".direnv/"
-      "node_modules"
-      "result"
-      "result-*"
-    ];
-    extraConfig = {
-      init.defaultBranch = "main";
-      pull.rebase = "false";
-      push.autoSetupRemote = true;
-      color.ui = "1";
+  enable = true;
+
+  settings = {
+    user = {
+      name = username;
+      email = email;
     };
+
+    init.defaultBranch = "main";
+    pull.rebase = false;
+    push.autoSetupRemote = true;
+    color.ui = 1;
   };
+
+  ignores = [
+    ".cache/"
+    ".DS_Store"
+    ".idea/"
+    "*.swp"
+    "*.elc"
+    "auto-save-list"
+    ".direnv/"
+    "node_modules"
+    "result"
+    "result-*"
+  ];
+};
 }

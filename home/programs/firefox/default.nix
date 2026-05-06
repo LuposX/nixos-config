@@ -85,6 +85,7 @@
   };
 in {
   programs.firefox = {
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     enable = true;
     languagePacks = [
       "de"
