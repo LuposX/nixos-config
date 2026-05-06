@@ -22,10 +22,11 @@ in {
   home.packages = [ pkgs.swayidle pkgs.brightnessctl ];
 
   systemd.user.services.swayidle = {
-    description = "Swayidle user idle manager";
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
-    serviceConfig = {
+    Unit = {
+      After = "graphical-session.target";
+      Wants = "graphical-session.target";
+    };
+    Service = {
       ExecStart = execStart;
       Restart = "always";
       RestartSec = "10s";
