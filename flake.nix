@@ -8,12 +8,28 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    anyrun.url = "github:fufexan/anyrun/launch-prefix";
+    # ianyrun.url = "github:fufexan/anyrun/launch-prefix";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
     hyprland.url = "github:hyprwm/Hyprland/";
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top.
     stylix.url = "github:nix-community/stylix"; # Theming
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
+
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    nur.url = "github:nix-community/NUR";
+    matugen.url = "github:InioX/matugen";
+     nixmate.url = "github:daskladas/nixmate";
+
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    vicinae.url = "github:vicinaehq/vicinae";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-colors.url = "github:misterio77/nix-colors";
 
     # nvf.url = "github:notashelf/nvf"; # This is for Neovim
 
@@ -71,6 +87,7 @@
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }
+          inputs.niri.nixosModules.niri
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix

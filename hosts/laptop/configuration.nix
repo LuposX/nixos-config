@@ -15,7 +15,8 @@
     ../../nixos/nix.nix
     ../../nixos/bluetooth.nix
     ../../nixos/hyprland.nix
-    ../../nixos/sddm.nix
+    ../../nixos/greetd.nix
+    # ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
     ../../nixos/kdeconnect.nix
     ../../nixos/blockedsites.nix

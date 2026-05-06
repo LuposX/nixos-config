@@ -10,6 +10,7 @@
     ./variables.nix
 
     # Programs
+    ../../home/programs/ghosty
     ../../home/programs/kitty
     ../../home/programs/shell
     ../../home/programs/firefox
@@ -32,12 +33,13 @@
 
     # System
     ../../home/system/wofi
-    ../../home/system/hyprpanel
-    ../../home/system/hyprland
-    ../../home/system/hyprpaper
+    ../../home/system/niri
+    #../../home/system/hyprpanel
+    #../../home/system/hyprland
+    #../../home/system/hyprpaper
     ../../home/system/mime
-    ../../home/system/hyprlock
-    ../../home/system/hypridle
+    #../../home/system/hyprlock
+    #../../home/system/hypridle
     ../../home/system/udiskie
     ../../home/system/clipman
 
