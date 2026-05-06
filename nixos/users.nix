@@ -7,7 +7,7 @@ in {
       isNormalUser = true;
       description = "${username} account";
       initialPassword = "changeme-nixos";
-      extraGroups = [ "networkmanager" "wheel" ];
+      extraGroups = [ "networkmanager" "wheel" "video" "render" ];
     };
   };
 }
