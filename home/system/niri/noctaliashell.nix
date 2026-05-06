@@ -4,6 +4,9 @@
   ...
 }:
 
+let
+  profilePicture = config.var.profile-picture;
+in
 {
   imports = [
     inputs.noctalia.homeModules.default
@@ -62,8 +65,13 @@
               id = "Volume";
             }
             {
+              id = "Battery";
+              displayMode = "alwaysShow";
+            }
+            {
               id = "ControlCenter";
-              useDistroLogo = true;
+              useDistroLogo = false;
+              avatarImage = profilePicture;
               icon = "noctalia"; # used when distro logo is set to false
               enableColorization = true;
             }
@@ -72,7 +80,7 @@
       };
 
       general = {
-        avatarImage = "/home/${config.home.username}/.face";
+        avatarImage = profilePicture;
       };
 
       colorSchemes.predefinedScheme = "Catppuccin-Lavender";

@@ -17,7 +17,7 @@
     ../../nixos/nix.nix
     ../../nixos/nvidia.nix
     ../../nixos/bluetooth.nix
-    ../../nixos/hyprland.nix
+    # ../../nixos/hyprland.nix  # Switched to Niri
     ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
     ../../nixos/kdeconnect.nix

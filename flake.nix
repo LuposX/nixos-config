@@ -10,12 +10,12 @@
 
     # ianyrun.url = "github:fufexan/anyrun/launch-prefix";
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
-    hyprland.url = "github:hyprwm/Hyprland/";
-    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top.
+    # hyprland.url = "github:hyprwm/Hyprland/";  # Switched to Niri
+    # hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top. # Switched to Noctalia
     stylix.url = "github:nix-community/stylix"; # Theming
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
 
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";  # Switched to Niri
     nur.url = "github:nix-community/NUR";
     matugen.url = "github:InioX/matugen";
      nixmate.url = "github:daskladas/nixmate";
@@ -59,12 +59,12 @@
 
     # Gives Overview over Workspaces.
     # See: https://github.com/raybbian/hyprtasking/pull/73
-    hyprtasking = {
-      url = "github:raybbian/hyprtasking";
-      inputs.hyprland.follows = "hyprland";
-      # url = "github:r00t3g/hyprtasking/9388b8ca1bd53a5bfa89b1a6caec7a801df0b6aa";
-      # inputs.hyprland.follows = "hyprland";
-    };
+    # hyprtasking = {
+    #   url = "github:raybbian/hyprtasking";
+    #   inputs.hyprland.follows = "hyprland";
+    #   # url = "github:r00t3g/hyprtasking/9388b8ca1bd53a5bfa89b1a6caec7a801df0b6aa";
+    #   # inputs.hyprland.follows = "hyprland";
+    # };  # Switched to Niri
 
     # Spotify
     spicetify-nix = {

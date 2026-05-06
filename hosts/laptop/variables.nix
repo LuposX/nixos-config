@@ -9,6 +9,7 @@
 
   config.var = {
     isLaptop = true;
+    windowManager = "niri";  # "hyprland" or "niri"
 
     hostname = "pneuma";
     username = "monkeman";

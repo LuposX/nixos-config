@@ -30,12 +30,13 @@
 
     # System
     ../../home/system/wofi
-    ../../home/system/hyprpanel
-    ../../home/system/hyprland
-    ../../home/system/hyprpaper
+    # ../../home/system/hyprpanel  # Switched to Niri with Noctalia
+    # ../../home/system/hyprland  # Switched to Niri
+    # ../../home/system/hyprpaper  # Switched to Niri
+    ../../home/system/niri
     ../../home/system/mime
-    ../../home/system/hyprlock
-    ../../home/system/hypridle
+    # ../../home/system/hyprlock  # Switched to Niri
+    # ../../home/system/hypridle  # Switched to Niri
     ../../home/system/udiskie
     ../../home/system/clipman
 

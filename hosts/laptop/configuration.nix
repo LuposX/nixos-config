@@ -14,7 +14,7 @@
     ../../nixos/boot.nix
     ../../nixos/nix.nix
     ../../nixos/bluetooth.nix
-    ../../nixos/hyprland.nix
+    # ../../nixos/hyprland.nix  # Switched to Niri
     ../../nixos/greetd.nix
     # ../../nixos/sddm.nix
     ../../nixos/automount-nas.nix
