@@ -55,10 +55,10 @@ in
     "super+t".action = toggle-window-floating;
 
     # Screenshots
-    "super+p".action = screenshot;  # Screenshot current screen
+    "super+p".action.screenshot-screen = [ ];  # Screenshot current screen
     "super+shift+p".action.screenshot-window = [ ];  # Screenshot active window
     "control+shift+p".action.screenshot = [ ];  # Screenshot region
-    "alt+control+p".action = spawn ["bash" "-c" "'${pkgs.grim}/bin/grim -g \"\\$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.swappy}/bin/swappy -f -'"];  # Screenshot region + edit (Swappy)
+    "alt+control+p".action.spawn = ["${pkgs.bash}/bin/bash" "-c" "${pkgs.grim}/bin/grim -g \"\\$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.swappy}/bin/swappy -f -"];  # Screenshot region + edit (Swappy)
 
     # Focus Navigation
     "super+left".action = focus-column-left;
