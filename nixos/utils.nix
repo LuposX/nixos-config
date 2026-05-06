@@ -129,6 +129,7 @@ in {
     vim
     gparted
     dig
+    pciutils
 
     # Ventoy with GUI override
     # (ventoy.override {
