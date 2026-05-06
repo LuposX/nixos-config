@@ -3,6 +3,9 @@
 
   inputs = {
     # nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+
+    # Use the stable for things you dont want to compile e.g. Libre Office
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     anyrun.url = "github:fufexan/anyrun/launch-prefix";

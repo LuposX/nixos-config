@@ -1,6 +1,6 @@
 # Source firefox: https://discourse.nixos.org/t/declare-firefox-extensions-and-settings/36265
 # For settings: https://github.com/witchof0x20/nix-cfg-jade/blob/448efb5921013f907020a1a953d0988e6f12c896/home/desktop/firefox.nix
-{config, lib, ...}: let
+{config, lib, pkgsStable, ...}: let
   domain = config.var.domain;
   commonSettings = {
     "browser.profiles.enabled" = true;
@@ -85,6 +85,7 @@
   };
 in {
   programs.firefox = {
+    package = pkgsStable.firefox;
     enable = true;
     languagePacks = [
       "de"

@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgsStable,
   config,
   inputs,
   ...
@@ -47,50 +48,54 @@
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
 
-    packages = with pkgs; [
-      inputs.nvix.packages.${pkgs.system}.core
+    packages =
+      # UNSTABLE (system / fast-moving / dev / wayland)
+      (with pkgs; [
+        inputs.nvix.packages.${pkgs.system}.core
 
-      # Apps
-      vlc # Video player
-      gnome-calendar # Calendar
-      textpieces # Manipulate texts
-      resources # Monitor for your system resources
-      gnome-clocks
-      gnome-text-editor
-      mpv # Video player
-      libreoffice-qt6 # Office Stuff
-      anki
-      calibre
-      qbittorrent
-      wireguard-ui
-      # kdePackages.kdenlive
+        # Apps
+        vlc
+        gnome-calendar
+        textpieces
+        resources
+        gnome-clocks
+        gnome-text-editor
+        mpv
+        wireguard-ui
 
-      # Dev
-      # python3 # Use nix-shell
-      uv
-      jetbrains.pycharm-oss
+        # Dev
+        uv
 
-      # Utils
-      zip
-      unzip
-      btop
-      pfetch
-      fastfetch
+        # Utils
+        zip
+        unzip
+        btop
+        pfetch
+        fastfetch
 
-      # Key Stuff
-      gnupg
-      pinentry-curses
+        # Key Stuff
+        gnupg
+        pinentry-curses
 
-      # Fun
-      peaclock
-      cbonsai
-      pipes
-      cmatrix
+        # Fun
+        peaclock
+        cbonsai
+        pipes
+        cmatrix
 
-      # Games
-      lutris
-      adwaita-icon-theme
-    ];
+        # Games
+        adwaita-icon-theme
+      ])
+
+      # STABLE (big / heavy / slow-moving GUI apps)
+      ++ (with pkgsStable; [
+        libreoffice
+        anki
+        calibre
+        jetbrains.pycharm-oss
+        qbittorrent
+        lutris
+      ]);
 
     # Don't touch this
     stateVersion = "25.05";

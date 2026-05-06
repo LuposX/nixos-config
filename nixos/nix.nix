@@ -1,7 +1,17 @@
-{ config, inputs, ... }:
-let autoGarbageCollector = config.var.autoGarbageCollector;
+{ config, inputs, pkgs, ... }:
+let
+  autoGarbageCollector = config.var.autoGarbageCollector;
+
+  pkgsStable = import inputs.nixpkgs-stable {
+    system = pkgs.system;
+    config.allowUnfree = true;
+    config.allowBroken = false;
+  };
 in {
-  # Grants passwordless sudo permission for the specified user, only for running nixos-rebuild.
+  # Make pkgsStable available everywhere
+  _module.args.pkgsStable = pkgsStable;
+
+  # Grants passwordless sudo permission for nixos-rebuild
   security.sudo.extraRules = [{
     users = [ config.var.username ];
     commands = [{
@@ -18,24 +28,19 @@ in {
   nix = {
     nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
 
-    # Disables legacy channel updates.
     channel.enable = false;
-    
+
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      
-      # Alternative sources to download pre-built packages.
-      substituters = [
-        # high priority since it's almost always used
-        "https://cache.nixos.org?priority=10"
 
+      substituters = [
+        "https://cache.nixos.org?priority=10"
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
         "https://numtide.cachix.org"
       ];
 
-      # Allows verifying the integrity of packages from these caches.
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -43,7 +48,6 @@ in {
       ];
     };
 
-    #  Nix Garbage Collection.
     gc = {
       automatic = autoGarbageCollector;
       persistent = true;
