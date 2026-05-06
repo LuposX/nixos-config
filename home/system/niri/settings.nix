@@ -42,6 +42,23 @@
         };
       };
 
+      outputs = {
+        "eDP-1" = {
+          mode = {
+            width = 1920;
+            height = 1080;
+            refresh = 60.000;
+          };
+          scale = 1.0;
+          position = {
+            x = 0;
+            y = 0;
+          };
+          variable-refresh-rate = true; # on-demand=true
+          focus-at-startup = true;
+        };
+      };
+
       input = {
         keyboard.xkb.layout = "de";
         touchpad = {
