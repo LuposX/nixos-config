@@ -50,10 +50,15 @@ in
     "super+q".action = close-window;
     "super+f".action = fullscreen-window;
     "super+t".action = toggle-window-floating;
+    "super+tab".action = toggle-overview;
+
+    # Window Switching
+    "alt+tab".action = switch-window;
+    "alt+shift+tab".action = switch-window-previous;
 
     # Screenshots
-    "super+p".action.screenshot-screen = [ ];  # Screenshot current screen
-    "super+shift+p".action.screenshot-window = [ ];  # Screenshot active window
+    "super+p".action.screenshot = [ ];  # Screenshot
+    "super+shift+p".action.screenshot-screen = [ ];  # Screenshot current screen
     "control+shift+p".action.screenshot = [ ];  # Screenshot region
     "alt+control+p".action.spawn = ["${pkgs.bash}/bin/bash" "-c" "${pkgs.grim}/bin/grim -g \"\\$(${pkgs.slurp}/bin/slurp)\" - | ${pkgs.wl-clipboard}/bin/wl-copy && ${pkgs.swappy}/bin/swappy -f -"];  # Screenshot region + edit (Swappy)
 

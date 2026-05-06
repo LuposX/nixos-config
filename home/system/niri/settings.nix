@@ -53,12 +53,10 @@
           tap = true;
           tap-button-map = "left-right-middle";
           middle-emulation = true;
-          accel-profile = "adaptive";
-          accel-speed = 0.2;
+          accel-speed = 1.0;
         };
         mouse = {
-          accel-profile = "adaptive";
-          accel-speed = 0.2;
+          accel-speed = 1.0;
         };
         focus-follows-mouse.enable = true;
         warp-mouse-to-focus.enable = false;
