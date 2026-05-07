@@ -1,3 +1,4 @@
+# For settings check out: https://github.com/noctalia-dev/noctalia-shell/blob/main/Assets/settings-default.json
 {
   inputs,
   config,
@@ -77,6 +78,15 @@ in
 
       general = {
         avatarImage = profilePicture;
+        lockScreenBlur = 0.7;
+      };
+
+      idle = {
+        enabled = true;
+        screenOffTimeout = 150;
+        lockTimeout = 300;
+        suspendTimeout = 1200;
+        fadeDuration = 3;
       };
 
       colorSchemes.predefinedScheme = "Catppuccin-Lavender";
