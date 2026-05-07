@@ -64,6 +64,7 @@
         gnome-text-editor
         mpv
         wireguard-ui
+        anki
 
         # Dev
         uv
@@ -92,7 +93,6 @@
       # STABLE (big / heavy / slow-moving GUI apps)
       ++ (with pkgsStable; [
         libreoffice
-        anki
         calibre
         jetbrains.pycharm-community
         qbittorrent
