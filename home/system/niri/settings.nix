@@ -72,8 +72,8 @@
           middle-emulation = true;
           accel-speed = 0.65;
         };
-        focus-follows-mouse.enable = true;
-        warp-mouse-to-focus.enable = false;
+        focus-follows-mouse.enable = false;
+        warp-mouse-to-focus.enable = true;
       };
 
       environment = {
