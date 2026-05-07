@@ -18,7 +18,8 @@
     ../../nixos/nvidia.nix
     ../../nixos/bluetooth.nix
     # ../../nixos/hyprland.nix  # Switched to Niri
-    ../../nixos/sddm.nix
+    ##../../nixos/sddm.nix # Switched to greetd with Noctalia
+    ../../nixos/greetd.nix
     ../../nixos/automount-nas.nix
     ../../nixos/kdeconnect.nix
     ../../nixos/blockedsites.nix

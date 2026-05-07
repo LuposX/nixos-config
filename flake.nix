@@ -87,7 +87,6 @@
             # With this other Modules will have access to the inputs
             _module.args = {inherit inputs;};
           }
-          inputs.niri.nixosModules.niri
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
