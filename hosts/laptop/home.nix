@@ -41,7 +41,7 @@
     #../../home/system/hyprlock
     # ../../home/system/swayidle
     ../../home/system/udiskie
-    ../../home/system/clipman
+    # ../../home/system/clipman # Switched to Niri with wl-paste
 
     ./secrets # CHANGEME: You should probably remove this line, this is where I store my secrets
   ];
@@ -75,6 +75,7 @@
         btop
         pfetch
         fastfetch
+        cliphist # For clipboard history in Noctalia
 
         # Key Stuff
         gnupg

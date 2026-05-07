@@ -41,6 +41,7 @@ in
     "super+return".action = spawn apps.terminal;
     "super+b".action = spawn apps.browser;
     "super+e".action = spawn apps.fileManager;
+    "super+c".action.spawn = noctalia "launcher clipboard";
 
     # Grep and Open Files (uses fzf)
     "super+g".action = spawn ["bash" "-c" "find /home -type f 2>/dev/null | fzf | xargs -r xdg-open"];

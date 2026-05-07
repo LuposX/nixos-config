@@ -100,6 +100,10 @@ in
       network = {
 
       };
+
+      appLauncher = {
+        enableClipboardHistory = true;
+      };
     };
     # this may also be a string or a path to a JSON file.
   };

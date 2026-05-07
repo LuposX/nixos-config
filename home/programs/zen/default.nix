@@ -101,6 +101,7 @@ in {
         "gfx.webrender.all" = true;
         "network.http.http3.enabled" = true;
         "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
+        "widget.use-xdg-desktop-portal.file-picker" = 0; # Use native file picker instead of portal for better clipboard support
       };
     };
 
