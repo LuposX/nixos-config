@@ -63,6 +63,7 @@ in {
         "uBlock0@raymondhill.net" = { id = "ublock-origin"; pinned = true; };
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = { id = "bitwarden-password-manager"; pinned = true; };
         "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = { id = "github-file-icons"; pinned = false; };
+        "zotero@zotero.org" = { id = "zotero-connector"; pinned = true; };
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = { id = "return-youtube-dislikes"; pinned = false; };
         "{74145f27-f039-47ce-a470-a662b129930a}" = { id = "clearurls"; pinned = false; };
         "myallychou@gmail.com" = { id = "youtube-recommended-videos"; pinned = false; };
@@ -101,7 +102,6 @@ in {
         "gfx.webrender.all" = true;
         "network.http.http3.enabled" = true;
         "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
-        "widget.use-xdg-desktop-portal.file-picker" = 0; # Use native file picker instead of portal for better clipboard support
       };
     };
 
