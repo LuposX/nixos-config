@@ -59,6 +59,17 @@
       }
 
       {
+        matches = [
+          { app-id = "firefox"; title = "^Picture-in-Picture$"; }
+          { app-id = "zen-twilight"; title = "^Picture-in-Picture$"; }
+        ];
+        open-floating = true;
+        default-column-width = { fixed = 480; };
+        default-window-height = { fixed = 270; };
+        default-floating-position = { x = 32; y = 32; relative-to = "bottom-left"; };
+      }
+
+      {
         matches = [ { } ];
         geometry-corner-radius = {
           top-left = 4.0;
