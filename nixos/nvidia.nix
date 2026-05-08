@@ -1,8 +1,8 @@
 { lib, pkgs, config, ... }:
 
 let
-  # Using beta driver for recent GPUs like RTX 4070
-  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.stable;
+  # GTX 1050 Ti uses Maxwell architecture, only supported up to 580.xx
+  nvidiaDriverChannel = config.boot.kernelPackages.nvidiaPackages.legacy_580;
 in {
   # Video drivers configuration for Xorg and Wayland
   services.xserver.videoDrivers =
@@ -34,6 +34,7 @@ in {
   # Nvidia configuration
   hardware = {
     nvidia = {
+      package = nvidiaDriverChannel;
       open = false; # Proprietary driver for better performance
       nvidiaSettings = true; # Nvidia settings utility
       powerManagement = {
@@ -42,22 +43,11 @@ in {
       };
       modesetting.enable = true; # Required for Wayland
         # sync.enable = true;
-
-      # Configuration for hybrid INTEL+Nvidia
-      prime = {
-        # sync.enable = true;
-         offload.enable = true;
-
-        # PCI IDs verified for your hardware
-        intelBusId = "PCI:0:2:0"; # Integrated INTEL GPU
-        nvidiaBusId = "PCI:2:0:0"; # Dedicated Nvidia GPU
-      };
     };
 
     # Enhanced graphics support
     graphics = {
       enable = true;
-      package = nvidiaDriverChannel;
       enable32Bit = true;
       extraPackages = with pkgs; [
         nvidia-vaapi-driver
