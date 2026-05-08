@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 {
@@ -60,7 +61,7 @@
       };
 
       input = {
-        keyboard.xkb.layout = "de";
+        keyboard.xkb.layout = config.var.keyboardLayout;
         touchpad = {
           click-method = "button-areas";
           dwt = true;
