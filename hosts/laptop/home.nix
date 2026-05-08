@@ -65,6 +65,7 @@
         mpv
         wireguard-ui
         anki
+        zotero
 
         # Dev
         uv
