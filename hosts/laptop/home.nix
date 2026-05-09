@@ -66,6 +66,7 @@
         wireguard-ui
         anki
         zotero
+        steam-run
 
         # Dev
         uv
