@@ -6,7 +6,7 @@
   config,
   ...
 }: let
-  transparentButtons = config.theme.bar.transparentButtons;
+  transparentButtons = config.theme.hyprland.bar.transparentButtons;
   accent = "#${config.lib.stylix.colors.base0D}";
   accent-alt = "#${config.lib.stylix.colors.base03}";
   background = "#${config.lib.stylix.colors.base00}";
@@ -16,12 +16,12 @@
   font = "${config.stylix.fonts.serif.name}";
   fontSizeForHyprpanel = "${toString config.stylix.fonts.sizes.desktop}px";
   rounding = config.theme.rounding;
-  border-size = config.theme.border-size;
-  gaps-out = config.theme.gaps-out;
-  gaps-in = config.theme.gaps-in;
-  floating = config.theme.bar.floating;
-  transparent = config.theme.bar.transparent;
-  position = config.theme.bar.position; # "top" or "bottom"
+  border-size = config.theme.hyprland."border-size";
+  gaps-out = config.theme.hyprland."gaps-out";
+  gaps-in = config.theme.hyprland."gaps-in";
+  floating = config.theme.hyprland.bar.floating;
+  transparent = config.theme.hyprland.bar.transparent;
+  position = config.theme.hyprland.bar.position; # "top" or "bottom"
   notificationOpacity = 90;
   location = config.var.location;
   profile-pic = config.var.profile-picture;

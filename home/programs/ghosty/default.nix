@@ -6,12 +6,6 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      font-size = 11;
-      font-family = "JetBrainsMono Nerd Font";
-
-      #      theme = "wallust";
-      theme = "stylix";
-
       window-decoration = false;
 
       # Disables ligatures

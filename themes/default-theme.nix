@@ -10,27 +10,49 @@ in {
     type = lib.types.attrs;
     default = {
       rounding = 20;
-      gaps-in = 10;
-      gaps-out = 10 * 2;
-      active-opacity = 0.96;
-      inactive-opacity = 0.92;
-      blur = true;
-      shadow = true;
-      border-size = 3;
-      animation-speed = "fast"; # "fast" | "medium" | "slow"
-      fetch = "none"; # "nerdfetch" | "neofetch" | "pfetch" | "none"
-      textColorOnWallpaper =
-        config.lib.stylix.colors.base01; # Color of the text displayed on the wallpaper (Lockscreen, display manager, ...)
 
       # Name of the profile picture, put it in the resources folder.
       profile-picture-name = "monke_wide.jpg";
 
-      bar = {
-        # Hyprpanel
-        position = "top"; # "top" | "bottom"
-        transparent = true;
-        transparentButtons = false;
-        floating = true;
+      niri = {
+        layout = {
+          background-color = "transparent";
+          focus-ring = {
+            enable = true;
+            width = 3;
+            active = {
+              color = "#A8AEFF";
+            };
+            inactive = {
+              color = "#505050";
+            };
+          };
+          gaps = 0;
+          struts = {
+            left = 0;
+            right = 0;
+            top = 0;
+            bottom = 0;
+          };
+        };
+
+      };
+
+      hyprland = {
+        border-size = 3;
+        gaps-in = 10;
+        gaps-out = 10 * 2;
+        active-opacity = 0.96;
+        inactive-opacity = 0.92;
+        blur = true;
+        shadow = true;
+        animation-speed = "fast"; # "fast" | "medium" | "slow"
+        bar = {
+          transparentButtons = false;
+          floating = false;
+          transparent = false;
+          position = "top";
+        };
       };
     };
     description = "Theme configuration options";
@@ -38,25 +60,23 @@ in {
 
   config.stylix = {
     enable = true;
+    autoEnable = true;
 
-    # See https://tinted-theming.github.io/tinted-gallery/ for more schemes
-    base16Scheme = {
-      base00 = "09090B"; # Default Background
-      base01 = "1c1e1f"; # Lighter Background (Used for status bars, line number and folding marks)
-      base02 = "313244"; # Selection Background
-      base03 = "45475a"; # Comments, Invisibles, Line Highlighting
-      base04 = "585b70"; # Dark Foreground (Used for status bars)
-      base05 = "cdd6f4"; # Default Foreground, Caret, Delimiters, Operators
-      base06 = "f5e0dc"; # Light Foreground (Not often used)
-      base07 = "b4befe"; # Light Background (Not often used)
-      base08 = "f38ba8"; # Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-      base09 = "fab387"; # Integers, Boolean, Constants, XML Attributes, Markup Link Url
-      base0A = "f9e2af"; # Classes, Markup Bold, Search Text Background
-      base0B = "a6e3a1"; # Strings, Inherited Class, Markup Code, Diff Inserted
-      base0C = "94e2d5"; # Support, Regular Expressions, Escape Characters, Markup Quotes
-      base0D = "c5afd4"; # Functions, Methods, Attribute IDs, Headings, Accent color
-      base0E = "cba6f7"; # Keywords, Storage, Selector, Markup Italic, Diff Changed
-      base0F = "f2cdcd"; # Deprecated, Opening/Closing Embedded Language Tags, e.g. <?php ?>
+    colorGeneration  = {
+      scheme = "fruit-salad"; # options: "vibrant", "fruit-salad", "content",  "monochrome", "neutral", "rainbow", "tonal-spot"
+      polarity = "dark";
+      contrast = 0.0;
+      lightness = {
+        dark = -0.02;
+        light = 0.0;
+      };
+    };
+
+    opacity = {
+      applications = 0.8;
+      popups = 0.8;
+      desktop = 0.8;
+      terminal = 0.8;
     };
 
     cursor = {
@@ -89,13 +109,9 @@ in {
 
     # Sets Wallpaper
     # ----------------
-
-    polarity = "light";
-    # image = configDirectory + "/ressources/" + "reverend_insanity.jpeg"
-
     image = pkgs.fetchurl {
-        url = "https://raw.githubusercontent.com/anotherhadi/awesome-wallpapers/refs/heads/main/app/static/wallpapers/clouds-dodge-the-moon-2.png";
-        sha256 = "sha256-LlvAKiRKWnL2/r0w/Z7R5RFq7/tLmuHsEJHh0HRp100=";
+        url = "https://raw.githubusercontent.com/LuposX/nixos-config/master/ressources/wallpaper/impressionist-art-wallpapers.jpg";
+        sha256 = "sha256-uYMTcF9jEj9LCftE4mzhibKqYhCFspjdH8JqwD4lbGs=";
     };
   };
 }

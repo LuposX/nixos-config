@@ -15,31 +15,30 @@
       };
 
       overview = {
-        workspace-shadow.enable = false;
+        workspace-shadow.enable = true;
       };
 
       layout = {
-
-        background-color = "transparent";
+        background-color = config.theme.niri.layout."background-color";
 
         focus-ring = {
-          enable = true;
-          width = 3;
+          enable = config.theme.niri.layout."focus-ring".enable;
+          width = config.theme.niri.layout."focus-ring".width;
           active = {
-            color = "#A8AEFF";
+            color = config.theme.niri.layout."focus-ring".active.color;
           };
           inactive = {
-            color = "#505050";
+            color = config.theme.niri.layout."focus-ring".inactive.color;
           };
         };
 
-        gaps = 0;
+        gaps = config.theme.niri.layout.gaps;
 
         struts = {
-          left = 0;
-          right = 0;
-          top = 0;
-          bottom = 0;
+          left = config.theme.niri.layout.struts.left;
+          right = config.theme.niri.layout.struts.right;
+          top = config.theme.niri.layout.struts.top;
+          bottom = config.theme.niri.layout.struts.bottom;
         };
       };
 

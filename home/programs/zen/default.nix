@@ -108,6 +108,7 @@ in {
     profiles.default = rec {
       id = 0;
       isDefault = true;
+      name = "default";
       settings = {
         "zen.workspaces.continue-where-left-off" = true;
         "zen.workspaces.natural-scroll" = true;

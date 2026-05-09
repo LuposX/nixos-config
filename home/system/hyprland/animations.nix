@@ -1,5 +1,5 @@
 {config, ...}: let
-  animationSpeed = config.theme.animation-speed;
+  animationSpeed = config.theme.hyprland."animation-speed";
 
   animationDuration =
     if animationSpeed == "slow"

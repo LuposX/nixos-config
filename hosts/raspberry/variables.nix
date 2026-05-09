@@ -3,7 +3,7 @@
   lib,
   ...
 }: {
-  config.var = rec {
+  config.var = {
     isLaptop = true;
 
     hostname = "prohairesis";

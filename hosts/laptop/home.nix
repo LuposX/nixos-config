@@ -27,6 +27,7 @@
     # ../../home/programs/nvf
     ../../home/programs/nnn
     ../../home/programs/zen
+    ../../home/programs/misc
 
     # Scripts
     ../../home/scripts # All scripts
@@ -56,15 +57,10 @@
         inputs.nvix.packages.${pkgs.system}.core
 
         # Apps
-        vlc
         gnome-calendar
-        textpieces
         resources
         gnome-clocks
-        gnome-text-editor
-        mpv
         wireguard-ui
-        anki
         zotero
         steam-run
 
@@ -74,7 +70,6 @@
         # Utils
         zip
         unzip
-        btop
         pfetch
         fastfetch
         cliphist # For clipboard history in Noctalia
@@ -96,10 +91,10 @@
       # STABLE (big / heavy / slow-moving GUI apps)
       ++ (with pkgsStable; [
         libreoffice
-        calibre
         jetbrains.pycharm-community
         qbittorrent
         lutris
+        gnome-text-editor
       ]);
 
     # Don't touch this

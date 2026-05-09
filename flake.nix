@@ -12,7 +12,15 @@
     # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1"; # The Desktop.
     # hyprland.url = "github:hyprwm/Hyprland/";  # Switched to Niri
     # hyprpanel.url = "github:Jas-SinghFSU/HyprPanel"; # The Bar in the top. # Switched to Noctalia
-    stylix.url = "github:nix-community/stylix"; # Theming
+
+    # Theming
+    stylix = {
+      url = "github:make-42/stylix/matugen";
+      # url = "github:nix-community/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     sops-nix.url = "github:Mic92/sops-nix"; # Secret Managment
 
     # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";  # Switched to Niri

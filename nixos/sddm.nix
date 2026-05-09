@@ -44,7 +44,7 @@ in {
       extraPackages = [sddm-astronaut];
       theme = "sddm-astronaut-theme";
       settings = {
-        Wayland.SessionDir = "${inputs.niri.packages."${pkgs.system}".niri}/share/wayland-sessions";
+        Wayland.SessionDir = "${inputs.hyprland.packages."${pkgs.system}".hyprland}/share/wayland-sessions";
       };
     };
   };

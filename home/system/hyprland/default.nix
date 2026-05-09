@@ -7,14 +7,14 @@
   lib,
   ...
 }: let
-  border-size = config.theme.border-size;
-  gaps-in = config.theme.gaps-in;
-  gaps-out = config.theme.gaps-out;
-  active-opacity = config.theme.active-opacity;
-  inactive-opacity = config.theme.inactive-opacity;
+  border-size = config.theme.hyprland."border-size";
+  gaps-in = config.theme.hyprland."gaps-in";
+  gaps-out = config.theme.hyprland."gaps-out";
+  active-opacity = config.theme.hyprland."active-opacity";
+  inactive-opacity = config.theme.hyprland."inactive-opacity";
   rounding = config.theme.rounding;
-  blur = config.theme.blur;
-  shadow = config.theme.shadow;
+  blur = config.theme.hyprland.blur;
+  shadow = config.theme.hyprland.shadow;
   keyboardLayout = config.var.keyboardLayout;
   background = "rgb(" + config.lib.stylix.colors.base00 + ")";
 

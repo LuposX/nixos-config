@@ -12,22 +12,10 @@
 in {
   imports = [inputs.spicetify-nix.homeManagerModules.default];
 
-  stylix.targets.spicetify.enable = false;
+  stylix.targets.spicetify.enable = true;
 
   programs.spicetify = {
     enable = true;
-    # theme = lib.mkForce spicePkgs.themes.dribbblish;
-
-    # colorScheme = "custom";
-
-    # customColorScheme = {
-    #   button = accent;
-    #   button-active = accent;
-    #   tab-active = accent;
-    #   player = background;
-    #   main = background;
-    #   sidebar = background;
-    # };
 
     enabledExtensions = with spicePkgs.extensions; [
       playlistIcons

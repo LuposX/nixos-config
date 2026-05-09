@@ -28,15 +28,6 @@
     # Service
     ../../nixos/syncthing.nix
 
-    # Portals for Wayland
-    {
-      xdg.portal = {
-        enable = true;
-        wlr.enable = true;
-        # extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      };
-    }
-
     # Don't change this.
     ./hardware-configuration.nix
     ./variables.nix

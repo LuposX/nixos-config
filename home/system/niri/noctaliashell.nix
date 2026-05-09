@@ -18,10 +18,11 @@ in
 
     settings = {
       bar = {
-        density = "compact";
+        density = "default";
         position = "top";
         barType = "simple";
         showCapsule = false;
+        fontScale = 1.2;
         widgets = {
           left = [
             {
@@ -88,8 +89,6 @@ in
         suspendTimeout = 1200;
         fadeDuration = 3;
       };
-
-      colorSchemes.predefinedScheme = "Catppuccin-Lavender";
 
       location = {
         analogClockInCalendar = true;

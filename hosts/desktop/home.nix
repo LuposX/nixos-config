@@ -25,6 +25,7 @@
     # ../../home/programs/nvf
     ../../home/programs/nnn
     ../../home/programs/zen
+    ../../home/programs/misc
 
     # Scripts
     ../../home/scripts # All scripts
@@ -52,15 +53,11 @@
       inputs.nvix.packages.${pkgs.system}.core
 
       # Apps
-      vlc # Video player
       gnome-calendar # Calendar
-      textpieces # Manipulate texts
       resources # Monitor for your system resources
       gnome-clocks
-      mpv # Video player
       libreoffice-qt6 # Office Stuff
       popsicle
-      anki
       tor
       tor-browser
       ledger-udev-rules
@@ -74,7 +71,6 @@
       # Utils
       zip
       unzip
-      btop
       pfetch
       fastfetch
 
