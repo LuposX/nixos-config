@@ -5,7 +5,7 @@
 {
   #  browser = "${pkgs.firefox}/bin/firefox";
   browser = "zen-beta";
-  terminal = "ghostty";
+  terminal = "kitty";
   fileManager = "thunar";
   appLauncher = "${pkgs.walker}/bin/walker";
 
