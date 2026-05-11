@@ -52,6 +52,8 @@ in
     "super+f".action = fullscreen-window;
     "super+t".action = toggle-window-floating;
     "super+o".action = toggle-overview;
+    "mod+minus".action = set-column-width "-5%";
+    "mod+plus".action = set-column-width "+5%";
 
     # Screenshots
     "super+p".action.screenshot = [ ];  # Screenshot
