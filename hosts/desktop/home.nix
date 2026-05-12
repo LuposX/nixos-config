@@ -26,6 +26,7 @@
     ../../home/programs/nnn
     ../../home/programs/zen
     ../../home/programs/misc
+    ../../home/programs/nvix
 
     # Scripts
     ../../home/scripts # All scripts
@@ -50,7 +51,6 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
-      inputs.nvix.packages.${pkgs.system}.core
 
       # Apps
       gnome-calendar # Calendar

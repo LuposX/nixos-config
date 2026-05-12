@@ -28,6 +28,7 @@
     ../../home/programs/nnn
     ../../home/programs/zen
     ../../home/programs/misc
+    ../../home/programs/nvix
 
     # Scripts
     ../../home/scripts # All scripts
@@ -54,8 +55,6 @@
     packages =
       # UNSTABLE (system / fast-moving / dev / wayland)
       (with pkgs; [
-        inputs.nvix.packages.${pkgs.system}.core
-
         # Apps
         gnome-calendar
         resources

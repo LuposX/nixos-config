@@ -41,13 +41,18 @@
 
     # nvf.url = "github:notashelf/nvf"; # This is for Neovim
 
-# Csuotm Status bar for zellij
+    # Custom Status bar for zellij
     zjstatus = {
       url = "github:dj95/zjstatus";
      };
 
     # My own fork, for easier changes.
-    nvix.url = "github:LuposX/nvix";
+    # nvix.url = "github:LuposX/nvix";
+    nvix.url = "github:niksingh710/nvix";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";

@@ -30,14 +30,14 @@ in {
 
 home.file.".config/zellij/layouts/notes.kdl".text = ''
   layout {
-    cwd "~/Notes"
+    cwd "~/Projects/Notes"
     pane command="nvim"
   }
 '';
 
 home.file.".config/zellij/layouts/university.kdl".text = ''
   layout {
-    cwd "~/Notes/University/Master"
+    cwd "~/Projects/Notes/University/Master"
     pane command="nvim"
   }
 '';
@@ -47,10 +47,10 @@ home.file.".config/zellij/layouts/website.kdl".text = ''
     pane split_direction="vertical" {
       pane {
         command "nvim"
-        cwd "~/Website_MonkeMan"
+        cwd "~/Projects/Website_MonkeMan"
       }
       pane {
-        cwd "~/Website_MonkeMan"
+        cwd "~/Projects/Website_MonkeMan"
         size "30%"
       }
     }
@@ -62,27 +62,27 @@ home.file.".config/zellij/layouts/nixos_config.kdl".text = ''
     pane split_direction="vertical" {
       pane {
         command "nvim"
-        cwd "~/nixos-config"
+        cwd "~/Projects/nixos-config"
       }
       pane {
-        cwd "~/nixos-config"
+        cwd "~/Projects/nixos-config"
         size "30%"
       }
     }
   }
 '';
 
-home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
-  layout {
-    pane split_direction="vertical" {
-      pane {
-        cwd "~/SpikeSynth"
-      }
-      pane {
-        cwd "~/SpikeSynth"
-        size "30%"
-      }
-    }
-  }
-'';
+# home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
+  # layout {
+    # pane split_direction="vertical" {
+      # pane {
+        # cwd "~/Projects/SpikeSynth"
+      # }
+      # pane {
+        # cwd "~/Projects/SpikeSynth"
+        # size "30%"
+      # }
+    # }
+  # }
+# '';
 }

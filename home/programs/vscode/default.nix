@@ -22,6 +22,8 @@
       "editor.fontSize" = 13;
       "editor.lineHeight" = 19;
       "workbench.list.fontSize" = 9;
+
+      "vim.useSystemClipboard" = true;
     };
   };
 }

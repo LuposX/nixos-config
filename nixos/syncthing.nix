@@ -38,7 +38,7 @@
           ];
           id = "z6qwq-2hblb";
           ignorePerms = true;
-          path = "/home/${config.var.username}/Notes";
+          path = "/home/${config.var.username}/Projects/Notes";
         };
 
         "ReactionImg" = {
@@ -50,7 +50,7 @@
           ];
           ignorePerms = true;
           id = "cgpft-aw9cu";
-          path = "/home/${config.var.username}/ReactionImg";
+          path = "/home/${config.var.username}/Pictures/ReactionImg";
         };
 
         "Website_MonkeMan" = {
@@ -61,7 +61,7 @@
           ];
           ignorePerms = true;
           id = "27pjd-yfu36";
-          path = "/home/${config.var.username}/Website_MonkeMan";
+          path = "/home/${config.var.username}/Projects/Website_MonkeMan";
         };
       };
 

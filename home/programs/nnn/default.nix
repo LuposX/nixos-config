@@ -16,10 +16,10 @@ in {
     ];
 
     bookmarks = {
-        n = "/home/${username}/Notes";
-        u = "/home/${username}/Notes/University/Bachelor/Semester_8";
-        c = "/home/${username}/nixos-config";
-        w = "/home/${username}/Website_MonkeMan";
+        n = "/home/${username}/Projects/Notes";
+        u = "/home/${username}/Projects/Notes/University/Bachelor/Semester_8";
+        c = "/home/${username}/Projects/nixos-config";
+        w = "/home/${username}/Projects/Website_MonkeMan";
     };
 
     plugins = {
