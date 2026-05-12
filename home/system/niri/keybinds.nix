@@ -54,6 +54,8 @@ in
     "super+o".action = toggle-overview;
     "mod+minus".action = set-column-width "-5%";
     "mod+plus".action = set-column-width "+5%";
+    "mod+shift+minus".action = set-window-height "-5%";
+    "mod+shift+plus".action = set-window-height "+5%";
 
     # Screenshots
     "super+p".action.screenshot = [ ];  # Screenshot
