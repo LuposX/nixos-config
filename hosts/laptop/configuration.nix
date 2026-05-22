@@ -24,6 +24,7 @@
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
     ../../nixos/laptop.nix
+    ../../nixos/games.nix
 
     # Service
     ../../nixos/syncthing.nix

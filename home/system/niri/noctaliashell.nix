@@ -1,4 +1,5 @@
 # For settings check out: https://github.com/noctalia-dev/noctalia-shell/blob/main/Assets/settings-default.json
+# and: https://docs.noctalia.dev/v4/getting-started/nixos/
 {
   inputs,
   config,
@@ -15,6 +16,23 @@ in
 
   programs.noctalia-shell = {
     enable = true;
+
+    plugins = {
+      sources = [
+        {
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }
+      ];
+
+      states = {
+        mirror-mirror = {
+          enabled = true;
+          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        };
+      };
+  };
 
     settings = {
       bar = {
@@ -42,7 +60,7 @@ in
               id = "ActiveWindow";
             }
             {
-              id = "MediaMini";
+              id = "plugin:mirror-mirror";
             }
           ];
           center = [
@@ -50,6 +68,9 @@ in
               id = "Workspace";
               hideUnoccupied = false;
               labelMode = "index";
+            }
+            {
+              id = "MediaMini";
             }
           ];
           right = [

@@ -22,11 +22,11 @@
     ../../home/programs/thunderbird
     # ../../home/programs/tailscale
     # ../../home/programs/anyrun
-    # ../../home/programs/nvf
+    ../../home/programs/nvf
     ../../home/programs/nnn
     ../../home/programs/zen
     ../../home/programs/misc
-    ../../home/programs/nvix
+    # ../../home/programs/nvix
 
     # Scripts
     ../../home/scripts # All scripts

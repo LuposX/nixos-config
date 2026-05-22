@@ -6,6 +6,10 @@ let
     system = pkgs.system;
     config.allowUnfree = true;
     config.allowBroken = false;
+
+     config.permittedInsecurePackages = [
+        "electron-36.9.5"
+    ];
   };
 in {
   # Make pkgsStable available everywhere

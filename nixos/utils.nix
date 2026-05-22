@@ -14,6 +14,7 @@
   backupFileExtension = config.var.backupFileExtension;
   isLaptop = config.var.isLaptop;
 in {
+
   networking.hostName = hostname;
 
   networking.networkmanager.enable = true;

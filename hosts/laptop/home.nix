@@ -24,11 +24,11 @@
     ../../home/programs/thunderbird
     #  ../../home/programs/tailscale
     # ../../home/programs/anyrun
-    # ../../home/programs/nvf
+    ../../home/programs/nvf
     ../../home/programs/nnn
     ../../home/programs/zen
     ../../home/programs/misc
-    ../../home/programs/nvix
+    # ../../home/programs/nvix
 
     # Scripts
     ../../home/scripts # All scripts
@@ -61,10 +61,10 @@
         gnome-clocks
         wireguard-ui
         zotero
-        steam-run
 
         # Dev
         uv
+        ripgrep
 
         # Utils
         zip
@@ -72,6 +72,7 @@
         pfetch
         fastfetch
         cliphist # For clipboard history in Noctalia
+        wl-mirror # For Screen Mirroring in Noctalia
 
         # Key Stuff
         gnupg
@@ -92,7 +93,6 @@
         libreoffice
         jetbrains.pycharm-community
         qbittorrent
-        lutris
         gnome-text-editor
       ]);
 

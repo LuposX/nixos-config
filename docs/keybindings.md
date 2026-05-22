@@ -11,12 +11,12 @@
 | --------------------------------- | ---------------- |
 | Launch Kitty                      | Mod + RETURN     |
 | Launch Thunar                     | Mod + E          |
-| Launch Firefox                    | Mod + B          |
+| Launch Browser                    | Mod + B          |
 | **S**earch and Open Files         | MOD + S          |
 | **G**rep and Open Files           | MOD + G          |
-| Lock Screen (Hyprlock)            | Mod + L          |
+| Lock Screen                       | Mod + L          |
 | Open App Launcher (menu)          | Mod + SPACE      |
-| Toggle Hyprtasking                | Mod + tab        |
+| Toggle Overview                   | Mod + tab        |
 | Close Active Window               | Mod + Q          |
 | Toggle Floating                   | Mod + T          |
 | Toggle Fullscreen                 | Mod + F          |
