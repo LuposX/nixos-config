@@ -61,6 +61,7 @@
         gnome-clocks
         wireguard-ui
         zotero
+        notion-app-enhanced
 
         # Dev
         uv

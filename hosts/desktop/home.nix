@@ -63,6 +63,8 @@
       ledger-udev-rules
       ledger-live-desktop
       kdePackages.kleopatra
+      zotero
+      notion-app-enhanced
 
       # Dev
       uv
