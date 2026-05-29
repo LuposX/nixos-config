@@ -15,6 +15,8 @@
     matugen.url = "github:InioX/matugen";
     nixmate.url = "github:daskladas/nixmate";
 
+    hermes-agent.url = "github:NousResearch/hermes-agent";
+
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -76,6 +78,7 @@
         specialArgs = { inherit inputs; };
 
         modules = [
+          inputs.hermes-agent.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix

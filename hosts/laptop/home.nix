@@ -61,7 +61,7 @@
         gnome-clocks
         wireguard-ui
         zotero
-        notion-app-enhanced
+        telegram-desktop
 
         # Dev
         uv

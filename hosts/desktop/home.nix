@@ -64,7 +64,7 @@
       ledger-live-desktop
       kdePackages.kleopatra
       zotero
-      notion-app-enhanced
+      telegram-desktop
 
       # Dev
       uv

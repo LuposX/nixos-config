@@ -63,6 +63,28 @@
           id = "27pjd-yfu36";
           path = "/home/${config.var.username}/Projects/Website_MonkeMan";
         };
+
+        "HermesMemories" = {
+          devices = [
+            "laptop-pneuma"
+            "desktop-logos"
+            "server"
+          ];
+          ignorePerms = true;
+          id = "z3m5f-umdfp";
+          path = "/home/${config.var.username}/.hermes/memories";
+        };
+
+        "HermesSkills" = {
+          devices = [
+            "laptop-pneuma"
+            "desktop-logos"
+            "server"
+          ];
+          ignorePerms = true;
+          id = "gp73b-ppq4b";
+          path = "/home/${config.var.username}/.hermes/skills";
+        };
       };
 
       gui = {

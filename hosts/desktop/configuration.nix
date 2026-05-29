@@ -24,11 +24,15 @@
     ../../nixos/kdeconnect.nix
     ../../nixos/blockedsites.nix
     ../../nixos/netbird.nix
+    ../../nixos/hermes-agent.nix
+    ../../nixos/sops.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
 
     # Service
     ../../nixos/syncthing.nix
+    ../../nixos/searxng.nix
+    ../../nixos/hindsight.nix
 
     # Don't change this.
     ./hardware-configuration.nix
