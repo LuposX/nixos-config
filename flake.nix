@@ -92,6 +92,8 @@
         specialArgs = { inherit inputs; };
 
         modules = [
+          inputs.hermes-agent.nixosModules.default
+          inputs.sops-nix.nixosModules.sops
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
