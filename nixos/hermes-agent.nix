@@ -36,6 +36,65 @@ in {
         "tts"
         "computer_use"
       ];
+
+      # Skills unused for current academic work (neural net fault detection
+      # research).  Disabled here → excluded from the system prompt, saving
+      # ~1,300–1,500 tokens per turn.  Re-enable by removing from this list.
+      # See `hermes skills list` for all available skills.
+      skills.disabled = [
+        # Creative — media generation, design, music, animation
+        "ascii-art" "ascii-video"
+        "baoyu-article-illustrator" "baoyu-comic" "baoyu-infographic"
+        "claude-design" "comfyui" "design-md" "ideation"
+        "manim-video" "p5js" "pixel-art" "popular-web-designs"
+        "pretext" "songwriting-and-ai-music" "touchdesigner-mcp"
+
+        # Gaming
+        "minecraft-modpack-server" "pokemon-player"
+
+        # Media — GIFs, music, streaming
+        "gif-search" "heartmula" "songsee" "spotify" "youtube-content"
+
+        # MLOps — local inference/model serving (not used; API-based only)
+        "audiocraft-audio-generation" "dspy"
+        "evaluating-llms-harness" "huggingface-hub"
+        "llama-cpp" "obliteratus" "segment-anything-model"
+        "serving-llms-vllm" "weights-and-biases"
+
+        # Productivity — project management, maps, PDF editing
+        "airtable" "linear" "notion" "maps"
+        "nano-pdf" "teams-meeting-pipeline"
+
+        # Other AI agent CLIs (not using them here)
+        "claude-code" "codex" "opencode"
+
+        # Kanban multi-agent workflow (not using)
+        "kanban-orchestrator" "kanban-worker" "kanban-codex-lane"
+
+        # Social media, messaging
+        "xurl" "yuanbao" "dogfood"
+
+        # DevOps — webhooks
+        "webhook-subscriptions"
+
+        # Red-teaming
+        "godmode"
+
+        # Research — prediction markets, RSS, wiki (unused)
+        "blogwatcher" "llm-wiki" "polymarket"
+
+        # Smart-home
+        "openhue"
+
+        # Email, MCP
+        "native-mcp"
+
+        # Container supervision (not using OCI container mode)
+        "hermes-s6-container-supervision"
+
+        # Debugging TUI commands (not using the TUI)
+        "debugging-hermes-tui-commands"
+      ];
     };
 
     environmentFiles = [
