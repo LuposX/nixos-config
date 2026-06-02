@@ -14,7 +14,7 @@ in {
         # Keeps only the 10 most recent boot configurations.
         configurationLimit = 10;
       };
-      timeout = 0; # This should make it so that nixos starts, press escape for boot menu to show up
+      timeout = 1; # ~1s idle, shows "Press SPACE to enter boot menu" hint — enough to react, barely wasted.
     };
     # Cleans /tmp at boot.
     tmp.cleanOnBoot = true;
@@ -22,6 +22,12 @@ in {
     # Alternatives: _zen, _hardened, _rt, _rt_latest, etc.
     # kernelPackages = pkgs.linuxPackages_latest; # Kernel 6.15 has currently a nvidia bug.
     # kernelPackages = pkgs.linuxPackages_6_14;
+
+    plymouth = {
+      enable = true;
+      # Theme is auto-set by Stylix to "stylix" — matches your system colors.
+      # Set watermark = null to remove the version text.
+    };
 
     # Silent boot
     kernelParams = [

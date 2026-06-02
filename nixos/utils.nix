@@ -161,6 +161,8 @@ in {
     # For keys
     pinentry-tty
     pinentry-gtk2
+
+    tuigreet
   ];
 
   services.pcscd.enable = true;
