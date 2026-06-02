@@ -4,7 +4,7 @@
 
 {
   #  browser = "${pkgs.firefox}/bin/firefox";
-  browser = "zen-twillight";
+  browser = "zen-twilight";
   terminal = "kitty";
   fileManager = "thunar";
   appLauncher = "${pkgs.walker}/bin/walker";

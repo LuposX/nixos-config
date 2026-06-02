@@ -65,6 +65,20 @@
 
   virtualisation.docker.enable = true;
 
+  # Patch spotify-player: authenticate subcommand never saves credentials.json
+  nixpkgs.overlays = [
+    (final: prev: {
+      spotify-player = prev.spotify-player.overrideAttrs (oldAttrs: {
+        patches = (oldAttrs.patches or []) ++ [
+          ./../../patches/spotify-player-save-credentials.patch
+        ];
+      });
+    })
+  ];
+
+  # Stylix kmscon module uses removed options in current nixpkgs
+  stylix.targets.kmscon.enable = false;
+
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Do Not Change!

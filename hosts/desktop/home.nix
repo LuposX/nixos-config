@@ -11,7 +11,7 @@
     # Programs
     ../../home/programs/kitty
     ../../home/programs/shell
-    ../../home/programs/firefox
+    # ../../home/programs/firefox
     ../../home/programs/git
     ../../home/programs/lazygit
     ../../home/programs/thunar
@@ -65,9 +65,6 @@
       kdePackages.kleopatra
       zotero
       telegram-desktop
-
-      # Terminal
-      spotify-player
 
       # Dev
       uv

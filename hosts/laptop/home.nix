@@ -13,7 +13,7 @@
     ../../home/programs/ghosty
     ../../home/programs/kitty
     ../../home/programs/shell
-    ../../home/programs/firefox
+    # ../../home/programs/firefox
     ../../home/programs/git
     ../../home/programs/lazygit
     ../../home/programs/thunar
@@ -34,7 +34,7 @@
     ../../home/scripts # All scripts
 
     # System
-    ../../home/system/wofi
+    # ../../home/system/wofi
     ../../home/system/niri
     #../../home/system/hyprpanel
     #../../home/system/hyprland
@@ -62,9 +62,6 @@
         wireguard-ui
         zotero
         telegram-desktop
-
-        # Terminal
-        spotify-player
 
         # Dev
         uv

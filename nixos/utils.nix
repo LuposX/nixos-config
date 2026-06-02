@@ -132,6 +132,7 @@ in {
     gparted
     dig
     pciutils
+    jq
 
     # Ventoy with GUI override
     # (ventoy.override {

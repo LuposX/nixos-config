@@ -10,7 +10,7 @@
     ./fish.nix
     ./starship.nix
     ./fzf.nix
-    ./zellij.nix
+    # ./zellij.nix
     ./direnv.nix
   ];
 
@@ -18,6 +18,7 @@
     bat
     fd
     file # Required for fzf file preview
+    jq   # Required by done.fish plugin for niri window focus checks
     nerdfetch
   ];
 }

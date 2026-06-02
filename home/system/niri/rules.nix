@@ -39,20 +39,6 @@
 
       {
         matches = [
-          { app-id = "kitty"; at-startup = true; }
-        ];
-        open-on-workspace = "terminal";
-      }
-
-      {
-        matches = [
-          { app-id = "ghostty"; at-startup = true; }
-        ];
-        open-on-workspace = "terminal";
-      }
-
-      {
-        matches = [
           { app-id = "blueman-manager"; }
         ];
         open-on-workspace = "music";

@@ -90,6 +90,9 @@
         XDG_CURRENT_DESKTOP = "niri";
         DISPLAY = ":0";
       };
+
+      # Enable XWayland via xwayland-satellite for X11-only apps like Spotify's old CEF
+      # (niri delegates XWayland to the external xwayland-satellite binary)
     };
   };
 }
