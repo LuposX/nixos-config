@@ -64,6 +64,7 @@ in {
         # Productivity — project management, maps, PDF editing
         "airtable" "linear" "notion" "maps"
         "nano-pdf" "teams-meeting-pipeline"
+        "obsidian"
 
         # Other AI agent CLIs (not using them here)
         "claude-code" "codex" "opencode"

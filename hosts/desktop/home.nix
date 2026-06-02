@@ -66,6 +66,9 @@
       zotero
       telegram-desktop
 
+      # Terminal
+      spotify-player
+
       # Dev
       uv
       reptyr
