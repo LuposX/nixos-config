@@ -7,7 +7,13 @@ in {
     extraDependencyGroups = [ "messaging" "hindsight" ];
 
     settings = {
-      model.default = "deepseek-v4-flash";
+      model = {
+        default = "deepseek-v4-flash";
+        provider = "deepseek";
+        base_url = "https://api.deepseek.com/v1";
+      };
+
+      dashboard.show_token_analytics = true;
 
       memory.provider = "hindsight";
 
