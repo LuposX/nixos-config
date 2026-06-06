@@ -47,7 +47,7 @@ in {
         job_name = "shelly-plus-plug";
         metrics_path = "/script/2/metrics";
         static_configs = [{
-          targets = [ "192.168.12.88" ];
+          targets = [ "192.168.12.71" ];
         }];
       }
       {

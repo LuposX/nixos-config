@@ -28,7 +28,9 @@ in {
 
     dnsProvider = "duckdns";
     dnsPropagationCheck = true;
-    credentialsFile = config.sops.secrets.duckdns-dns-token.path;
+    credentialFiles = {
+      "duckdns-token" = config.sops.secrets.duckdns-dns-token.path;
+    };
   };
 
   services.nginx.virtualHosts = {
@@ -71,6 +73,30 @@ in {
       locations."/" = {
         proxyPass =
           "http://192.168.12.49:8084";
+      };
+    };
+    "money.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.41:5006";
+      };
+    };
+    "switch.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.53";
+      };
+    };
+    "shellyplug.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass =
+          "http://192.168.12.71";
       };
     };
     "gotify.${domain}" = {
@@ -255,7 +281,7 @@ in {
       forceSSL = true;
       locations."/" = {
         proxyPass =
-          "http://192.168.12.51";
+          "http://192.168.12.55";
       };
     };
     "yt.${domain}" = {

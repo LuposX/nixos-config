@@ -118,6 +118,7 @@ in {
                         { title = "Syncthing"; url = "https://syncthing.${domain}"; icon = "si:syncthing"; }
                         { title = "Paperless"; url = "https://paper.${domain}"; icon = "sh:paperless-ngx"; }
                         { title = "Immich"; url = "https://immich.${domain}"; icon = "si:immich"; }
+                        { title = "ActualBudget"; url = "https://money.${domain}"; icon = "si:actualbudget"; }
                       ];
                     }
                     { type = "monitor";
@@ -157,6 +158,8 @@ in {
                         { title = "Grafana"; url = "https://grafana.${domain}"; icon = "si:grafana"; }
                         { title = "Prometheus"; url = "https://prometheus.${domain}"; icon = "si:prometheus"; }
                         { title = "KVM"; url = "https://kvm.${domain}"; icon = "sh:pikvm-dark"; }
+                        { title = "Switch"; url = "https://switch.${domain}"; icon = "sh:switch"; }
+                        { title = "Shelly Plug"; url = "https://shellyplug.${domain}"; icon = "si:shelly"; }
                       ];
                     }
                   ];
