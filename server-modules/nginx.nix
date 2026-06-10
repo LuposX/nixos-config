@@ -29,7 +29,7 @@ in {
     dnsProvider = "duckdns";
     dnsPropagationCheck = true;
     credentialFiles = {
-      "duckdns-token" = config.sops.secrets.duckdns-dns-token.path;
+      "DUCKDNS_TOKEN_FILE" = config.sops.secrets.duckdns-dns-token.path;
     };
   };
 

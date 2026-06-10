@@ -9,6 +9,7 @@ in {
       http_port = 2342;
       domain = "grafana.${domain}";
     };
+    settings.security.secret_key = "SW2YcwTIb9zpOOhoPsMm";
   };
 
   services.nginx.virtualHosts."grafana.${domain}" = {
