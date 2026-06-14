@@ -24,6 +24,20 @@
       "workbench.list.fontSize" = 9;
 
       "vim.useSystemClipboard" = true;
+
+      # Prevent "Unable to watch for file changes" error on large workspaces
+      "files.watcherExclude" = {
+        "**/.git/objects/**" = true;
+        "**/.git/subtree-cache/**" = true;
+        "**/node_modules/**" = true;
+        "**/.venv/**" = true;
+        "**/__pycache__/**" = true;
+        "**/target/**" = true;
+        "**/_build/**" = true;
+        "**/.direnv/**" = true;
+        "**/dist/**" = true;
+        "**/.next/**" = true;
+      };
     };
   };
 }

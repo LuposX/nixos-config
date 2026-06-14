@@ -17,6 +17,10 @@ in {
     thunar-media-tags-plugin
     p7zip
     xarchiver
+    # gvfs: provides trash support, file monitoring, and remote filesystem mounting.
+    # Without it, Thunar's "Move to Trash" silently fails and files appear
+    # to not get deleted.
+    gvfs
   ];
 
   gtk = {

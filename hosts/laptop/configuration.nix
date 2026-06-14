@@ -20,6 +20,7 @@
     ../../nixos/automount-nas.nix
     ../../nixos/kdeconnect.nix
     ../../nixos/blockedsites.nix
+    ../../nixos/media-monitor.nix
     ../../nixos/netbird.nix
     ../../nixos/hermes-agent.nix
     ../../nixos/sops.nix

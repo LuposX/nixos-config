@@ -25,6 +25,7 @@
     ../../nixos/blockedsites.nix
     ../../nixos/netbird.nix
     ../../nixos/hermes-agent.nix
+    ../../nixos/media-monitor.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
@@ -44,6 +45,7 @@
 
   networking.firewall.allowedTCPPorts = [ 8888 ]; # For jupyter
   services.fail2ban.enable = true;
+  services.media-consumption-monitor.enable = true;
   services.openssh = {
     enable = true;
     ports = [ 22 ];
