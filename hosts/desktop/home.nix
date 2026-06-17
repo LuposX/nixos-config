@@ -65,6 +65,7 @@
       kdePackages.kleopatra
       zotero
       telegram-desktop
+      wireguard-ui
 
       # Dev
       uv
