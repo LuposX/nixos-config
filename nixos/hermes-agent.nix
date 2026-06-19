@@ -35,6 +35,14 @@ in {
         extract_backend = "tavily";
       };
 
+      # Tredict MCP server for AI-powered training analysis
+      # Create an access token in Tredict → Settings → Access Tokens
+      # Add TREDICT_MCP_TOKEN=<token> to your sops hermes-env secret
+      mcp_servers.tredict = {
+        url = "https://www.tredict.com/api/mcp/v2";
+        headers.Authorization = "Bearer $" + "{TREDICT_MCP_TOKEN}";
+      };
+
       # Disable unused toolsets to keep the tool list leaner
       agent.disabled_toolsets = [
         "browser"
