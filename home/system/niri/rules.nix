@@ -7,7 +7,8 @@
     workspaces = {
       "01-browser" = { name = "browser"; };
       "02-terminal" = { name = "terminal"; };
-      "03-music" = { name = "music"; };
+      "03-code" = { name = "code"; };
+      "04-music" = { name = "music"; };
     };
 
     layer-rules = [
