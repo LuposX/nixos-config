@@ -40,6 +40,7 @@ in
     "super+space".action.spawn = noctalia "launcher toggle";
     "super+return".action = spawn apps.terminal;
     "super+b".action = spawn apps.browser;
+    "super+shift+b".action = spawn [ "zen-twilight" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)
     "super+e".action = spawn apps.fileManager;
     "super+c".action.spawn = noctalia "launcher clipboard";
 

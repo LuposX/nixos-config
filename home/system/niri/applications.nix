@@ -5,6 +5,7 @@
 {
   #  browser = "${pkgs.firefox}/bin/firefox";
   browser = "zen-twilight";
+  browserYoutube = "zen-twilight -P youtube";
   terminal = "kitty";
   fileManager = "thunar";
   appLauncher = "${pkgs.walker}/bin/walker";

@@ -15,6 +15,20 @@ in {
 
   stylix.targets.zen-browser.profileNames = [ "default" ];
 
+  # Desktop entry for the YouTube profile
+  home.packages = [
+    (pkgs.makeDesktopItem {
+      name = "zen-youtube";
+      desktopName = "Zen (YouTube)";
+      comment = "Zen Browser — YouTube profile (no login, no recommendations)";
+      exec = "zen-twilight -P youtube %u";
+      icon = "zen-browser";
+      categories = [ "Network" "WebBrowser" ];
+      mimeTypes = [ "text/html" "x-scheme-handler/http" "x-scheme-handler/https" ];
+      startupWMClass = "zen-twilight";
+    })
+  ];
+
   programs.zen-browser = {
     enable = true;
 
@@ -139,6 +153,54 @@ in {
 
       spacesForce = false;
       # spaces = {};
+    };
+
+    # YouTube profile — minimal, no login, no recommendations
+    # Purpose: watch specific YouTube videos without getting sucked into the algorithm
+    # The key is: NEVER log in to YouTube in this profile. No history, no recommendations.
+    profiles.youtube = {
+      id = 1;
+      name = "youtube";
+      isDefault = false;
+      settings = {
+        # Zen settings (same as default for consistency)
+        "zen.workspaces.continue-where-left-off" = true;
+        "zen.workspaces.natural-scroll" = true;
+        "zen.view.compact.hide-tabbar" = true;
+        "zen.view.compact.hide-toolbar" = true;
+        "zen.view.compact.animate-sidebar" = false;
+        "zen.urlbar.behavior" = "float";
+
+        # YouTube-specific: kill recommendations
+        "browser.newtabpage.enabled" = false;
+        "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
+        "browser.newtabpage.activity-stream.feeds.topsites" = false;
+        "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr" = false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.snippets" = false;
+
+        # Disable autoplay
+        "media.autoplay.default" = 5; # 5 = block all
+        "media.autoplay.blocking_policy" = 2;
+        "media.autoplay.enabled" = false;
+
+        # Blank start page — nothing to pull you in
+        "browser.startup.homepage" = "about:blank";
+        "browser.startup.page" = 0; # blank page on startup
+
+        # Disable Pocket
+        "extensions.pocket.enabled" = false;
+      };
+
+      # No bookmarks, no containers, no spaces — pure YouTube tool
+      bookmarks = {
+        force = false;
+        settings = [];
+      };
+
+      pinsForce = false;
+      containersForce = false;
+      spacesForce = false;
     };
   };
 }
