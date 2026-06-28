@@ -8,9 +8,14 @@ in {
 
     settings = {
       model = {
-        default = "deepseek-v4-flash";
-        provider = "deepseek";
-        base_url = "https://api.deepseek.com/v1";
+        # Old: DeepSeek direct API
+        # default = "deepseek-v4-flash";
+        # provider = "deepseek";
+        # base_url = "https://api.deepseek.com/v1";
+
+        # New: OpenCode Zen
+        default = "deepseek-v4-flash-free";
+        provider = "opencode";
       };
 
       dashboard.show_token_analytics = true;
