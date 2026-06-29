@@ -81,12 +81,18 @@ in
     "super+2".action.focus-workspace = 2;
     "super+3".action.focus-workspace = 3;
     "super+4".action.focus-workspace = 4;
+    "super+5".action.focus-workspace = 5;
+    "super+6".action.focus-workspace = 6;
+    "super+7".action.focus-workspace = 7;
 
     # Move window to workspace
     "super+shift+1".action.move-window-to-workspace = 1;
     "super+shift+2".action.move-window-to-workspace = 2;
     "super+shift+3".action.move-window-to-workspace = 3;
     "super+shift+4".action.move-window-to-workspace = 4;
+    "super+shift+5".action.move-window-to-workspace = 5;
+    "super+shift+6".action.move-window-to-workspace = 6;
+    "super+shift+7".action.move-window-to-workspace = 7;
 
     # Lock Screen
     "super+l".action.spawn = noctalia "lockScreen lock";
