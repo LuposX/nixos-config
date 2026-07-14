@@ -59,7 +59,7 @@
         gnome-calendar
         resources
         gnome-clocks
-        wireguard-ui
+        wireguard-tools
         zotero
         telegram-desktop
 
