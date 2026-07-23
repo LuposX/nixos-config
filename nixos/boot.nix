@@ -1,9 +1,12 @@
-{ pkgs, config, lib, ... }: let
-    isLaptop = config.var.isLaptop;
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
+  isLaptop = config.var.isLaptop;
 in {
   boot = {
-    # Makes boot entries (in /efi/loader/entries/) structured and discoverable by other tools.
-    bootspec.enable = true;
     loader = {
       # Allows NixOS to write directly to EFI variables in your motherboard's NVRAM.
       efi.canTouchEfiVariables = true;
