@@ -71,8 +71,8 @@
       uv
       reptyr
 
-      # LaTeX typesetting (latexmk, pdflatex, biblatex, etc.)
-      texlive.combined.scheme-medium
+      # LaTeX typesetting (full scheme: latexmk, pdflatex, biblatex, etc.)
+      texlive.combined.scheme-full
       # TeXpresso: live rendering daemon for LaTeX
       texpresso
 
