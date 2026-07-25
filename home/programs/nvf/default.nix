@@ -1,8 +1,9 @@
 # Source: https://github.com/JaKooLit/Ja-ZaneyOS/blob/ja-edited/modules/home/nvf.nix
-# For otpions see: https://notashelf.github.io/nvf/options
+# For options see: https://notashelf.github.io/nvf/options
 {
   inputs,
   config,
+  pkgs,
   ...
 }: {
   imports = [ inputs.nvf.homeManagerModules.default ];
@@ -67,6 +68,13 @@
         html.enable = true;
         json.enable = true;
         css.enable = true;
+
+        # LaTeX support: texlab LSP + treesitter + formatters
+        # VimTeX handles syntax highlighting, so treesitter is left disabled
+        # (follows global enableTreesitter = false)
+        tex = {
+          enable = true;
+        };
       };
 
       binds = {
@@ -133,6 +141,13 @@
         highlight-undo.enable = true;
         indent-blankline.enable = true;
       };
+
+      # ── LaTeX: TeXpresso Plugin ────────────────────────────────
+      # Provides live rendering and error reporting for LaTeX.
+      # Start with `:TeXpresso %` on your root .tex file.
+      # The texpresso binary must be in PATH (added as a system package).
+      # Docs: https://github.com/let-def/texpresso.vim
+      startPlugins = [ pkgs.vimPlugins.texpresso-vim ];
 
       keymaps = [
         {

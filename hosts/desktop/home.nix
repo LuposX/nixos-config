@@ -71,6 +71,11 @@
       uv
       reptyr
 
+      # LaTeX typesetting (latexmk, pdflatex, biblatex, etc.)
+      texlive.combined.scheme-medium
+      # TeXpresso: live rendering daemon for LaTeX
+      texpresso
+
       # Utils
       zip
       unzip
