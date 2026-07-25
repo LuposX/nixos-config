@@ -56,12 +56,7 @@
       # UNSTABLE (system / fast-moving / dev / wayland)
       (with pkgs; [
         # Apps
-        gnome-calendar
-        resources
-        gnome-clocks
         wireguard-tools
-        zotero
-        telegram-desktop
 
         # Dev
         uv
@@ -94,10 +89,17 @@
 
       # STABLE (big / heavy / slow-moving GUI apps)
       ++ (with pkgsStable; [
+        resources
+        gnome-calendar
+        gnome-text-editor
+        gnome-clocks
+
+        zotero
+        telegram-desktop
         libreoffice
+
         jetbrains.pycharm-community
         qbittorrent
-        gnome-text-editor
         texlive.combined.scheme-full  # TeX Live — huge, only update with stable
       ]);
 

@@ -19,7 +19,13 @@
       preventJunkFiles = true; # Disable swap and backup files
       searchCase = "smart";
 
-      git.enable = true;
+      git = {
+        enable = true;
+        # Gitsigns disabled — user doesn't use inline diff markers
+        gitsigns.enable = false;
+        # Git-conflict disabled — user handles merges externally
+        git-conflict.enable = false;
+      };
 
       clipboard = {
         enable = true;
