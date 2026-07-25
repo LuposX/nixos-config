@@ -67,8 +67,6 @@
         uv
         ripgrep
 
-        # LaTeX typesetting (full scheme: latexmk, pdflatex, biblatex, etc.)
-        texlive.combined.scheme-full
         # TeXpresso: live rendering daemon for LaTeX
         texpresso
 
@@ -100,6 +98,7 @@
         jetbrains.pycharm-community
         qbittorrent
         gnome-text-editor
+        texlive.combined.scheme-full  # TeX Live — huge, only update with stable
       ]);
 
     # Don't touch this

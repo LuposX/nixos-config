@@ -1,5 +1,6 @@
 {
   pkgs,
+  pkgsStable,
   config,
   inputs,
   ...
@@ -50,51 +51,57 @@
     inherit (config.var) username;
     homeDirectory = "/home/" + config.var.username;
 
-    packages = with pkgs; [
+    packages =
+      (with pkgs; [
 
-      # Apps
-      gnome-calendar # Calendar
-      resources # Monitor for your system resources
-      gnome-clocks
-      libreoffice-qt6 # Office Stuff
-      popsicle
-      tor
-      tor-browser
-      ledger-udev-rules
-      ledger-live-desktop
-      kdePackages.kleopatra
-      zotero
-      telegram-desktop
-      wireguard-ui
+        # Apps
+        gnome-calendar # Calendar
+        resources # Monitor for your system resources
+        gnome-clocks
+        popsicle
+        tor
+        tor-browser
+        ledger-udev-rules
+        ledger-live-desktop
+        kdePackages.kleopatra
+        zotero
+        telegram-desktop
+        wireguard-ui
 
-      # Dev
-      uv
-      reptyr
+        # Dev
+        uv
+        reptyr
 
-      # LaTeX typesetting (full scheme: latexmk, pdflatex, biblatex, etc.)
-      texlive.combined.scheme-full
-      # TeXpresso: live rendering daemon for LaTeX
-      texpresso
+        # TeXpresso: live rendering daemon for LaTeX
+        texpresso
 
-      # Utils
-      zip
-      unzip
-      pfetch
-      fastfetch
+        # Utils
+        zip
+        unzip
+        pfetch
+        fastfetch
 
-      # Key Stuff
-      gnupg
-      pinentry-curses
+        # Key Stuff
+        gnupg
+        pinentry-curses
 
-      # Fun
-      peaclock
-      cbonsai
-      pipes
-      cmatrix
+        # Fun
+        peaclock
+        cbonsai
+        pipes
+        cmatrix
 
-      # Spyware, use web-client.
-      # zoom-us
-    ];
+        # Spyware, use web-client.
+        # zoom-us
+      ])
+
+      # STABLE (big / heavy / slow-moving)
+      ++ (with pkgsStable; [
+        jetbrains.pycharm-community
+        qbittorrent
+        libreoffice-qt6 # Office Stuff
+        texlive.combined.scheme-full  # TeX Live — huge, only update with stable
+      ]);
 
     # Don't touch this
     stateVersion = "25.05";

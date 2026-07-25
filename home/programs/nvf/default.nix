@@ -149,6 +149,32 @@
       # Docs: https://github.com/let-def/texpresso.vim
       startPlugins = [ pkgs.vimPlugins.texpresso-vim ];
 
+      # ── Which-key: group names for all categories ────────────
+      # Each first-level prefix gets a human-readable label.
+      # This registers descriptions for the which-key popup when you press <leader>.
+      luaConfigPost = ''
+        local wk = require("which-key")
+        wk.add({
+          { "<leader>c", group = "Conflict" },   -- git-conflict
+          { "<leader>f", group = "Find" },       -- telescope file finding
+          { "<leader>g", group = "Git" },        -- telescope git / fugitive
+          { "<leader>h", group = "Hunks" },      -- gitsigns
+          { "<leader>l", group = "LSP" },        -- code action, diagnostic, format
+          { "<leader>p", group = "Preview" },    -- TeXpresso / live rendering
+          { "<leader>s", group = "Search" },     -- telescope grep/buffers
+          { "<leader>t", group = "Hunks" },      -- gitsigns (toggle)
+          { "<leader>x", group = "Trouble" },    -- trouble diagnostics
+        })
+      '';
+
+      # ── Notes ────────────────────────────────────────────────
+      # 1. "Code action not supported" on LaTeX — this is a texlab LSP
+      #    limitation. texlab does NOT implement textDocument/codeAction.
+      #    Only the LSP servers that support it will show code actions.
+      # 2. Trouble / quickfix "no results" — no diagnostics were emitted.
+      #    For LaTeX, texlab only populates diagnostics after a compile
+      #    (e.g. via TeXpresso or latexmk). A clean file = empty list.
+
       keymaps = [
         # ── File navigation ──────────────────────────────────
         {
