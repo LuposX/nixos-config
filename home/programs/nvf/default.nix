@@ -69,8 +69,8 @@
         json.enable = true;
         css.enable = true;
 
-        # LaTeX support: texlab LSP + treesitter + formatters
-        # VimTeX handles syntax highlighting, so treesitter is left disabled
+        # LaTeX support: texlab LSP + treesitter + formatters.
+        # TeXpresso handles live rendering, so treesitter is left disabled
         # (follows global enableTreesitter = false)
         tex = {
           enable = true;
@@ -150,10 +150,25 @@
       startPlugins = [ pkgs.vimPlugins.texpresso-vim ];
 
       keymaps = [
+        # ── File navigation ──────────────────────────────────
         {
           key = "<leader>o";
           mode = "n";
           action = ":Oil --float <CR>";
+          desc = "Oil file manager";
+        }
+        # ── LaTeX / TeXpresso (grouped under <leader>l) ──────
+        {
+          key = "<leader>lt";
+          mode = "n";
+          action = ":TeXpresso %<CR>";
+          desc = "Launch TeXpresso live preview";
+        }
+        {
+          key = "<leader>lq";
+          mode = "n";
+          action = ":TeXpresso stop<CR>";
+          desc = "Stop TeXpresso";
         }
       ];
 
