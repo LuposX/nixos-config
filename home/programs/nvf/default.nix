@@ -157,15 +157,15 @@
           action = ":Oil --float <CR>";
           desc = "Oil file manager";
         }
-        # ── LaTeX / TeXpresso (grouped under <leader>l) ──────
+        # ── TeXpresso (grouped under <leader>p) ────────────────
         {
-          key = "<leader>lt";
+          key = "<leader>pp";
           mode = "n";
           action = ":TeXpresso %<CR>";
           desc = "Launch TeXpresso live preview";
         }
         {
-          key = "<leader>lq";
+          key = "<leader>pq";
           mode = "n";
           action = ":TeXpresso stop<CR>";
           desc = "Stop TeXpresso";
