@@ -296,8 +296,8 @@
         {
           key = "<leader>pf";
           mode = "n";
-          action = ":!latexmk -lualatex -auxdir=build -pdf -verbose %<CR>";
-          desc = "Final PDF (aux → build/, PDF here)";
+          action = ":term latexmk -lualatex -auxdir=build -pdf -verbose \"%\"<CR>";
+          desc = "Final PDF (terminal, aux→build/)";
         }
       ];
 
