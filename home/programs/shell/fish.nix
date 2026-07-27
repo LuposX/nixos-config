@@ -92,6 +92,7 @@ in {
 
       # PDF viewer
       pdf = "zathura";
+      pdfc = "latexmk -lualatex -auxdir=build -outdir=.";
 
       # NixOS related
       rb = "sudo nixos-rebuild switch --flake ${configDirectory}#${hostname}"; # Stands for rebuild
