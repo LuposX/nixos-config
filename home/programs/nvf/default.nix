@@ -76,8 +76,7 @@
         css.enable = true;
 
         # LaTeX support: texlab LSP + treesitter + formatters.
-        # TeXpresso handles live rendering, so treesitter is left disabled
-        # (follows global enableTreesitter = false)
+        # VimTeX handles compilation (via latexmk — lualatex engine).
         tex = {
           enable = true;
         };
@@ -148,25 +147,28 @@
         indent-blankline.enable = true;
       };
 
-      # ── LaTeX: TeXpresso Plugin ────────────────────────────────
-      # Provides live rendering and error reporting for LaTeX.
-      # Start with `:TeXpresso %` on your root .tex file.
-      # The texpresso binary must be in PATH (added as a system package).
-      # Docs: https://github.com/let-def/texpresso.vim
-      startPlugins = [ pkgs.vimPlugins.texpresso-vim ];
+      # ── LaTeX: VimTeX Plugin ────────────────────────────────────
+      # VimTeX handles compilation (via latexmk), text objects, motions,
+      # and PDF viewer integration. Default compiler: latexmk.
+      # Continous mode: :VimtexCompile — recompiles on every :w.
+      # Single-shot:   :VimtexCompileSS — one-off compile.
+      startPlugins = [ pkgs.vimPlugins.vimtex ];
 
-      # ── Which-key: group names for all categories ────────────
-      # Each first-level prefix gets a human-readable label.
-      # This registers descriptions for the which-key popup when you press <leader>.
+      # ── Lua config (vimtex + which-key) ─────────────────────
+      # VimTeX uses texpresso for live rendering.
+      # The texpresso binary is available via the system environment.
       luaConfigPost = ''
+        -- VimTeX compiler: texpresso (live incremental preview)
+        vim.g.vimtex_compiler_method = 'texpresso'
+
+        -- Which-key: group labels
         local wk = require("which-key")
         wk.add({
           { "<leader>c", group = "Conflict" },   -- git-conflict
           { "<leader>f", group = "Find" },       -- telescope file finding
           { "<leader>g", group = "Git" },        -- telescope git / fugitive
           { "<leader>h", group = "Hunks" },      -- gitsigns
-          { "<leader>l", group = "LSP" },        -- code action, diagnostic, format
-          { "<leader>p", group = "Preview" },    -- TeXpresso / live rendering
+          { "<leader>p", group = "LaTeX" },      -- VimTeX compile / clean
           { "<leader>s", group = "Search" },     -- telescope grep/buffers
           { "<leader>t", group = "Hunks" },      -- gitsigns (toggle)
           { "<leader>x", group = "Trouble" },    -- trouble diagnostics
@@ -179,7 +181,11 @@
       #    Only the LSP servers that support it will show code actions.
       # 2. Trouble / quickfix "no results" — no diagnostics were emitted.
       #    For LaTeX, texlab only populates diagnostics after a compile
-      #    (e.g. via TeXpresso or latexmk). A clean file = empty list.
+      #    (e.g. via :VimtexCompile). A clean file = empty list.
+      # 3. texpresso renders incrementally — no build/ subfolder needed.
+      #    For a final / presentation-ready PDF, use <leader>pf which runs
+      #    latexmk directly (lualatex, aux in build/, PDF in project root).
+      #    The texpresso binary must be in PATH (provided by system packages).
 
       keymaps = [
         # ── File navigation ──────────────────────────────────
@@ -189,18 +195,109 @@
           action = ":Oil --float <CR>";
           desc = "Oil file manager";
         }
-        # ── TeXpresso (grouped under <leader>p) ────────────────
+        # ── LaTeX / VimTeX (grouped under <leader>p) ────────────────
+        # All mirrors of vimtex's default <localleader>l* mappings
         {
-          key = "<leader>pp";
+          key = "<leader>pi";
           mode = "n";
-          action = ":TeXpresso %<CR>";
-          desc = "Launch TeXpresso live preview";
+          action = ":VimtexInfo<CR>";
+          desc = "VimTeX info";
+        }
+        {
+          key = "<leader>pt";
+          mode = "n";
+          action = ":VimtexTocOpen<CR>";
+          desc = "Open TOC";
+        }
+        {
+          key = "<leader>pT";
+          mode = "n";
+          action = ":VimtexTocToggle<CR>";
+          desc = "Toggle TOC";
         }
         {
           key = "<leader>pq";
           mode = "n";
-          action = ":TeXpresso stop<CR>";
-          desc = "Stop TeXpresso";
+          action = ":VimtexLog<CR>";
+          desc = "Open log";
+        }
+        {
+          key = "<leader>pv";
+          mode = "n";
+          action = ":VimtexView<CR>";
+          desc = "View PDF";
+        }
+        {
+          key = "<leader>pl";
+          mode = "n";
+          action = ":VimtexCompile<CR>";
+          desc = "Continuous compile";
+        }
+        {
+          key = "<leader>pL";
+          mode = "n";
+          action = ":VimtexCompileSelected<CR>";
+          desc = "Compile selected";
+        }
+        {
+          key = "<leader>pS";
+          mode = "n";
+          action = ":VimtexCompileSS<CR>";
+          desc = "Single-shot compile";
+        }
+        {
+          key = "<leader>pk";
+          mode = "n";
+          action = ":VimtexStop<CR>";
+          desc = "Stop compilation";
+        }
+        {
+          key = "<leader>pe";
+          mode = "n";
+          action = ":VimtexErrors<CR>";
+          desc = "Show errors";
+        }
+        {
+          key = "<leader>pc";
+          mode = "n";
+          action = ":VimtexClean<CR>";
+          desc = "Clean artifacts";
+        }
+        {
+          key = "<leader>pC";
+          mode = "n";
+          action = ":VimtexCleanFull<CR>";
+          desc = "Clean all (incl. PDF)";
+        }
+        {
+          key = "<leader>px";
+          mode = "n";
+          action = ":VimtexReload<CR>";
+          desc = "Reload VimTeX";
+        }
+        {
+          key = "<leader>pX";
+          mode = "n";
+          action = ":VimtexReloadState<CR>";
+          desc = "Reload state";
+        }
+        {
+          key = "<leader>ps";
+          mode = "n";
+          action = ":VimtexToggleMain<CR>";
+          desc = "Toggle main file";
+        }
+        {
+          key = "<leader>pa";
+          mode = "n";
+          action = ":VimtexContextMenu<CR>";
+          desc = "Context menu";
+        }
+        {
+          key = "<leader>pf";
+          mode = "n";
+          action = ":!latexmk -lualatex -auxdir=build -pdf -verbose %<CR>";
+          desc = "Final PDF (aux → build/, PDF here)";
         }
       ];
 
