@@ -80,7 +80,17 @@
         tex = {
           enable = true;
         };
+
+        # Typst support: tinymist LSP + treesitter + typstyle formatter.
+        typst = {
+          enable = true;
+          treesitter.enable = true;
+          format.enable = true;
+          extensions.typst-preview-nvim.enable = true;
+        };
       };
+
+      formatter.conform-nvim.presets.typstyle.enable = true;
 
       binds = {
         whichKey.enable = true;
@@ -168,7 +178,7 @@
           { "<leader>f", group = "Find" },       -- telescope file finding
           { "<leader>g", group = "Git" },        -- telescope git / fugitive
           { "<leader>h", group = "Hunks" },      -- gitsigns
-          { "<leader>p", group = "LaTeX" },      -- VimTeX compile / clean
+          { "<leader>p", group = "LaTeX / Typst" },      # VimTeX + typst-preview
           { "<leader>s", group = "Search" },     -- telescope grep/buffers
           { "<leader>t", group = "Hunks" },      -- gitsigns (toggle)
           { "<leader>x", group = "Trouble" },    -- trouble diagnostics
@@ -183,9 +193,10 @@
       #    For LaTeX, texlab only populates diagnostics after a compile
       #    (e.g. via :VimtexCompile). A clean file = empty list.
       # 3. texpresso renders incrementally — no build/ subfolder needed.
-      #    For a final / presentation-ready PDF, use <leader>pf which runs
-      #    latexmk directly (lualatex, aux in build/, PDF in project root).
       #    The texpresso binary must be in PATH (provided by system packages).
+      # 4. Typst: tinymist LSP provides completion, diagnostics, formatting,
+      #    and PDF export. Use <leader>pt to toggle browser preview,
+      #    <leader>pf to export PDF.
 
       keymaps = [
         # ── File navigation ──────────────────────────────────
@@ -195,19 +206,37 @@
           action = ":Oil --float <CR>";
           desc = "Oil file manager";
         }
+        # ── Window navigation (Ctrl+{h,j,k,l}) ─────────────────────
+        {
+          key = "<C-h>";
+          mode = "n";
+          action = "<C-w>h";
+          desc = "Window left";
+        }
+        {
+          key = "<C-j>";
+          mode = "n";
+          action = "<C-w>j";
+          desc = "Window down";
+        }
+        {
+          key = "<C-k>";
+          mode = "n";
+          action = "<C-w>k";
+          desc = "Window up";
+        }
+        {
+          key = "<C-l>";
+          mode = "n";
+          action = "<C-w>l";
+          desc = "Window right";
+        }
         # ── LaTeX / VimTeX (grouped under <leader>p) ────────────────
-        # All mirrors of vimtex's default <localleader>l* mappings
         {
           key = "<leader>pi";
           mode = "n";
           action = ":VimtexInfo<CR>";
           desc = "VimTeX info";
-        }
-        {
-          key = "<leader>pt";
-          mode = "n";
-          action = ":VimtexTocOpen<CR>";
-          desc = "Open TOC";
         }
         {
           key = "<leader>pT";
@@ -234,12 +263,6 @@
           desc = "Continuous compile";
         }
         {
-          key = "<leader>pL";
-          mode = "n";
-          action = ":VimtexCompileSelected<CR>";
-          desc = "Compile selected";
-        }
-        {
           key = "<leader>pS";
           mode = "n";
           action = ":VimtexCompileSS<CR>";
@@ -264,12 +287,6 @@
           desc = "Clean artifacts";
         }
         {
-          key = "<leader>pC";
-          mode = "n";
-          action = ":VimtexCleanFull<CR>";
-          desc = "Clean all (incl. PDF)";
-        }
-        {
           key = "<leader>px";
           mode = "n";
           action = ":VimtexReload<CR>";
@@ -281,23 +298,18 @@
           action = ":VimtexReloadState<CR>";
           desc = "Reload state";
         }
+        # ── Typst (grouped under <leader>p) ─────────────────────────
         {
-          key = "<leader>ps";
+          key = "<leader>pt";
           mode = "n";
-          action = ":VimtexToggleMain<CR>";
-          desc = "Toggle main file";
-        }
-        {
-          key = "<leader>pa";
-          mode = "n";
-          action = ":VimtexContextMenu<CR>";
-          desc = "Context menu";
+          action = ":TypstPreviewToggle<CR>";
+          desc = "Toggle Typst preview";
         }
         {
           key = "<leader>pf";
           mode = "n";
-          action = ":term latexmk -lualatex -auxdir=build -pdf -verbose \"%\"<CR>";
-          desc = "Final PDF (terminal, aux→build/)";
+          action = ":LspTinymistExportPdf<CR>";
+          desc = "Export Typst PDF";
         }
       ];
 
