@@ -127,16 +127,20 @@
         oil-nvim.enable = true;
         oil-nvim.gitStatus.enable = true;
 
-         preview.markdownPreview = {
-            enable = true;
-            autoStart = true;
-            autoClose = true;
-          };
+        undotree.enable = true;
 
-          images = {
-            image-nvim.enable = false;
-          };
+        preview.markdownPreview = {
+           enable = true;
+           autoStart = true;
+           autoClose = true;
+         };
+
+         images = {
+           image-nvim.enable = false;
+         };
       };
+
+      notes.todo-comments.enable = true;
 
       ui = {
         borders.enable = true;
@@ -178,7 +182,7 @@
           { "<leader>f", group = "Find" },       -- telescope file finding
           { "<leader>g", group = "Git" },        -- telescope git / fugitive
           { "<leader>h", group = "Hunks" },      -- gitsigns
-          { "<leader>p", group = "LaTeX / Typst" },      # VimTeX + typst-preview
+          { "<leader>p", group = "LaTeX / Typst" },      -- VimTeX + typst-preview
           { "<leader>s", group = "Search" },     -- telescope grep/buffers
           { "<leader>t", group = "Hunks" },      -- gitsigns (toggle)
           { "<leader>x", group = "Trouble" },    -- trouble diagnostics
