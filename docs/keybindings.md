@@ -72,18 +72,12 @@
 
 ## Shell
 
-### **Custom `fzf.fish` Keybindings**
-
-| Description                                           | Keybinding                           |
-| ----------------------------------------------------- | ------------------------------------ |
-| Open selected file using `smart_open_fzf`, then abort | Ctrl + O _(within directory search)_ |
-| Fuzzy search file contents via `ripgrep_fzf`          | Ctrl + G                             |
-
 ### **fzf.fish Default Keybindings**
 
 | Description                                                     | Keybinding     |
 | --------------------------------------------------------------- | -------------- |
 | Search Directory – fuzzy find files/dirs, insert relative paths | Ctrl + Alt + F |
+| Search Directory – open selected file in nvim                   | Ctrl + O _(within directory search)_ |
 | Search Git Log – fuzzy find Git commits, insert hashes          | Ctrl + Alt + L |
 | Search Git Status – fuzzy find Git changes, insert file paths   | Ctrl + Alt + S |
 | Search History – fuzzy find past commands                       | Ctrl + R       |

@@ -14,16 +14,14 @@ in {
       # disable fish greeting
       set fish_greeting
 
-      # Customize “Search Directory” (fzf_directory_opts) to preview images → kitty, else bat.
-      # in config.fish (or wherever you set it):
-      # Deprecated
-      # set -Ux fzf_preview_file_cmd preview_fzf # DEPRECATED: preview
+      # fzf.fish: open file in nvim with Ctrl+O during directory search
+      set fzf_directory_opts --bind "ctrl-o:execute(nvim {} &> /dev/tty)"
 
-      # set fzf_directory_opts \
-      #  --bind "ctrl-o:execute(smart_open_fzf {} )+abort"
+      # fzf.fish: exclude Games from file search
+      set fzf_fd_opts --exclude Games
 
-      # Press CTRL+G to activate ripgrep with fzf, to fuzzy search content within files.
-      bind \cg ripgrep_fzf
+      # fzf.fish: use preview.fish for file previews
+      set -U fzf_preview_file_cmd preview
 
       # For NN to cd on quit
       # Rename this file to match the name of the function
