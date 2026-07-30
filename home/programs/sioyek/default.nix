@@ -52,6 +52,7 @@
       ruler_mode = "1";              # rectangle around current line
       ruler_padding = "1.0";
       create_table_of_contents_if_not_exists = "1";
+      keyboard_select_font_size = "14";  # smaller labels for keyboard_select (v)
 
       # ── Synctex (LaTeX) ───────────────────────────────
       synctex = "2";                 # double-click to jump from PDF to source
