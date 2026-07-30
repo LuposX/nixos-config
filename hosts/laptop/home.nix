@@ -18,7 +18,7 @@
     ../../home/programs/lazygit
     ../../home/programs/thunar
     ../../home/programs/vscode
-    ../../home/programs/zathura
+    ../../home/programs/sioyek
     ../../home/programs/ssh
     ../../home/programs/spotify
     ../../home/programs/thunderbird
@@ -62,9 +62,6 @@
         uv
         ripgrep
 
-        # TeXpresso: live rendering daemon for LaTeX
-        texpresso
-
         # Utils
         zip
         unzip
@@ -72,6 +69,9 @@
         fastfetch
         cliphist # For clipboard history in Noctalia
         wl-mirror # For Screen Mirroring in Noctalia
+
+        # Image viewer (for xdg-open)
+        imv
 
         # Key Stuff
         gnupg

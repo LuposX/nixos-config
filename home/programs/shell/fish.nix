@@ -82,6 +82,9 @@ in {
       cat = "bat";
       find = "fd";
 
+      # Open any file with default app (detaches from terminal)
+      x = "xdg-open";
+
       n = "nnn";
 
       # Editor
@@ -89,7 +92,7 @@ in {
       vim = "nvim";
 
       # PDF viewer
-      pdf = "zathura";
+      pdf = "sioyek";
       pdfc = "latexmk -lualatex -auxdir=build -outdir=.";
 
       # NixOS related

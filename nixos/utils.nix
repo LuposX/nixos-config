@@ -14,7 +14,6 @@
   backupFileExtension = config.var.backupFileExtension;
   isLaptop = config.var.isLaptop;
 in {
-
   networking.hostName = hostname;
 
   networking.networkmanager.enable = true;
@@ -89,6 +88,7 @@ in {
     TERMINAL = "kitty";
     TERM = "kitty";
     BROWSER = "firefox";
+    DE = "niri";
   };
 
   programs.dconf.enable = true;
@@ -133,6 +133,7 @@ in {
     dig
     pciutils
     jq
+    glib
 
     # Ventoy with GUI override
     # (ventoy.override {
@@ -167,8 +168,8 @@ in {
 
   services.pcscd.enable = true;
   programs.gnupg.agent = {
-     enable = true;
-     enableSSHSupport = true;
+    enable = true;
+    enableSSHSupport = true;
   };
 
   services.gnome.glib-networking.enable = true;
@@ -184,12 +185,11 @@ in {
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
+    xdgOpenUsePortal = false; # use mimeapps.list directly (portal shows chooser on Niri)
     config = {
-      common.default = ["gtk"];
-      hyprland.default = ["gtk" "hyprland"];
+      common.default = ["gtk" "gnome"];
+      niri.default = ["gtk" "gnome"];
     };
-
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
 
