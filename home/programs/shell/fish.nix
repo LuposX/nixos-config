@@ -89,7 +89,7 @@ in {
       vim = "nvim";
 
       # PDF viewer
-      pdf = "zathura";
+      pdf = "sioyek";
       pdfc = "latexmk -lualatex -auxdir=build -outdir=.";
 
       # NixOS related

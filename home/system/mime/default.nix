@@ -14,7 +14,7 @@ with lib; let
     video = ["mpv.desktop"];
     directory = ["thunar.desktop"];
     office = ["libreoffice.desktop"];
-    pdf = ["org.pwmt.zathura-pdf-mupdf.desktop"];
+    pdf = ["sioyek.desktop"];
     terminal = ["kitty.desktop"];
     archive = ["xarchiver.desktop"];
   };
