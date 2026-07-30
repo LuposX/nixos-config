@@ -73,6 +73,9 @@
         cliphist # For clipboard history in Noctalia
         wl-mirror # For Screen Mirroring in Noctalia
 
+        # Image viewer (for xdg-open)
+        imv
+
         # Key Stuff
         gnupg
         pinentry-curses

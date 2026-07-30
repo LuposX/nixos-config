@@ -81,6 +81,9 @@
         pfetch
         fastfetch
 
+        # Image viewer (for xdg-open)
+        imv
+
         # Key Stuff
         gnupg
         pinentry-curses
