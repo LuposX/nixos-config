@@ -133,6 +133,7 @@ in {
     dig
     pciutils
     jq
+    glib
 
     # Ventoy with GUI override
     # (ventoy.override {
