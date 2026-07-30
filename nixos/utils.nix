@@ -184,7 +184,7 @@ in {
 
   xdg.portal = {
     enable = true;
-    xdgOpenUsePortal = true;
+    xdgOpenUsePortal = false; # use mimeapps.list directly (portal shows chooser on Niri)
     config = {
       common.default = ["gtk"];
       hyprland.default = ["gtk" "hyprland"];
