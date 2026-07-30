@@ -9,7 +9,7 @@ with lib; let
   defaultApps = {
     browser = ["zen-twilight.desktop"];
     text = ["org.gnome.TextEditor.desktop"];
-    image = ["imv-dir.desktop"];
+    image = ["imv.desktop"];
     audio = ["mpv.desktop"];
     video = ["mpv.desktop"];
     directory = ["thunar.desktop"];
@@ -92,7 +92,6 @@ in {
   xdg = {
     mimeApps = {
       enable = true;
-      associations.added = associations;
       defaultApplications = associations;
     };
   };
