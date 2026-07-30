@@ -82,6 +82,9 @@ in {
       cat = "bat";
       find = "fd";
 
+      # Open any file with default app (detaches from terminal)
+      x = "xdg-open";
+
       n = "nnn";
 
       # Editor
