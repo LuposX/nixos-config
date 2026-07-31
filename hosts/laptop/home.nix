@@ -62,9 +62,6 @@
         uv
         ripgrep
 
-        # TeXpresso: live rendering daemon for LaTeX
-        texpresso
-
         # Utils
         zip
         unzip

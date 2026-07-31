@@ -169,11 +169,31 @@
       startPlugins = [ pkgs.vimPlugins.vimtex ];
 
       # ── Lua config (vimtex + which-key) ─────────────────────
-      # VimTeX uses texpresso for live rendering.
-      # The texpresso binary is available via the system environment.
+      # Viewer: sioyek. Do NOT switch back to texpresso as compiler —
+      # it renders in its own embedded MuPDF/SDL window and ignores
+      # vimtex_view_method, so sioyek would never open.
       luaConfigPost = ''
-        -- VimTeX compiler: texpresso (live incremental preview)
-        vim.g.vimtex_compiler_method = 'texpresso'
+        -- VimTeX compiler: latexmk (lualatex, synctex, build/)
+        vim.g.vimtex_compiler_method = 'latexmk'
+        vim.g.vimtex_compiler_latexmk = {
+          aux_dir = 'build',
+          out_dir = 'build',
+          callback = 1,
+          continuous = 1,
+          executable = 'latexmk',
+          options = {
+            '-verbose',
+            '-file-line-error',
+            '-synctex=1',
+            '-interaction=nonstopmode',
+          },
+        }
+        vim.g.vimtex_compiler_latexmk_engines = {
+          ['_'] = '-lualatex',
+        }
+
+        -- VimTeX viewer: sioyek (forward search via synctex)
+        vim.g.vimtex_view_method = 'sioyek'
 
         -- Which-key: group labels
         local wk = require("which-key")
@@ -196,8 +216,9 @@
       # 2. Trouble / quickfix "no results" — no diagnostics were emitted.
       #    For LaTeX, texlab only populates diagnostics after a compile
       #    (e.g. via :VimtexCompile). A clean file = empty list.
-      # 3. texpresso renders incrementally — no build/ subfolder needed.
-      #    The texpresso binary must be in PATH (provided by system packages).
+      # 3. latexmk output goes to build/ (aux_dir + out_dir). <leader>pv
+      #    opens the PDF in sioyek with forward search; sioyek auto-reloads
+      #    on recompile.
       # 4. Typst: tinymist LSP provides completion, diagnostics, formatting,
       #    and PDF export. Use <leader>pt to toggle browser preview,
       #    <leader>pf to export PDF.
