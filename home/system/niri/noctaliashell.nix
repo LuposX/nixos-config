@@ -3,11 +3,26 @@
 {
   inputs,
   config,
+  pkgs,
+  lib,
   ...
 }:
 
 let
   profilePicture = config.var.profile-picture;
+
+  # Keyboard layout indicator for niri.
+  # Vendored via home.activation (NOT the noctalia auto-installer): noctalia's
+  # installer does `git sparse-checkout set <pluginId>` and expects the plugin
+  # in an `<id>/` subdirectory, but this repo keeps manifest.json at the root.
+  # A home.file symlink would be read-only and break plugin settings persistence
+  # (~/.config/noctalia/plugins/<id>/settings.json), hence the mutable copy.
+  niriLayoutIndicatorSrc = pkgs.fetchFromGitHub {
+    owner = "alnrog";
+    repo = "niri-layout-indicator";
+    rev = "4600763d382b531bce5e55836258239b6f53a48b";
+    hash = "sha256-a2LzkgrmClvW6K63NNTungPgN5B0twteLVo7v0tWljs=";
+  };
 in
 {
   imports = [
@@ -18,6 +33,7 @@ in
     enable = true;
 
     plugins = {
+      version = 2;
       sources = [
         {
           enabled = true;
@@ -31,8 +47,14 @@ in
           enabled = true;
           sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
         };
+        niri-layout-indicator = {
+          enabled = true;
+          # "local" because the plugin is vendored below (mirrors the upstream
+          # install.sh which registers it with sourceUrl "local").
+          sourceUrl = "local";
+        };
       };
-  };
+    };
 
     settings = {
       bar = {
@@ -81,6 +103,9 @@ in
               id = "NotificationHistory";
             }
             {
+              id = "plugin:niri-layout-indicator";
+            }
+            {
               id = "Volume";
             }
             {
@@ -127,4 +152,12 @@ in
     };
     # this may also be a string or a path to a JSON file.
   };
+
+  # Deploy the vendored plugin as a mutable copy (see niriLayoutIndicatorSrc
+  # above). Keeps the directory writable so noctalia can persist plugin
+  # settings.json; settings.json is preserved across rebuilds (not in src).
+  home.activation.installNiriLayoutIndicator = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "$HOME/.config/noctalia/plugins/niri-layout-indicator"
+    cp -r ${niriLayoutIndicatorSrc}/. "$HOME/.config/noctalia/plugins/niri-layout-indicator/"
+  '';
 }

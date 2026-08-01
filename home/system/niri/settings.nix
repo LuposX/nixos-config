@@ -60,7 +60,7 @@
       };
 
       input = {
-        keyboard.xkb.layout = config.var.keyboardLayout;
+        keyboard.xkb.layout = config.var.keyboardLayouts or config.var.keyboardLayout;
         touchpad = {
           click-method = "button-areas";
           dwt = true;

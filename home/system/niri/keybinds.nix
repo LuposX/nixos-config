@@ -38,6 +38,7 @@ in
 
     # Applications
     "super+space".action.spawn = noctalia "launcher toggle";
+    "super+shift+space".action = switch-layout "next";  # Keyboard layout (DE <-> US)
     "super+return".action = spawn apps.terminal;
     "super+b".action = spawn apps.browser;
     "super+shift+b".action = spawn [ "zen-twilight" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)

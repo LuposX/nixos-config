@@ -19,6 +19,8 @@
       + "/Projects/nixos-config"; # The path of the nixos configuration directory
 
     keyboardLayout = "de";
+    # Comma-separated XKB layouts for niri (niri-flake expects a string here)
+    keyboardLayouts = "de,us";
 
     location = "Karlsruhe";
     timeZone = "Europe/Berlin";
