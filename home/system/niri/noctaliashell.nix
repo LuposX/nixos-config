@@ -156,8 +156,14 @@ in
   # Deploy the vendored plugin as a mutable copy (see niriLayoutIndicatorSrc
   # above). Keeps the directory writable so noctalia can persist plugin
   # settings.json; settings.json is preserved across rebuilds (not in src).
+  #
+  # Pitfall: `cp -r` preserves the nix-store source modes (0444/0555), so the
+  # FIRST activation succeeds but every later one fails with EACCES when cp
+  # tries to overwrite the read-only files. chmod + --no-preserve=mode keeps
+  # the tree writable and the activation idempotent.
   home.activation.installNiriLayoutIndicator = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     mkdir -p "$HOME/.config/noctalia/plugins/niri-layout-indicator"
-    cp -r ${niriLayoutIndicatorSrc}/. "$HOME/.config/noctalia/plugins/niri-layout-indicator/"
+    chmod -R u+w "$HOME/.config/noctalia/plugins/niri-layout-indicator"
+    cp -r --no-preserve=mode ${niriLayoutIndicatorSrc}/. "$HOME/.config/noctalia/plugins/niri-layout-indicator/"
   '';
 }

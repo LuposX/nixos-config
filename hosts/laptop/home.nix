@@ -57,6 +57,7 @@
       (with pkgs; [
         # Apps
         wireguard-tools
+        teams-for-linux
 
         # Dev
         uv
@@ -86,7 +87,6 @@
         # Games
         adwaita-icon-theme
       ])
-
       # STABLE (big / heavy / slow-moving GUI apps)
       ++ (with pkgsStable; [
         resources
@@ -100,7 +100,7 @@
 
         jetbrains.pycharm-community
         qbittorrent
-        texlive.combined.scheme-full  # TeX Live — huge, only update with stable
+        texlive.combined.scheme-full # TeX Live — huge, only update with stable
       ]);
 
     # Don't touch this
