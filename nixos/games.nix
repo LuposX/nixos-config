@@ -1,10 +1,12 @@
 { config, lib, pkgs, pkgsStable, ... }: {
-  programs.steam.enable = true;
+  # steam temporarily disabled (its fhsenv container chain blocked rebuilds
+  # via the broken nanoemoji fetch; re-enable after `nix flake update`)
+  # programs.steam.enable = true;
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
   environment.systemPackages = with pkgs; [
-    steam-run
+    # steam-run
     wine-wayland
     protonup-qt
   ] ++ (with pkgsStable; [
