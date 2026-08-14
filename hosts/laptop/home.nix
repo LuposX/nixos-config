@@ -27,6 +27,7 @@
     ../../home/programs/nvf
     ../../home/programs/nnn
     ../../home/programs/zen
+    ../../home/programs/aversion
     ../../home/programs/misc
     # ../../home/programs/nvix
 
@@ -108,4 +109,6 @@
   };
 
   programs.home-manager.enable = true;
+
+  services.aversion.enable = true;
 }

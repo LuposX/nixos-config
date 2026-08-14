@@ -48,6 +48,19 @@
         ];
       });
     })
+    # TEMP: googlefonts re-tagged the nanoemoji v0.16.0 tarball, breaking the
+    # pinned hash (cascades: nanoemoji -> openmoji -> fontconfig -> steam).
+    # Remove this overlay after `nix flake update` lands a nixpkgs with the
+    # corrected hash.
+    (final: prev: {
+      python3Packages = prev.python3Packages.overrideScope (pf: pp: {
+        nanoemoji = pp.nanoemoji.overrideAttrs (old: {
+          src = old.src.overrideAttrs (_: {
+            outputHash = "sha256-FysyKC01XBnRiur5RR9fcsTxQqE8x0JJHSoe3q6JtKc=";
+          });
+        });
+      });
+    })
   ];
 
   # Stylix kmscon module uses removed options in current nixpkgs
