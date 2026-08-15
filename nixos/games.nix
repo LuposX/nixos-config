@@ -1,16 +1,23 @@
-{ config, lib, pkgs, pkgsStable, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  pkgsStable,
+  ...
+}: {
   # steam temporarily disabled (its fhsenv container chain blocked rebuilds
   # via the broken nanoemoji fetch; re-enable after `nix flake update`)
   # programs.steam.enable = true;
   programs.gamescope.enable = true;
   programs.gamemode.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    # steam-run
-    wine-wayland
-    protonup-qt
-  ] ++ (with pkgsStable; [
-    heroic
-    lutris
-  ]);
+  environment.systemPackages = with pkgs;
+    [
+      wine-wayland
+      protonup-qt
+    ]
+    ++ (with pkgsStable; [
+      mesa-demos
+      steam-run
+    ]);
 }
