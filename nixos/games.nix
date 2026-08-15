@@ -13,11 +13,11 @@
 
   environment.systemPackages = with pkgs;
     [
+      mesa-demos
+      steam-run
       wine-wayland
       protonup-qt
     ]
     ++ (with pkgsStable; [
-      mesa-demos
-      steam-run
-    ]);
+      ]);
 }
