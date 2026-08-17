@@ -7,13 +7,13 @@
   pkgs,
   ...
 }: let
-    domain = config.var.domain;
+  domain = config.var.domain;
 in {
   imports = [
     inputs.zen-browser.homeModules.twilight
   ];
 
-  stylix.targets.zen-browser.profileNames = [ "default" ];
+  stylix.targets.zen-browser.profileNames = ["default"];
 
   # Desktop entry for the YouTube profile
   home.packages = [
@@ -23,8 +23,8 @@ in {
       comment = "Zen Browser — YouTube profile (no login, no recommendations)";
       exec = "zen-twilight -P youtube %u";
       icon = "zen-browser";
-      categories = [ "Network" "WebBrowser" ];
-      mimeTypes = [ "text/html" "x-scheme-handler/http" "x-scheme-handler/https" ];
+      categories = ["Network" "WebBrowser"];
+      mimeTypes = ["text/html" "x-scheme-handler/http" "x-scheme-handler/https"];
       startupWMClass = "zen-twilight";
     })
   ];
@@ -40,18 +40,25 @@ in {
 
       mkPluginUrl = id: "https://addons.mozilla.org/firefox/downloads/latest/${id}/latest.xpi";
 
-      mkExtensionEntry = { id, pinned ? false }: let
+      mkExtensionEntry = {
+        id,
+        pinned ? false,
+      }: let
         base = {
           install_url = mkPluginUrl id;
           installation_mode = "force_installed";
         };
-      in if pinned then base // { default_area = "navbar"; } else base;
+      in
+        if pinned
+        then base // {default_area = "navbar";}
+        else base;
 
       # All extensions are wrapped here
-      mkExtensionSettings = builtins.mapAttrs (_: entry:
-        if builtins.isAttrs entry
-        then mkExtensionEntry entry
-        else mkExtensionEntry { id = entry; }
+      mkExtensionSettings = builtins.mapAttrs (
+        _: entry:
+          if builtins.isAttrs entry
+          then mkExtensionEntry entry
+          else mkExtensionEntry {id = entry;}
       );
     in {
       AutofillAddressEnabled = true;
@@ -73,22 +80,72 @@ in {
         FormData = true;
         Cache = true;
       };
+      # Check about:support for extension/add-on ID strings.
       ExtensionSettings = mkExtensionSettings {
-        "uBlock0@raymondhill.net" = { id = "ublock-origin"; pinned = true; };
-        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = { id = "bitwarden-password-manager"; pinned = true; };
-        "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = { id = "github-file-icons"; pinned = false; };
-        "zotero@zotero.org" = { id = "zotero-connector"; pinned = true; };
-        "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = { id = "return-youtube-dislikes"; pinned = false; };
-        "{74145f27-f039-47ce-a470-a662b129930a}" = { id = "clearurls"; pinned = false; };
-        "myallychou@gmail.com" = { id = "youtube-recommended-videos"; pinned = false; };
-        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = { id = "old-reddit-redirect"; pinned = false; };
-        "github-no-more@ihatereality.space" = { id = "github-no-more"; pinned = false; };
-        "github-repository-size@pranavmangal" = { id = "gh-repo-size"; pinned = false; };
-        "@searchengineadremover" = { id = "searchengineadremover"; pinned = false; };
-        "jid1-BoFifL9Vbdl2zQ@jetpack" = { id = "decentraleyes"; pinned = false; };
-        "trackmenot@mrl.nyu.edu" = { id = "trackmenot"; pinned = false; };
-        "sponsorBlocker@ajay.app" = { id = "sponsorblock"; pinned = false; };
-        "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}" = { id = "videospeed"; pinned = false; };
+        "uBlock0@raymondhill.net" = {
+          id = "ublock-origin";
+          pinned = true;
+        };
+        "{446900e4-71c2-419f-a6a7-df9c091e268b}" = {
+          id = "bitwarden-password-manager";
+          pinned = true;
+        };
+        "{85860b32-02a8-431a-b2b1-40fbd64c9c69}" = {
+          id = "github-file-icons";
+          pinned = false;
+        };
+        "zotero@zotero.org" = {
+          id = "zotero-connector";
+          pinned = true;
+        };
+        "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = {
+          id = "return-youtube-dislikes";
+          pinned = false;
+        };
+        "{74145f27-f039-47ce-a470-a662b129930a}" = {
+          id = "clearurls";
+          pinned = false;
+        };
+        "myallychou@gmail.com" = {
+          id = "youtube-recommended-videos";
+          pinned = false;
+        };
+        "{9063c2e9-e07c-4c2c-9646-cfe7ca8d0498}" = {
+          id = "old-reddit-redirect";
+          pinned = false;
+        };
+        "github-no-more@ihatereality.space" = {
+          id = "github-no-more";
+          pinned = false;
+        };
+        "github-repository-size@pranavmangal" = {
+          id = "gh-repo-size";
+          pinned = false;
+        };
+        "@searchengineadremover" = {
+          id = "searchengineadremover";
+          pinned = false;
+        };
+        "jid1-BoFifL9Vbdl2zQ@jetpack" = {
+          id = "decentraleyes";
+          pinned = false;
+        };
+        "trackmenot@mrl.nyu.edu" = {
+          id = "trackmenot";
+          pinned = false;
+        };
+        "sponsorBlocker@ajay.app" = {
+          id = "sponsorblock";
+          pinned = false;
+        };
+        "{7be2ba16-0f1e-4d93-9ebc-5164397477a9}" = {
+          id = "videospeed";
+          pinned = false;
+        };
+        "webextension@metamask.io" = {
+          id = "ether-metamask";
+          pinned = false;
+        };
       };
       Preferences = mkLockedAttrs {
         "browser.startup.homepage" = "https://${domain}|https://chatgpt.com";
@@ -137,11 +194,26 @@ in {
         force = true; # must be explicitly set to apply bookmarks
         # Bookmarks can be opened with: CTRL + B
         settings = [
-          { name = "KIT Illias"; url = "https://ilias.studium.kit.edu/ilias.php?baseClass=ilrepositorygui&ref_id=1"; }
-          { name = "KIT CAS"; url = "https://campus.studium.kit.edu/"; }
-          { name = "Overleaf"; url = "https://www.overleaf.com/project"; }
-          { name = "Teams"; url = "https://teams.microsoft.com/v2/"; }
-          { name = "Discord Web"; url = "https://discord.com/app"; }
+          {
+            name = "KIT Illias";
+            url = "https://ilias.studium.kit.edu/ilias.php?baseClass=ilrepositorygui&ref_id=1";
+          }
+          {
+            name = "KIT CAS";
+            url = "https://campus.studium.kit.edu/";
+          }
+          {
+            name = "Overleaf";
+            url = "https://www.overleaf.com/project";
+          }
+          {
+            name = "Teams";
+            url = "https://teams.microsoft.com/v2/";
+          }
+          {
+            name = "Discord Web";
+            url = "https://discord.com/app";
+          }
         ];
       };
 

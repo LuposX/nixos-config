@@ -21,7 +21,6 @@
 
 static const char *ANSWERS[] = {
     "I need this for work",
-    "I have a specific purpose",
     "I'm bored",
     "I'm avoiding something",
     "I opened it automatically",
