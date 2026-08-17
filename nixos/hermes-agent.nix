@@ -1,22 +1,31 @@
 # See: https://hermes-agent.nousresearch.com/docs/getting-started/nix-setup
-{ inputs, config, pkgs, ... }: let
+{
+  inputs,
+  config,
+  pkgs,
+  ...
+}: let
   username = config.var.username;
 in {
   services.hermes-agent = {
     enable = true;
-    extraDependencyGroups = [ "messaging" "hindsight" ];
+    extraDependencyGroups = ["messaging" "hindsight"];
 
     settings = {
       model = {
         # Old: DeepSeek direct API
-        default = "deepseek-v4-flash";
-        provider = "deepseek";
+        # default = "deepseek-v4-flash";
+        # provider = "deepseek";
         base_url = "https://api.deepseek.com/v1";
 
         # New: OpenCode Zen
         # This is nearly unsubale, very slow.
         # default = "deepseek-v4-flash-free";
         # provider = "opencode";
+
+        # Openrouter
+        default = "deepseek/deepseek-v4-flash-0731";
+        provider = "openrouter";
       };
 
       dashboard.show_token_analytics = true;
@@ -63,37 +72,68 @@ in {
       # See `hermes skills list` for all available skills.
       skills.disabled = [
         # Creative — media generation, design, music, animation
-        "ascii-art" "ascii-video"
-        "baoyu-article-illustrator" "baoyu-comic" "baoyu-infographic"
-        "claude-design" "comfyui" "design-md" "ideation"
-        "manim-video" "p5js" "pixel-art" "popular-web-designs"
-        "pretext" "songwriting-and-ai-music" "touchdesigner-mcp"
+        "ascii-art"
+        "ascii-video"
+        "baoyu-article-illustrator"
+        "baoyu-comic"
+        "baoyu-infographic"
+        "claude-design"
+        "comfyui"
+        "design-md"
+        "ideation"
+        "manim-video"
+        "p5js"
+        "pixel-art"
+        "popular-web-designs"
+        "pretext"
+        "songwriting-and-ai-music"
+        "touchdesigner-mcp"
 
         # Gaming
-        "minecraft-modpack-server" "pokemon-player"
+        "minecraft-modpack-server"
+        "pokemon-player"
 
         # Media — GIFs, music, streaming
-        "gif-search" "heartmula" "songsee" "spotify" "youtube-content"
+        "gif-search"
+        "heartmula"
+        "songsee"
+        "spotify"
+        "youtube-content"
 
         # MLOps — local inference/model serving (not used; API-based only)
-        "audiocraft-audio-generation" "dspy"
-        "evaluating-llms-harness" "huggingface-hub"
-        "llama-cpp" "obliteratus" "segment-anything-model"
-        "serving-llms-vllm" "weights-and-biases"
+        "audiocraft-audio-generation"
+        "dspy"
+        "evaluating-llms-harness"
+        "huggingface-hub"
+        "llama-cpp"
+        "obliteratus"
+        "segment-anything-model"
+        "serving-llms-vllm"
+        "weights-and-biases"
 
         # Productivity — project management, maps, PDF editing
-        "airtable" "linear" "notion" "maps"
-        "nano-pdf" "teams-meeting-pipeline"
+        "airtable"
+        "linear"
+        "notion"
+        "maps"
+        "nano-pdf"
+        "teams-meeting-pipeline"
         "obsidian"
 
         # Other AI agent CLIs (not using them here)
-        "claude-code" "codex" "opencode"
+        "claude-code"
+        "codex"
+        "opencode"
 
         # Kanban multi-agent workflow (not using)
-        "kanban-orchestrator" "kanban-worker" "kanban-codex-lane"
+        "kanban-orchestrator"
+        "kanban-worker"
+        "kanban-codex-lane"
 
         # Social media, messaging
-        "xurl" "yuanbao" "dogfood"
+        "xurl"
+        "yuanbao"
+        "dogfood"
 
         # DevOps — webhooks
         "webhook-subscriptions"
@@ -102,13 +142,12 @@ in {
         "godmode"
 
         # Research — prediction markets, RSS, wiki (unused)
-        "blogwatcher" "llm-wiki" "polymarket"
+        "blogwatcher"
+        "llm-wiki"
+        "polymarket"
 
         # Smart-home
         "openhue"
-
-        # Email, MCP
-        "native-mcp"
 
         # Container supervision (not using OCI container mode)
         "hermes-s6-container-supervision"
@@ -131,7 +170,7 @@ in {
 
   # Add your user to the hermes group so you can access the shared
   # HERMES_HOME (/var/lib/hermes/.hermes/) without sudo.
-  users.users.${username}.extraGroups = [ "hermes"];
+  users.users.${username}.extraGroups = ["hermes"];
 
   # Tell Hermes to use the local SearXNG instance for web search.
   # Hermes auto-detects SEARXNG_URL and uses SearXNG as the search backend.
