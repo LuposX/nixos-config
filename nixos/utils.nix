@@ -161,7 +161,7 @@ in {
 
     # For keys
     pinentry-tty
-    pinentry-gtk2
+    pinentry-gnome3
 
     tuigreet
   ];

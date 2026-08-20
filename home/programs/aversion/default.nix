@@ -47,7 +47,7 @@
     blocked_applications = [];
     # substrings matched (case-insensitive) against the focused window title,
     # e.g. "youtube" matches "YouTube - Zen Twilight"
-    blocked_title_substrings = ["youtube" "reddit" "moviejoy" "yandex" "f95zone" "pornhub" "comix" "archiveofourown" "ao3" "Kick" "Destiny" "scribblehub"];
+    blocked_title_substrings = ["youtube" "reddit" "moviejoy" "yandex" "f95zone" "pornhub" "comix" "archiveofourown" "ao3" "Kick" "Destiny" "scribblehub" "9gag" "aznude"];
     # intervention durations per attempt: 1st, 2nd, 3rd, 4th; 5th+ uses the last
     durations = [10 30 120 240];
     # temporary access granted for "I need this for work"
