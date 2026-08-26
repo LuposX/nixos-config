@@ -61,6 +61,11 @@ in {
           else mkExtensionEntry {id = entry;}
       );
     in {
+      SearchEngines = {
+        Default = "DuckDuckGo";
+        PreventInstalls = false;
+      };
+
       AutofillAddressEnabled = true;
       AutofillCreditCardEnabled = false;
       DisableAppUpdate = true;

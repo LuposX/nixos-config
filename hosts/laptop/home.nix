@@ -66,6 +66,7 @@
 
         # Utils
         zip
+        unrar
         unzip
         pfetch
         fastfetch
