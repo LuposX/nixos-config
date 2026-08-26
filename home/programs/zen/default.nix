@@ -62,8 +62,25 @@ in {
       );
     in {
       SearchEngines = {
-        Default = "DuckDuckGo";
-        PreventInstalls = false;
+        Default = "SearXNG";
+        Add = [
+          {
+            Name = "SearXNG";
+            URLTemplate = "http://127.0.0.1:8080/search?q={searchTerms}";
+            Method = "GET";
+            IconURL = "http://127.0.0.1:8080/favicon.ico";
+            Alias = "@s";
+            Description = "Self-Hosted SearXNG";
+          }
+          {
+            Name = "DuckDuckGo";
+            URLTemplate = "https://duckduckgo.com/?q={searchTerms}";
+            Method = "GET";
+            IconURL = "https://duckduckgo.com/favicon.ico";
+            Alias = "@ddg";
+            Description = "DuckDuckGo Search";
+          }
+        ];
       };
 
       AutofillAddressEnabled = true;
