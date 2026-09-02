@@ -16,7 +16,7 @@ in {
         # Old: DeepSeek direct API
         # default = "deepseek-v4-flash";
         # provider = "deepseek";
-        base_url = "https://api.deepseek.com/v1";
+        # base_url = "https://openrouter.ai/api/v1";
 
         # New: OpenCode Zen
         # This is nearly unsubale, very slow.
@@ -24,7 +24,8 @@ in {
         # provider = "opencode";
 
         # Openrouter
-        default = "deepseek/deepseek-v4-flash-0731";
+        default = "z-ai/glm-5.3-flash";
+        base_url = "https://openrouter.ai/api/v1";
         provider = "openrouter";
       };
 
@@ -65,6 +66,10 @@ in {
         "tts"
         "computer_use"
       ];
+
+      # Reasoning effort: "high" instead of "max" — better latency/token balance
+      # on GLM-5.3-Flash while keeping strong reasoning on complex tasks.
+      agent.reasoning_effort = "high";
 
       # Skills unused for current academic work (neural net fault detection
       # research).  Disabled here → excluded from the system prompt, saving

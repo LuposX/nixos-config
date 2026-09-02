@@ -44,11 +44,11 @@
         safe_search = 0;
         autocomplete = "";
         language = "en-US";
-        formats = [ "html" "json" ];
+        formats = ["html" "json"];
       };
 
       general = {
-        instance_name = "SearXNG (Hermes)";
+        instance_name = "SearXNG";
         debug = false;
         privacypolicy_url = false;
         contact_url = false;
@@ -63,5 +63,5 @@
     };
   };
 
-  environment.systemPackages = [ pkgs.searxng ];
+  environment.systemPackages = [pkgs.searxng];
 }
