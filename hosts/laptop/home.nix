@@ -111,5 +111,5 @@
 
   programs.home-manager.enable = true;
 
-  services.aversion.enable = false;
+  services.aversion.enable = true;
 }

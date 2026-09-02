@@ -13,6 +13,7 @@
 
   environment.systemPackages = with pkgs;
     [
+      lutris
       mesa-demos
       steam-run
       wine-wayland
