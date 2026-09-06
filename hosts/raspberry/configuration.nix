@@ -27,7 +27,7 @@
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 
-  documentation.man.cache.enable' = false;
+  documentation.man.cache.enable = false;
 
   # Do Not Change!
   system.stateVersion = "25.11";
