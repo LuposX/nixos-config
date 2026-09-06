@@ -3,7 +3,9 @@ let
   autoGarbageCollector = config.var.autoGarbageCollector;
 
   pkgsStable = import inputs.nixpkgs-stable {
-    system = pkgs.system;
+    # import-arg `system` is fine; the DEPRECATED thing is reading `pkgs.system`
+    # (alias warns since nixpkgs 2025-10-28) — use pkgs.stdenv.hostPlatform.system
+    system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
     config.allowBroken = false;
 

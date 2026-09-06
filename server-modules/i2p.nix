@@ -35,34 +35,34 @@ in {
 
       services.i2pd = {
         enable = true;
-        address = "0.0.0.0";
-        port = 1234; # port for incoming connections
-        bandwidth = 200; # In KBps
 
-        proto = {
-          http.enable = true;
-          http.address = "0.0.0.0"; # Anybody localy can conenct to it.
-          http.strictHeaders = false; # Careful with this one
+        # nixpkgs 26.11 rewrote the module: everything now goes through
+        # `settings` (verbatim i2pd.conf keys) and inTunnels → serverTunnels.
+        settings = {
+          host = "0.0.0.0"; # router bind address (was services.i2pd.address)
+          port = 1234; # port for incoming connections
+          bandwidth = 200; # In KBps
 
-          httpProxy.enable = true;
-          httpProxy.address = "0.0.0.0";
+          http = {
+            address = "0.0.0.0"; # Anybody localy can conenct to it.
+            strictheaders = false; # Careful with this one
+          };
 
-          socksProxy.enable = true;
-          sam.enable = true;
+          httpproxy.address = "0.0.0.0";
+
+          socksproxy.enabled = true;
+          sam.enabled = true;
         };
 
         # My website mirrored to i2p
         # To register your website in a registrar, enter the container `sudo machinectl shell i2pd-container`
         # and then do `regaddr \var\lib\i2pd\myEep-keys.dat example-domain.2ip > auth_string.txt` this gives yo uthe authenticaiton key with which you can register at reg.i2p
         # To access this file easily I recommend `cat auth.txt | nc termbin.com 9999`
-        inTunnels = {
-          myEep = {
-            enable = true;
-            keys = "myEep-keys.dat";
-            inPort = 8081;
-            address = "127.0.0.1";
-            port = 8082;
-          };
+        serverTunnels.myEep = {
+          keys = "myEep-keys.dat";
+          inport = 8081; # I2P-side port
+          host = "127.0.0.1";
+          port = 8082; # local service port (nginx below)
         };
       };
 

@@ -8,7 +8,7 @@
       inherit inputs;
 
       pkgsStable = import inputs.nixpkgs-stable {
-        system = pkgs.system;
+        system = pkgs.stdenv.hostPlatform.system; # pkgs.system is a deprecated alias
         config.allowUnfree = true;
       };
     };

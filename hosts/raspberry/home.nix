@@ -11,7 +11,6 @@
     # Programs
     ../../home/programs/shell
     ../../home/programs/git
-    ../../home/programs/lazygit
     ../../home/programs/ssh
   ];
 
@@ -20,15 +19,16 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
-      inputs.nvix.packages.${pkgs.system}.bare
+      inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.bare
 
-       # Utils
+      # Utils
       zip
       unzip
       btop
       nerdfetch
       wget
       dig
+      openssl
     ];
 
     # Don't touch this
