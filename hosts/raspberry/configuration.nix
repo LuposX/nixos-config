@@ -1,11 +1,8 @@
 # Configuration for RPi 3B
 # Source: https://git.eisfunke.com/config/nixos/-/blob/main/devices/emerald.nix, https://www.eisfunke.com/posts/2023/nixos-on-raspberry-pi.html
-{
-  config,
-  ...
-}: {
+{config, ...}: {
   imports = [
-      # System Related Stuff
+    # System Related Stuff
     ../../nixos/home-manager.nix
     ../../nixos/users.nix
     ../../nixos/nix.nix
@@ -30,6 +27,8 @@
 
   home-manager.users."${config.var.username}" = import ./home.nix;
 
+  documentation.man.generateCaches = false;
+
   # Do Not Change!
   system.stateVersion = "25.11";
-  }
+}
