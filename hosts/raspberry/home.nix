@@ -11,7 +11,6 @@
     # Programs
     ../../home/programs/shell
     ../../home/programs/git
-    ../../home/programs/lazygit
     ../../home/programs/ssh
   ];
 
@@ -22,13 +21,14 @@
     packages = with pkgs; [
       inputs.nvix.packages.${pkgs.system}.bare
 
-       # Utils
+      # Utils
       zip
       unzip
       btop
       nerdfetch
       wget
       dig
+      openssl
     ];
 
     # Don't touch this
