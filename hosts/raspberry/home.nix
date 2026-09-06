@@ -19,7 +19,7 @@
     homeDirectory = "/home/" + config.var.username;
 
     packages = with pkgs; [
-      inputs.nvix.packages.${pkgs.system}.bare
+      inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.bare
 
       # Utils
       zip

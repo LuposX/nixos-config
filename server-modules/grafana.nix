@@ -4,8 +4,8 @@ in {
   # grafana configuration
   services.grafana = {
     enable = true;
-    addr = "127.0.0.1";
     settings.server = {
+      http_addr = "127.0.0.1";
       http_port = 2342;
       domain = "grafana.${domain}";
     };
