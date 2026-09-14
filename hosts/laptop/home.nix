@@ -95,6 +95,7 @@
         gnome-calendar
         gnome-text-editor
         gnome-clocks
+        newsflash
 
         zotero
         telegram-desktop

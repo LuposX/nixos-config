@@ -96,7 +96,7 @@ in {
     dbus = {
       enable = true;
       implementation = "broker";
-      packages = with pkgs; [gcr gnome-settings-daemon];
+      packages = with pkgs; [gnome-settings-daemon];
     };
     # Allows access network locations (like FTP, SFTP, SMB).
     gvfs.enable = true;
