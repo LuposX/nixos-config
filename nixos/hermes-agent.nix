@@ -24,8 +24,8 @@ in {
         # provider = "opencode";
 
         # Openrouter
-        default = "z-ai/glm-5.3-flash";
-        base_url = "https://openrouter.ai/api/v1";
+        # default = "z-ai/glm-5.3-flash";
+        default = "deepseek/deepseek-v4.1-flash";
         provider = "openrouter";
       };
 
@@ -54,10 +54,10 @@ in {
       # Tredict MCP server for AI-powered training analysis
       # Create an access token in Tredict → Settings → Access Tokens
       # Add TREDICT_MCP_TOKEN=<token> to your sops hermes-env secret
-      mcp_servers.tredict = {
-        url = "https://www.tredict.com/api/mcp/v2";
-        headers.Authorization = "Bearer $" + "{TREDICT_MCP_TOKEN}";
-      };
+      # mcp_servers.tredict = {
+      #   url = "https://www.tredict.com/api/mcp/v2";
+      #   headers.Authorization = "Bearer $" + "{TREDICT_MCP_TOKEN}";
+      # };
 
       # Disable unused toolsets to keep the tool list leaner
       agent.disabled_toolsets = [
@@ -69,7 +69,7 @@ in {
 
       # Reasoning effort: "high" instead of "max" — better latency/token balance
       # on GLM-5.3-Flash while keeping strong reasoning on complex tasks.
-      agent.reasoning_effort = "high";
+      # agent.reasoning_effort = "high";
 
       # Skills unused for current academic work (neural net fault detection
       # research).  Disabled here → excluded from the system prompt, saving
