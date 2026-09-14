@@ -115,6 +115,7 @@ in {
                       sites = [
                         { title = "Vaultwarden"; url = "https://vault.${domain}"; icon = "si:bitwarden"; }
                         { title = "Tandoor"; url = "https://tandoor.${domain}"; icon = "si:mealie"; }
+                        { title = "Miniflux"; url = "https://miniflux.${domain}"; icon = "auto-invert di:miniflux"; }
                         { title = "Syncthing"; url = "https://syncthing.${domain}"; icon = "si:syncthing"; }
                         { title = "Paperless"; url = "https://paper.${domain}"; icon = "sh:paperless-ngx"; }
                         { title = "Immich"; url = "https://immich.${domain}"; icon = "si:immich"; }

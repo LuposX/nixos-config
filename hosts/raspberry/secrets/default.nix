@@ -23,6 +23,14 @@ in {
         group = "root";
         mode = "0440";
       };
+      # Miniflux initial admin user, as a systemd EnvironmentFile
+      # (ADMIN_USERNAME / ADMIN_PASSWORD). Read by root before the service
+      # drops to its DynamicUser, hence owner-only.
+      miniflux-admin-credentials = {
+        owner = "root";
+        group = "root";
+        mode = "0400";
+      };
     };
   };
 
