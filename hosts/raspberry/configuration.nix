@@ -12,6 +12,7 @@
     ../../server-modules/ssh.nix
     ../../server-modules/raspberry.nix
     ../../server-modules/glance.nix
+    ../../server-modules/miniflux.nix
     ../../server-modules/nginx.nix
     ../../server-modules/netbird.nix
     ../../server-modules/i2p.nix

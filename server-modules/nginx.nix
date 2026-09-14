@@ -292,6 +292,16 @@ in {
           "http://192.168.12.51";
       };
     };
+    "miniflux.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        # Miniflux runs on this host (services.miniflux), see server-modules/miniflux.nix
+        proxyPass =
+          "http://127.0.0.1:8080";
+        recommendedProxySettings = true;
+      };
+    };
   };
 
   networking.firewall.allowedTCPPorts = [ 80 443 ];
