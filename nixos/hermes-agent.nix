@@ -4,7 +4,9 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  username = config.var.username;
+in {
   services.hermes-agent = {
     enable = true;
     extraDependencyGroups = ["messaging"];
