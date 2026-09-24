@@ -24,8 +24,8 @@ in {
         # provider = "opencode";
 
         # Openrouter
-        # default = "z-ai/glm-5.3-flash";
-        default = "deepseek/deepseek-v4.1-flash";
+        default = "z-ai/glm-5.3-flash";
+        # default = "deepseek/deepseek-v4.1-flash";
         provider = "openrouter";
       };
 
