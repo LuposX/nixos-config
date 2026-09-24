@@ -10,7 +10,6 @@ in {
   services.hermes-agent = {
     enable = true;
     extraDependencyGroups = ["messaging"];
-    extraPlugins = ["hindsight"];
 
     settings = {
       model = {
