@@ -20,6 +20,8 @@
       screen_down = "J";
       screen_up = "K";
 
+      close_visual_mark = "<esc>";
+
       # Visual mode text selection
       keyboard_select = "v";
       copy = "y";
@@ -49,7 +51,7 @@
       move_screen_ratio = "0.5"; # screen_down moves half a screen
 
       # ── Reading aids ──────────────────────────────────
-      ruler_mode = "0"; # rectangle around current line
+      ruler_mode = "1"; # rectangle around current line
       ruler_padding = "1.0";
       create_table_of_contents_if_not_exists = "1";
       keyboard_select_font_size = "14"; # smaller labels for keyboard_select (v)
