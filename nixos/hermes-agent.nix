@@ -69,7 +69,7 @@ in {
 
       # Reasoning effort: "high" instead of "max" — better latency/token balance
       # on GLM-5.3-Flash while keeping strong reasoning on complex tasks.
-      # agent.reasoning_effort = "high";
+      agent.reasoning_effort = "high";
 
       # Skills unused for current academic work (neural net fault detection
       # research).  Disabled here → excluded from the system prompt, saving
