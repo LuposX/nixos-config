@@ -88,6 +88,7 @@
 
         # Games
         adwaita-icon-theme
+        universal-android-debloater
       ])
       # STABLE (big / heavy / slow-moving GUI apps)
       ++ (with pkgsStable; [
@@ -106,7 +107,6 @@
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
 
         android-tools
-        universal-android-debloater
       ]);
 
     # Don't touch this
