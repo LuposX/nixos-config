@@ -104,6 +104,9 @@
         jetbrains.pycharm-community
         qbittorrent
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
+
+        android-tools
+        universal-android-debloater
       ]);
 
     # Don't touch this
