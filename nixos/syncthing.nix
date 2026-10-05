@@ -74,6 +74,17 @@
           id = "f4d6e-3dcac";
           path = "/home/${config.var.username}/Projects/llm-fault-injection";
         };
+
+        "LatexProjects" = {
+          devices = [
+            "laptop-pneuma"
+            "desktop-logos"
+            "server"
+          ];
+          ignorePerms = true;
+          id = "8a2f4-c91bd";
+          path = "/home/${config.var.username}/Projects/Latex-Projects";
+        };
       };
 
       gui = {
