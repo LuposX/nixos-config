@@ -13,7 +13,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     nur.url = "github:nix-community/NUR";
     matugen.url = "github:InioX/matugen";
-    nixmate.url = "github:daskladas/nixmate";
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
@@ -66,16 +65,19 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, ... } @ inputs:
-  let
+  outputs = {
+    self,
+    nixpkgs,
+    nixpkgs-stable,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
-  in
-  {
+  in {
     nixosConfigurations = {
       logos = nixpkgs.lib.nixosSystem {
         inherit system;
 
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
 
         modules = [
           inputs.hermes-agent.nixosModules.default
@@ -89,7 +91,7 @@
       pneuma = nixpkgs.lib.nixosSystem {
         inherit system;
 
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
 
         modules = [
           inputs.hermes-agent.nixosModules.default
@@ -104,7 +106,7 @@
       prohairesis = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
 
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
 
         modules = [
           inputs.sops-nix.nixosModules.sops
