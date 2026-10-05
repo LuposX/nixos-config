@@ -128,10 +128,19 @@ in
         lockScreenBlur = 0.7;
       };
 
+      # Idle timeouts in seconds. The screen-off and lock timers are
+      # host-dependent: the desktop gets 5 min screen-off and 10 min lock,
+      # the laptop keeps 2.5 min screen-off and 5 min lock to save battery.
       idle = {
         enabled = true;
-        screenOffTimeout = 150;
-        lockTimeout = 300;
+        screenOffTimeout =
+          if config.var.isLaptop
+          then 150
+          else 300;
+        lockTimeout =
+          if config.var.isLaptop
+          then 300
+          else 600;
         suspendTimeout = 1200;
         fadeDuration = 3;
       };
