@@ -15,7 +15,6 @@
     ../../nixos/audio.nix
     ../../nixos/boot.nix
     ../../nixos/nix.nix
-    ../../nixos/nvidia.nix
     ../../nixos/bluetooth.nix
     # ../../nixos/hyprland.nix  # Switched to Niri
     ##../../nixos/sddm.nix # Switched to greetd with Noctalia
@@ -41,14 +40,17 @@
   ];
 
   # Enables emulation of arm system to compile NixOS for Raspberry device.
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
-  networking.firewall.allowedTCPPorts = [ 8888 ]; # For jupyter
+  # Build packages with ROCm/HIP support (e.g. Blender HIP, ffmpeg)
+  nixpkgs.config.rocmSupport = true;
+
+  networking.firewall.allowedTCPPorts = [8888]; # For jupyter
   services.fail2ban.enable = true;
   services.media-consumption-monitor.enable = true;
   services.openssh = {
     enable = true;
-    ports = [ 22 ];
+    ports = [22];
     openFirewall = true;
     settings = {
       PermitRootLogin = "no";
@@ -71,9 +73,11 @@
   nixpkgs.overlays = [
     (final: prev: {
       spotify-player = prev.spotify-player.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or []) ++ [
-          ./../../patches/spotify-player-save-credentials.patch
-        ];
+        patches =
+          (oldAttrs.patches or [])
+          ++ [
+            ./../../patches/spotify-player-save-credentials.patch
+          ];
       });
     })
   ];
