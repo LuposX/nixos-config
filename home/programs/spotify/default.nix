@@ -30,7 +30,7 @@ in {
       shuffle
       songStats
       history
-      betterGenres
+      # betterGenres
     ];
   };
 
@@ -41,8 +41,8 @@ in {
       name = "Spotify";
       exec = "env NIXOS_OZONE_WL=\"\" spotify %U";
       type = "Application";
-      categories = [ "Audio" "Music" "Player" ];
-      mimeType = [ "x-scheme-handler/spotify" ];
+      categories = ["Audio" "Music" "Player"];
+      mimeType = ["x-scheme-handler/spotify"];
       terminal = false;
     };
   };
