@@ -32,7 +32,7 @@
     # Service
     ../../nixos/syncthing.nix
     ../../nixos/searxng.nix
-    ../../nixos/hindsight.nix
+    # ../../nixos/hindsight.nix
 
     # Don't change this.
     ./hardware-configuration.nix
