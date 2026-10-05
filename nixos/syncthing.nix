@@ -64,26 +64,15 @@
           path = "/home/${config.var.username}/Projects/Website_MonkeMan";
         };
 
-        "HermesMemories" = {
+        "LlmFaultInjection" = {
           devices = [
             "laptop-pneuma"
             "desktop-logos"
             "server"
           ];
           ignorePerms = true;
-          id = "z3m5f-umdfp";
-          path = "/home/${config.var.username}/.hermes/memories";
-        };
-
-        "HermesSkills" = {
-          devices = [
-            "laptop-pneuma"
-            "desktop-logos"
-            "server"
-          ];
-          ignorePerms = true;
-          id = "gp73b-ppq4b";
-          path = "/home/${config.var.username}/.hermes/skills";
+          id = "f4d6e-3dcac";
+          path = "/home/${config.var.username}/Projects/llm-fault-injection";
         };
       };
 
