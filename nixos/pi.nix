@@ -100,13 +100,22 @@
       logos = ../hosts/desktop/secrets/secrets.yaml;
     }
     .${config.var.hostname} or ../hosts/laptop/secrets/secrets.yaml;
+  # Wrap pi so the OpenRouter key is injected at launch, independent of
+  # the calling shell. Shell-init exports only reach shells started after
+  # a rebuild; wrappers (and launchers) always get the current secret.
+  piWrapped = pkgs.writeShellScriptBin "pi" ''
+    if [ -z "''${OPENROUTER_API_KEY:-}" ] && [ -r /run/secrets/${openrouterKey} ]; then
+      export OPENROUTER_API_KEY="$(cat /run/secrets/${openrouterKey})"
+    fi
+    exec ${pkgs.pi}/bin/pi "$@"
+  '';
 in {
   nixpkgs.overlays = [
     inputs.pi.overlays.default
   ];
 
   environment.systemPackages = [
-    pkgs.pi
+    piWrapped
     pkgs.jq
     # Runtime for MCP stdio servers spawned via `npx -y ...` (mcp-searxng)
     pkgs.nodejs
