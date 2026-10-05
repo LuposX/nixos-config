@@ -22,7 +22,7 @@
     ../../nixos/blockedsites.nix
     ../../nixos/media-monitor.nix
     ../../nixos/netbird.nix
-    ../../nixos/hermes-agent.nix
+    ../../nixos/pi.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
@@ -43,9 +43,11 @@
   nixpkgs.overlays = [
     (final: prev: {
       spotify-player = prev.spotify-player.overrideAttrs (oldAttrs: {
-        patches = (oldAttrs.patches or []) ++ [
-          ./../../patches/spotify-player-save-credentials.patch
-        ];
+        patches =
+          (oldAttrs.patches or [])
+          ++ [
+            ./../../patches/spotify-player-save-credentials.patch
+          ];
       });
     })
     # TEMP: googlefonts re-tagged the nanoemoji v0.16.0 tarball, breaking the
@@ -70,7 +72,7 @@
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Enables emulation of arm system to compile NixOS for Raspberry device.
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   # Do Not Change!
   system.stateVersion = "25.05";

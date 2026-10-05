@@ -8,6 +8,7 @@
 }: {
   imports = [
     # System Related Stuff
+    ../../nixos/pi.nix
     ../../nixos/home-manager.nix
     ../../nixos/fonts.nix
     ../../nixos/users.nix
@@ -23,7 +24,6 @@
     ../../nixos/kdeconnect.nix
     ../../nixos/blockedsites.nix
     ../../nixos/netbird.nix
-    ../../nixos/hermes-agent.nix
     ../../nixos/media-monitor.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix

@@ -16,6 +16,11 @@
 
     hermes-agent.url = "github:NousResearch/hermes-agent";
 
+    pi = {
+      url = "github:earendil-works/pi/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     niri = {
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
