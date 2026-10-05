@@ -22,8 +22,12 @@
       "z-ai/glm-5.3"
     ];
     enableInstallTelemetry = false;
-    # Run Pi's shell commands inside the project's direnv environment
-    shellCommandPrefix = "direnv exec .";
+    # Run Pi's shell commands inside the project's direnv environment.
+    # Pi prepends this as a script line (prefix + "\n" + command), so the
+    # prefix must be a standalone statement. "direnv exec ." can't work here
+    # (it requires a COMMAND argument); "direnv export bash" prints the env
+    # diff as shell code and is a silent no-op without an .envrc.
+    shellCommandPrefix = "eval \"$(direnv export bash)\"";
     # pi-web-access: web_search / fetch_content / source_check, PDF
     # extraction, GitHub-URL cloning, YouTube + local video understanding.
     # Its search chain prefers the self-hosted SearXNG (see web-search.json).
