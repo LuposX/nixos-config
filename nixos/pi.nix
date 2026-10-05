@@ -91,9 +91,15 @@
     hash = "sha256-n8cbTzhlGf8VnWpPukq7XD2mucIrqyE1XMpAAc5oA8A=";
   };
 
-  # Pi's own secret: OpenRouter API key as a standalone key in the laptop
-  # secrets file, decrypted to /run/secrets/openrouter-api-key.
+  # Pi's own secret: OpenRouter API key. Each host carries the key in its
+  # own secrets file so the module stays host-independent.
   openrouterKey = "openrouter-api-key";
+  openrouterSopsFile =
+    {
+      pneuma = ../hosts/laptop/secrets/secrets.yaml;
+      logos = ../hosts/desktop/secrets/secrets.yaml;
+    }
+    .${config.var.hostname} or ../hosts/laptop/secrets/secrets.yaml;
 in {
   nixpkgs.overlays = [
     inputs.pi.overlays.default
@@ -108,7 +114,7 @@ in {
 
   sops.secrets.${openrouterKey} = {
     format = "yaml";
-    sopsFile = ../hosts/laptop/secrets/secrets.yaml;
+    sopsFile = openrouterSopsFile;
     owner = username;
   };
 
