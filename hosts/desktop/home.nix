@@ -53,7 +53,6 @@
 
     packages =
       (with pkgs; [
-
         # Apps
         gnome-calendar # Calendar
         resources # Monitor for your system resources
@@ -64,7 +63,6 @@
         ledger-udev-rules
         ledger-live-desktop
         kdePackages.kleopatra
-        zotero
         telegram-desktop
         wireguard-ui
 
@@ -94,13 +92,13 @@
         # Spyware, use web-client.
         # zoom-us
       ])
-
       # STABLE (big / heavy / slow-moving)
       ++ (with pkgsStable; [
+        zotero
         jetbrains.pycharm-community
         qbittorrent
         libreoffice-qt6 # Office Stuff
-        texlive.combined.scheme-full  # TeX Live — huge, only update with stable
+        texlive.combined.scheme-full # TeX Live — huge, only update with stable
       ]);
 
     # Don't touch this
