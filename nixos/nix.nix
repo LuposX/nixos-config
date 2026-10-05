@@ -1,5 +1,9 @@
-{ config, inputs, pkgs, ... }:
-let
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}: let
   autoGarbageCollector = config.var.autoGarbageCollector;
 
   pkgsStable = import inputs.nixpkgs-stable {
@@ -9,8 +13,8 @@ let
     config.allowUnfree = true;
     config.allowBroken = false;
 
-     config.permittedInsecurePackages = [
-        "electron-36.9.5"
+    config.permittedInsecurePackages = [
+      "electron-36.9.5"
     ];
   };
 in {
@@ -18,13 +22,17 @@ in {
   _module.args.pkgsStable = pkgsStable;
 
   # Grants passwordless sudo permission for nixos-rebuild
-  security.sudo.extraRules = [{
-    users = [ config.var.username ];
-    commands = [{
-      command = "/run/current-system/sw/bin/nixos-rebuild";
-      options = [ "NOPASSWD" ];
-    }];
-  }];
+  security.sudo.extraRules = [
+    {
+      users = [config.var.username];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/nixos-rebuild";
+          options = ["NOPASSWD"];
+        }
+      ];
+    }
+  ];
 
   nixpkgs.config = {
     allowUnfree = true;
@@ -32,21 +40,22 @@ in {
   };
 
   nix = {
-    nixPath = [ "nixpkgs=${inputs.nixpkgs}" ];
+    nixPath = ["nixpkgs=${inputs.nixpkgs}"];
 
     channel.enable = false;
 
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = ["nix-command" "flakes"];
 
       substituters = [
         "https://cache.nixos.org"
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
         "https://numtide.cachix.org"
-	"https://niri.cachix.org"
-	"https://vicinae.cachix.org"
+        "https://niri.cachix.org"
+        "https://vicinae.cachix.org"
+        "https://nix-community.cachix.org"
       ];
 
       trusted-public-keys = [
@@ -55,6 +64,7 @@ in {
         "numtide.cachix.org-1:2ps1kLBUWjxIneOy1Ik6cQjb41X0iXVXeHigGmycPPE="
         "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
         "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
 
