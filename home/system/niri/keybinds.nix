@@ -44,6 +44,7 @@ in
     "super+shift+b".action = spawn [ "zen-twilight" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)
     "super+e".action = spawn apps.fileManager;
     "super+c".action.spawn = noctalia "launcher clipboard";
+    "alt+shift+c".action = spawn ["caffeine"];  # Caffeine toggle (idle inhibit)
 
     # Grep and Open Files (uses fzf)
     "super+g".action = spawn ["bash" "-c" "find /home -type f 2>/dev/null | fzf | xargs -r xdg-open"];
