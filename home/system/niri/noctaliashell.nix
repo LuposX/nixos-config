@@ -6,9 +6,7 @@
   pkgs,
   lib,
   ...
-}:
-
-let
+}: let
   profilePicture = config.var.profile-picture;
 
   # Keyboard layout indicator for niri.
@@ -23,8 +21,7 @@ let
     rev = "4600763d382b531bce5e55836258239b6f53a48b";
     hash = "sha256-a2LzkgrmClvW6K63NNTungPgN5B0twteLVo7v0tWljs=";
   };
-in
-{
+in {
   imports = [
     inputs.noctalia.homeModules.default
   ];
@@ -136,11 +133,11 @@ in
         screenOffTimeout =
           if config.var.isLaptop
           then 150
-          else 300;
+          else 600;
         lockTimeout =
           if config.var.isLaptop
           then 300
-          else 600;
+          else 900;
         suspendTimeout = 1200;
         fadeDuration = 3;
       };
@@ -152,7 +149,6 @@ in
       };
 
       network = {
-
       };
 
       appLauncher = {
@@ -170,7 +166,7 @@ in
   # FIRST activation succeeds but every later one fails with EACCES when cp
   # tries to overwrite the read-only files. chmod + --no-preserve=mode keeps
   # the tree writable and the activation idempotent.
-  home.activation.installNiriLayoutIndicator = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home.activation.installNiriLayoutIndicator = lib.hm.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "$HOME/.config/noctalia/plugins/niri-layout-indicator"
     chmod -R u+w "$HOME/.config/noctalia/plugins/niri-layout-indicator"
     cp -r --no-preserve=mode ${niriLayoutIndicatorSrc}/. "$HOME/.config/noctalia/plugins/niri-layout-indicator/"
