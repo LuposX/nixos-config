@@ -108,7 +108,7 @@
 
         android-tools
 
-        chawan
+        ungoogled-chromium
       ]);
 
     # Don't touch this
