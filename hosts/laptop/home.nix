@@ -107,6 +107,8 @@
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
 
         android-tools
+
+        chawan
       ]);
 
     # Don't touch this
@@ -115,5 +117,5 @@
 
   programs.home-manager.enable = true;
 
-  services.aversion.enable = true;
+  services.aversion.enable = false;
 }
