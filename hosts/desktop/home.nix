@@ -95,7 +95,6 @@
       # STABLE (big / heavy / slow-moving)
       ++ (with pkgsStable; [
         zotero
-        jetbrains.pycharm-community
         qbittorrent
         libreoffice-qt6 # Office Stuff
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
