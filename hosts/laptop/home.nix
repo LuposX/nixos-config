@@ -102,7 +102,7 @@
         telegram-desktop
         libreoffice
 
-        jetbrains.pycharm-community
+        jetbrains.pycharm-oss
         qbittorrent
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
 
