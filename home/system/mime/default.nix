@@ -9,7 +9,7 @@ with lib; let
   defaultApps = {
     browser = ["zen-twilight.desktop"];
     text = ["org.gnome.TextEditor.desktop"];
-    image = ["cosmic-viewer.desktop"];
+    image = ["com.system76.CosmicViewer.desktop"];
     audio = ["mpv.desktop"];
     video = ["mpv.desktop"];
     directory = ["thunar.desktop"];
