@@ -74,7 +74,7 @@
         wl-mirror # For Screen Mirroring in Noctalia
 
         # Image viewer (for xdg-open)
-        loupe
+        cosmic-viewer
 
         # Key Stuff
         gnupg

@@ -1,33 +1,38 @@
-{ config, lib, pkgs, ... }: let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   username = config.var.username;
 in {
-  programs.nnn= {
+  programs.nnn = {
     enable = true;
-    package = pkgs.nnn.override ({ withNerdIcons = true; });
+    package = pkgs.nnn.override {withNerdIcons = true;};
 
     extraPackages = with pkgs; [
       bat
       eza
       fzf
-      loupe
+      cosmic-viewer
       ffmpegthumbnailer
       mediainfo
       sxiv
     ];
 
     bookmarks = {
-        n = "/home/${username}/Projects/Notes";
-        u = "/home/${username}/Projects/Notes/University/Bachelor/Semester_8";
-        c = "/home/${username}/Projects/nixos-config";
-        w = "/home/${username}/Projects/Website_MonkeMan";
+      n = "/home/${username}/Projects/Notes";
+      u = "/home/${username}/Projects/Notes/University/Bachelor/Semester_8";
+      c = "/home/${username}/Projects/nixos-config";
+      w = "/home/${username}/Projects/Website_MonkeMan";
     };
 
     plugins = {
       src = "${pkgs.nnn.src}/plugins";
       mappings = {
-         c = "fzcd";
-         o = "fzopen";
-         p = "preview-tui";
+        c = "fzcd";
+        o = "fzopen";
+        p = "preview-tui";
       };
     };
   };
