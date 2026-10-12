@@ -9,7 +9,7 @@ in {
       bat
       eza
       fzf
-      imv
+      loupe
       ffmpegthumbnailer
       mediainfo
       sxiv
