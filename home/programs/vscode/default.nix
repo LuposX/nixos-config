@@ -10,6 +10,7 @@
       vscodevim.vim
       bbenoist.nix
       leanprover.lean4
+      tamasfe.even-better-toml # hard dependency of the lean4 extension
       ms-python.python
       mechatroner.rainbow-csv
       shardulm94.trailing-spaces
