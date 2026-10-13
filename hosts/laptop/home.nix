@@ -18,6 +18,7 @@
     ../../home/programs/lazygit
     ../../home/programs/thunar
     ../../home/programs/vscode
+    ../../home/programs/lean
     ../../home/programs/sioyek
     ../../home/programs/ssh
     ../../home/programs/spotify

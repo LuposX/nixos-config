@@ -9,6 +9,7 @@
     profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
       bbenoist.nix
+      leanprover.lean4
       ms-python.python
       mechatroner.rainbow-csv
       shardulm94.trailing-spaces
@@ -37,7 +38,11 @@
         "**/.direnv/**" = true;
         "**/dist/**" = true;
         "**/.next/**" = true;
+        "**/.lake/**" = true;
       };
+
+      "lean4.input.eagerReplacementEnabled" = true;
+      "lean4.infoview.stickyPosition" = "all";
     };
   };
 }
