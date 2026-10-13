@@ -1,10 +1,9 @@
 {pkgs, ...}: {
-  stylix.targets.vscode.fonts.enable = false;
-  stylix.targets.vscode.colors.enable = true;
-  stylix.targets.vscode.enable = true;
-  programs.vscode = {
+  # VSCodium. Uses the dedicated home-manager module so extensions and
+  # settings land in ~/.vscode-oss and ~/.config/VSCodium.
+  programs.vscodium = {
     enable = true;
-    package = pkgs.vscode;
+    package = pkgs.vscodium;
     # https://github.com/nix-community/nix-vscode-extensions/blob/master/data/cache/open-vsx-latest.json
     profiles.default.extensions = with pkgs.vscode-extensions; [
       vscodevim.vim
@@ -19,7 +18,7 @@
       mhutchie.git-graph
     ];
     profiles.default.userSettings = {
-      "workbench.colorTheme" = "Stylix";
+      "workbench.colorTheme" = "Default Dark Modern";
       "editor.fontFamily" = "JetBrains Mono Nerd Font";
       "editor.fontSize" = 13;
       "editor.lineHeight" = 19;
