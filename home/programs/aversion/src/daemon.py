@@ -47,7 +47,16 @@ DEFAULTS = {
     "confirmation_phrase": "Yes, I really need this for work",
     # cap on kept attempt-history entries in state.json
     "history_limit": 500,
+    # nominal disable date (YYYY-MM-DD); enforced with a hard-coded
+    # cooling-off period — see DISABLE_GRACE_SECONDS
+    "disable_at": None,
 }
+
+# Cooling-off period before a disable request takes effect. Deliberately NOT
+# configurable from config.toml: the point of aversion is that it cannot be
+# switched off in a weak moment. The clock starts when the daemon first sees
+# a disable_at value and resets if the value changes or disappears.
+DISABLE_GRACE_SECONDS = 3 * 24 * 3600
 
 
 # --------------------------------------------------------------------------- #
@@ -154,11 +163,62 @@ class Daemon:
         self.running = True
         self.last_trigger = {}   # target -> timestamp of last completed intervention
         self._wake = threading.Event()  # set by the niri event-stream watcher
+        self.disabled = False    # set once the cooling-off period has elapsed
+        self._config_mtime = -1.0
 
     # -- persistence -------------------------------------------------------- #
 
     def save(self):
         save_state(self.state)
+
+    # -- disable handling ---------------------------------------------------- #
+
+    def _reload_config(self, now):
+        """Pick up config.toml changes without a daemon restart."""
+        try:
+            mtime = CONFIG_PATH.stat().st_mtime
+        except OSError:
+            return
+        if mtime == self._config_mtime:
+            return
+        self._config_mtime = mtime
+        self.cfg = load_config()
+        self._sync_disable(now)
+
+    def _sync_disable(self, now):
+        """Honour config disable_at only after the hard-coded cooling-off.
+
+        The clock starts when the daemon first sees the value and resets if
+        the value changes or is removed. Nothing in the config can shorten
+        the period.
+        """
+        requested = self.cfg.get("disable_at")
+        req = self.state.get("disable_request")
+        if requested:
+            if not req or req.get("date") != str(requested):
+                req = {"date": str(requested), "first_seen": now}
+                self.state["disable_request"] = req
+                self.save()
+                print(f"aversion: disable requested ({requested}) — "
+                      f"cooling-off period ({DISABLE_GRACE_SECONDS // 86400} days) starts now")
+        else:
+            if req:
+                self.state["disable_request"] = None
+                self.save()
+                print("aversion: disable request withdrawn — clock reset")
+            req = None
+        if req:
+            remaining = req["first_seen"] + DISABLE_GRACE_SECONDS - now
+            if remaining <= 0 and not self.disabled:
+                self.disabled = True
+                self.save()
+                print("aversion: cooling-off period over — blocking disabled")
+                try:
+                    subprocess.run(
+                        ["notify-send", "Aversion", "Cooling-off period over — blocking disabled"],
+                        timeout=5)
+                except Exception:
+                    pass
 
     # -- overlay supervision ------------------------------------------------ #
 
@@ -372,12 +432,13 @@ class Daemon:
         while self.running:
             now = time.time()
             try:
+                self._reload_config(now)
                 if self.cfg.get("reset_daily"):
                     self._daily_rollover()
-                if self.state["intervention"] is None:
-                    self._maybe_trigger()
-                else:
+                if self.state["intervention"] is not None:
                     self._supervise_intervention(now)
+                elif not self.disabled:
+                    self._maybe_trigger()
                 self._supervise_grant(now)
             except Exception as e:
                 print(f"aversion: error in loop: {e}", file=sys.stderr)
@@ -404,6 +465,9 @@ def main():
     print(f"aversion: niri={shutil.which('niri')} overlay={shutil.which('aversion-overlay')}")
     print(f"aversion: blocked_applications={cfg['blocked_applications']} "
           f"blocked_title_substrings={cfg['blocked_title_substrings']}")
+    if cfg.get("disable_at"):
+        print(f"aversion: disable requested ({cfg['disable_at']}) — "
+              f"cooling-off period applies before blocking stops")
     if not shutil.which("niri"):
         print("aversion: WARNING niri not found in PATH — will retry", file=sys.stderr)
 
