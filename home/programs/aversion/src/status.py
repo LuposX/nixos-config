@@ -8,6 +8,8 @@ import time
 from pathlib import Path
 
 STATE = Path(os.environ.get("AVERSION_STATE", "~/.local/state/aversion/state.json")).expanduser()
+CONFIG = Path(os.environ.get("AVERSION_CONFIG", "~/.config/aversion/config.toml")).expanduser()
+DISABLE_GRACE_SECONDS = 3 * 24 * 3600  # must match daemon.py
 
 
 def main():
@@ -16,6 +18,15 @@ def main():
     except (FileNotFoundError, json.JSONDecodeError):
         st = {}
     now = time.time()
+
+    req = st.get("disable_request")
+    if req:
+        remaining = req["first_seen"] + DISABLE_GRACE_SECONDS - now
+        if remaining > 0:
+            print(f"Disable request pending — cooling-off ends in "
+                  f"{remaining / 86400:.1f} days (blocking stays ON until then)")
+        else:
+            print("Disable request: completed — blocking OFF")
 
     print(f"Attempts today: {st.get('attempts_today', 0)}")
     print(f"Total attempts: {st.get('attempts_total', 0)}")

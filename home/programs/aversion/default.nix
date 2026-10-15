@@ -62,9 +62,34 @@
     poll_interval = 0.5;
     reset_daily = true;
   };
+
+  # Hard-coded in the daemon as well; kept here only for the message below.
+  coolingOffDays = 3;
 in {
   options.services.aversion = {
-    enable = lib.mkEnableOption "aversion conditioning blocker";
+    # Not a toggle: flipping this to false fails the build on purpose. The
+    # whole point of aversion is that it can't be switched off in a weak
+    # moment. The supported way out is disableAt plus the daemon's
+    # cooling-off period, which cannot be shortened from the config.
+    enable = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Whether aversion runs (disabling is deliberately not a quick flip; see disableAt).";
+    };
+
+    disableAt = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      example = "2026-07-01";
+      description = ''
+        Date (YYYY-MM-DD) nominally requesting that blocking stop. The date
+        itself is decorative: the daemon starts a hard-coded cooling-off
+        period (${toString coolingOffDays} days) when it first sees the
+        value and only stops blocking once that period has fully elapsed.
+        Changing or removing the value resets the clock.
+      '';
+    };
+
     settings = lib.mkOption {
       type = lib.types.attrs;
       default = {};
@@ -75,13 +100,23 @@ in {
     };
   };
 
-  config = lib.mkIf cfg.enable {
+  config = {
+    assertions = [
+      {
+        assertion = cfg.enable;
+        message = "services.aversion.enable = false is rejected by design — aversion is not a toggle. Use services.aversion.disableAt and wait out the ${toString coolingOffDays}-day cooling-off period.";
+      }
+    ];
+
     home.packages = [pkg];
 
     xdg.configFile."aversion/config.toml".source =
       (pkgs.formats.toml {}).generate
       "config.toml"
-      (lib.recursiveUpdate defaultSettings cfg.settings);
+      (lib.recursiveUpdate defaultSettings
+        (if cfg.disableAt == null
+         then cfg.settings
+         else lib.recursiveUpdate {disable_at = cfg.disableAt;} cfg.settings));
 
     systemd.user.services.aversion-daemon = {
       Unit = {
