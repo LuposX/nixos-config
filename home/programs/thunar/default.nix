@@ -44,7 +44,7 @@ in {
     "file:///home/${user}/Projects/nixos-config"
     "file:///home/${user}/Projects/Website_MonkeMan Website"
     "file:///home/${user}/Projects/Notes Notes"
-    "file:///home/${user}/Projects/Notes/University/Master/Semester_1 University"
+    "file:///home/${user}/Projects/Notes/University/Master/Semester_2 University"
     "file:///home/${user}/.NAS NAS"
   ];
 

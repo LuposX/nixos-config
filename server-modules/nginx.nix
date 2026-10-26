@@ -1,4 +1,4 @@
-{ config, ... }: let
+{config, ...}: let
   domain = config.var.domain;
 in {
   services.nginx = {
@@ -23,7 +23,7 @@ in {
 
   security.acme.certs."${domain}" = {
     domain = "${domain}";
-    extraDomainNames = [ "*.${domain}" ];
+    extraDomainNames = ["*.${domain}"];
     group = "nginx";
 
     dnsProvider = "duckdns";
@@ -37,29 +37,27 @@ in {
     # Acts as "catch-all" server that drops unwanted traffic
     "default" = {
       default = true;
-      locations."/" = { return = 444; };
+      locations."/" = {return = 444;};
     };
     # Block wildcard access unless explicitly allowed
     "*.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
-      locations."/" = { return = 444; };
+      locations."/" = {return = 444;};
     };
     # Glance
     "${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.100:5678";
+        proxyPass = "http://192.168.12.100:5678";
       };
     };
     "audiobook.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.49:13378";
+        proxyPass = "http://192.168.12.49:13378";
         extraConfig = ''
           proxy_http_version 1.1;
           proxy_set_header Upgrade $http_upgrade;
@@ -71,225 +69,235 @@ in {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.49:8084";
+        proxyPass = "http://192.168.12.49:8084";
       };
     };
     "money.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.41:5006";
+        proxyPass = "http://192.168.12.41:5006";
       };
     };
     "switch.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.53";
+        proxyPass = "http://192.168.12.53";
       };
     };
     "shellyplug.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.71";
+        proxyPass = "http://192.168.12.71";
+      };
+    };
+    "ebook2audiobook.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      http2 = false;
+      locations."/" = {
+        proxyPass = "http://192.168.12.95:7860";
+        extraConfig = ''
+          proxy_buffering off;
+          proxy_cache off;
+          client_max_body_size 2G;
+          proxy_read_timeout      3600s;
+          proxy_send_timeout      3600s;
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+        '';
       };
     };
     "gotify.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.144:80";
+        proxyPass = "http://192.168.12.144:80";
       };
     };
     "immich.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.133:2283";
+        proxyPass = "http://192.168.12.133:2283";
       };
     };
     "jellyfin.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.145:8096";
+        proxyPass = "http://192.168.12.145:8096";
       };
     };
     "jellystat.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.196:3000";
+        proxyPass = "http://192.168.12.196:3000";
       };
     };
     "jellywatch.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.196:5057";
+        proxyPass = "http://192.168.12.196:5057";
       };
     };
     "paper.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.130:8000";
+        proxyPass = "http://192.168.12.130:8000";
       };
     };
     "nas.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.92:80";
+        proxyPass = "http://192.168.12.92:80";
       };
     };
     "prowlarr.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.109:9696";
+        proxyPass = "http://192.168.12.109:9696";
+      };
+    };
+    "prowlarrbook.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://192.168.12.94:9696";
       };
     };
     "prox.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.10:8006";
-           extraConfig = ''
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection $connection_upgrade;
-          '';
-        };
+        proxyPass = "http://192.168.12.10:8006";
+        extraConfig = ''
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+        '';
+      };
     };
     "radarr.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.109:7878";
+        proxyPass = "http://192.168.12.109:7878";
       };
     };
     "read_prowlarr.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.49:9696";
+        proxyPass = "http://192.168.12.49:9696";
       };
     };
     "read_torrent.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.49:8080";
+        proxyPass = "http://192.168.12.49:8080";
+      };
+    };
+    "readmeabook.${domain}" = {
+      useACMEHost = "${domain}";
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://192.168.12.93:3030";
+        extraConfig = ''
+          proxy_http_version 1.1;
+          proxy_set_header Upgrade $http_upgrade;
+          proxy_set_header Connection $connection_upgrade;
+        '';
       };
     };
     "request.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.110:5055";
+        proxyPass = "http://192.168.12.110:5055";
       };
     };
     "sonarr.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.109:8989";
+        proxyPass = "http://192.168.12.109:8989";
       };
     };
     "syncthing.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.116:8384";
-          extraConfig = ''
-            proxy_read_timeout      600s;
-            proxy_send_timeout      600s;
-          '';
-        };
+        proxyPass = "http://192.168.12.116:8384";
+        extraConfig = ''
+          proxy_read_timeout      600s;
+          proxy_send_timeout      600s;
+        '';
+      };
     };
     "tandoor.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.127:8002";
+        proxyPass = "http://192.168.12.127:8002";
       };
     };
     "torrent.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.109:8085";
+        proxyPass = "http://192.168.12.109:8085";
       };
     };
     "vault.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.89:8000";
+        proxyPass = "http://192.168.12.89:8000";
       };
     };
     "wg.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.140:51821";
+        proxyPass = "http://192.168.12.140:51821";
       };
     };
     "i2pd-web.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.100:7070";
+        proxyPass = "http://192.168.12.100:7070";
       };
     };
     "i2pd-proxy.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.100:4444";
+        proxyPass = "http://192.168.12.100:4444";
       };
     };
     "kvm.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.55";
+        proxyPass = "http://192.168.12.55";
       };
     };
     "yt.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
       locations."/" = {
-        proxyPass =
-          "http://192.168.12.51";
+        proxyPass = "http://192.168.12.51";
       };
     };
     "miniflux.${domain}" = {
@@ -297,13 +305,12 @@ in {
       forceSSL = true;
       locations."/" = {
         # Miniflux runs on this host (services.miniflux), see server-modules/miniflux.nix
-        proxyPass =
-          "http://127.0.0.1:8080";
+        proxyPass = "http://127.0.0.1:8080";
         recommendedProxySettings = true;
       };
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-  networking.firewall.allowedUDPPorts = [ 80 443 ];
+  networking.firewall.allowedTCPPorts = [80 443];
+  networking.firewall.allowedUDPPorts = [80 443];
 }
