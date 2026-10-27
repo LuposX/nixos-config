@@ -1,6 +1,5 @@
 {config, pkgs, ...} : let
     hostname = config.var.hostname;
-    ipAddress = config.var.ipAddress;
 in {
   # RasperryPi has its own bootloader.
   boot.loader.grub.enable = false;
@@ -24,11 +23,10 @@ in {
     memoryPercent = 50;
   };
 
-  networking.interfaces.eth0.ipv4.addresses = [
-    { address = ipAddress; prefixLength = 24; }
-  ];
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" ];
-  networking.defaultGateway = "192.168.12.1";
+  # No hardcoded network settings: DHCP assigns address, gateway and DNS.
+  # The router pins 192.168.12.100 to this Pi via a DHCP reservation,
+  # so the address stays stable without being configured here.
+  networking.useDHCP = true;
 
   networking.hostName = hostname;
 }

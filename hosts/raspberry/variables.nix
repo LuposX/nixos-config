@@ -20,9 +20,6 @@
     defaultLocale = "en_US.UTF-8";
     extraLocale = "de_DE.UTF-8";
 
-    # Static Address for the device
-    ipAddress = "192.168.12.100";
-
     # Domain Name used for services
     domain = "idk-this-is-test.duckdns.org";
 
