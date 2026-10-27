@@ -1,4 +1,4 @@
-{config, ...} : let
+{config, pkgs, ...} : let
     hostname = config.var.hostname;
     ipAddress = config.var.ipAddress;
 in {
@@ -7,6 +7,9 @@ in {
   boot.loader.generic-extlinux-compatible.enable = true;
 
   virtualisation.docker.enable = true;
+
+  # SD card health checks (smartctl).
+  environment.systemPackages = [ pkgs.smartmontools ];
 
   # Needed for remote building.
   # Else I get error when building problems with sandbox.
