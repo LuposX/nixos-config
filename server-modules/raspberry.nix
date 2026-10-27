@@ -15,6 +15,12 @@ in {
     "kernel.unprivileged_userns_clone" = 1;
   };
 
+  # Keep userspace responsive under memory pressure on the 1GB Pi.
+  zramSwap = {
+    enable = true;
+    memoryPercent = 50;
+  };
+
   networking.interfaces.eth0.ipv4.addresses = [
     { address = ipAddress; prefixLength = 24; }
   ];

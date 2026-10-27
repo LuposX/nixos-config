@@ -8,16 +8,12 @@
     ../../nixos/nix.nix
 
     # Modules
-    ../../server-modules/adguard.nix
     ../../server-modules/ssh.nix
     ../../server-modules/raspberry.nix
     ../../server-modules/glance.nix
     ../../server-modules/miniflux.nix
     ../../server-modules/nginx.nix
     ../../server-modules/netbird.nix
-    ../../server-modules/i2p.nix
-    ../../server-modules/grafana.nix
-    ../../server-modules/prometheus.nix
     ../../server-modules/wakeserver.nix
 
     ./hardware-configuration.nix

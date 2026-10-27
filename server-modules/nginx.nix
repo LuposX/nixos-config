@@ -272,20 +272,6 @@ in {
         proxyPass = "http://192.168.12.140:51821";
       };
     };
-    "i2pd-web.${domain}" = {
-      useACMEHost = "${domain}";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://192.168.12.100:7070";
-      };
-    };
-    "i2pd-proxy.${domain}" = {
-      useACMEHost = "${domain}";
-      forceSSL = true;
-      locations."/" = {
-        proxyPass = "http://192.168.12.100:4444";
-      };
-    };
     "kvm.${domain}" = {
       useACMEHost = "${domain}";
       forceSSL = true;
