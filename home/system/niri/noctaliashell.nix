@@ -29,6 +29,10 @@ in {
   programs.noctalia-shell = {
     enable = true;
 
+    # Use the overlay-built package (nixpkgs.overlays in hosts/*/configuration.nix)
+    # instead of the flake's default, so the quickshell Qt 6.12 patch applies.
+    package = pkgs.noctalia-shell;
+
     plugins = {
       version = 2;
       sources = [

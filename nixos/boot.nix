@@ -43,7 +43,5 @@ in {
     ];
     # Shows only emergency messages when booting;
     consoleLogLevel = 0;
-    # No logs during early boot.
-    initrd.verbose = false;
   };
 }

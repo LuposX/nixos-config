@@ -4,6 +4,7 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
   imports = [
@@ -71,6 +72,26 @@
 
   # Patch spotify-player: authenticate subcommand never saves credentials.json
   nixpkgs.overlays = [
+    # noctalia-shell + its quickshell fork, from the noctalia flake overlay.
+    # Home module defaults to the flake's own package; pkgs.noctalia-shell
+    # lets us patch it below.
+    inputs.noctalia.overlays.default
+
+    # Qt 6.12 breaks noctalia-qs: QMetaType::fromType on moc'd hyprland/i3
+    # types fails "Meta Types must be fully defined" because the PCH
+    # instantiates the completeness check while the type is still
+    # forward-declared. Fixed upstream in quickshell commit 5d5d498
+    # "all: use MOC includes instead of opaque pointer definitions".
+    (final: prev: {
+      quickshell = prev.quickshell.overrideAttrs (oldAttrs: {
+        patches =
+          (oldAttrs.patches or [])
+          ++ [
+            ./../../patches/noctalia-qs-qt612-moc.patch
+          ];
+      });
+    })
+
     (final: prev: {
       spotify-player = prev.spotify-player.overrideAttrs (oldAttrs: {
         patches =
