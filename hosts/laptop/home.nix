@@ -27,7 +27,7 @@
     # ../../home/programs/anyrun
     ../../home/programs/nvf
     ../../home/programs/nnn
-    ../../home/programs/zen
+    ../../home/programs/librewolf
     ../../home/programs/aversion
     ../../home/programs/misc
     # ../../home/programs/nvix

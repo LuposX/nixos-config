@@ -41,7 +41,7 @@ in
     "super+shift+space".action = switch-layout "next";  # Keyboard layout (DE <-> US)
     "super+return".action = spawn apps.terminal;
     "super+b".action = spawn apps.browser;
-    "super+shift+b".action = spawn [ "zen-twilight" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)
+    "super+shift+b".action = spawn [ "librewolf" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)
     "super+e".action = spawn apps.fileManager;
     "super+c".action.spawn = noctalia "launcher clipboard";
     "alt+shift+c".action = spawn ["caffeine"];  # Caffeine toggle (idle inhibit)

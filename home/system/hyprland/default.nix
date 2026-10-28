@@ -86,8 +86,8 @@ in {
         "match:title ^(Picture-in-Picture)$, float on"
 
         "match:class ^(mpv)$, idle_inhibit focus"
-        "match:class ^(zen-beta)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
-        "match:class ^(zen)$, idle_inhibit fullscreen"
+        "match:class ^(librewolf)$, match:title ^(.*YouTube.*)$, idle_inhibit focus"
+        "match:class ^(librewolf)$, idle_inhibit fullscreen"
       ];
 
       exec-once = [
@@ -124,10 +124,10 @@ in {
         ]
         ++ (if isLaptop then [
           "[workspace 2] kitty"
-          "[workspace 1] zen-twilight"
+          "[workspace 1] librewolf"
         ] else [
           "[workspace 1] kitty"
-          "[workspace 2] zen-twilight"
+          "[workspace 2] librewolf"
         ])
         ++ ["[workspace 9 silent] spotify"];
 

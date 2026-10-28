@@ -1,37 +1,18 @@
-# Zen is a minimalistic web browser.
-# From: https://github.com/luisnquin/nixos-config
+# LibreWolf, configured declaratively.
+# Replaces the previous Zen setup: same extensions, same profiles,
+# DuckDuckGo as default search engine.
 {
-  inputs,
   config,
-  libx,
   pkgs,
   ...
 }: let
   domain = config.var.domain;
 in {
-  imports = [
-    inputs.zen-browser.homeModules.twilight
-  ];
-
-  stylix.targets.zen-browser.profileNames = ["default"];
-
-  # Desktop entry for the YouTube profile
-  home.packages = [
-    (pkgs.makeDesktopItem {
-      name = "zen-youtube";
-      desktopName = "Zen (YouTube)";
-      comment = "Zen Browser — YouTube profile (no login, no recommendations)";
-      exec = "zen-twilight -P youtube %u";
-      icon = "zen-browser";
-      categories = ["Network" "WebBrowser"];
-      mimeTypes = ["text/html" "x-scheme-handler/http" "x-scheme-handler/https"];
-      startupWMClass = "zen-twilight";
-    })
-  ];
-
-  programs.zen-browser = {
+  programs.librewolf = {
     enable = true;
 
+    # ---- POLICIES ----
+    # Check about:policies#documentation for options.
     policies = let
       mkLockedAttrs = builtins.mapAttrs (_: value: {
         Value = value;
@@ -62,7 +43,7 @@ in {
       );
     in {
       SearchEngines = {
-        Default = "SearXNG";
+        Default = "DuckDuckGo";
         Add = [
           {
             Name = "SearXNG";
@@ -72,36 +53,10 @@ in {
             Alias = "@s";
             Description = "Self-Hosted SearXNG";
           }
-          {
-            Name = "DuckDuckGo";
-            URLTemplate = "https://duckduckgo.com/?q={searchTerms}";
-            Method = "GET";
-            IconURL = "https://duckduckgo.com/favicon.ico";
-            Alias = "@ddg";
-            Description = "DuckDuckGo Search";
-          }
         ];
       };
-
-      AutofillAddressEnabled = true;
-      AutofillCreditCardEnabled = false;
-      DisableAppUpdate = true;
-      DisableFeedbackCommands = true;
-      DisableFirefoxStudies = true;
-      DisablePocket = true; # save webs for later reading
-      DisableTelemetry = true;
-      DontCheckDefaultBrowser = true;
-      OfferToSaveLogins = false;
-      EnableTrackingProtection = {
-        Value = true;
-        Locked = true;
-        Cryptomining = true;
-        Fingerprinting = true;
-      };
-      SanitizeOnShutdown = {
-        FormData = true;
-        Cache = true;
-      };
+      # "always", "never" or "newtab"
+      DisplayBookmarksToolbar = "newtab";
       # Check about:support for extension/add-on ID strings.
       ExtensionSettings = mkExtensionSettings {
         "uBlock0@raymondhill.net" = {
@@ -169,84 +124,46 @@ in {
           pinned = false;
         };
       };
-      Preferences = mkLockedAttrs {
-        "browser.startup.homepage" = "https://${domain}|https://chatgpt.com";
-        "browser.aboutConfig.showWarning" = false;
-        "browser.tabs.warnOnClose" = false;
-        "media.videocontrols.picture-in-picture.video-toggle.enabled" = true;
-        # Disable swipe gestures (Browser:BackOrBackDuplicate, Browser:ForwardOrForwardDuplicate)
-        "browser.gesture.swipe.left" = "";
-        "browser.gesture.swipe.right" = "";
-        "browser.tabs.hoverPreview.enabled" = true;
-        "browser.newtabpage.activity-stream.feeds.topsites" = false;
-        "browser.topsites.contile.enabled" = false;
-
-        "privacy.resistFingerprinting" = true;
-        "privacy.resistFingerprinting.randomization.canvas.use_siphash" = true;
-        "privacy.resistFingerprinting.randomization.daily_reset.enabled" = true;
-        "privacy.resistFingerprinting.randomization.daily_reset.private.enabled" = true;
-        "privacy.resistFingerprinting.block_mozAddonManager" = true;
-        "privacy.spoof_english" = 1;
-
-        "privacy.firstparty.isolate" = true;
-        "network.cookie.cookieBehavior" = 5;
-        "dom.battery.enabled" = false;
-
-        "gfx.webrender.all" = true;
-        "network.http.http3.enabled" = true;
-        "network.socket.ip_addr_any.disabled" = true; # disallow bind to 0.0.0.0
-      };
     };
 
-    profiles.default = rec {
+    profiles.default = {
       id = 0;
       isDefault = true;
       name = "default";
-      settings = {
-        "zen.workspaces.continue-where-left-off" = true;
-        "zen.workspaces.natural-scroll" = true;
-        "zen.view.compact.hide-tabbar" = true;
-        "zen.view.compact.hide-toolbar" = true;
-        "zen.view.compact.animate-sidebar" = false;
-        "zen.welcome-screen.seen" = true;
-        "zen.urlbar.behavior" = "float";
-      };
 
       bookmarks = {
         force = true; # must be explicitly set to apply bookmarks
         # Bookmarks can be opened with: CTRL + B
+        # toolbar = true makes this directory the bookmarks toolbar
         settings = [
           {
-            name = "KIT Illias";
-            url = "https://ilias.studium.kit.edu/ilias.php?baseClass=ilrepositorygui&ref_id=1";
-          }
-          {
-            name = "KIT CAS";
-            url = "https://campus.studium.kit.edu/";
-          }
-          {
-            name = "Overleaf";
-            url = "https://www.overleaf.com/project";
-          }
-          {
-            name = "Teams";
-            url = "https://teams.microsoft.com/v2/";
-          }
-          {
-            name = "Discord Web";
-            url = "https://discord.com/app";
+            name = "Bookmarks Toolbar";
+            toolbar = true;
+            bookmarks = [
+              {
+                name = "Home";
+                url = "https://idk-this-is-test.duckdns.org";
+              }
+              {
+                name = "KIT Illias";
+                url = "https://ilias.studium.kit.edu/ilias.php?baseClass=ilrepositorygui&ref_id=1";
+              }
+              {
+                name = "KIT CAS";
+                url = "https://campus.studium.kit.edu/";
+              }
+              {
+                name = "Teams";
+                url = "https://teams.microsoft.com/v2/";
+              }
+              {
+                name = "Discord Web";
+                url = "https://discord.com/app";
+              }
+            ];
           }
         ];
       };
-
-      pinsForce = false;
-      # pins = {};
-
-      containersForce = false;
-      # containers = {};
-
-      spacesForce = false;
-      # spaces = {};
     };
 
     # YouTube profile — minimal, no login, no recommendations
@@ -257,14 +174,6 @@ in {
       name = "youtube";
       isDefault = false;
       settings = {
-        # Zen settings (same as default for consistency)
-        "zen.workspaces.continue-where-left-off" = true;
-        "zen.workspaces.natural-scroll" = true;
-        "zen.view.compact.hide-tabbar" = true;
-        "zen.view.compact.hide-toolbar" = true;
-        "zen.view.compact.animate-sidebar" = false;
-        "zen.urlbar.behavior" = "float";
-
         # YouTube-specific: kill recommendations
         "browser.newtabpage.enabled" = false;
         "browser.newtabpage.activity-stream.feeds.section.topstories" = false;
@@ -276,7 +185,6 @@ in {
         # Disable autoplay
         "media.autoplay.default" = 5; # 5 = block all
         "media.autoplay.blocking_policy" = 2;
-        "media.autoplay.enabled" = false;
 
         # Blank start page — nothing to pull you in
         "browser.startup.homepage" = "about:blank";
@@ -286,15 +194,24 @@ in {
         "extensions.pocket.enabled" = false;
       };
 
-      # No bookmarks, no containers, no spaces — pure YouTube tool
       bookmarks = {
         force = false;
         settings = [];
       };
-
-      pinsForce = false;
-      containersForce = false;
-      spacesForce = false;
     };
   };
+
+  # Desktop entry for the YouTube profile
+  home.packages = [
+    (pkgs.makeDesktopItem {
+      name = "librewolf-youtube";
+      desktopName = "LibreWolf (YouTube)";
+      comment = "LibreWolf — YouTube profile (no login, no recommendations)";
+      exec = "librewolf -P youtube %u";
+      icon = "librewolf";
+      categories = ["Network" "WebBrowser"];
+      mimeTypes = ["text/html" "x-scheme-handler/http" "x-scheme-handler/https"];
+      startupWMClass = "librewolf";
+    })
+  ];
 }

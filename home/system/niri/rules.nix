@@ -33,7 +33,7 @@
 
       {
         matches = [
-          { app-id = "zen-twilight"; at-startup = true; }
+          { app-id = "librewolf"; at-startup = true; }
         ];
         open-on-workspace = "browser";
       }
@@ -48,7 +48,7 @@
       {
         matches = [
           { app-id = "firefox"; title = "^Picture-in-Picture$"; }
-          { app-id = "zen-twilight"; title = "^Picture-in-Picture$"; }
+          { app-id = "librewolf"; title = "^Picture-in-Picture$"; }
         ];
         open-floating = true;
         default-column-width = { fixed = 480; };

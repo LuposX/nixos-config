@@ -7,8 +7,8 @@
     { command = [ "arrpc" ]; }
     { command = [ "xwayland-satellite" ]; }
     { command = [ "noctalia-shell" ]; }
-    # Zen on workspace 1 (current workspace at startup)
-    { command = [ "zen-twilight" ]; }
+    # LibreWolf on workspace 1 (current workspace at startup)
+    { command = [ "librewolf" ]; }
     # Focus workspace 2, then open terminal
     {
       command = [

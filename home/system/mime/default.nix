@@ -7,7 +7,7 @@
 }:
 with lib; let
   defaultApps = {
-    browser = ["zen-twilight.desktop"];
+    browser = ["librewolf.desktop"];
     text = ["org.gnome.TextEditor.desktop"];
     image = ["com.system76.CosmicViewer.desktop"];
     audio = ["mpv.desktop"];
