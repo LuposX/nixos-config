@@ -131,6 +131,17 @@ in {
       isDefault = true;
       name = "default";
 
+      # Re-enable Firefox captive portal detection.
+      # LibreWolf disables it upstream (mozilla.cfg), which is why the
+      # KA-WLAN login popup at uni never appeared. These user prefs
+      # override that, so joining a hotspot opens the login page again.
+      settings = {
+        "network.captive-portal-service.enabled" = true;
+        "network.connectivity-service.enabled" = true;
+        # Reset the canonical URL LibreWolf blanks out.
+        "captivedetect.canonicalURL" = "http://detectportal.firefox.com/success.txt";
+      };
+
       bookmarks = {
         force = true; # must be explicitly set to apply bookmarks
         # Bookmarks can be opened with: CTRL + B
