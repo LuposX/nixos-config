@@ -165,6 +165,7 @@ in {
   # Deploy the vendored plugin as a mutable copy (see niriLayoutIndicatorSrc
   # above). Keeps the directory writable so noctalia can persist plugin
   # settings.json; settings.json is preserved across rebuilds (not in src).
+  # The activation also applies the Qt 6.12 `Color` singleton rename fix.
   #
   # Pitfall: `cp -r` preserves the nix-store source modes (0444/0555), so the
   # FIRST activation succeeds but every later one fails with EACCES when cp
@@ -174,5 +175,11 @@ in {
     mkdir -p "$HOME/.config/noctalia/plugins/niri-layout-indicator"
     chmod -R u+w "$HOME/.config/noctalia/plugins/niri-layout-indicator"
     cp -r --no-preserve=mode ${niriLayoutIndicatorSrc}/. "$HOME/.config/noctalia/plugins/niri-layout-indicator/"
+    # Qt 6.12 renamed the game: QtQuick now ships its own `Color` singleton
+    # (QQuickColor), which shadows noctalia v4's `Color` singleton and breaks
+    # every `Color.m*` lookup (same fix as the noctalia-shell overlay patch
+    # in hosts/*/configuration.nix). Apply it to the deployed plugin copy.
+    find "$HOME/.config/noctalia/plugins/niri-layout-indicator" -name '*.qml' \
+      -exec sed -i 's/\([^A-Za-z0-9_.]\)Color\./\1NoctColors./g' {} +
   '';
 }

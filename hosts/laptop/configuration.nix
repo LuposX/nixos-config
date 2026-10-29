@@ -47,11 +47,22 @@
     # lets us patch it below.
     inputs.noctalia.overlays.default
 
-    # Qt 6.12 breaks noctalia-qs: QMetaType::fromType on moc'd hyprland/i3
-    # types fails "Meta Types must be fully defined" because the PCH
-    # instantiates the completeness check while the type is still
-    # forward-declared. Fixed upstream in quickshell commit 5d5d498
-    # "all: use MOC includes instead of opaque pointer definitions".
+    # Qt 6.12 fixes for the noctalia stack, needed since the Oct 2026 flake
+    # update pulled qtbase 6.12:
+    #
+    # 1. quickshell fork (noctalia-qs) fails to compile: QMetaType::fromType
+    #    on moc'd hyprland/i3 types hits "Meta Types must be fully defined"
+    #    because the PCH instantiates the completeness check while the type
+    #    is still forward-declared. Fixed upstream in quickshell commit
+    #    5d5d498 "all: use MOC includes instead of opaque pointer definitions".
+    #
+    # 2. noctalia v4's QML singleton `Color` collides with the NEW `Color`
+    #    singleton Qt 6.12 added to QtQuick (exports "QtQuick/Color 6.12",
+    #    class QQuickColor). Every `Color.mSurface` lookup then resolves to
+    #    Qt's object and returns undefined -> white panels, black wallpaper.
+    #    Rename the singleton (file + all references) to NoctColors.
+    #
+    # Remove both overlays once noctalia legacy-v4 supports Qt 6.12 natively.
     (final: prev: {
       quickshell = prev.quickshell.overrideAttrs (oldAttrs: {
         patches =
@@ -59,6 +70,19 @@
           ++ [
             ./../../patches/noctalia-qs-qt612-moc.patch
           ];
+      });
+
+      # NOTE: noctalia overrides installPhase without running the postInstall
+      # hook, so the rename must be appended to installPhase itself.
+      noctalia-shell = prev.noctalia-shell.overrideAttrs (oldAttrs: {
+        installPhase =
+          (oldAttrs.installPhase or "")
+          + ''
+            cd $out/share/noctalia-shell
+            mv Commons/Color.qml Commons/NoctColors.qml
+            find . -name '*.qml' -exec sed -i 's/\([^A-Za-z0-9_.]\)Color\./\1NoctColors./g' {} +
+            sed -i 's/\([^A-Za-z0-9_.]\)Color\./\1NoctColors./g' Commons/NoctColors.qml
+          '';
       });
     })
 
