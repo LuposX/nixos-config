@@ -14,8 +14,6 @@
     nur.url = "github:nix-community/NUR";
     matugen.url = "github:InioX/matugen";
 
-    hermes-agent.url = "github:NousResearch/hermes-agent";
-
     pi = {
       url = "github:earendil-works/pi/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -80,7 +78,6 @@
         specialArgs = {inherit inputs;};
 
         modules = [
-          inputs.hermes-agent.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
@@ -94,7 +91,6 @@
         specialArgs = {inherit inputs;};
 
         modules = [
-          inputs.hermes-agent.nixosModules.default
           inputs.sops-nix.nixosModules.sops
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
