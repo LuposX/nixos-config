@@ -1,25 +1,32 @@
+{ pkgs, ... }:
+
 {
-  config,
-  pkgs,
-  ...
-}: {
-  # GNOME keyring + PAM integration:
-  # the password typed at the greeter unlocks the keyring automatically.
+  # GNOME keyring + PAM integration
   services.gnome.gnome-keyring.enable = true;
 
   security.pam.services.greetd = {
     enableGnomeKeyring = true;
   };
 
-  # Noctalia Greeter (login screen) — declarative module from nixpkgs.
-  # Replaces the previous greetd auto-login to niri-session.
-  services.displayManager.noctalia-greeter = {
+  services.greetd = {
     enable = true;
 
     settings = {
-      keyboard = {
-        layout = config.var.keyboardLayout;
+      default_session = {
+        command = "niri-session";
+        user = "monkeman";
       };
     };
+  };
+
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 }
