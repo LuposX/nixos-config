@@ -20,6 +20,8 @@
     enabledModels = [
       "z-ai/glm-5.3-flash"
       "z-ai/glm-5.3"
+      "moonshotai/kimi-k3.1-pro"
+      "openai/gpt-6.1-sol"
     ];
     enableInstallTelemetry = false;
     # Run Pi's shell commands inside the project's direnv environment.
@@ -103,7 +105,9 @@
       pneuma = ../hosts/laptop/secrets/secrets.yaml;
       logos = ../hosts/desktop/secrets/secrets.yaml;
     }
-    .${config.var.hostname} or ../hosts/laptop/secrets/secrets.yaml;
+    .${
+      config.var.hostname
+    } or ../hosts/laptop/secrets/secrets.yaml;
   # Wrap pi so the OpenRouter key is injected at launch, independent of
   # the calling shell. Shell-init exports only reach shells started after
   # a rebuild; wrappers (and launchers) always get the current secret.
@@ -151,8 +155,7 @@ in {
   home-manager.users.${username} = {lib, ...}: {
     # Read-only, Pi only reads these: global voice rules + humanizer skill
     home.file.".pi/agent/AGENTS.md".source = piAgents;
-    home.file.".pi/agent/skills/humanizer/SKILL.md".source =
-      "${humanizerSrc}/SKILL.md";
+    home.file.".pi/agent/skills/humanizer/SKILL.md".source = "${humanizerSrc}/SKILL.md";
 
     home.activation.piSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
       mkdir -p "$HOME/.pi/agent"

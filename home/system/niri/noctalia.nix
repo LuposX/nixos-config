@@ -131,6 +131,10 @@ in {
       widget.tray.drawer = true;
 
       # v4: Battery displayMode = "alwaysShow" is v5's default behavior.
+      theme = {
+        source = "wallpaper"; # palette generated from the wallpaper (as in v4)
+        wallpaper_scheme = "fruit-salad"; # matches the stylix color scheme
+      };
     };
 
     # Plugin notes (v5 plugins are Luau; QML plugins from v4 do not carry
