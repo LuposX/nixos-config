@@ -87,7 +87,7 @@ in {
     EDITOR = "nvim";
     TERMINAL = "kitty";
     TERM = "kitty";
-    BROWSER = "firefox";
+    BROWSER = "librewolf";
     DE = "niri";
   };
 
