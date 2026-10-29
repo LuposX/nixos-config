@@ -35,9 +35,13 @@ in {
         else base;
 
       # All extensions are wrapped here
+      # Entries with their own install_url (e.g. GitHub release xpis)
+      # are used as-is; everything else gets an AMO url from the id.
       mkExtensionSettings = builtins.mapAttrs (
         _: entry:
-          if builtins.isAttrs entry
+          if builtins.isAttrs entry && entry ? install_url
+          then entry
+          else if builtins.isAttrs entry
           then mkExtensionEntry entry
           else mkExtensionEntry {id = entry;}
       );
@@ -121,6 +125,12 @@ in {
         };
         "webextension@metamask.io" = {
           id = "ether-metamask";
+          pinned = false;
+        };
+        # Not on AMO; installed from the GitHub release xpi.
+        "auto-kit-login@rizecookey.net" = {
+          install_url = "https://github.com/rizecookey/auto-kit-login/releases/download/v1.2.6/auto-kit-login-1.2.6-firefox.xpi";
+          installation_mode = "force_installed";
           pinned = false;
         };
       };
