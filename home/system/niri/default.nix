@@ -11,7 +11,7 @@
     ./autostart.nix
     ./scripts.nix
 
-    ./noctaliashell.nix
+    ./noctalia.nix
   ];
 
   # xwayland-satellite: standalone XWayland server used by niri for X11 apps

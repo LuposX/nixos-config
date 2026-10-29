@@ -11,6 +11,7 @@
     # Programs
     ../../home/programs/shell
     ../../home/programs/git
+    ../../home/programs/gh
     ../../home/programs/ssh
   ];
 

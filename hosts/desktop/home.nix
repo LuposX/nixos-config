@@ -14,6 +14,7 @@
     ../../home/programs/shell
     # ../../home/programs/firefox
     ../../home/programs/git
+    ../../home/programs/gh
     ../../home/programs/lazygit
     ../../home/programs/thunar
     ../../home/programs/vscode
@@ -55,6 +56,7 @@
       (with pkgs; [
         # Apps
         gnome-calendar # Calendar
+        wl-mirror # For Screen Mirroring in Noctalia
         resources # Monitor for your system resources
         gnome-clocks
         popsicle

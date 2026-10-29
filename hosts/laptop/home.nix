@@ -15,6 +15,7 @@
     ../../home/programs/shell
     # ../../home/programs/firefox
     ../../home/programs/git
+    ../../home/programs/gh
     ../../home/programs/lazygit
     ../../home/programs/thunar
     ../../home/programs/vscode

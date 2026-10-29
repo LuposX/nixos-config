@@ -6,7 +6,7 @@
   programs.niri.settings.spawn-at-startup = [
     { command = [ "arrpc" ]; }
     { command = [ "xwayland-satellite" ]; }
-    { command = [ "noctalia-shell" ]; }
+    { command = [ "noctalia" ]; }
     # LibreWolf on workspace 1 (current workspace at startup)
     { command = [ "librewolf" ]; }
     # Focus workspace 2, then open terminal

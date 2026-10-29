@@ -26,10 +26,10 @@
 
     vicinae.url = "github:vicinaehq/vicinae";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia/legacy-v4";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # v5 (native shell, no quickshell). Pin to the cachix branch so every
+    # commit is prebuilt; `follows` would change the derivation hash and break
+    # the binary cache.
+    noctalia.url = "github:noctalia-dev/noctalia/cachix";
 
     nix-colors.url = "github:misterio77/nix-colors";
 

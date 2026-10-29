@@ -7,28 +7,29 @@
 let
   apps = import ./applications.nix { inherit pkgs; };
 
+  # Noctalia v5 IPC: `noctalia msg <command>` (v4 was `noctalia-shell ipc call <object> <method>`).
   noctalia =
     cmd:
     [
-      "noctalia-shell"
-      "ipc"
-      "call"
+      "noctalia"
+      "msg"
     ]
     ++ (pkgs.lib.splitString " " cmd);
 in
 {
   programs.niri.settings.binds = with config.lib.niri.actions; {
     # Hardware Keys - Volume
-    "XF86AudioRaiseVolume".action.spawn = noctalia "volume increase"; # output increase
-    "XF86AudioLowerVolume".action.spawn = noctalia "volume decrease"; # output decrease
-    "XF86AudioMute".action.spawn = noctalia "volume muteOutput"; # output mute
-    "shift+XF86AudioRaiseVolume".action.spawn = noctalia "volume increaseInput"; # input increase
-    "shift+XF86AudioLowerVolume".action.spawn = noctalia "volume decreaseInput"; # input decrease
-    "shift+XF86AudioMute".action.spawn = noctalia "volume muteInput"; # input mute
-    "control+XF86AudioMute".action.spawn = noctalia "volume togglePanel"; # open volume panel
+    "XF86AudioRaiseVolume".action.spawn = noctalia "volume-up"; # output increase
+    "XF86AudioLowerVolume".action.spawn = noctalia "volume-down"; # output decrease
+    "XF86AudioMute".action.spawn = noctalia "volume-mute"; # output mute
+    "shift+XF86AudioRaiseVolume".action.spawn = noctalia "mic-volume-up"; # input increase
+    "shift+XF86AudioLowerVolume".action.spawn = noctalia "mic-volume-down"; # input decrease
+    "shift+XF86AudioMute".action.spawn = noctalia "mic-mute"; # input mute
+    # v4 had a dedicated volume panel; v5 volume lives in the control center.
+    "control+XF86AudioMute".action.spawn = noctalia "panel-toggle control-center";
 
     # Hardware Keys - Media
-    "XF86AudioPlay".action.spawn = noctalia "media playPause";
+    "XF86AudioPlay".action.spawn = noctalia "media toggle";
     "XF86AudioNext".action.spawn = noctalia "media next";
     "XF86AudioPrev".action.spawn = noctalia "media previous";
 
@@ -37,13 +38,13 @@ in
     "XF86MonBrightnessDown".action.spawn = ["brightnessctl" "set" "10%-"];
 
     # Applications
-    "super+space".action.spawn = noctalia "launcher toggle";
+    "super+space".action.spawn = noctalia "panel-toggle launcher";
     "super+shift+space".action = switch-layout "next";  # Keyboard layout (DE <-> US)
     "super+return".action = spawn apps.terminal;
     "super+b".action = spawn apps.browser;
     "super+shift+b".action = spawn [ "librewolf" "-P" "youtube" ];  # YouTube profile (no login, no recommendations)
     "super+e".action = spawn apps.fileManager;
-    "super+c".action.spawn = noctalia "launcher clipboard";
+    "super+c".action.spawn = noctalia "panel-toggle clipboard";
     "alt+shift+c".action = spawn ["caffeine"];  # Caffeine toggle (idle inhibit)
 
     # Grep and Open Files (uses fzf)
@@ -97,7 +98,7 @@ in
     "super+shift+7".action.move-window-to-workspace = 7;
 
     # Lock Screen
-    "super+l".action.spawn = noctalia "lockScreen lock";
+    "super+l".action.spawn = noctalia "session lock";
 
     # Clipboard picker
     "shift+super+c".action = spawn [

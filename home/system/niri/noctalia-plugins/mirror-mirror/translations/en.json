@@ -1,0 +1,14 @@
+{
+  "bar.tooltip.active": "Mirror is active",
+  "bar.tooltip.inactive": "Mirror displays",
+  "main.error.alreadyMirroring": "A mirror session is already active. Stop it before starting another.",
+  "main.error.selectBothMonitors": "Please select both source and destination monitors.",
+  "main.error.sameMonitor": "Source and destination must be different monitors.",
+  "main.error.noCompatibleBackend": "wl-mirror found no compatible capture backend.",
+  "panel.title": "Mirror Mirror",
+  "panel.subtitle": "Mirror one monitor to another using wl-mirror.",
+  "panel.validation.sameSelection": "Source and destination must be different monitors.",
+  "panel.validation.needTwoMonitors": "Need at least 2 monitors detected to mirror.",
+  "panel.actions.start": "Start mirror",
+  "panel.actions.stop": "Stop mirror"
+}

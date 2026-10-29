@@ -1,0 +1,26 @@
+# v5 Luau port of Mathew-D's mirror-mirror (noctalia v4 QML plugin, MIT),
+# as distributed in PaloMiku/noctalia-plugins. Same feature set: mirror one
+# monitor to another with wl-mirror, output pickers, start/stop, error display.
+id = "monkeman/mirror-mirror"
+name = "Mirror Mirror"
+version = "1.0.0"
+plugin_api = 3
+author = "monkeman"
+license = "MIT"
+icon = "screen-share"
+description = "Mirror one monitor to another using wl-mirror."
+dependencies = ["wl-mirror"]
+
+[[service]]
+id = "main"
+entry = "main.luau"
+
+[[panel]]
+id = "mirror"
+entry = "panel.luau"
+width = 380
+height = 420
+
+[[widget]]
+id = "toggle"
+entry = "widget.luau"
