@@ -197,6 +197,15 @@ in {
     default = ["kitty.desktop"];
   };
 
+  # systemd-suspend freezes user.slice around the suspend; if any dbus
+  # activation queues a job for a user unit in that window (NetworkManager
+  # asking the keyring for 802-1x secrets is the known trigger here), the
+  # thaw fails with "Unit has a pending job" and the whole user session is
+  # left frozen after resume. The kernel freezes all user processes for the
+  # actual sleep anyway, so the extra systemd-level freeze adds nothing
+  # here. See systemd sleep.c: SYSTEMD_SLEEP_FREEZE_USER_SESSIONS.
+  systemd.services.systemd-suspend.environment.SYSTEMD_SLEEP_FREEZE_USER_SESSIONS = "0";
+
   security = {
     # allow wayland lockers to unlock the screen
     pam.services.hyprlock.text = "auth include login";
