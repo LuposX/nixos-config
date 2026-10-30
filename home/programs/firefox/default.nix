@@ -210,6 +210,12 @@ in {
           installation_mode = "force_installed";
         };
 
+        # Clickbait Remover for Youtube
+        "cb-remover@search.mozilla.org" = {
+          install_url = "https://addons.mozilla.org/firefox/downloads/latest/clickbait-remover-for-youtube/latest.xpi";
+          installation_mode = "force_installed";
+        };
+
         # Youtube: Unhook
         "myallychou@gmail.com" = {
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/youtube-recommended-videos/latest.xpi";
