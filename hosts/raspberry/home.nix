@@ -22,6 +22,8 @@
     packages = with pkgs; [
       inputs.nvix.packages.${pkgs.stdenv.hostPlatform.system}.bare
 
+      fastfetch
+
       # Utils
       zip
       unzip
