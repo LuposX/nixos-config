@@ -150,6 +150,15 @@ in {
         "network.connectivity-service.enabled" = true;
         # Reset the canonical URL LibreWolf blanks out.
         "captivedetect.canonicalURL" = "http://detectportal.firefox.com/success.txt";
+
+        # LibreWolf clears cookies on shutdown by default, which logs
+        # everything out. Keep cookies/sessions between restarts.
+        "privacy.sanitize.sanitizeOnShutdown" = false;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.offlineApps" = false;
+        "privacy.clearOnShutdown.siteSettings" = false;
+        # Keep cache/history clearing? Only cookies matter for logins;
+        # these stay at LibreWolf's defaults otherwise.
       };
 
       bookmarks = {
@@ -213,6 +222,13 @@ in {
 
         # Disable Pocket
         "extensions.pocket.enabled" = false;
+
+        # Same: don't wipe cookies on shutdown (not used for logins,
+        # but avoids the same surprise if that changes).
+        "privacy.sanitize.sanitizeOnShutdown" = false;
+        "privacy.clearOnShutdown.cookies" = false;
+        "privacy.clearOnShutdown.offlineApps" = false;
+        "privacy.clearOnShutdown.siteSettings" = false;
       };
 
       bookmarks = {
