@@ -48,7 +48,11 @@
   nixpkgs.config.rocmSupport = true;
 
   networking.firewall.allowedTCPPorts = [8888]; # For jupyter
-  services.fail2ban.enable = true;
+  services.fail2ban = {
+    enable = true;
+    maxretry = 5;
+    ignoreIP = [ "192.168.12.25" ]; # the laptop
+  };
   services.media-consumption-monitor.enable = true;
   services.openssh = {
     enable = true;
