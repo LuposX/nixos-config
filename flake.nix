@@ -6,13 +6,12 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     stylix = {
-      url = "github:make-42/stylix/matugen";
+      url = "github:nix-community/stylix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
     nur.url = "github:nix-community/NUR";
-    matugen.url = "github:InioX/matugen";
 
     pi = {
       url = "github:earendil-works/pi/stable";

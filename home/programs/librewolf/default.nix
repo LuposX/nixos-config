@@ -8,6 +8,9 @@
 }: let
   domain = config.var.domain;
 in {
+  # Style both profiles; silences the stylix profileNames warning.
+  stylix.targets.librewolf.profileNames = ["default" "youtube"];
+
   programs.librewolf = {
     enable = true;
 

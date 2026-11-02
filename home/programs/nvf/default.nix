@@ -101,7 +101,14 @@
       autopairs.nvim-autopairs.enable = true;
       autocomplete.nvim-cmp.enable = true;
       dashboard.dashboard-nvim.enable = true;
-      statusline.lualine.enable = true;
+      # breadcrumbs moved here from vim.ui.breadcrumbs in nvf
+      statusline.lualine = {
+        enable = true;
+        integrations.breadcrumbs = {
+          nvim-navic.enable = false;
+          navbuddy.enable = false;
+        };
+      };
       treesitter.enable = true;
 
       snippets.luasnip.enable = true;
@@ -149,10 +156,6 @@
         colorizer.enable = true;
         illuminate.enable = true;
         fastaction.enable = true;
-        breadcrumbs = {
-          enable = false;
-          navbuddy.enable = false;
-        };
       };
 
       visuals = {

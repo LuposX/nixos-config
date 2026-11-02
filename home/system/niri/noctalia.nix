@@ -145,4 +145,9 @@ in {
     #     (mirror one monitor to another with wl-mirror); registered under
     #     settings.plugins above.
   };
+
+  # Upstream stylix's noctalia target forces theme.source = "custom"
+  # with a stylix palette; this setup deliberately uses noctalia's own
+  # wallpaper-derived palette instead.
+  stylix.targets.noctalia.enable = false;
 }

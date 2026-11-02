@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   # VSCodium. Uses the dedicated home-manager module so extensions and
   # settings land in ~/.vscode-oss and ~/.config/VSCodium.
   programs.vscodium = {
@@ -18,9 +22,10 @@
       mhutchie.git-graph
     ];
     profiles.default.userSettings = {
-      "workbench.colorTheme" = "Default Dark Modern";
+      # Stylix sets "workbench.colorTheme" = "Stylix"; don't override it.
       "editor.fontFamily" = "JetBrains Mono Nerd Font";
-      "editor.fontSize" = 13;
+      # Stylix also sets this (terminal size * 4/3 = 17.33); keep 13.
+      "editor.fontSize" = lib.mkForce 13;
       "editor.lineHeight" = 19;
       "workbench.list.fontSize" = 9;
 

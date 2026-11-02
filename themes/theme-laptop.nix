@@ -62,15 +62,10 @@ in {
      enable = true;
      autoEnable = true;
 
-     colorGeneration  = {
-       scheme = "fruit-salad"; # options: "vibrant", "fruit-salad", "content",  "monochrome", "neutral", "rainbow", "tonal-spot"
-       polarity = "dark";
-       contrast = 0.0;
-       lightness = {
-         dark = -0.02;
-         light = 0.0;
-       };
-     };
+     # Colors are extracted from stylix.image by upstream stylix.
+     # The matugen fork's colorGeneration block was removed in the switch
+     # away from make-42/stylix.
+     polarity = "dark";
 
      opacity = {
        applications = 0.8;

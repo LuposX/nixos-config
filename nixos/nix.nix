@@ -37,6 +37,11 @@ in {
   nixpkgs.config = {
     allowUnfree = true;
     allowBroken = false;
+
+    # gtk2 is flagged broken (removal planned for 27.05) but still builds.
+    # lutris still ships it in its runtimeLibs, so downgrading to a warning
+    # until lutris migrates to gtk3.
+    problems.handlers."gtk+".broken = "warn";
   };
 
   nix = {
