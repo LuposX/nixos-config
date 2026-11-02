@@ -62,10 +62,29 @@ in {
     enable = true;
     autoEnable = true;
 
-    # Colors are extracted from stylix.image by upstream stylix.
-    # The matugen fork's colorGeneration block was removed in the switch
-    # away from make-42/stylix.
-    polarity = "dark";
+    # Palette recovered from the matugen fork's output (system-381
+    # generation) after the switch away from make-42/stylix. Upstream's
+    # generator produced a red-tinted background (#341008) from the
+    # warm wallpaper; this pins the previous near-black scheme.
+    # NOTE: tied to the current wallpaper — regenerate if it changes.
+    base16Scheme = {
+      base00 = "0d0702";
+      base01 = "22180f";
+      base02 = "3a2d22";
+      base03 = "a68870";
+      base04 = "e0bea3";
+      base05 = "f5ddcc";
+      base06 = "fed8db";
+      base07 = "fdb1b9";
+      base08 = "fdb3aa";
+      base09 = "fdb676";
+      base0A = "fdb1b9";
+      base0B = "fdb1b9";
+      base0C = "fed8db";
+      base0D = "fdb1b9";
+      base0E = "fedbbf";
+      base0F = "fed9d5";
+    };
 
     opacity = {
       applications = 0.8;

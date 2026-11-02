@@ -14,9 +14,12 @@ in {
     secrets = {
       adguard-pwd = {
         group = "glance";
-        mode = "0440";  # owner+group can read
+        mode = "0440"; # owner+group can read
       };
       duckdns-dns-token = {path = "/etc/duckdns/dnskey.txt";};
+
+      # Keys
+      ssh-prohairesis-pub = {path = "/home/${username}/.ssh/authorized_keys";};
 
       netbird-setup-key = {
         owner = "root";
