@@ -67,6 +67,7 @@
         kdePackages.kleopatra
         telegram-desktop
         wireguard-ui
+        yt-dlp
 
         # Dev
         uv

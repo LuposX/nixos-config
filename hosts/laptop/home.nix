@@ -75,6 +75,7 @@
         cliphist # For clipboard history in Noctalia
         wl-mirror # For Screen Mirroring in Noctalia
         wakeonlan
+        yt-dlp
 
         # Image viewer (for xdg-open)
         cosmic-viewer
