@@ -20,6 +20,9 @@ in {
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
+      # the netbird CLI wants a config dir; run as root inside the
+      # daemon's own state directory
+      Environment = "HOME=/var/lib/netbird";
     };
     script = ''
       if [ ! -f ${setupKeyFile} ]; then
