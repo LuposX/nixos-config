@@ -20,6 +20,7 @@ in {
       sshconfig = {path = "/home/${username}/.ssh/config";};
 
       # Keys
+      ssh-laptop-pub = {path = "/home/${username}/.ssh/authorized_keys";};
       github-key-personal = {path = "/home/${username}/.ssh/github_personal/id_ed25519";};
       github-key-website = {path = "/home/${username}/.ssh/github_website/id_ed25519";};
       gitlab-uni-key = {path = "/home/${username}/.ssh/gitlab_uni/id_ed25519";};
