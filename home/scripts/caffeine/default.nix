@@ -14,6 +14,7 @@
 #- - `caffeine-status` - Check if idle inhibition is active. (0/1)
 #- - `caffeine-status-icon` - Check if idle inhibition is active. (icon)
 #- - `caffeine` - Toggle idle inhibition.
+#- - `caffeine status` / `caffeine status-icon` - Same as above, as subcommands.
 #
 # Source: https://github.com/anotherhadi/nixy/blob/main/home/scripts/caffeine/default.nix
 # (adapted to Noctalia v5 caffeine IPC)
@@ -34,12 +35,37 @@ in {
     '')
 
     (pkgs.writeShellScriptBin "caffeine" ''
-      if [[ "$(cat ${stateFile} 2>/dev/null)" == "1" ]]; then
+      state() {
+        cat ${stateFile} 2>/dev/null
+      }
+
+      case "$1" in
+        status)
+          if [[ "$(state)" == "1" ]]; then
+            echo "enabled"
+          else
+            echo "disabled"
+          fi
+          exit 0
+          ;;
+        status-icon)
+          if [[ "$(state)" == "1" ]]; then
+            echo "󰅶"
+          else
+            echo "󰾪"
+          fi
+          exit 0
+          ;;
+      esac
+
+      if [[ "$(state)" == "1" ]]; then
         noctalia msg caffeine-disable >/dev/null 2>&1
         echo "0" > ${stateFile}
+        echo "󰾪 caffeine disabled"
       else
         noctalia msg caffeine-enable >/dev/null 2>&1
         echo "1" > ${stateFile}
+        echo "󰅶 caffeine enabled"
       fi
     '')
   ];}
