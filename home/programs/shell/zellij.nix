@@ -11,7 +11,7 @@ in {
   # See https://github.com/NixOS/nixpkgs/issues/216961
   programs.zellij = {
     enable = true;
-    enableFishIntegration = true; # Enables the standard three-tab Zellij launcher UI in shell sessions
+    enableFishIntegration = false; # zellij only starts when explicitly invoked
     settings = {
       # default_layout = "compact";
       on_force_close = "quit";
