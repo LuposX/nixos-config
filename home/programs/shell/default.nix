@@ -10,7 +10,7 @@
     ./fish.nix
     ./starship.nix
     ./fzf.nix
-    # ./zellij.nix
+    ./zellij.nix
     ./direnv.nix
   ];
 

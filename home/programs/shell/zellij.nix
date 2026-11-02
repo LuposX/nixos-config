@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }: let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   isLaptop = config.var.isLaptop;
 in {
   # If you get error when creating new session try to delte the cahce
@@ -10,7 +15,7 @@ in {
     settings = {
       # default_layout = "compact";
       on_force_close = "quit";
-      default_layout =  "welcome";
+      default_layout = "welcome";
       show_startup_tips = false;
       show_release_notes = false;
       session_serialization = true;
@@ -18,71 +23,71 @@ in {
     };
   };
 
-  # Enables zellij only for interactvie cases
-  # set HYPRLAND_FZF=1 if you want to start terminal without zellij
-  programs.fish.interactiveShellInit = ''
-    if status is-interactive
-      if test "$HYPRLAND_FZF" != "1"
-        eval (${lib.getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
-      end
-    end
-  '';
+  #   # Enables zellij only for interactvie cases
+  #   # set HYPRLAND_FZF=1 if you want to start terminal without zellij
+  #   programs.fish.interactiveShellInit = ''
+  #     if status is-interactive
+  #       if test "$HYPRLAND_FZF" != "1"
+  #         eval (${lib.getExe config.programs.zellij.package} setup --generate-auto-start fish | string collect)
+  #       end
+  #     end
+  #   '';
+  #
+  # home.file.".config/zellij/layouts/notes.kdl".text = ''
+  #   layout {
+  #     cwd "~/Projects/Notes"
+  #     pane command="nvim"
+  #   }
+  # '';
+  #
+  # home.file.".config/zellij/layouts/university.kdl".text = ''
+  #   layout {
+  #     cwd "~/Projects/Notes/University/Master"
+  #     pane command="nvim"
+  #   }
+  # '';
+  #
+  # home.file.".config/zellij/layouts/website.kdl".text = ''
+  #   layout {
+  #     pane split_direction="vertical" {
+  #       pane {
+  #         command "nvim"
+  #         cwd "~/Projects/Website_MonkeMan"
+  #       }
+  #       pane {
+  #         cwd "~/Projects/Website_MonkeMan"
+  #         size "30%"
+  #       }
+  #     }
+  #   }
+  # '';
+  #
+  # home.file.".config/zellij/layouts/nixos_config.kdl".text = ''
+  #   layout {
+  #     pane split_direction="vertical" {
+  #       pane {
+  #         command "nvim"
+  #         cwd "~/Projects/nixos-config"
+  #       }
+  #       pane {
+  #         cwd "~/Projects/nixos-config"
+  #         size "30%"
+  #       }
+  #     }
+  #   }
+  # '';
 
-home.file.".config/zellij/layouts/notes.kdl".text = ''
-  layout {
-    cwd "~/Projects/Notes"
-    pane command="nvim"
-  }
-'';
-
-home.file.".config/zellij/layouts/university.kdl".text = ''
-  layout {
-    cwd "~/Projects/Notes/University/Master"
-    pane command="nvim"
-  }
-'';
-
-home.file.".config/zellij/layouts/website.kdl".text = ''
-  layout {
-    pane split_direction="vertical" {
-      pane {
-        command "nvim"
-        cwd "~/Projects/Website_MonkeMan"
-      }
-      pane {
-        cwd "~/Projects/Website_MonkeMan"
-        size "30%"
-      }
-    }
-  }
-'';
-
-home.file.".config/zellij/layouts/nixos_config.kdl".text = ''
-  layout {
-    pane split_direction="vertical" {
-      pane {
-        command "nvim"
-        cwd "~/Projects/nixos-config"
-      }
-      pane {
-        cwd "~/Projects/nixos-config"
-        size "30%"
-      }
-    }
-  }
-'';
-
-# home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
+  # home.file.".config/zellij/layouts/SpikeSynth.kdl".text = ''
   # layout {
-    # pane split_direction="vertical" {
-      # pane {
-        # cwd "~/Projects/SpikeSynth"
-      # }
-      # pane {
-        # cwd "~/Projects/SpikeSynth"
-        # size "30%"
-      # }
-    # }
+  # pane split_direction="vertical" {
+  # pane {
+  # cwd "~/Projects/SpikeSynth"
   # }
-# '';
+  # pane {
+  # cwd "~/Projects/SpikeSynth"
+  # size "30%"
+  # }
+  # }
+  # }
+  # '';
 }
