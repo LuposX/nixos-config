@@ -18,5 +18,13 @@
     secrets."hindsight-env" = {
       format = "yaml";
     };
+
+    # Used by nixos/netbird.nix to auto-login the daemon without SSO.
+    secrets."netbird-setup-key" = {
+      format = "yaml";
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
   };
 }
