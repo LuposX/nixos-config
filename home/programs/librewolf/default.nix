@@ -9,11 +9,12 @@
   domain = config.var.domain;
 in {
   # Style both profiles; silences the stylix profileNames warning.
-  # firefoxGnomeTheme injects stylix colors via userChrome/userContent.css;
-  # without it stylix only sets fonts and reader-mode styling.
+  # firefoxGnomeTheme injects stylix colors via userChrome/userContent.css.
+  # Disabled: the firefox-gnome-theme chrome styling didn't work out.
+  # Fonts/reader-mode still apply; re-enable with firefoxGnomeTheme.enable.
   stylix.targets.librewolf = {
     profileNames = ["default" "youtube"];
-    firefoxGnomeTheme.enable = true;
+    firefoxGnomeTheme.enable = false;
   };
 
   programs.librewolf = {
