@@ -79,6 +79,7 @@
         unzip
         pfetch
         fastfetch
+        wakeonlan
 
         # Image viewer (for xdg-open)
         imv

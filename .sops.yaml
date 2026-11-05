@@ -1,0 +1,38 @@
+# sops creation rules: single source of truth for who may decrypt what.
+# Public keys only — private keys live on the machines (or offline).
+#
+# Recipients:
+#   laptop    ~/.config/sops/age/keys.txt on pneuma
+#   desktop   ~/.config/sops/age/keys.txt on logos
+#   raspberry /home/<user>/.config/sops/age/keys.txt on prohairesis
+#   recovery  offline backup, NOT installed on any host
+#
+# File layout:
+#   secrets/common.json             follows the user across machines
+#   hosts/<name>/secrets/secrets.yaml   host-bound secrets only
+keys:
+    - &laptop age1ha4rfg6y03syp8lwxrfmtr5xkq2aj2jzm55mpm98jarmq5638vmqtsm6fn
+    - &desktop age1cp86gp5g5v8wclsuq6ncwwt3tts5kda0854630ft69spa54mmvasknua8l
+    - &raspberry age1f8048cq69hsxfs2088vtl67q2a22f7uyx6ahujpe2sgaqy98sqvqfey490
+    - &recovery age13hz7um4c40325wsstmzrl26c65s2uzaf3htmesgny0y7exjh8exsymz8r9
+
+creation_rules:
+    # Per-host files: the host's key + recovery
+    - path_regex: hosts/laptop/secrets/.*\.yaml$
+      age:
+        - *laptop
+        - *recovery
+    - path_regex: hosts/desktop/secrets/.*\.yaml$
+      age:
+        - *desktop
+        - *recovery
+    - path_regex: hosts/raspberry/secrets/.*\.yaml$
+      age:
+        - *raspberry
+        - *recovery
+    # Shared user secrets: all personal machines + recovery
+    - path_regex: secrets/common\.json$
+      age:
+        - *laptop
+        - *desktop
+        - *recovery

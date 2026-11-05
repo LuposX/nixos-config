@@ -104,14 +104,6 @@
   # the local models (kit.*) are free. Usage dashboard:
   # https://my.litellm.scc.kit.edu
   kitKey = "kit-api-key";
-  kitSopsFile =
-    {
-      pneuma = ../hosts/laptop/secrets/secrets.yaml;
-      logos = ../hosts/desktop/secrets/secrets.yaml;
-    }
-    .${
-      config.var.hostname
-    } or ../hosts/laptop/secrets/secrets.yaml;
 
   # Fully declarative models.json for the university agent directory.
   # Reinstalled on every activation (no user edits expected here); model
@@ -233,17 +225,11 @@
     packages = ["npm:pi-web-access"];
   });
 
-  # Pi's own secret: OpenRouter API key. Each host carries the key in its
-  # own secrets file so the module stays host-independent.
+  # Shared secrets file (encrypted to all personal machines + recovery,
+  # see .sops.yaml at the repo root). Both pi keys follow the user across
+  # hosts, so they live there rather than in a per-host yaml.
+  commonSopsFile = ../secrets/common.json;
   openrouterKey = "openrouter-api-key";
-  openrouterSopsFile =
-    {
-      pneuma = ../hosts/laptop/secrets/secrets.yaml;
-      logos = ../hosts/desktop/secrets/secrets.yaml;
-    }
-    .${
-      config.var.hostname
-    } or ../hosts/laptop/secrets/secrets.yaml;
   # Wrap pi so the OpenRouter key is injected at launch, independent of
   # the calling shell. Shell-init exports only reach shells started after
   # a rebuild; wrappers (and launchers) always get the current secret.
@@ -280,15 +266,15 @@ in {
   ];
 
   sops.secrets.${openrouterKey} = {
-    format = "yaml";
-    sopsFile = openrouterSopsFile;
+    format = "json";
+    sopsFile = commonSopsFile;
     owner = username;
   };
 
   # Owned by the user so pi's `!cat` at request time can read it.
   sops.secrets.${kitKey} = {
-    format = "yaml";
-    sopsFile = kitSopsFile;
+    format = "json";
+    sopsFile = commonSopsFile;
     owner = username;
   };
 
