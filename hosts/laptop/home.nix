@@ -122,4 +122,39 @@
   programs.home-manager.enable = true;
 
   services.aversion.enable = true;
+
+  # SSH config as plaintext: contains no secrets (hostnames, users, key
+  # paths only). This host initiates connections to both servers.
+  programs.ssh.settings = {
+    "github-personal.com" = {
+      hostname = "github.com";
+      user = "git";
+      identityFile = "~/.ssh/github_personal/id_ed25519";
+      identitiesOnly = true;
+    };
+    "github-website.com" = {
+      hostname = "github.com";
+      user = "git";
+      identityFile = "~/.ssh/github_website/id_ed25519";
+      identitiesOnly = true;
+    };
+    "gitlab.com" = {
+      hostname = "gitlab.com";
+      user = "git";
+      identityFile = "~/.ssh/gitlab_uni/id_ed25519";
+      identitiesOnly = true;
+    };
+    logos = {
+      hostname = "logos.netbird.cloud";
+      user = config.var.username;
+      identityFile = "~/.ssh/logos_id_ed25519";
+      identitiesOnly = true;
+    };
+    prohairesis = {
+      hostname = "prohairesis.netbird.cloud";
+      user = config.var.username;
+      identityFile = "~/.ssh/prohairesis_id_ed25519";
+      identitiesOnly = true;
+    };
+  };
 }

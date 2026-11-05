@@ -110,4 +110,27 @@
   };
 
   programs.home-manager.enable = true;
+
+  # SSH config as plaintext: contains no secrets. This host only holds
+  # public keys (authorized_keys), so no outbound ssh to the servers.
+  programs.ssh.settings = {
+    "github-personal.com" = {
+      hostname = "github.com";
+      user = "git";
+      identityFile = "~/.ssh/github_personal/id_ed25519";
+      identitiesOnly = true;
+    };
+    "github-website.com" = {
+      hostname = "github.com";
+      user = "git";
+      identityFile = "~/.ssh/github_website/id_ed25519";
+      identitiesOnly = true;
+    };
+    "gitlab.com" = {
+      hostname = "gitlab.com";
+      user = "git";
+      identityFile = "~/.ssh/gitlab_uni/id_ed25519";
+      identitiesOnly = true;
+    };
+  };
 }

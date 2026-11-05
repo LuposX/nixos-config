@@ -22,11 +22,6 @@ in {
 
     secrets = {
       # Shared file
-      sshconfig = {
-        sopsFile = common;
-        format = "json";
-        path = "/home/${username}/.ssh/config";
-      };
       github-key-personal = {
         sopsFile = common;
         format = "json";
