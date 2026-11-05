@@ -126,7 +126,12 @@
           name = "Mistral Small 4 (local)";
           reasoning = false;
           input = ["text"];
-          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          cost = {
+            input = 0;
+            output = 0;
+            cacheRead = 0;
+            cacheWrite = 0;
+          };
           contextWindow = 128000;
           maxTokens = 32768;
         }
@@ -136,7 +141,12 @@
           name = "DeepSeek V4 Flash (local)";
           reasoning = false;
           input = ["text"];
-          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          cost = {
+            input = 0;
+            output = 0;
+            cacheRead = 0;
+            cacheWrite = 0;
+          };
           contextWindow = 128000;
           maxTokens = 32768;
         }
@@ -146,7 +156,12 @@
           name = "GLM-5.3 Flash (local)";
           reasoning = false;
           input = ["text"];
-          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          cost = {
+            input = 0;
+            output = 0;
+            cacheRead = 0;
+            cacheWrite = 0;
+          };
           contextWindow = 128000;
           maxTokens = 32768;
         }
@@ -156,7 +171,12 @@
           name = "GPT-6 Luna (simple)";
           reasoning = true;
           input = ["text" "image"];
-          cost = { input = 0.12; output = 0.6; cacheRead = 0.012; cacheWrite = 0.15; };
+          cost = {
+            input = 0.12;
+            output = 0.6;
+            cacheRead = 0.012;
+            cacheWrite = 0.15;
+          };
           contextWindow = 272000;
           maxTokens = 32768;
         }
@@ -166,7 +186,12 @@
           name = "GPT-5.6 Terra (medium)";
           reasoning = true;
           input = ["text" "image"];
-          cost = { input = 2.2; output = 13.2; cacheRead = 0.22; cacheWrite = 2.75; };
+          cost = {
+            input = 2.2;
+            output = 13.2;
+            cacheRead = 0.22;
+            cacheWrite = 2.75;
+          };
           contextWindow = 272000;
           maxTokens = 32768;
         }
@@ -176,7 +201,12 @@
           name = "GPT-6.1 Sol (complex)";
           reasoning = true;
           input = ["text" "image"];
-          cost = { input = 2.4; output = 12; cacheRead = 0.24; cacheWrite = 3; };
+          cost = {
+            input = 2.4;
+            output = 12;
+            cacheRead = 0.24;
+            cacheWrite = 3;
+          };
           contextWindow = 272000;
           maxTokens = 32768;
         }
@@ -186,7 +216,12 @@
           name = "Claude Haiku 5.5 (simple)";
           reasoning = true;
           input = ["text" "image"];
-          cost = { input = 0.11; output = 0.55; cacheRead = 0.011; cacheWrite = 0.1375; };
+          cost = {
+            input = 0.11;
+            output = 0.55;
+            cacheRead = 0.011;
+            cacheWrite = 0.1375;
+          };
           contextWindow = 200000;
           maxTokens = 32768;
         }
@@ -196,7 +231,12 @@
           name = "Claude Sonnet 5.5 (medium)";
           reasoning = true;
           input = ["text" "image"];
-          cost = { input = 2.2; output = 11; cacheRead = 0.22; cacheWrite = 2.75; };
+          cost = {
+            input = 2.2;
+            output = 11;
+            cacheRead = 0.22;
+            cacheWrite = 2.75;
+          };
           contextWindow = 200000;
           maxTokens = 32768;
         }
@@ -234,7 +274,7 @@
   # the calling shell. Shell-init exports only reach shells started after
   # a rebuild; wrappers (and launchers) always get the current secret.
   piWrapped = pkgs.writeShellScriptBin "pi" ''
-    if [ -z "''${OPENROUTER_API_KEY:-}" ] && [ -r /run/secrets/${openrouterKey} ]; then
+    if [ -r /run/secrets/${openrouterKey} ]; then
       export OPENROUTER_API_KEY="$(cat /run/secrets/${openrouterKey})"
     fi
     exec ${pkgs.pi}/bin/pi "$@"
