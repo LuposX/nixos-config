@@ -76,6 +76,7 @@
         wl-mirror # For Screen Mirroring in Noctalia
         wakeonlan
         yt-dlp
+        chafa
 
         # Image viewer (for xdg-open)
         cosmic-viewer

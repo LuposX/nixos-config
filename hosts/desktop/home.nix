@@ -68,6 +68,7 @@
         telegram-desktop
         wireguard-ui
         yt-dlp
+        chafa
 
         # Dev
         uv
