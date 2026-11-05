@@ -97,6 +97,142 @@
     hash = "sha256-n8cbTzhlGf8VnWpPukq7XD2mucIrqyE1XMpAAc5oA8A=";
   };
 
+  # KIT KI-Toolbox (https://www.scc.kit.edu/en/services/ki-toolbox.php):
+  # OpenAI-compatible LiteLLM endpoint, personal API key from the web UI
+  # (Settings -> Accounts -> API Key). Externally routed models (GPT,
+  # Gemini, Claude) bill against a per-user monthly budget (default $5);
+  # the local models (kit.*) are free. Usage dashboard:
+  # https://my.litellm.scc.kit.edu
+  kitKey = "kit-api-key";
+  kitSopsFile =
+    {
+      pneuma = ../hosts/laptop/secrets/secrets.yaml;
+      logos = ../hosts/desktop/secrets/secrets.yaml;
+    }
+    .${
+      config.var.hostname
+    } or ../hosts/laptop/secrets/secrets.yaml;
+
+  # Fully declarative models.json for the university agent directory.
+  # Reinstalled on every activation (no user edits expected here); model
+  # metadata is conservative — verify context windows against the
+  # KI-Toolbox /docs endpoint if needed. Context windows for azure.gpt*
+  # stay at 272k to remain inside the cheaper pricing tier.
+  piUniModels = pkgs.writeText "pi-uni-models.json" (builtins.toJSON {
+    "$schema" = "https://pi.dev/schemas/models.schema.json";
+    providers.kit = {
+      name = "KIT KI-Toolbox";
+      baseUrl = "https://ki-toolbox.scc.kit.edu/api";
+      api = "openai-completions";
+      # Read at request time from the sops-rendered secret (owned by the
+      # user), so the key never lands in an environment variable.
+      apiKey = "!cat /run/secrets/${kitKey}";
+      models = [
+        {
+          type = "chat";
+          id = "kit.mistral-small-4-119b-a8b";
+          name = "Mistral Small 4 (local)";
+          reasoning = false;
+          input = ["text"];
+          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          contextWindow = 128000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "kit.deepseek-v4-flash";
+          name = "DeepSeek V4 Flash (local)";
+          reasoning = false;
+          input = ["text"];
+          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          contextWindow = 128000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "kit.glm-5.3-flash";
+          name = "GLM-5.3 Flash (local)";
+          reasoning = false;
+          input = ["text"];
+          cost = { input = 0; output = 0; cacheRead = 0; cacheWrite = 0; };
+          contextWindow = 128000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "alias.simple-gpt";
+          name = "GPT-6 Luna (simple)";
+          reasoning = true;
+          input = ["text" "image"];
+          cost = { input = 0.12; output = 0.6; cacheRead = 0.012; cacheWrite = 0.15; };
+          contextWindow = 272000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "alias.medium-gpt";
+          name = "GPT-5.6 Terra (medium)";
+          reasoning = true;
+          input = ["text" "image"];
+          cost = { input = 2.2; output = 13.2; cacheRead = 0.22; cacheWrite = 2.75; };
+          contextWindow = 272000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "alias.complex-gpt";
+          name = "GPT-6.1 Sol (complex)";
+          reasoning = true;
+          input = ["text" "image"];
+          cost = { input = 2.4; output = 12; cacheRead = 0.24; cacheWrite = 3; };
+          contextWindow = 272000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "alias.simple-claude";
+          name = "Claude Haiku 5.5 (simple)";
+          reasoning = true;
+          input = ["text" "image"];
+          cost = { input = 0.11; output = 0.55; cacheRead = 0.011; cacheWrite = 0.1375; };
+          contextWindow = 200000;
+          maxTokens = 32768;
+        }
+        {
+          type = "chat";
+          id = "alias.medium-claude";
+          name = "Claude Sonnet 5.5 (medium)";
+          reasoning = true;
+          input = ["text" "image"];
+          cost = { input = 2.2; output = 11; cacheRead = 0.22; cacheWrite = 2.75; };
+          contextWindow = 200000;
+          maxTokens = 32768;
+        }
+      ];
+    };
+  });
+
+  # University settings seed: default to a local (free, data stays at
+  # KIT) model; externals are opt-in via /model or the enabledModels list.
+  piUniSettings = pkgs.writeText "pi-uni-settings.json" (builtins.toJSON {
+    defaultProvider = "kit";
+    defaultModel = "kit/kit.deepseek-v4-flash";
+    defaultThinkingLevel = "high";
+    tuiMode = "fullscreen";
+    enabledModels = [
+      "kit/kit.deepseek-v4-flash"
+      "kit/kit.mistral-small-4-119b-a8b"
+      "kit/kit.glm-5.3-flash"
+      "kit/alias.simple-claude"
+      "kit/alias.simple-gpt"
+      "kit/alias.medium-claude"
+      "kit/alias.complex-gpt"
+    ];
+    enableInstallTelemetry = false;
+    shellCommandPrefix = "eval \"$(direnv export bash)\"";
+    packages = ["npm:pi-web-access"];
+  });
+
   # Pi's own secret: OpenRouter API key. Each host carries the key in its
   # own secrets file so the module stays host-independent.
   openrouterKey = "openrouter-api-key";
@@ -117,6 +253,19 @@
     fi
     exec ${pkgs.pi}/bin/pi "$@"
   '';
+
+  # pi-uni: second agent identity that talks exclusively to the KIT
+  # KI-Toolbox. Runs pi with a separate config directory (~/.pi/agent-uni,
+  # seeded below), so it has its own settings, sessions, and model
+  # catalog. Calls the unwrapped pi binary directly — the OpenRouter key
+  # from the wrapper above is never exported, and provider keys leaking
+  # in from the shell are dropped, so only the KIT key (read at request
+  # time from /run/secrets) is reachable.
+  piuWrapped = pkgs.writeShellScriptBin "piu" ''
+    exec env -u OPENROUTER_API_KEY -u ANTHROPIC_API_KEY -u OPENAI_API_KEY \
+      PI_CODING_AGENT_DIR="$HOME/.pi/agent-uni" \
+      ${pkgs.pi}/bin/pi "$@"
+  '';
 in {
   nixpkgs.overlays = [
     inputs.pi.overlays.default
@@ -124,6 +273,7 @@ in {
 
   environment.systemPackages = [
     piWrapped
+    piuWrapped
     pkgs.jq
     # Runtime for MCP stdio servers spawned via `npx -y ...` (mcp-searxng)
     pkgs.nodejs
@@ -132,6 +282,13 @@ in {
   sops.secrets.${openrouterKey} = {
     format = "yaml";
     sopsFile = openrouterSopsFile;
+    owner = username;
+  };
+
+  # Owned by the user so pi's `!cat` at request time can read it.
+  sops.secrets.${kitKey} = {
+    format = "yaml";
+    sopsFile = kitSopsFile;
     owner = username;
   };
 
@@ -156,6 +313,9 @@ in {
     # Read-only, Pi only reads these: global voice rules + humanizer skill
     home.file.".pi/agent/AGENTS.md".source = piAgents;
     home.file.".pi/agent/skills/humanizer/SKILL.md".source = "${humanizerSrc}/SKILL.md";
+    # Share voice rules and skills with the university agent directory too.
+    home.file.".pi/agent-uni/AGENTS.md".source = piAgents;
+    home.file.".pi/agent-uni/skills/humanizer/SKILL.md".source = "${humanizerSrc}/SKILL.md";
 
     home.activation.piSettings = lib.hm.dag.entryAfter ["writeBoundary"] ''
       mkdir -p "$HOME/.pi/agent"
@@ -180,6 +340,23 @@ in {
       fi
       if [ ! -f "$HOME/.pi/agent/web-search.json" ]; then
         cp ${piWebSearch} "$HOME/.pi/agent/web-search.json"
+      fi
+    '';
+
+    home.activation.piUniAgent = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      mkdir -p "$HOME/.pi/agent-uni"
+      # models.json is fully declarative: reinstall on every activation.
+      install -m 644 ${piUniModels} "$HOME/.pi/agent-uni/models.json"
+      if [ ! -f "$HOME/.pi/agent-uni/settings.json" ]; then
+        cp ${piUniSettings} "$HOME/.pi/agent-uni/settings.json"
+      else
+        # Same merge discipline as the main directory: only fill in keys
+        # the user hasn't set through Pi's own UI.
+        tmp="$(mktemp)"
+        jq --slurpfile seed ${piUniSettings} \
+          'reduce ($seed[0] | keys_unsorted[]) as $k (.; if has($k) then . else . + {($k): $seed[0][$k]} end)' \
+          "$HOME/.pi/agent-uni/settings.json" > "$tmp" \
+          && mv "$tmp" "$HOME/.pi/agent-uni/settings.json"
       fi
     '';
   };
