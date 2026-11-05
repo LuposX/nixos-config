@@ -3,7 +3,7 @@
 One-time migration away from three sops files that are all encrypted to a
 single shared age key. Target state:
 
-- `secrets/common.json` — user-scoped secrets that follow the machines
+- `secrets/common.yaml` — user-scoped secrets that follow the machines
   (API keys, ssh/gpg identity, smb, service env files). Encrypted to all
   personal-machine keys plus recovery.
 - `hosts/<name>/secrets/secrets.yaml` — only what is bound to that host.
@@ -15,7 +15,7 @@ including the internet-facing raspberry. That is the problem this fixes.
 
 ## What moved where
 
-Into `secrets/common.json` (from the laptop and desktop yaml):
+Into `secrets/common.yaml` (from the laptop and desktop yaml):
 
     kit-api-key, openrouter-api-key, hermes-env, hindsight-env,
     searxng-env, netbird-setup-key, weather-api, smbcredentials,
@@ -29,7 +29,7 @@ desktop keeps `ssh-logos-pub`; raspberry keeps everything in its file
 the raspberry file is harmless to keep).
 
 Module changes already applied in this repo: `nixos/sops.nix`
-(defaultSopsFile now common.json — this also fixes the old bug where the
+(defaultSopsFile now common.yaml — this also fixes the old bug where the
 laptop decrypted system secrets from the desktop's yaml), `nixos/pi.nix`
 (openrouter + kit keys), and both desktop-machine user secret modules.
 
@@ -39,7 +39,7 @@ All stages run on the laptop, from the repo root:
 
 ```sh
 ./scripts/migrate-sops.sh stage-keys     # generate keys, fill .sops.yaml
-./scripts/migrate-sops.sh stage-common   # build + encrypt common.json
+./scripts/migrate-sops.sh stage-common   # build + encrypt common.yaml
 ./scripts/migrate-sops.sh stage-rekey    # re-encrypt the three host yamls
 ```
 
@@ -63,11 +63,11 @@ Two evaluation constraints to know about, both enforced by sops-nix:
 
 - Until `stage-common` has run, every host rebuild fails at Nix
   evaluation because the modules reference the not-yet-created
-  `secrets/common.json`. Run stages keys + common before planning any
+  `secrets/common.yaml`. Run stages keys + common before planning any
   other rebuild.
 - sops-nix resolves `sopsFile` through the git tree, so untracked files
   fail evaluation with “not tracked by Git”. `stage-common` runs
-  `git add secrets/common.json` for you; make sure it is committed
+  `git add secrets/common.yaml` for you; make sure it is committed
   before rebuilding the other hosts.
 
 ## Rollback

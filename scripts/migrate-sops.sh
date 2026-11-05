@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # One-time migration from per-host sops files (single shared age key) to
-# per-host keys + a shared secrets/common.json. See docs/sops-migration.md.
+# per-host keys + a shared secrets/common.yaml. See docs/sops-migration.md.
 #
 # Usage: ./scripts/migrate-sops.sh <stage>
 #   stage-keys    generate per-host age keys, fill .sops.yaml, append the
 #                 laptop identity to the local key file (old key kept!)
-#   stage-common  build secrets/common.json from the existing host files
+#   stage-common  build secrets/common.yaml from the existing host files
 #   stage-rekey   re-encrypt all three host yamls to the new keys
 #   stage-verify  decrypt-check everything possible from this machine
 #   stage-cutover swap the local key file to the laptop-only key
@@ -36,8 +36,8 @@ require_sops_yaml() {
 }
 
 require_common() {
-  if [ ! -f "$REPO/secrets/common.json" ]; then
-    echo "ERROR: secrets/common.json missing — run stage-common first" >&2
+  if [ ! -f "$REPO/secrets/common.yaml" ]; then
+    echo "ERROR: secrets/common.yaml missing — run stage-common first" >&2
     exit 1
   fi
 }
@@ -123,17 +123,19 @@ stage-common)
     echo "ERROR: missing in source files: $missing" >&2
     rm -f "$KEYDIR/common.plain.json"; exit 1
   fi
-  cp "$KEYDIR/common.plain.json" secrets/common.json
-  # In-place encrypt: the path (secrets/common.json) drives the
+  cp "$KEYDIR/common.plain.json" secrets/common.yaml
+  # In-place encrypt: the path (secrets/common.yaml) drives the
   # creation-rule lookup, so the plaintext must sit at its final path.
-  trap 'rm -f secrets/common.json.tmp' EXIT
-  sops -i -e secrets/common.json
+  trap 'rm -f secrets/common.yaml.tmp' EXIT
+  # The merge ran through jq (JSON); the file sits at its final .yaml path
+  # so the creation rule matches, and sops converts it to encrypted YAML.
+  sops -i -e --input-type json --output-type yaml secrets/common.yaml
   # sops-nix resolves sopsFile through the git tree: untracked files fail
   # evaluation. Safe to add here — the file is encrypted at this point.
-  git add secrets/common.json
+  git add secrets/common.yaml
   rm -f "$KEYDIR/common.plain.json"
-  echo "Created secrets/common.json (${#SHARED_KEYS[@]} keys). Review it:"
-  echo "  sops -d secrets/common.json | jq 'keys'"
+  echo "Created secrets/common.yaml (${#SHARED_KEYS[@]} keys). Review it:"
+  echo "  sops -d --output-type json secrets/common.yaml | jq 'keys'"
   ;;
 
 stage-rekey)
@@ -157,10 +159,10 @@ stage-rekey)
 stage-verify)
   require_stage_files
   fail=0
-  echo "== secrets/common.json decrypts locally:"
-  sops -d secrets/common.json > /dev/null && echo "  OK" || fail=1
+  echo "== secrets/common.yaml decrypts locally:"
+  sops -d secrets/common.yaml > /dev/null && echo "  OK" || fail=1
   for k in "${SHARED_KEYS[@]}"; do
-    if sops -d --output-type json --extract "[\"$k\"]" secrets/common.json > /dev/null 2>&1; then
+    if sops -d --output-type json --extract "[\"$k\"]" secrets/common.yaml > /dev/null 2>&1; then
       echo "  $k OK"
     else
       echo "  $k MISSING/UNREADABLE"; fail=1

@@ -228,7 +228,7 @@
   # Shared secrets file (encrypted to all personal machines + recovery,
   # see .sops.yaml at the repo root). Both pi keys follow the user across
   # hosts, so they live there rather than in a per-host yaml.
-  commonSopsFile = ../secrets/common.json;
+  commonSopsFile = ../secrets/common.yaml;
   openrouterKey = "openrouter-api-key";
   # Wrap pi so the OpenRouter key is injected at launch, independent of
   # the calling shell. Shell-init exports only reach shells started after
@@ -266,14 +266,14 @@ in {
   ];
 
   sops.secrets.${openrouterKey} = {
-    format = "json";
+    format = "yaml";
     sopsFile = commonSopsFile;
     owner = username;
   };
 
   # Owned by the user so pi's `!cat` at request time can read it.
   sops.secrets.${kitKey} = {
-    format = "json";
+    format = "yaml";
     sopsFile = commonSopsFile;
     owner = username;
   };

@@ -8,7 +8,7 @@
 #   recovery  offline backup, NOT installed on any host
 #
 # File layout:
-#   secrets/common.json             follows the user across machines
+#   secrets/common.yaml             follows the user across machines
 #   hosts/<name>/secrets/secrets.yaml   host-bound secrets only
 keys:
     - &laptop age1ha4rfg6y03syp8lwxrfmtr5xkq2aj2jzm55mpm98jarmq5638vmqtsm6fn
@@ -31,7 +31,7 @@ creation_rules:
         - *raspberry
         - *recovery
     # Shared user secrets: all personal machines + recovery
-    - path_regex: secrets/common\.json$
+    - path_regex: secrets/common\.yaml$
       age:
         - *laptop
         - *desktop
