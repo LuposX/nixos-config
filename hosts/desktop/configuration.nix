@@ -44,6 +44,10 @@
   # Enables emulation of arm system to compile NixOS for Raspberry device.
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
+  # i2c-dev for ddcutil (DDC/CI brightness on external monitors, used by
+  # Noctalia and the niri brightness script).
+  hardware.i2c.enable = true;
+
   # Build packages with ROCm/HIP support (e.g. Blender HIP, ffmpeg)
   nixpkgs.config.rocmSupport = true;
 

@@ -31,5 +31,7 @@ in
 {
   home.packages = [
     brightnessScript
+    # Brightness script and Noctalia's ddcutil backend shell out to this.
+    pkgs.ddcutil
   ];
 }

@@ -31,6 +31,11 @@ in {
 
       lockscreen.blur_intensity = 0.7; # v4: general.lockScreenBlur
 
+      # Desktop monitors have no kernel backlight; enable DDC/CI discovery so
+      # brightness works over ddcutil. Auto backend prefers backlight, so this
+      # is harmless on the laptop. https://docs.noctalia.dev/noctalia/services/brightness/
+      brightness.enable_ddcutil = true;
+
       # v4 idle timers carried over as named behaviors. Screen-off and lock
       # are host-dependent: desktop 10 min screen-off / 15 min lock, laptop
       # 2.5 min / 5 min to save battery. Suspend after 20 min.
