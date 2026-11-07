@@ -55,9 +55,9 @@
   services.fail2ban = {
     enable = true;
     maxretry = 5;
-    ignoreIP = [ "192.168.12.25" ]; # the laptop
+    ignoreIP = ["192.168.12.25"]; # the laptop
   };
-  services.media-consumption-monitor.enable = true;
+  services.media-consumption-monitor.enable = false;
   services.openssh = {
     enable = true;
     ports = [22];
