@@ -1,26 +1,17 @@
-# LUKS2 root encryption with TPM2 + PIN unlock.
+# TPM2 + PIN unlock for the LUKS device defined in disko.nix, plus swap
+# and TRIM. Import from hosts/laptop/configuration.nix.
 #
-# Import this from hosts/laptop/configuration.nix AFTER the disk is
-# reinstalled with the encrypted layout. The UUID below must be the UUID
-# of the LUKS partition itself (nvme0n1p2), not of the filesystem inside
-# it. Find it with `lsblk -f` — it's the `luks-...` entry.
+# The PIN is enrolled manually after first boot:
+#   sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto \
+#     --tpm2-with-pin=yes /dev/disk/by-uuid/<LUKS-PARTITION-UUID>
+# (find the UUID with `lsblk -f`, the `luks-...` entry)
+# `tpm2-pin=yes` here is what makes the initrd ask for the PIN at boot.
 {
-  boot.initrd.systemd.enable = true;
-
-  boot.initrd.luks.devices."root" = {
-    device = "/dev/disk/by-uuid/REPLACE-ME-LUKS-PARTITION-UUID";
-
-    # Ask for a PIN, then let the TPM release the key.
+  boot.initrd.luks.devices."cryptroot" = {
     crypttabExtraOpts = [
       "tpm2-device=auto"
       "tpm2-pin=yes"
     ];
-
-    # NVMe SSD: pass TRIM through.
-    allowDiscards = true;
-
-    # Skip dm-crypt workqueues for lower latency on fast NVMe.
-    bypassWorkqueues = true;
   };
 
   # Swapfile on the encrypted root instead of a separate partition.
