@@ -5,6 +5,7 @@
 }: {
   config.var = {
     isLaptop = true;
+    isRaspberry = true;
 
     hostname = "prohairesis";
     username = "monkeman";

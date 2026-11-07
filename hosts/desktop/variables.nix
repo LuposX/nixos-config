@@ -9,6 +9,7 @@
 
   config.var = {
     isLaptop = false;
+    isRaspberry = false;
     windowManager = "niri";  # "hyprland" or "niri"
 
     primary_monitor = "HDMI-A-3";

@@ -6,7 +6,6 @@
 
   # Needed for Google Calendar integration
   services.gnome.gnome-online-accounts.enable = true;
-  services.gnome.gnome-keyring.enable = true;
 
   environment.systemPackages = with pkgs; [
     gnome-control-center

@@ -68,7 +68,6 @@ in {
       xkb.layout = keyboardLayout;
       xkb.variant = "";
     };
-    gnome.gnome-keyring.enable = true;
     # Helps with Browsers
     # See: https://wiki.archlinux.org/title/Profile-sync-daemon
     psd = {

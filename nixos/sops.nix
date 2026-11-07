@@ -24,8 +24,18 @@
       format = "yaml";
     };
 
-    # Used by nixos/netbird.nix to auto-login the daemon without SSO.
-    # Setup keys are not machine-specific, hence part of the shared file.
+    # Login password hash (mkpasswd -m sha-512), consumed by
+    # nixos/users.nix on the hosts that import this module.
+    # neededForUsers so the file exists before the users.users
+    # activation runs.
+    secrets."user-password" = {
+      format = "yaml";
+      neededForUsers = true;
+      owner = "root";
+      group = "root";
+      mode = "0400";
+    };
+
     secrets."netbird-setup-key" = {
       format = "yaml";
       owner = "root";

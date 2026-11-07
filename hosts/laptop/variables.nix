@@ -9,6 +9,7 @@
 
   config.var = {
     isLaptop = true;
+    isRaspberry = false;
     windowManager = "niri";  # "hyprland" or "niri"
 
     hostname = "pneuma";
