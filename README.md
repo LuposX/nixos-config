@@ -17,6 +17,13 @@ My current NixOS configuration, which I use for daily driving, it is cobbled tog
    nix flake update
    ```
 
+I have disabled Nix channels, if you want to temporarily install a program use:
+    ```sh
+    nix shell nixpkgs#program_name
+    ```
+
+
+
 ## Fresh install of a host (nixos-anywhere)
 
 For hosts with a `disko.nix`, the target can be wiped and installed over SSH from another machine. Run the script as the normal user, without sudo:
@@ -25,15 +32,15 @@ For hosts with a `disko.nix`, the target can be wiped and installed over SSH fro
 bash scripts/install-host.sh <host> root@<target-ip> <extra-files-dir>
 ```
 
-The target must be booted from a NixOS live ISO in UEFI mode, joined to the network, with sshd started and the installing machine's public key in `/root/.ssh/authorized_keys`. Before installing, check `test -d /sys/firmware/efi` and `lsblk -o NAME,SIZE,MODEL,SERIAL,MOUNTPOINTS` on the target; the disko layout erases its internal disk, so verify the disk identity first.
+Requirements:
 
-The extra-files directory must contain the target's existing age identity at `home/<user>/.config/sops/age/keys.txt`, mode `0600`. It is copied to the installed root through `--extra-files` before activation. The script checks that the key is present and private, and restores staged home files to their declared UID and GID; a fixed UID is required for any staged user's home. Keep an independent backup of the age key before wiping the old installation.
+- Target booted from a NixOS live ISO in UEFI mode, network joined, sshd started, installing machine's public key in `/root/.ssh/authorized_keys`. Verify the disk identity first — disko erases the internal disk.
+- Extra-files dir must contain the target's age identity at `home/<user>/.config/sops/age/keys.txt`, mode `0600`. Back it up independently before wiping; a fixed UID is required for any staged user's home.
+- If a LUKS container declares a `passwordFile`, the passphrase is requested locally and uploaded for the install; it lives only in the live environment and disappears on reboot. Otherwise disko asks for the passphrase in the target session.
 
-The script prints the target and disks, then requires the host name as confirmation. If a LUKS container declares a `passwordFile`, the passphrase is requested locally and uploaded through `--disk-encryption-keys`; the local plaintext file is held in the runtime directory and removed when the installer exits. Without a `passwordFile`, disko requests the passphrase in the target session. Either way the uploaded key file belongs to the live environment and disappears on reboot; it is not a boot-time key file.
+The disko phase is retried up to three times (partitions can register a second after `partprobe`, racing the `/dev/disk/by-partlabel` symlinks; see [disko#739](https://github.com/nix-community/disko/issues/739)). The install phase runs once; if it fails midway, rerun the script and disko wipes and starts over.
 
-The disko phase (wipe, LUKS format, mounts) is retried up to three times, because new partitions can register a second after `partprobe` returns and disko's `mkfs` then races the `/dev/disk/by-partlabel` symlinks; the layout also waits for each partition link with `udevadm wait --settle` before formatting (upstream [disko#739](https://github.com/nix-community/disko/issues/739)). The install phase (closure copy, activation, reboot) runs once. If it fails midway, rerun the script; disko wipes and starts over.
-
-The first boot requires the full LUKS passphrase. Enroll TPM2+PIN after booting into the installed system:
+The first boot requires the full LUKS passphrase. Enroll TPM2+PIN afterwards:
 
 ```sh
 sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto \
@@ -41,12 +48,7 @@ sudo systemd-cryptenroll --wipe-slot=tpm2 --tpm2-device=auto \
   /dev/disk/by-partlabel/disk-main-luks
 ```
 
-Keep the full passphrase as a fallback and test the PIN with a reboot. The PCR policy is explicit because systemd 262 defaults to no PCR binding. PCR 7 tracks Secure Boot policy but does not authenticate the bootloader or initrd while Secure Boot is disabled; enabling signed Secure Boot later requires separate signing and firmware-key setup, followed by TPM re-enrollment.
-
-I have disabled Nix channels, if you want to temporarily install a program use:
-    ```sh
-    nix shell nixpkgs#program_name
-    ```
+Keep the full passphrase as a fallback and test the PIN with a reboot. PCR 7 tracks Secure Boot policy but does not authenticate the bootloader or initrd while Secure Boot is disabled; enabling signed Secure Boot later requires re-enrollment.
 
 ## Credits
 
