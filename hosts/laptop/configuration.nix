@@ -28,6 +28,7 @@
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
     ../../nixos/laptop.nix
+    ../../nixos/luks.nix
     ../../nixos/games.nix
 
     # Service
@@ -37,6 +38,7 @@
 
     # Don't change this.
     ./hardware-configuration.nix
+    ./disko.nix
     ./variables.nix
   ];
 
@@ -74,6 +76,8 @@
   stylix.targets.kmscon.enable = false;
   # stylix.targets.gnome.enable = false;
 
+  # Fixed UID for restoring staged home files before user creation.
+  users.users.${config.var.username}.uid = 1000;
   home-manager.users."${config.var.username}" = import ./home.nix;
 
   # Enables emulation of arm system to compile NixOS for Raspberry device.

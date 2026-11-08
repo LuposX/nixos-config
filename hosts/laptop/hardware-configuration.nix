@@ -13,20 +13,10 @@
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/a5fc6f4a-64c0-4857-8c81-26b150d90fe7";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B5CD-E74F";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/0975a3e8-9250-4e92-a998-23b678f2a3a9"; }
-    ];
+  # fileSystems and swapDevices are declared by disko (./disko.nix for the
+  # layout, nixos/luks.nix for the swapfile on the encrypted root). Keep
+  # them out of here — hardcoding the pre-LUKS UUIDs breaks the disko
+  # build with conflicting definitions.
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
