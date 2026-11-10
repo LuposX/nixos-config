@@ -13,8 +13,9 @@
   piSettings = pkgs.writeText "pi-settings.json" (builtins.toJSON {
     defaultProvider = "openrouter";
     defaultModel = "z-ai/glm-5.3-flash";
-    defaultThinkingLevel = "high";
+    defaultThinkingLevel = "medium";
     tuiMode = "fullscreen";
+    hideThinkingBlock = true;
     # Keep Ctrl+P / /model cycling usable: flash default, full glm for hard
     # tasks
     enabledModels = [
