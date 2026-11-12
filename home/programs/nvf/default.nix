@@ -213,13 +213,6 @@
         local typst_bin = '${pkgs.lib.getExe pkgs.tinymist}'
         local typst_viewer = '${pkgs.lib.getExe pkgs.sioyek}'
 
-        local function typst_paths()
-          local src = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
-          local dir = vim.fn.fnamemodify(src, ':h')
-          local name = vim.fn.fnamemodify(src, ':t:r')
-          return src, dir, dir .. '/build/' .. name .. '.pdf'
-        end
-
         -- A typst.toml above the file marks the project root, otherwise the
         -- file's own directory is used (what `typst compile` does from there).
         -- Deliberately not the git root: a typst project nested in a larger
@@ -237,6 +230,61 @@
           return dir
         end
 
+        -- [package] entrypoint from typst.toml, if the project declares one.
+        local function typst_entrypoint(root)
+          local toml = root .. '/typst.toml'
+          if vim.fn.filereadable(toml) == 0 then return nil end
+          local in_package = false
+          for _, line in ipairs(vim.fn.readfile(toml)) do
+            if line:match('^%s*%[') then
+              in_package = line:match('^%s*%[%s*package%s*%]') ~= nil
+            elseif in_package then
+              local entry = line:match('^%s*entrypoint%s*=%s*["\']([^"\']+)["\']')
+              if entry then
+                local path = vim.fn.fnamemodify(root .. '/' .. entry, ':p')
+                if vim.fn.filereadable(path) == 1 then return path end
+              end
+            end
+          end
+          return nil
+        end
+
+        -- Without typst.toml, a fragment like prayers.typ is compiled through
+        -- the sibling that #includes it, as long as exactly one does.
+        local function typst_includer(src, dir)
+          local base = vim.fn.fnamemodify(src, ':t')
+          local matches = {}
+          for _, candidate in ipairs(vim.fn.glob(dir .. '/*.typ', false, true)) do
+            if vim.fn.fnamemodify(candidate, ':p') ~= src then
+              for _, line in ipairs(vim.fn.readfile(candidate)) do
+                if line:match('^%s*#%s*include%s+"' .. vim.pesc(base) .. '"') then
+                  table.insert(matches, candidate)
+                  break
+                end
+              end
+            end
+          end
+          if #matches == 1 then return matches[1] end
+          return nil
+        end
+
+        -- Compiling a fragment on its own fails (helpers live in the book),
+        -- so resolve the file that actually produces a document.
+        local function typst_main(src, dir, root)
+          return typst_entrypoint(root) or typst_includer(src, dir) or src
+        end
+
+        -- Returns source file, project root, main file, PDF path.
+        local function typst_paths()
+          local src = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
+          local dir = vim.fn.fnamemodify(src, ':h')
+          local root = typst_root(dir)
+          local main = typst_main(src, dir, root)
+          local pdf = vim.fn.fnamemodify(main, ':h')
+            .. '/build/' .. vim.fn.fnamemodify(main, ':t:r') .. '.pdf'
+          return src, root, main, pdf
+        end
+
         local function typst_open(pdf)
           if vim.fn.filereadable(pdf) == 0 then
             vim.notify('Typst: no PDF at ' .. vim.fn.fnamemodify(pdf, ':~:.'), vim.log.levels.WARN)
@@ -246,11 +294,10 @@
         end
 
         local function typst_compile(on_done)
-          local src, dir, pdf = typst_paths()
-          local root = typst_root(dir)
+          local _, root, main, pdf = typst_paths()
           vim.fn.mkdir(vim.fn.fnamemodify(pdf, ':h'), 'p')
           vim.system(
-            { typst_bin, 'compile', '--root', root, src, pdf },
+            { typst_bin, 'compile', '--root', root, main, pdf },
             { text = true, cwd = root },
             function(res)
               vim.schedule(function()
@@ -288,7 +335,7 @@
 
         function _G.nvf_view_pdf()
           if vim.bo.filetype == 'typst' then
-            local _, _, pdf = typst_paths()
+            local _, _, _, pdf = typst_paths()
             typst_open(pdf)
           else
             vim.cmd('VimtexView')
@@ -333,6 +380,11 @@
       #    into <dir>/build/<name>.pdf and opens it in sioyek; <leader>pv
       #    only reopens the last build. Recompiling while sioyek is open is
       #    fine, it reloads the PDF from disk.
+      # 5. Typst fragments: `#include` does not share the includer's scope,
+      #    so compiling prayers.typ on its own reports every helper as an
+      #    unknown variable. The compile keymap therefore builds the main
+      #    file instead: [package] entrypoint from typst.toml if declared,
+      #    otherwise the one sibling that #includes the current file.
 
       keymaps = [
         # ── File navigation ──────────────────────────────────

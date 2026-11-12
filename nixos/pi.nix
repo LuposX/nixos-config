@@ -21,7 +21,7 @@
     enabledModels = [
       "z-ai/glm-5.3-flash"
       "z-ai/glm-5.3"
-      "moonshotai/kimi-k3.1-pro"
+      "deepseek/deepseek-v4.1-flash-1017"
       "openai/gpt-6.1-sol"
     ];
     enableInstallTelemetry = false;
