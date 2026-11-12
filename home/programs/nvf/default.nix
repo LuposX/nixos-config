@@ -82,13 +82,20 @@
         };
 
         # Typst support: tinymist LSP + treesitter + typstyle formatter.
+        # The browser-based preview is disabled on purpose; compilation is
+        # done by tinymist compile from the <leader>pl keymap, which writes
+        # into <dir>/build/ instead of next to the source.
         typst = {
           enable = true;
           treesitter.enable = true;
           format.enable = true;
-          extensions.typst-preview-nvim.enable = true;
+          extensions.typst-preview-nvim.enable = false;
         };
       };
+
+      # Keep the LSP out of the PDF business: it would drop <name>.pdf next
+      # to the .typ on every save. The compile keymap handles that instead.
+      lsp.servers.tinymist.settings.exportPdf = "never";
 
       formatter.conform-nvim.presets.typstyle.enable = true;
 
@@ -198,6 +205,104 @@
         -- VimTeX viewer: sioyek (forward search via synctex)
         vim.g.vimtex_view_method = 'sioyek'
 
+        -- ── Typst: PDF viewer workflow (mirrors VimTeX) ────────
+        -- Compile output goes to <dir>/build/<name>.pdf so the source tree
+        -- stays clean. --reuse-window reuses an already open sioyek instead
+        -- of spawning a second one; sioyek reloads the PDF when the file
+        -- changes on disk.
+        local typst_bin = '${pkgs.lib.getExe pkgs.tinymist}'
+        local typst_viewer = '${pkgs.lib.getExe pkgs.sioyek}'
+
+        local function typst_paths()
+          local src = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':p')
+          local dir = vim.fn.fnamemodify(src, ':h')
+          local name = vim.fn.fnamemodify(src, ':t:r')
+          return src, dir, dir .. '/build/' .. name .. '.pdf'
+        end
+
+        -- A typst.toml above the file marks the project root, otherwise the
+        -- file's own directory is used (what `typst compile` does from there).
+        -- Deliberately not the git root: a typst project nested in a larger
+        -- repo would resolve "/lib/x.typ" imports against the wrong tree.
+        local function typst_root(dir)
+          local current = dir
+          while current do
+            if vim.fn.filereadable(current .. '/typst.toml') == 1 then
+              return current
+            end
+            local parent = vim.fn.fnamemodify(current, ':h')
+            if parent == current then break end
+            current = parent
+          end
+          return dir
+        end
+
+        local function typst_open(pdf)
+          if vim.fn.filereadable(pdf) == 0 then
+            vim.notify('Typst: no PDF at ' .. vim.fn.fnamemodify(pdf, ':~:.'), vim.log.levels.WARN)
+            return
+          end
+          vim.system({ typst_viewer, '--reuse-window', pdf }, { detach = true })
+        end
+
+        local function typst_compile(on_done)
+          local src, dir, pdf = typst_paths()
+          local root = typst_root(dir)
+          vim.fn.mkdir(vim.fn.fnamemodify(pdf, ':h'), 'p')
+          vim.system(
+            { typst_bin, 'compile', '--root', root, src, pdf },
+            { text = true, cwd = root },
+            function(res)
+              vim.schedule(function()
+                if res.code ~= 0 then
+                  local err = vim.trim(res.stderr or "")
+                  vim.notify('Typst: ' .. (err ~= "" and err or 'compile failed'), vim.log.levels.ERROR)
+                  return
+                end
+                on_done(pdf)
+              end)
+            end
+          )
+        end
+
+        function _G.nvf_typst_compile()
+          if vim.api.nvim_buf_get_name(0) == "" then
+            vim.notify('Typst: save the buffer first', vim.log.levels.WARN)
+            return
+          end
+          vim.cmd('silent write')
+          typst_compile(typst_open)
+        end
+
+        -- Compile only, no viewer (for CI-ish checks or a quiet rebuild).
+        function _G.nvf_typst_export()
+          if vim.api.nvim_buf_get_name(0) == "" then
+            vim.notify('Typst: save the buffer first', vim.log.levels.WARN)
+            return
+          end
+          vim.cmd('silent write')
+          typst_compile(function(pdf)
+            vim.notify('Typst: wrote ' .. vim.fn.fnamemodify(pdf, ':~:.'), vim.log.levels.INFO)
+          end)
+        end
+
+        function _G.nvf_view_pdf()
+          if vim.bo.filetype == 'typst' then
+            local _, _, pdf = typst_paths()
+            typst_open(pdf)
+          else
+            vim.cmd('VimtexView')
+          end
+        end
+
+        function _G.nvf_compile_pdf()
+          if vim.bo.filetype == 'typst' then
+            _G.nvf_typst_compile()
+          else
+            vim.cmd('VimtexCompile')
+          end
+        end
+
         -- Which-key: group labels
         local wk = require("which-key")
         wk.add({
@@ -205,7 +310,7 @@
           { "<leader>f", group = "Find" },       -- telescope file finding
           { "<leader>g", group = "Git" },        -- telescope git / fugitive
           { "<leader>h", group = "Hunks" },      -- gitsigns
-          { "<leader>p", group = "LaTeX / Typst" },      -- VimTeX + typst-preview
+          { "<leader>p", group = "LaTeX / Typst" },      -- VimTeX + tinymist
           { "<leader>s", group = "Search" },     -- telescope grep/buffers
           { "<leader>t", group = "Hunks" },      -- gitsigns (toggle)
           { "<leader>x", group = "Trouble" },    -- trouble diagnostics
@@ -222,9 +327,12 @@
       # 3. latexmk output goes to build/ (aux_dir + out_dir). <leader>pv
       #    opens the PDF in sioyek with forward search; sioyek auto-reloads
       #    on recompile.
-      # 4. Typst: tinymist LSP provides completion, diagnostics, formatting,
-      #    and PDF export. Use <leader>pt to toggle browser preview,
-      #    <leader>pf to export PDF.
+      # 4. Typst: tinymist LSP provides completion, diagnostics, formatting.
+      #    LSP-side PDF export is off (exportPdf = never) so nothing lands
+      #    next to the sources. <leader>pl saves, runs `tinymist compile`
+      #    into <dir>/build/<name>.pdf and opens it in sioyek; <leader>pv
+      #    only reopens the last build. Recompiling while sioyek is open is
+      #    fine, it reloads the PDF from disk.
 
       keymaps = [
         # ── File navigation ──────────────────────────────────
@@ -281,14 +389,14 @@
         {
           key = "<leader>pv";
           mode = "n";
-          action = ":VimtexView<CR>";
-          desc = "View PDF";
+          action = ":lua nvf_view_pdf()<CR>";
+          desc = "View PDF (LaTeX / Typst)";
         }
         {
           key = "<leader>pl";
           mode = "n";
-          action = ":VimtexCompile<CR>";
-          desc = "Continuous compile";
+          action = ":lua nvf_compile_pdf()<CR>";
+          desc = "Compile + view (LaTeX / Typst)";
         }
         {
           key = "<leader>pS";
@@ -327,17 +435,13 @@
           desc = "Reload state";
         }
         # ── Typst (grouped under <leader>p) ─────────────────────────
-        {
-          key = "<leader>pt";
-          mode = "n";
-          action = ":TypstPreviewToggle<CR>";
-          desc = "Toggle Typst preview";
-        }
+        # <leader>pl / <leader>pv are shared with VimTeX and dispatch on
+        # filetype; this one is a Typst-only extra.
         {
           key = "<leader>pf";
           mode = "n";
-          action = ":LspTinymistExportPdf<CR>";
-          desc = "Export Typst PDF";
+          action = ":lua nvf_typst_export()<CR>";
+          desc = "Compile Typst (no viewer)";
         }
       ];
 

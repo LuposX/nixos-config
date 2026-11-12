@@ -87,7 +87,6 @@ in {
     TERMINAL = "kitty";
     TERM = "kitty";
     BROWSER = "librewolf";
-    DE = "niri";
   };
 
   programs.dconf.enable = true;
