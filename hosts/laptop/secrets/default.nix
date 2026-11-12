@@ -62,6 +62,7 @@ in {
       # This host only
       ssh-logos = {path = "/home/${username}/.ssh/logos_id_ed25519";};
       ssh-prohairesis = {path = "/home/${username}/.ssh/prohairesis_id_ed25519";};
+      ssh-bwunicluster = {path = "/home/${username}/.ssh/bwunicluster_id_ed25519";};
     };
   };
 
