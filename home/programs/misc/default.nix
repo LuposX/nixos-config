@@ -4,4 +4,6 @@
   programs.calibre.enable = true;
   programs.btop.enable = true;
   programs.anki.enable = true;
+
+  home.packages = [pkgs.pferd];
 }

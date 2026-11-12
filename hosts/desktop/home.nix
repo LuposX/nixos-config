@@ -71,6 +71,7 @@
         wireguard-ui
         yt-dlp
         chafa
+        pferd
 
         # Dev
         uv

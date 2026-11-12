@@ -77,6 +77,7 @@
         wakeonlan
         yt-dlp
         chafa
+        pferd
 
         # Image viewer (for xdg-open)
         cosmic-viewer
