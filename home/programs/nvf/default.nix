@@ -143,11 +143,13 @@
 
         undotree.enable = true;
 
+        # Disabled: it auto-started a localhost browser preview on every
+        # markdown file. Start it manually with :MarkdownPreview if needed.
         preview.markdownPreview = {
-           enable = true;
-           autoStart = true;
-           autoClose = true;
-         };
+          enable = false;
+          autoStart = false;
+          autoClose = false;
+        };
 
          images = {
            image-nvim.enable = false;
