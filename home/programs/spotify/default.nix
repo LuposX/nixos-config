@@ -23,7 +23,6 @@ in {
       playlistIcons
       lastfm
       historyShortcut
-      hidePodcasts
       adblock
       fullAppDisplay
       keyboardShortcut
