@@ -91,6 +91,19 @@
           format.enable = true;
           extensions.typst-preview-nvim.enable = false;
         };
+
+        # Java: jdt-language-server LSP + treesitter + astyle format +
+        # Maven/Gradle integration. The jdt-language-server needs a JDK on
+        # the PATH — see home/programs/java for the JDK/maven/gradle/sat4j
+        # packages.
+        java = {
+          enable = true;
+          format.enable = true;
+          extensions = {
+            maven-nvim.enable = true;
+            gradle-nvim.enable = true;
+          };
+        };
       };
 
       # Keep the LSP out of the PDF business: it would drop <name>.pdf next
@@ -358,6 +371,7 @@
           { "<leader>c", group = "Conflict" },   -- git-conflict
           { "<leader>f", group = "Find" },       -- telescope file finding
           { "<leader>g", group = "Git" },        -- telescope git / fugitive
+          { "<leader>j", group = "Java" },       -- maven / gradle
           { "<leader>h", group = "Hunks" },      -- gitsigns
           { "<leader>p", group = "LaTeX / Typst" },      -- VimTeX + tinymist
           { "<leader>s", group = "Search" },     -- telescope grep/buffers

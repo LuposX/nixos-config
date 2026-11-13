@@ -27,6 +27,7 @@
     #  ../../home/programs/tailscale
     # ../../home/programs/anyrun
     ../../home/programs/nvf
+    ../../home/programs/java
     ../../home/programs/nnn
     ../../home/programs/librewolf
     ../../home/programs/aversion
