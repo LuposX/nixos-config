@@ -138,9 +138,20 @@
       identitiesOnly = true;
     };
     # Must list both names: Host matches the string you type, not hostname.
+    # bwUniCluster: key managed centrally in the bwIDM portal (authorized_keys
+    # is ignored there); regular key = one OTP+password unlock, then 8 h
+    # validity. ControlMaster lets scp/ssh after a login reuse the master
+    # connection without re-authenticating for 10 min after it goes idle.
     "bwunicluster bwunicluster.scc.kit.edu" = {
       hostname = "bwunicluster.scc.kit.edu";
       user = "ka_uynqx";
+      identityFile = "~/.ssh/bwunicluster_id_ed25519";
+      identitiesOnly = true;
+      extraOptions = {
+        ControlMaster = "auto";
+        ControlPath = "~/.ssh/cm-%r@%h:%p";
+        ControlPersist = "10m";
+      };
     };
   };
 }
