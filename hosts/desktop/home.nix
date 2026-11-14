@@ -137,5 +137,12 @@
       identityFile = "~/.ssh/gitlab_uni/id_ed25519";
       identitiesOnly = true;
     };
+    # Must list both names: Host matches the string you type, not hostname.
+    "bwunicluster bwunicluster.scc.kit.edu" = {
+      hostname = "bwunicluster.scc.kit.edu";
+      user = "ka_uynqx";
+      identityFile = "~/.ssh/bwunicluster_id_ed25519";
+      identitiesOnly = true;
+    };
   };
 }

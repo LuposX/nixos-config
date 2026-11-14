@@ -60,6 +60,7 @@ in {
 
       # This host only
       ssh-logos-pub = {path = "/home/${username}/.ssh/authorized_keys";};
+      ssh-bwunicluster = {path = "/home/${username}/.ssh/bwunicluster_id_ed25519";};
     };
   };
 
