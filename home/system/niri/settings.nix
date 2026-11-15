@@ -43,6 +43,19 @@
       };
 
       outputs = {
+        "DP-2" = {
+          mode = {
+            width = 2560;
+            height = 1440;
+            refresh = 119.998;
+          };
+          scale = 1.0;
+          position = {
+            x = 0;
+            y = 0;
+          };
+        };
+
         "eDP-1" = {
           mode = {
             width = 1920;
