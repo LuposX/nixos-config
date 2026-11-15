@@ -73,7 +73,9 @@
         yt-dlp
         chafa
         pferd
+
         prismlauncher
+        sdl3.lib
 
         # Dev
         uv
