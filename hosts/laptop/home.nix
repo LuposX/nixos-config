@@ -62,7 +62,6 @@
         # Apps
         wireguard-tools
         teams-for-linux
-        nheko # matrix
 
         # Dev
         uv
@@ -105,6 +104,7 @@
         gnome-text-editor
         gnome-clocks
         newsflash
+        element-desktop # matrix
 
         zotero
         telegram-desktop
