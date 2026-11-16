@@ -62,6 +62,7 @@
         # Apps
         wireguard-tools
         teams-for-linux
+        cinny-desktop
 
         # Dev
         uv
