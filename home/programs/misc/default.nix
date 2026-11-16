@@ -1,7 +1,15 @@
 # Add here programs that you want to be sytlized by stylix but don't want to configure further.
-{pkgs, ...}: {
+# calibre comes from stable (26.05): its unstable build pulls torch with ROCm
+# support, and aotriton 0.12b (torch's AMD Triton kernels) was broken in
+# unstable. Stable's calibre -> piper-tts 1.4 -> torch 2.11 has no aotriton.
+{
+  pkgs,
+  pkgsStable,
+  ...
+}: {
   programs.mpv.enable = true;
   programs.calibre.enable = true;
+  programs.calibre.package = pkgsStable.calibre;
   programs.btop.enable = true;
   programs.anki.enable = true;
 
