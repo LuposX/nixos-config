@@ -104,7 +104,7 @@
         gnome-text-editor
         gnome-clocks
         newsflash
-        element-desktop # matrix
+        fluffychat # matrix
 
         zotero
         telegram-desktop
