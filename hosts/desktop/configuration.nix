@@ -27,6 +27,7 @@
     ../../nixos/netbird.nix
     ../../nixos/media-monitor.nix
     ../../nixos/wol.nix
+    ../../nixos/flatpak.nix
     ../../nixos/auto-shutdown.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix

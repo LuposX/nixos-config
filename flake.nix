@@ -18,6 +18,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     nur.url = "github:nix-community/NUR";
 
+    nix-flatpak.url = "github:gmodena/nix-flatpak";
+
     pi = {
       url = "github:earendil-works/pi/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +87,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
+          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/desktop/configuration.nix
         ];
       };
@@ -98,6 +101,7 @@
           inputs.sops-nix.nixosModules.sops
           inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
+          inputs.nix-flatpak.nixosModules.nix-flatpak
           inputs.disko.nixosModules.disko
           ./hosts/laptop/configuration.nix
         ];

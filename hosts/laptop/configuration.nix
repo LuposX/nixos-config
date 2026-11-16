@@ -23,6 +23,7 @@
     ../../nixos/blockedsites.nix
     ../../nixos/media-monitor.nix
     ../../nixos/netbird.nix
+    ../../nixos/flatpak.nix
     ../../nixos/pi.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix
