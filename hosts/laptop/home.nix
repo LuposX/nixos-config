@@ -62,7 +62,7 @@
         # Apps
         wireguard-tools
         teams-for-linux
-        cinny-desktop
+        nheko # matrix
 
         # Dev
         uv
