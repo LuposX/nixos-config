@@ -252,6 +252,7 @@
     defaultModel = "kit/kit.deepseek-v4-flash";
     defaultThinkingLevel = "high";
     tuiMode = "fullscreen";
+    hideThinkingBlock = true;
     enabledModels = [
       "kit/kit.deepseek-v4-flash"
       "kit/kit.mistral-small-4-119b-a8b"
