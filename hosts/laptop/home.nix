@@ -62,6 +62,7 @@
         # Apps
         wireguard-tools
         teams-for-linux
+        fluffychat # matrix
 
         # Dev
         uv
@@ -104,7 +105,6 @@
         gnome-text-editor
         gnome-clocks
         newsflash
-        fluffychat # matrix
 
         zotero
         telegram-desktop
