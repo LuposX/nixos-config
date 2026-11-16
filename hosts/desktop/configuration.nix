@@ -27,6 +27,7 @@
     ../../nixos/netbird.nix
     ../../nixos/media-monitor.nix
     ../../nixos/wol.nix
+    ../../nixos/auto-shutdown.nix
     ../../nixos/sops.nix
     # ../../nixos/nvix.nix
     # ../../nixos/ventoy.nix # For USB flashing, to start `ventoy-gui` the `.desktop` doesnt work for me.
