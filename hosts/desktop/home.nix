@@ -31,7 +31,7 @@
     ../../home/programs/misc
     # ../../home/programs/nvix
 
-    ../../home/programs/aversion
+    ## ../../home/programs/aversion
 
     # Scripts
     ../../home/scripts # All scripts
@@ -74,6 +74,9 @@
         chafa
         pferd
 
+        prismlauncher
+        sdl3.lib
+
         # Dev
         uv
         reptyr
@@ -114,7 +117,7 @@
   };
 
   programs.home-manager.enable = true;
-  services.aversion.enable = true;
+  # services.aversion.enable = true;
 
   # SSH config as plaintext: contains no secrets. This host only holds
   # public keys (authorized_keys), so no outbound ssh to the servers.
