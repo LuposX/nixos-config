@@ -87,6 +87,7 @@
         pfetch
         fastfetch
         wakeonlan
+        universal-android-debloater
 
         # Image viewer (for xdg-open)
         imv
@@ -110,6 +111,7 @@
         qbittorrent
         libreoffice-qt6 # Office Stuff
         texlive.combined.scheme-full # TeX Live — huge, only update with stable
+        android-tools
       ]);
 
     # Don't touch this
