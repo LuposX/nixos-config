@@ -35,7 +35,6 @@
 
     # Service
     ../../nixos/syncthing.nix
-    ../../nixos/silverbullet.nix
     ../../nixos/searxng.nix
     # ../../nixos/hindsight.nix
 

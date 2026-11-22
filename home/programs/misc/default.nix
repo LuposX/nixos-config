@@ -13,5 +13,10 @@
   programs.btop.enable = true;
   programs.anki.enable = true;
 
-  home.packages = [pkgs.pferd];
+  home.packages = [
+    pkgs.pferd
+    # Markdown notes editor (open source), used on the Syncthing-synced
+    # ~/Projects/research-notes space. Has Zotero integration.
+    pkgs.zettlr
+  ];
 }
