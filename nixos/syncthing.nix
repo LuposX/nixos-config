@@ -41,6 +41,18 @@
           path = "/home/${config.var.username}/Projects/Notes";
         };
 
+        "ResearchNotes" = {
+          devices = [
+            "laptop-pneuma"
+            "desktop-logos"
+            "server"
+            "phone"
+          ];
+          id = "k8x2m-qp7vt";
+          ignorePerms = true;
+          path = "/home/${config.var.username}/Projects/research-notes";
+        };
+
         "ReactionImg" = {
           devices = [
             "laptop-pneuma"
