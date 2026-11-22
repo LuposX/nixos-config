@@ -18,5 +18,8 @@
     # Markdown notes editor (open source), used on the Syncthing-synced
     # ~/Projects/research-notes space. Has Zotero integration.
     pkgs.zettlr
+    # Renders the research-notes space as a local wiki site
+    # (olivine theme): `zola serve` in ~/Projects/research-notes.
+    pkgs.zola
   ];
 }
