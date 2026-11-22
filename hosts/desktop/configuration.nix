@@ -50,6 +50,11 @@
   # Noctalia and the niri brightness script).
   hardware.i2c.enable = true;
 
+  # FHS environment for running prebuilt binaries/anticheat launchers
+  # outside of Steam itself (nixpkgs.config.allowUnfree is set in nix.nix,
+  # which covers the steam-unwrapped dependency of steam-run).
+  environment.systemPackages = [pkgs.steam-run];
+
   # Build packages with ROCm/HIP support (e.g. Blender HIP, ffmpeg)
   nixpkgs.config.rocmSupport = true;
 
