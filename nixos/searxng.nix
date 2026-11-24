@@ -59,10 +59,17 @@
         # marginalia: mid-API-migration); `disabled = false` alone won't
         # resurrect them.
         { name = "mojeek"; disabled = false; inactive = false; }
-        { name = "yep"; disabled = false; }
         { name = "mwmbl"; disabled = false; }
         { name = "wiby"; disabled = false; }
-        { name = "searchmysite"; disabled = false; }
+
+        # Disabled on purpose (2026-11):
+        #  - yep: api.yep.com now sits behind a Cloudflare bot-wall — the
+        #    engine gets challenge pages, unfixable via settings. Re-check
+        #    on searxng updates.
+        #  - searchmysite: HTML xpath scraper, searchmysite.net denies bots
+        #    (and it was disabled upstream anyway).
+        #  - startpage: parked upstream (proof-of-work wall), and it's a
+        #    Google reseller, which is what we want less of.
 
         # Small web — Marginalia. For now this uses the shared public key
         # (https://about.marginalia-search.com/article/api/): it works but is
@@ -77,9 +84,6 @@
         # (switched off upstream, revived via their custom-search widget).
         # Keep it for coverage but rank it below the independents.
         { name = "google cse"; weight = 0.5; }
-
-        # startpage is also parked upstream (proof-of-work wall). Deliberately
-        # left off: it's a Google reseller, which is what you wanted less of.
       ];
 
       general = {

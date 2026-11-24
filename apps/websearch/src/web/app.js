@@ -37,6 +37,17 @@ async function api(path, opts) {
   return data;
 }
 
+// registrable-domain helper, mirrors src/personal.js (Kagi applies rules
+// to the whole domain, subdomains included)
+function baseDomain(host) {
+  const parts = String(host || "").toLowerCase().split(".").filter(Boolean);
+  if (parts.length <= 2) return parts.join(".");
+  const snd = parts[parts.length - 2];
+  const MULTIPART = ["co", "com", "net", "org", "gov", "ac", "edu"];
+  if (MULTIPART.includes(snd) && parts[parts.length - 1].length === 2) return parts.slice(-3).join(".");
+  return parts.slice(-2).join(".");
+}
+
 function relativeTime(ms) {
   const s = Math.round(ms / 1000);
   if (s < 90) return "just now";
@@ -179,6 +190,14 @@ function renderResults(data) {
   const snapRow = $("#snaps");
   snapRow.replaceChildren(...renderSnaps());
 
+  // Kagi-style: status line above results, same-domain results grouped
+  // (indented) under their first hit.
+  const status = el("div", { id: "resultstats" },
+    `${data.results.length} results in ${data.meta.tookMs} ms`,
+    data.blocked ? el("span", { className: "dim" }, ` · ${data.blocked} filtered`) : null,
+    el("span", { className: "next", onclick: nextPage }, " · next page →"),
+  );
+
   const list = el("div", {});
   if (!data.results.length) {
     list.append(el("p", { className: "hint" }, `no results${data.blocked ? ` (${data.blocked} filtered by lens/personal rules)` : ""}`));
@@ -187,36 +206,55 @@ function renderResults(data) {
     list.className = "img-grid";
     for (const r of data.results) list.append(renderImageCard(r));
   } else {
-    for (const r of data.results) list.append(renderResult(r));
+    const seen = new Set();
+    let prevHost = null;
+    for (const r of data.results) {
+      const sub = r.host && (r.host === prevHost || seen.has(r.host));
+      if (r.host) { seen.add(r.host); prevHost = r.host; }
+      list.append(renderResult(r, sub));
+    }
   }
-  main().replaceChildren(list);
+  main().replaceChildren(status, list);
 
-  const bar = $("#statusbar");
-  bar.replaceChildren(
-    el("span", {}, `${data.results.length} results · ${data.meta.tookMs} ms · engines: ${data.meta.enginesQueried.join(", ") || "—"}`),
-    data.blocked ? el("span", {}, `${data.blocked} filtered`) : null,
-    el("span", { className: "next", onclick: nextPage }, "next page →"),
-  );
+  $("#statusbar").replaceChildren();
   select(0);
 }
 
-function renderResult(r) {
+function renderResult(r, sub) {
   const trail = trailEntry(r.url);
   const tags = [];
   if (r.lensFactor !== 1) tags.push(el("span", { className: "tag lens", title: "lens factor" }, `lens ×${r.lensFactor}`));
   if (r.personalFactor !== 1) tags.push(el("span", { className: "tag lens", title: personalSource(r.host) }, `you ×${r.personalFactor}`));
   if (trail) tags.push(el("span", { className: "tag visited", title: `last visited ${new Date(trail.ts).toLocaleString()}` }, `visited ${relativeTime(Date.now() - trail.ts)}`));
 
-  const node = el("div", { className: "result", "data-url": r.url },
+  const link = el("a", { href: r.url, target: "_blank", rel: "noopener noreferrer nofollow", onclick: (ev) => { ev.preventDefault(); openResult(r); } }, r.title || r.url);
+  const tune = el("button", {
+    className: "tune",
+    title: "site info — block / lower / raise this domain",
+    onclick: (ev) => { ev.stopPropagation(); siteInfoHost = r.host; closeOverlays("#siteinfo"); $("#siteinfo").classList.remove("hidden"); renderSiteInfo(); },
+  }, "⚙");
+
+  if (sub) {
+    return el("div", { className: "result sub-result", "data-url": r.url },
+      el("div", { className: "r-title" }, link, tune),
+      r.content ? el("div", { className: "r-snippet" }, r.content) : null,
+      el("div", { className: "explain" },
+        el("div", {}, el("b", {}, "final score: "), `${r.score} = base ${r.base} × lens ${r.lensFactor} × personal ${r.personalFactor}`),
+        el("div", {}, el("b", {}, "personal: "), personalSource(r.host)),
+        el("div", {}, el("b", {}, "found by: "), (r.engines || []).join(", ")),
+      ),
+    );
+  }
+
+  return el("div", { className: "result", "data-url": r.url },
     el("div", { className: "r-top" },
       el("span", { className: "r-host" }, r.host || ""),
       el("span", {}, (r.engines || []).join(", ")),
       r.publishedDate ? el("span", {}, new Date(r.publishedDate).toLocaleDateString()) : null,
       tags,
+      tune,
     ),
-    el("div", { className: "r-title" },
-      el("a", { href: r.url, target: "_blank", rel: "noopener noreferrer nofollow", onclick: (ev) => { ev.preventDefault(); openResult(r); } }, r.title || r.url),
-    ),
+    el("div", { className: "r-title" }, link),
     r.content ? el("div", { className: "r-snippet" }, r.content) : null,
     el("div", { className: "explain" },
       el("div", {}, el("b", {}, "final score: "), `${r.score} = base ${r.base} × lens ${r.lensFactor} × personal ${r.personalFactor}`),
@@ -224,7 +262,6 @@ function renderResult(r) {
       el("div", {}, el("b", {}, "found by: "), (r.engines || []).join(", ")),
     ),
   );
-  return node;
 }
 
 function renderImageCard(r) {
@@ -242,14 +279,15 @@ function renderImageCard(r) {
 }
 
 function personalSource(host) {
-  const p = state.personal || { boost: {}, downrank: {}, block: [] };
-  if (p.block?.includes(host)) return "blocked";
-  const parts = [];
-  const b = p.boost?.[host];
-  if (b) parts.push(`boost ×${b.factor} (${b.n} clicks)`);
-  const d = p.downrank?.[host];
-  if (d) parts.push(`downrank ×${d.factor}`);
-  return parts.join(", ") || "neutral";
+  const p = state.personal || { sites: {} };
+  const s = p.sites?.[baseDomain(host)];
+  if (!s) return "neutral (auto)";
+  if (s.level === "block") return "blocked";
+  if (s.level === "lower") return `lowered ×0.5`;
+  if (s.level === "raise") return `raised ×1.5`;
+  if (s.level === "pin") return `pinned ×2.5`;
+  if (s.level === "default") return "default (manually neutral)";
+  return s.n ? `auto boost (${s.n} clicks)` : "neutral (auto)";
 }
 
 // ---------- selection ----------
@@ -325,7 +363,7 @@ async function personalAction(action, host) {
   const d = await api("/api/personal", { method: "POST", body: JSON.stringify({ action, host }) });
   state.personal = d.state;
   state.lastPersonalAction = { action, host };
-  const msgs = { block: `blocked ${host}`, unblock: `unblocked ${host}`, boost: `boosted ${host}`, downrank: `downranked ${host}`, reset: `reset ${host}` };
+  const msgs = { block: `blocked ${host}`, lower: `lowered ${host}`, raise: `raised ${host}`, pin: `pinned ${host}`, default: `${host} set to default`, reset: `reset ${host}` };
   toast(msgs[action] || `applied ${action}`);
   go(state.query, { page: state.page, push: false });
   if (!$("#siteinfo").classList.contains("hidden")) setTimeout(renderSiteInfo, 50);
@@ -337,7 +375,7 @@ let siteInfoHost = null;
 
 function openSiteInfo() {
   if (!state.data) { toast("no result selected"); return; }
-  siteInfoHost = state.data.host;
+  siteInfoHost = baseDomain(state.data.host);
   closeOverlays("#siteinfo");
   $("#siteinfo").classList.remove("hidden");
   renderSiteInfo();
@@ -347,43 +385,59 @@ function renderSiteInfo() {
   const host = siteInfoHost;
   if (!host) return;
   const r = state.results.find((x) => x.host === host) || {};
-  const p = state.personal || { boost: {}, downrank: {}, block: [] };
-  const blocked = (p.block || []).includes(host);
-  const b = p.boost?.[host];
-  const d = p.downrank?.[host];
+  const p = state.personal || { sites: {} };
+  const s = p.sites?.[host] || {};
+  const level = s.level || "auto";
+  const STATUS = {
+    block: "websearch will hide this domain from your results.",
+    lower: "websearch will show fewer results from this domain.",
+    auto: s.n ? `websearch currently boosts this domain slightly (${s.n} clicks).` : "No personal rule for this domain yet.",
+    default: "websearch treats this domain neutrally (manually set).",
+    raise: "websearch will show more results from this domain.",
+    pin: "websearch strongly boosts this domain.",
+  };
+
+  const levelBtn = (lvl, label) =>
+    el("button", {
+      className: `btn level-btn${level === lvl ? " active" : ""}`,
+      onclick: () => siteInfoSet(lvl),
+    }, label);
 
   $("#siteinfo").querySelector(".panel").replaceChildren(
-    el("h3", {}, "site info"),
+    el("h3", {}, host || "—"),
+    el("p", { className: "hint" }, "Tell websearch how to treat this domain in future searches."),
+    el("div", { className: "level-row" },
+      levelBtn("block", "Block"),
+      levelBtn("lower", "Lower"),
+      levelBtn("default", "Default"),
+      levelBtn("raise", "Raise"),
+      levelBtn("pin", "Pin"),
+    ),
+    el("p", { className: "siteinfo-status" }, STATUS[level] || ""),
     el("table", {},
-      el("tr", {}, el("td", {}, "host"), el("td", {}, host || "—")),
       el("tr", {}, el("td", {}, "title"), el("td", {}, r.title || "—")),
       el("tr", {}, el("td", {}, "found by"), el("td", {}, (r.engines || []).join(", ") || "—")),
       el("tr", {}, el("td", {}, "lens factor"), el("td", {}, r.lensFactor != null ? `×${r.lensFactor}` : "—")),
-      el("tr", {}, el("td", {}, "personal"), el("td", {},
-        blocked ? "blocked"
-        : [b && `boost ×${b.factor} (${b.n} clicks)`, d && `downrank ×${d.factor}`].filter(Boolean).join(", ") || "neutral",
-      )),
-      el("tr", {}, el("td", {}, "actions"), el("td", {},
-        "l boost · h downrank · b block · r reset · esc close",
-      )),
+      el("tr", {}, el("td", {}, "personal factor"), el("td", {}, r.personalFactor != null ? `×${r.personalFactor}` : "—")),
     ),
-    el("div", { style: "margin-top:10px;display:flex;gap:8px;flex-wrap:wrap" },
-      el("button", { className: "btn", onclick: () => siteInfoKey("l") }, "boost (l)"),
-      el("button", { className: "btn", onclick: () => siteInfoKey("h") }, "downrank (h)"),
-      el("button", { className: "btn", onclick: () => siteInfoKey("b") }, blocked ? "unblock (b)" : "block (b)"),
-      el("button", { className: "btn", onclick: () => siteInfoKey("r") }, "reset (r)"),
-    ),
+    el("p", { className: "hint keys-hint" }, "b block · h lower · l raise · p pin · 0 default · esc close"),
   );
+}
+
+function siteInfoSet(level) {
+  const host = siteInfoHost;
+  if (!host) return;
+  personalAction(level, host);
 }
 
 function siteInfoKey(key) {
   const host = siteInfoHost;
   if (!host) return;
-  const p = state.personal || { block: [] };
-  if (key === "l") personalAction("boost", host);
-  else if (key === "h") personalAction("downrank", host);
-  else if (key === "b") personalAction(p.block?.includes(host) ? "unblock" : "block", host);
-  else if (key === "r") personalAction("reset", host);
+  if (key === "b") siteInfoSet("block");
+  else if (key === "h") siteInfoSet("lower");
+  else if (key === "l") siteInfoSet("raise");
+  else if (key === "p") siteInfoSet("pin");
+  else if (key === "0" || key === "r") siteInfoSet("default");
 }
 
 // ---------- quick answer ----------
@@ -500,12 +554,12 @@ const CHEATSHEET = [
   ["e", "explain rank (score breakdown)"],
   ["Space", "reader preview of selected result"],
   ["q / a", "quick answer (needs LLM configured)"],
-  ["s", "site info modal — boost/ban status"],
+  ["s", "site info modal — block / lower / raise / pin"],
   ["S", "save current query as a snap"],
   ["b", "block selected host"],
-  ["B", "boost selected host"],
-  ["d", "downrank selected host"],
-  ["u", "undo last block/boost/downrank"],
+  ["B", "raise selected host (more results)"],
+  ["d", "lower selected host (fewer results)"],
+  ["u", "undo last personal rule"],
   ["w i v n m", "switch tab (web/images/videos/news/maps)"],
   ["] / [", "cycle tabs"],
   ["1-9", "jump to result n"],
@@ -639,6 +693,7 @@ document.addEventListener("keydown", (ev) => {
     return;
   }
   if (inInput) {
+    if (ev.key === "?") { ev.preventDefault(); toggleCheatsheet(); return; }
     if (ev.key === "Enter" && document.activeElement === $("#q")) {
       ev.preventDefault();
       go($("#q").value);
@@ -674,8 +729,8 @@ document.addEventListener("keydown", (ev) => {
     case "s": openSiteInfo(); break;
     case "S": saveSnap(); break;
     case "b": if (state.data) personalAction("block", state.data.host); break;
-    case "B": if (state.data) personalAction("boost", state.data.host); break;
-    case "d": if (state.data) personalAction("downrank", state.data.host); break;
+    case "d": if (state.data) personalAction("lower", state.data.host); break;
+    case "B": if (state.data) personalAction("raise", state.data.host); break;
     case "w": case "i": case "v": case "n": case "m":
       if (VERTICALS[ev.key]) setTab(VERTICALS[ev.key]);
       break;
@@ -684,8 +739,7 @@ document.addEventListener("keydown", (ev) => {
     case "u":
       if (state.lastPersonalAction) {
         const { action, host } = state.lastPersonalAction;
-        const undoMap = { block: "unblock", boost: "unboost", downrank: "undownrank" };
-        if (undoMap[action]) personalAction(undoMap[action], host);
+        if (action !== "click") personalAction("default", host);
         state.lastPersonalAction = null;
       } else toast("nothing to undo");
       break;
