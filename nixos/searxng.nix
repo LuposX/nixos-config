@@ -47,6 +47,41 @@
         formats = ["html" "json"];
       };
 
+      # Engine mix. Default SearXNG leans on resold Google/Bing results
+      # (duckduckgo = Bing, startpage = Google), where "agreement" between
+      # engines is often the same index counted twice. These enable the
+      # independent crawls instead — Mojeek and Brave are the same indexes
+      # Kagi licenses directly.
+      engines = [
+        # Independent indexes (no API key needed).
+        # `inactive = false` is required for engines upstream has parked
+        # (inactive: true in the default settings — mojeek: CAPTCHA wall,
+        # marginalia: mid-API-migration); `disabled = false` alone won't
+        # resurrect them.
+        { name = "mojeek"; disabled = false; inactive = false; }
+        { name = "yep"; disabled = false; }
+        { name = "mwmbl"; disabled = false; }
+        { name = "wiby"; disabled = false; }
+        { name = "searchmysite"; disabled = false; }
+
+        # Small web — Marginalia. For now this uses the shared public key
+        # (https://about.marginalia-search.com/article/api/): it works but is
+        # rate-limited across all users, so expect occasional per-request
+        # errors, and custom filters are not allowed on it. When you get a
+        # personal key, add to the sops searxng-env secret:
+        #   MARGINALIA_API_KEY=<key>
+        # and change "public" below to "$MARGINALIA_API_KEY".
+        { name = "marginalia"; disabled = false; inactive = false; api_key = "public"; }
+
+        # The Google scrape workaround is fragile and low-quality
+        # (switched off upstream, revived via their custom-search widget).
+        # Keep it for coverage but rank it below the independents.
+        { name = "google cse"; weight = 0.5; }
+
+        # startpage is also parked upstream (proof-of-work wall). Deliberately
+        # left off: it's a Google reseller, which is what you wanted less of.
+      ];
+
       general = {
         instance_name = "SearXNG";
         debug = false;

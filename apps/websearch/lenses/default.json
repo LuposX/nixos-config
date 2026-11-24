@@ -1,0 +1,10 @@
+{
+  "name": "default",
+  "block": ["pinterest.com", "quora.com"],
+  "boost": [
+    { "host": "wikipedia.org", "factor": 1.2 }
+  ],
+  "downrank": [
+    { "host": "medium.com", "factor": 0.6 }
+  ]
+}

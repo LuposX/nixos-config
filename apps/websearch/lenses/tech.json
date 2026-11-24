@@ -1,0 +1,17 @@
+{
+  "name": "tech",
+  "block": ["pinterest.com", "quora.com", "w3schools.com"],
+  "boost": [
+    { "host": "github.com", "factor": 1.5 },
+    { "host": "developer.mozilla.org", "factor": 1.5 },
+    { "host": "wikipedia.org", "factor": 1.2 },
+    { "host": "stackexchange.com", "factor": 1.2 },
+    { "host": "nixos.org", "factor": 1.3 },
+    { "host": "archlinux.org", "factor": 1.2 }
+  ],
+  "downrank": [
+    { "host": "medium.com", "factor": 0.5 },
+    { "host": "geeksforgeeks.org", "factor": 0.5 },
+    { "host": "tutorialspoint.com", "factor": 0.5 }
+  ]
+}
