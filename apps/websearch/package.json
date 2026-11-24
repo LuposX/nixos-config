@@ -1,7 +1,0 @@
-{
-  "name": "websearch",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "description": "Kagi-style frontend for a self-hosted SearXNG instance. Zero runtime dependencies."
-}

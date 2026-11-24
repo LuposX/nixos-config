@@ -36,7 +36,6 @@
     # Service
     ../../nixos/syncthing.nix
     ../../nixos/searxng.nix
-    ../../nixos/websearch.nix
     # ../../nixos/hindsight.nix
 
     # Don't change this.
@@ -46,10 +45,6 @@
 
   # Enables emulation of arm system to compile NixOS for Raspberry device.
   boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
-  # Kagi-style frontend for the local SearXNG (lenses, bangs, snaps,
-  # personalized ranking). UI on http://localhost:3040.
-  services.websearch.enable = true;
 
   # i2c-dev for ddcutil (DDC/CI brightness on external monitors, used by
   # Noctalia and the niri brightness script).

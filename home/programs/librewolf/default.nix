@@ -1,6 +1,7 @@
 # LibreWolf, configured declaratively.
 # Replaces the previous Zen setup: same extensions, same profiles,
-# self-hosted websearch (Kagi-style SearXNG frontend) as default search engine.
+# self-hosted SearXNG (with instant answers + site ranking plugins) as
+# default search engine.
 {
   config,
   pkgs,
@@ -56,16 +57,8 @@ in {
       );
     in {
       SearchEngines = {
-        Default = "websearch";
+        Default = "SearXNG";
         Add = [
-          {
-            Name = "websearch";
-            URLTemplate = "http://127.0.0.1:3040/search?q={searchTerms}";
-            Method = "GET";
-            IconURL = "http://127.0.0.1:3040/favicon.ico";
-            Alias = "@ws";
-            Description = "Kagi-style frontend for local SearXNG";
-          }
           {
             Name = "SearXNG";
             URLTemplate = "http://127.0.0.1:8080/search?q={searchTerms}";

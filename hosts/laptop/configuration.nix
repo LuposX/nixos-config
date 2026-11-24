@@ -35,7 +35,6 @@
     # Service
     ../../nixos/syncthing.nix
     ../../nixos/searxng.nix
-    ../../nixos/websearch.nix
     # ../../nixos/hindsight.nix
 
     # Don't change this.
@@ -43,10 +42,6 @@
     ./disko.nix
     ./variables.nix
   ];
-
-  # Kagi-style frontend for the local SearXNG (lenses, bangs, snaps,
-  # personalized ranking). UI on http://localhost:3040.
-  services.websearch.enable = true;
 
   # Patch spotify-player: authenticate subcommand never saves credentials.json
   # Noctalia v5 is a native shell (no quickshell fork), so the Qt 6.12
