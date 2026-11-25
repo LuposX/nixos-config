@@ -63,6 +63,7 @@
         wireguard-tools
         teams-for-linux
         fluffychat # matrix
+        signal-desktop
 
         # Dev
         uv

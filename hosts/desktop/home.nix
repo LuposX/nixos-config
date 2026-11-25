@@ -73,6 +73,7 @@
         yt-dlp
         chafa
         pferd
+        signal-desktop
 
         prismlauncher
         sdl3.lib
