@@ -97,8 +97,8 @@
           id = "8a2f4-c91bd";
           path = "/home/${config.var.username}/Projects/Latex-Projects";
         };
-      };
-      "TypstProjects" = {
+
+        "TypstProjects" = {
           devices = [
             "laptop-pneuma"
             "desktop-logos"
@@ -109,8 +109,6 @@
           path = "/home/${config.var.username}/Projects/Typst-Projects";
         };
       };
-
-
 
       gui = {
         theme = "black";
