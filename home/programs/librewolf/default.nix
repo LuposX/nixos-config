@@ -1,6 +1,7 @@
 # LibreWolf, configured declaratively.
 # Replaces the previous Zen setup: same extensions, same profiles,
-# DuckDuckGo as default search engine.
+# self-hosted SearXNG (with instant answers + site ranking plugins) as
+# default search engine.
 {
   config,
   pkgs,
@@ -56,7 +57,7 @@ in {
       );
     in {
       SearchEngines = {
-        Default = "DuckDuckGo";
+        Default = "SearXNG";
         Add = [
           {
             Name = "SearXNG";
