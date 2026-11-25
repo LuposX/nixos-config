@@ -98,6 +98,19 @@
           path = "/home/${config.var.username}/Projects/Latex-Projects";
         };
       };
+      "TypstProjects" = {
+          devices = [
+            "laptop-pneuma"
+            "desktop-logos"
+            "server"
+          ];
+          ignorePerms = true;
+          id = "ap057-d26a";
+          path = "/home/${config.var.username}/Projects/Typst-Projects";
+        };
+      };
+
+
 
       gui = {
         theme = "black";
